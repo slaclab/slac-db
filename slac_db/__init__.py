@@ -4,6 +4,12 @@ from typing import Union, Optional, Any, Dict
 import slac_db.config
 
 def get_beampath_areas(beampath):
+    def flatten(nested_list):
+        if nested_list == []:
+            return nested_list
+        if isinstance(nested_list[0], list):
+            return _flatten(nested_list[0]) + _flatten(nested_list[1:])
+        return nested_list[:1] + _flatten(nested_list[1:])
     beampath_definition_file = os.path.join(
         slac_db.package_data(), "beampaths.yaml"
     )
