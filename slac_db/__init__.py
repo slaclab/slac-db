@@ -4,7 +4,7 @@ from typing import Union, Optional, Any, Dict
 import slac_db.config
 
 def get_beampath_areas(beampath):
-    def flatten(nested_list):
+    def _flatten(nested_list):
         if nested_list == []:
             return nested_list
         if isinstance(nested_list[0], list):
