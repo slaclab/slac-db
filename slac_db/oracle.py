@@ -16,20 +16,25 @@ def get_address_header(device=None):
             )
         )["control system name"]
 
-def get_devices(area=None, device_type=None):
-    if device_type is None:
-        device_type = "%"
+def get_all_address_headers():
     with _session() as s:
-        return list(
-            r.element for r in s.select(
-                sqlalchemy.select(
-                    s.t.elements.c["element"]
-                ).where(
-                    s.t.elements.c["keyword"].like(device_type)
-                ).where(
-                    s.t.elements.c["area"] == area
-                )
+        return [r["control system name"] for r in s.select(
+            sqlalchemy.select(
+                s.t.elements.c["control system name"]
             )
+        )]
+
+def get_devices(area=None, device_type=None):
+    with _session() as s:
+        q = sqlalchemy.select(
+            s.t.elements.c["element"]
+        )
+        if device_type is not None:
+            q = q.where(s.t.elements.c["keyword"] == device_type)
+        if area is not None:
+            q = q.where(s.t.elements.c["area"] == area)
+        return list(
+            r.element for r in s.select(q)
         )
 
 def get_device_row(element=None):
@@ -98,7 +103,6 @@ class _Inserter():
                 ins[c.name] = r[c.name]
             session.insert("elements", **ins)
             i = i + 1
-
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):

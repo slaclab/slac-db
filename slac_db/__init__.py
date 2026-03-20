@@ -105,3 +105,4 @@ def get_device(
     else:
         print("Please provide a machine area to create a ", device_type, " from.")
         return None
+

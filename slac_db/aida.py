@@ -33,6 +33,14 @@ def get_addresses(device=None):
             )
         )
 
+def get_all():
+    with _session() as s:
+        cs_address = s.t.addresses.c["address"]
+        for r in s.select(
+            sqlalchemy.select(cs_address)
+        ):
+            yield r["address"]
+
 def recreate(parser):
     assert not _meta
     assert parser.addresses
