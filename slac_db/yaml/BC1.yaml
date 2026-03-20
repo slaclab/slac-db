@@ -712,7 +712,8 @@ wires:
       - PMT2114:LI21
       - PMT2115:LI21
       sum_l_meters: 39.56
-      type: WIRE
+      type:
+      - fast
   WS12:
     controls_information:
       PVs:
@@ -763,7 +764,8 @@ wires:
       - PMT2114:LI21
       - PMT2115:LI21
       sum_l_meters: 41.217
-      type: WIRE
+      type:
+      - fast
   WS13:
     controls_information:
       PVs:
@@ -814,4 +816,5 @@ wires:
       - PMT2114:LI21
       - PMT2115:LI21
       sum_l_meters: 42.873
-      type: WIRE
+      type:
+      - fast

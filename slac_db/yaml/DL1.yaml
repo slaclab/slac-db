@@ -1122,7 +1122,8 @@ wires:
       - PMTINJ05:DL1
       - PMT21350:LI21
       sum_l_meters: 12.175
-      type: WIRE
+      type:
+      - slow
   WS02:
     controls_information:
       PVs:
@@ -1170,7 +1171,8 @@ wires:
       - PMTINJ05:DL1
       - PMT21350:LI21
       sum_l_meters: 14.089
-      type: WIRE
+      type:
+      - fast
   WS03:
     controls_information:
       PVs:
@@ -1218,7 +1220,8 @@ wires:
       - PMTINJ05:DL1
       - PMT21350:LI21
       sum_l_meters: 16.003
-      type: WIRE
+      type:
+      - fast
   WS04:
     controls_information:
       PVs:
@@ -1260,4 +1263,5 @@ wires:
       - PMTINJ05:DL1
       - PMT21350:LI21
       sum_l_meters: 18.519
-      type: WIRE
+      type:
+      - slow

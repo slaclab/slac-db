@@ -342,4 +342,5 @@ wires:
       - LBLM07A:L3B
       - TMITLOSS:EMIT2
       sum_l_meters: 384.229
-      type: WIRE
+      type:
+      - fast

@@ -416,4 +416,5 @@ wires:
       detectors:
       - LBLM22A:SPS
       sum_l_meters: 3024.92
-      type: WIRE
+      type:
+      - fast

@@ -2936,7 +2936,8 @@ wires:
       - PMT850:LTUH
       - LBLM32A:LTUH
       sum_l_meters: 1409.712
-      type: WIRE
+      type:
+      - fast
   WS32:
     controls_information:
       PVs:
@@ -2990,7 +2991,8 @@ wires:
       - PMT850:LTUH
       - LBLM32A:LTUH
       sum_l_meters: 1444.975
-      type: WIRE
+      type:
+      - fast
   WS33:
     controls_information:
       PVs:
@@ -3044,7 +3046,8 @@ wires:
       - PMT850:LTUH
       - LBLM32A:LTUH
       sum_l_meters: 1480.239
-      type: WIRE
+      type:
+      - fast
   WS34:
     controls_information:
       PVs:
@@ -3098,7 +3101,8 @@ wires:
       - PMT850:LTUH
       - LBLM32A:LTUH
       sum_l_meters: 1515.502
-      type: WIRE
+      type:
+      - fast
   WSDL31:
     controls_information:
       PVs:

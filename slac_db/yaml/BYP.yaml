@@ -1808,7 +1808,8 @@ wires:
       - LBLM11A_3:BYP
       - TMITLOSS:BYP
       sum_l_meters: 1212.849
-      type: WIRE
+      type:
+      - fast
   WSBP3:
     controls_information:
       PVs:
@@ -1889,7 +1890,8 @@ wires:
       - LBLM11A_3:BYP
       - TMITLOSS:BYP
       sum_l_meters: 1416.049
-      type: WIRE
+      type:
+      - fast
   WSBP4:
     controls_information:
       PVs:
@@ -1970,4 +1972,5 @@ wires:
       - LBLM11A_3:BYP
       - TMITLOSS:BYP
       sum_l_meters: 1619.249
-      type: WIRE
+      type:
+      - fast
