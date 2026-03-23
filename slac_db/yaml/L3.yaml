@@ -4401,7 +4401,8 @@ wires:
       - PMT756:LTUH
       - PMT820:LTUH
       sum_l_meters: 700.132
-      type: WIRE
+      type:
+      - fast
   WS28144:
     controls_information:
       PVs:
@@ -4449,7 +4450,8 @@ wires:
       - PMT756:LTUH
       - PMT820:LTUH
       sum_l_meters: 740.508
-      type: WIRE
+      type:
+      - fast
   WS28444:
     controls_information:
       PVs:
@@ -4497,7 +4499,8 @@ wires:
       - PMT756:LTUH
       - PMT820:LTUH
       sum_l_meters: 777.541
-      type: WIRE
+      type:
+      - fast
   WS28744:
     controls_information:
       PVs:
@@ -4545,4 +4548,5 @@ wires:
       - PMT756:LTUH
       - PMT820:LTUH
       sum_l_meters: 814.077
-      type: WIRE
+      type:
+      - fast

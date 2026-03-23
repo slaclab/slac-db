@@ -2840,7 +2840,8 @@ wires:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3434.508
-      type: WIRE
+      type:
+      - fast
   WS32B:
     controls_information:
       PVs:
@@ -2907,7 +2908,8 @@ wires:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3469.772
-      type: WIRE
+      type:
+      - fast
   WS33B:
     controls_information:
       PVs:
@@ -2974,7 +2976,8 @@ wires:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3505.035
-      type: WIRE
+      type:
+      - fast
   WS34B:
     controls_information:
       PVs:
@@ -3041,4 +3044,5 @@ wires:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3540.299
-      type: WIRE
+      type:
+      - fast

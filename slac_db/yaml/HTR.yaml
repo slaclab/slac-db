@@ -1162,4 +1162,5 @@ wires:
       - LBLM01A:HTR
       - LBLM01B:HTR
       sum_l_meters: 24.589
-      type: WIRE
+      type:
+      - fast

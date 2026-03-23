@@ -881,7 +881,8 @@ wires:
       - LBLM04A:L2B
       - TMITLOSS:COL1
       sum_l_meters: 154.52
-      type: WIRE
+      type:
+      - fast
   WSC106:
     controls_information:
       PVs:
@@ -947,7 +948,8 @@ wires:
       - LBLM04A:L2B
       - TMITLOSS:COL1
       sum_l_meters: 162.52
-      type: WIRE
+      type:
+      - fast
   WSC108:
     controls_information:
       PVs:
@@ -1013,7 +1015,8 @@ wires:
       - LBLM04A:L2B
       - TMITLOSS:COL1
       sum_l_meters: 170.52
-      type: WIRE
+      type:
+      - fast
   WSC110:
     controls_information:
       PVs:
@@ -1079,4 +1082,5 @@ wires:
       - LBLM04A:L2B
       - TMITLOSS:COL1
       sum_l_meters: 178.52
-      type: WIRE
+      type:
+      - fast

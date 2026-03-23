@@ -1511,4 +1511,5 @@ wires:
       - LBLM11A_3:BYP
       - TMITLOSS:BYP
       sum_l_meters: 1009.649
-      type: WIRE
+      type:
+      - fast
