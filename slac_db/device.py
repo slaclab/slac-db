@@ -1,8 +1,19 @@
 import os
 import pykern.sql_db
 import slac_db.config
+import sqlalchemy
 
 _meta = None
+
+def get_all_addresses(device):
+    with _session() as s:
+        return [r["cs_address"] for r in s.select(
+            sqlalchemy.select(
+                s.t.addresses
+            ).where(
+                s.t.addresses.c["device_name"] == device
+            )
+        )]
 
 def recreate(parser):
     assert not _meta
