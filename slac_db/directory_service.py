@@ -29,6 +29,14 @@ def get_addresses(device=None):
             )
         ))
 
+def get_all():
+    with _session() as s:
+        cs_address = s.t.addresses.c["address"]
+        for r in s.select(
+            sqlalchemy.select(cs_address)
+        ):
+            yield r["address"]
+
 def recreate(parser):
     """Rebuild the local directory_service sqlite3 database
     only if it is not already loaded.

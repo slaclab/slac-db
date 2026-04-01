@@ -50,6 +50,14 @@ def get_devices(area=None, device_type=None):
             )
         )
 
+def get_all_address_headers():
+    with _session() as s:
+        return [r["control system name"] for r in s.select(
+            sqlalchemy.select(
+                s.t.elements.c["control system name"]
+            )
+        )]
+
 def get_device_row(element=None):
     """Get the full row for an element.
 
@@ -145,7 +153,6 @@ class _Inserter:
             for c in session.t.elements.c:
                 ins[c.name] = r[c.name]
             session.insert("elements", **ins)
-
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):
