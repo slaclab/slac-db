@@ -2,7 +2,7 @@ import unittest
 import csv
 from pathlib import Path
 import slac_db.oracle
-import slac_db.aida
+import slac_db.directory_service
 
 
 test_data_path = Path(__file__).parent / 'test_data'
@@ -49,5 +49,5 @@ class TestOracle(unittest.TestCase):
             area="DIAG0",
             device_type="PROF"
         )
-        expected_devices = ["OTRDG02", "OTRDG04"]
+        expected_devices = ("OTRDG02", "OTRDG04")
         self.assertEqual(profile_monitors, expected_devices)

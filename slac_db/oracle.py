@@ -1,6 +1,7 @@
 import slac_db.config
 import sqlalchemy
 import pykern.sql_db
+import os.path
 import os
 
 
@@ -45,13 +46,17 @@ def get_devices(area=None, device_type=None):
                     s.t.elements.c["keyword"] == device_type
                 ).where(
                     s.t.elements.c["area"] == area
-                ).order_by(s.t.elements.c["SumL (m)"])
+                ).order_by(s.t.elements.c["suml (m)"])
             )
         )
 
 def get_device_row(element=None):
-    """Get the full SQLite row for an element.
+    """Get the full row for an element.
 
+    Args:
+        element: name of the element to get.
+    Returns:
+        sql alchemy row: Row object with each column.
     """
     with _session() as s:
         return s.select_one(
@@ -63,22 +68,32 @@ def get_device_row(element=None):
         )
 
 def get_beampaths():
-    def parse_beampaths(beampath_csv_row):
-        row = beampath_csv_row.replace(' ', '').split(',')
-        row = filter(None, row)
-        return row
+    """Get all beampaths from Oracle.
 
+    Returns:
+        List of beampaths sorted alphabetically.
+    """
     beampaths = set()
+    def parse_beampaths(beampath_csv):
+        if beampath_csv is None:
+            return
+        c = beampath_csv.replace(' ', '').split(',')
+        c = filter(None, c)
+        beampaths.update(c)
+
     with _session() as s:
         query = sqlalchemy.select(s.t.elements.c.beampath).distinct()
         for r in s.select(query):
-            if r.beampath is None:
-                continue
-            beampaths.update(parse_beampaths(r.beampath))
+            parse_beampaths(r.beampath)
     return sorted(list(beampaths))
 
 
 def get_areas():
+    """Get all areas from Oracle.
+
+    Returns:
+        List of areas sorted alphabetically.
+    """
     def exclude_bad_patterns(column):
         bad_patterns = ['\t- NO AREA -', '*%']
         filters = [None] * len(bad_patterns)
@@ -98,26 +113,38 @@ def get_areas():
         )
 
 def recreate(parser):
-    assert not _meta
-    assert parser.rows
+    """Rebuilds the sqlite copy of Oracle.
+    Fails if a connection has already been made.
+
+    Args:
+        Parser object with attribute 'rows' for row data.
+    """
+    if _meta:
+        raise AssertionError(
+            "Database connnection already initialized. "
+            + "Restart Python interpreter."
+        )
+    if not hasattr(parser, "rows"):
+        raise AssertionError(
+            "Parser is missing attribute 'rows'. "
+        )        
     if os.path.exists(_oracle_uri()):
         os.remove(_oracle_uri())
     _Inserter(parser)
 
 
-class _Inserter():
+class _Inserter:
+    """Inserts rows into sqllite database.
+    """
     def __init__(self, parser):
         with _session() as s:
             self._rows(parser.rows, s)
-
     def _rows(self, rows, session):
-        i = 0
         for r in rows.values():
             ins = {}
             for c in session.t.elements.c:
                 ins[c.name] = r[c.name]
             session.insert("elements", **ins)
-            i = i + 1
 
 
 def _db_type_prefix(uri):
@@ -126,6 +153,11 @@ def _db_type_prefix(uri):
     return uri
 
 def _init_db(uri=None):
+    """Initializes pykern sqlalchemy wrapper. Initialization
+    occurs when a session is first created.
+
+       _meta: wrapper that holds sqlalchemy metadata.
+    """
     global _meta
     if uri is None:
         uri = _oracle_uri()

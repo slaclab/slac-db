@@ -1,4 +1,5 @@
 import os
+import os.path
 import slac_db.config
 import sqlalchemy
 import pykern.sql_db
@@ -29,7 +30,7 @@ def get_addresses(device=None):
         ))
 
 def recreate(parser):
-    """Rebuild the local aida sqlite3 database
+    """Rebuild the local directory_service sqlite3 database
     only if it is not already loaded.
 
     Args:
@@ -37,8 +38,8 @@ def recreate(parser):
     """
     assert not _meta
     assert parser.addresses
-    if os.path.exists(_aida_uri()):
-        os.remove(_aida_uri())
+    if os.path.exists(_directory_service_uri()):
+        os.remove(_directory_service_uri())
     _Inserter(parser)
 
 class _Inserter:
@@ -68,9 +69,14 @@ def _db_type_prefix(uri):
     return uri
 
 def _init_db(uri=None):
+    """Initializes pykern sqlalchemy wrapper. Initialization
+    occurs when a session is first created.
+
+       _meta: wrapper that holds sqlalchemy metadata.
+    """
     global _meta
     if uri is None:
-        uri = _aida_uri()
+        uri = _directory_service_uri()
     uri = _db_type_prefix(uri)
     schema = {
         "addresses": {
@@ -82,9 +88,9 @@ def _init_db(uri=None):
         schema=schema
     )
 
-def _aida_uri():
+def _directory_service_uri():
     uri = (
-        slac_db.config.package_data() / 'aida_pvs.sqlite3'
+        slac_db.config.package_data() / 'directory_service_pvs.sqlite3'
     )
     return str(uri)
 

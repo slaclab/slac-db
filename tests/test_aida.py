@@ -1,11 +1,11 @@
 import unittest
 import csv
 from pathlib import Path
-import slac_db.aida
+import slac_db.directory_service
 
 class TestAida(unittest.TestCase):
     def test_get_otrdg02_pvs(self):
-        all_pvs = slac_db.aida.get_addresses(
+        all_pvs = slac_db.directory_service.get_addresses(
             device="OTRDG04",
         )
         num_pvs = 2838
