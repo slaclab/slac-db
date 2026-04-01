@@ -1,4 +1,4 @@
-# slac_db/yaml/* linguist-generated
-# slac_db/package_data/* linguist-generated
-# tests/test_data/* linguist-generated
-# tests/test_data/lcls-tools-yaml/* linguist-generated
+slac_db/yaml/* linguist-generated
+slac_db/package_data/* linguist-generated
+tests/test_data/* linguist-generated
+*.sqlite3 filter=lfs diff=lfs merge=lfs -text
