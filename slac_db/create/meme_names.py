@@ -1,7 +1,7 @@
-import slac_db.aida
+import slac_db.directory_service
 
-def to_aida_db():
-    return slac_db.aida.recreate(_Parser())
+def to_directory_service_db():
+    return slac_db.directory_service.recreate(_Parser())
 
 class _Parser:
     def __init__(self):
