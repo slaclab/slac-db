@@ -828,6 +828,7 @@ wires:
         install_angle: WIRE:COL1:360:INSTALLANGLE
         motor: WIRE:COL1:360:MOTR
         motor_rbv: WIRE:COL1:360:MOTR.RBV
+        mps_speed: WIRE:COL1:360:MPSSPEED
         retract: WIRE:COL1:360:MOTR_RETRACT
         scan_pulses: WIRE:COL1:360:SCANPULSES
         speed: WIRE:COL1:360:MOTR.VELO
@@ -836,6 +837,7 @@ wires:
         start_scan: WIRE:COL1:360:STARTSCAN
         temperature: WIRE:COL1:360:TEMP
         timeout: WIRE:COL1:360:MOTR_TIMEOUTEN
+        torque_enable: WIRE:COL1:360:MOTR_SWITCH_ON_CMD
         u_size: WIRE:COL1:360:UWIRESIZE
         u_wire_inner: WIRE:COL1:360:UWIREINNER
         u_wire_outer: WIRE:COL1:360:UWIREOUTER
@@ -882,6 +884,7 @@ wires:
       - TMITLOSS:COL1
       sum_l_meters: 154.52
       type: WIRE
+      wire_type: fast
   WSC106:
     controls_information:
       PVs:
@@ -894,6 +897,7 @@ wires:
         install_angle: WIRE:COL1:520:INSTALLANGLE
         motor: WIRE:COL1:520:MOTR
         motor_rbv: WIRE:COL1:520:MOTR.RBV
+        mps_speed: WIRE:COL1:520:MPSSPEED
         retract: WIRE:COL1:520:MOTR_RETRACT
         scan_pulses: WIRE:COL1:520:SCANPULSES
         speed: WIRE:COL1:520:MOTR.VELO
@@ -902,6 +906,7 @@ wires:
         start_scan: WIRE:COL1:520:STARTSCAN
         temperature: WIRE:COL1:520:TEMP
         timeout: WIRE:COL1:520:MOTR_TIMEOUTEN
+        torque_enable: WIRE:COL1:520:MOTR_SWITCH_ON_CMD
         u_size: WIRE:COL1:520:UWIRESIZE
         u_wire_inner: WIRE:COL1:520:UWIREINNER
         u_wire_outer: WIRE:COL1:520:UWIREOUTER
@@ -948,6 +953,7 @@ wires:
       - TMITLOSS:COL1
       sum_l_meters: 162.52
       type: WIRE
+      wire_type: fast
   WSC108:
     controls_information:
       PVs:
@@ -960,6 +966,7 @@ wires:
         install_angle: WIRE:COL1:680:INSTALLANGLE
         motor: WIRE:COL1:680:MOTR
         motor_rbv: WIRE:COL1:680:MOTR.RBV
+        mps_speed: WIRE:COL1:680:MPSSPEED
         retract: WIRE:COL1:680:MOTR_RETRACT
         scan_pulses: WIRE:COL1:680:SCANPULSES
         speed: WIRE:COL1:680:MOTR.VELO
@@ -968,6 +975,7 @@ wires:
         start_scan: WIRE:COL1:680:STARTSCAN
         temperature: WIRE:COL1:680:TEMP
         timeout: WIRE:COL1:680:MOTR_TIMEOUTEN
+        torque_enable: WIRE:COL1:680:MOTR_SWITCH_ON_CMD
         u_size: WIRE:COL1:680:UWIRESIZE
         u_wire_inner: WIRE:COL1:680:UWIREINNER
         u_wire_outer: WIRE:COL1:680:UWIREOUTER
@@ -1014,6 +1022,7 @@ wires:
       - TMITLOSS:COL1
       sum_l_meters: 170.52
       type: WIRE
+      wire_type: fast
   WSC110:
     controls_information:
       PVs:
@@ -1026,6 +1035,7 @@ wires:
         install_angle: WIRE:COL1:840:INSTALLANGLE
         motor: WIRE:COL1:840:MOTR
         motor_rbv: WIRE:COL1:840:MOTR.RBV
+        mps_speed: WIRE:COL1:840:MPSSPEED
         retract: WIRE:COL1:840:MOTR_RETRACT
         scan_pulses: WIRE:COL1:840:SCANPULSES
         speed: WIRE:COL1:840:MOTR.VELO
@@ -1034,6 +1044,7 @@ wires:
         start_scan: WIRE:COL1:840:STARTSCAN
         temperature: WIRE:COL1:840:TEMP
         timeout: WIRE:COL1:840:MOTR_TIMEOUTEN
+        torque_enable: WIRE:COL1:840:MOTR_SWITCH_ON_CMD
         u_size: WIRE:COL1:840:UWIRESIZE
         u_wire_inner: WIRE:COL1:840:UWIREINNER
         u_wire_outer: WIRE:COL1:840:UWIREOUTER
@@ -1080,3 +1091,4 @@ wires:
       - TMITLOSS:COL1
       sum_l_meters: 178.52
       type: WIRE
+      wire_type: fast

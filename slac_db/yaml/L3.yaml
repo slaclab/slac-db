@@ -4366,6 +4366,7 @@ wires:
         install_angle: WIRE:LI27:644:INSTALLANGLE
         motor: WIRE:LI27:644:MOTR
         motor_rbv: WIRE:LI27:644:MOTR.RBV
+        mps_speed: WIRE:LI27:644:MPSSPEED
         retract: WIRE:LI27:644:MOTR_RETRACT
         scan_pulses: WIRE:LI27:644:SCANPULSES
         speed: WIRE:LI27:644:MOTR.VELO
@@ -4374,6 +4375,7 @@ wires:
         start_scan: WIRE:LI27:644:STARTSCAN
         temperature: WIRE:LI27:644:TEMP
         timeout: WIRE:LI27:644:MOTR_TIMEOUTEN
+        torque_enable: WIRE:LI27:644:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI27:644:UWIRESIZE
         u_wire_inner: WIRE:LI27:644:UWIREINNER
         u_wire_outer: WIRE:LI27:644:UWIREOUTER
@@ -4402,6 +4404,7 @@ wires:
       - PMT820:LTUH
       sum_l_meters: 700.132
       type: WIRE
+      wire_type: fast
   WS28144:
     controls_information:
       PVs:
@@ -4414,6 +4417,7 @@ wires:
         install_angle: WIRE:LI28:144:INSTALLANGLE
         motor: WIRE:LI28:144:MOTR
         motor_rbv: WIRE:LI28:144:MOTR.RBV
+        mps_speed: WIRE:LI28:144:MPSSPEED
         retract: WIRE:LI28:144:MOTR_RETRACT
         scan_pulses: WIRE:LI28:144:SCANPULSES
         speed: WIRE:LI28:144:MOTR.VELO
@@ -4422,6 +4426,7 @@ wires:
         start_scan: WIRE:LI28:144:STARTSCAN
         temperature: WIRE:LI28:144:TEMP
         timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
+        torque_enable: WIRE:LI28:144:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:144:UWIRESIZE
         u_wire_inner: WIRE:LI28:144:UWIREINNER
         u_wire_outer: WIRE:LI28:144:UWIREOUTER
@@ -4450,6 +4455,7 @@ wires:
       - PMT820:LTUH
       sum_l_meters: 740.508
       type: WIRE
+      wire_type: fast
   WS28444:
     controls_information:
       PVs:
@@ -4462,6 +4468,7 @@ wires:
         install_angle: WIRE:LI28:444:INSTALLANGLE
         motor: WIRE:LI28:444:MOTR
         motor_rbv: WIRE:LI28:444:MOTR.RBV
+        mps_speed: WIRE:LI28:444:MPSSPEED
         retract: WIRE:LI28:444:MOTR_RETRACT
         scan_pulses: WIRE:LI28:444:SCANPULSES
         speed: WIRE:LI28:444:MOTR.VELO
@@ -4470,6 +4477,7 @@ wires:
         start_scan: WIRE:LI28:444:STARTSCAN
         temperature: WIRE:LI28:444:TEMP
         timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
+        torque_enable: WIRE:LI28:444:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:444:UWIRESIZE
         u_wire_inner: WIRE:LI28:444:UWIREINNER
         u_wire_outer: WIRE:LI28:444:UWIREOUTER
@@ -4498,6 +4506,7 @@ wires:
       - PMT820:LTUH
       sum_l_meters: 777.541
       type: WIRE
+      wire_type: fast
   WS28744:
     controls_information:
       PVs:
@@ -4510,6 +4519,7 @@ wires:
         install_angle: WIRE:LI28:744:INSTALLANGLE
         motor: WIRE:LI28:744:MOTR
         motor_rbv: WIRE:LI28:744:MOTR.RBV
+        mps_speed: WIRE:LI28:744:MPSSPEED
         retract: WIRE:LI28:744:MOTR_RETRACT
         scan_pulses: WIRE:LI28:744:SCANPULSES
         speed: WIRE:LI28:744:MOTR.VELO
@@ -4518,6 +4528,7 @@ wires:
         start_scan: WIRE:LI28:744:STARTSCAN
         temperature: WIRE:LI28:744:TEMP
         timeout: WIRE:LI28:744:MOTR_TIMEOUTEN
+        torque_enable: WIRE:LI28:744:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:744:UWIRESIZE
         u_wire_inner: WIRE:LI28:744:UWIREINNER
         u_wire_outer: WIRE:LI28:744:UWIREOUTER
@@ -4546,3 +4557,4 @@ wires:
       - PMT820:LTUH
       sum_l_meters: 814.077
       type: WIRE
+      wire_type: fast

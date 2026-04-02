@@ -1512,3 +1512,4 @@ wires:
       - TMITLOSS:BYP
       sum_l_meters: 1009.649
       type: WIRE
+      wire_type: fast

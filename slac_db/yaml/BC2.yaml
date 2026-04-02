@@ -402,3 +402,4 @@ wires:
       - PMT24706:LI24
       sum_l_meters: 396.77
       type: WIRE
+      wire_type: slow

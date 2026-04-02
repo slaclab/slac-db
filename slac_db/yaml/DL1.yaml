@@ -1123,6 +1123,7 @@ wires:
       - PMT21350:LI21
       sum_l_meters: 12.175
       type: WIRE
+      wire_type: slow
   WS02:
     controls_information:
       PVs:
@@ -1142,6 +1143,7 @@ wires:
         start_scan: WIRE:IN20:561:STARTSCAN
         temperature: WIRE:IN20:561:TEMP
         timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
+        torque_enable: WIRE:IN20:561:MOTR_SWITCH_ON_CMD
         u_size: WIRE:IN20:561:UWIRESIZE
         u_wire_inner: WIRE:IN20:561:UWIREINNER
         u_wire_outer: WIRE:IN20:561:UWIREOUTER
@@ -1171,6 +1173,7 @@ wires:
       - PMT21350:LI21
       sum_l_meters: 14.089
       type: WIRE
+      wire_type: fast
   WS03:
     controls_information:
       PVs:
@@ -1190,6 +1193,7 @@ wires:
         start_scan: WIRE:IN20:611:STARTSCAN
         temperature: WIRE:IN20:611:TEMP
         timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
+        torque_enable: WIRE:IN20:611:MOTR_SWITCH_ON_CMD
         u_size: WIRE:IN20:611:UWIRESIZE
         u_wire_inner: WIRE:IN20:611:UWIREINNER
         u_wire_outer: WIRE:IN20:611:UWIREOUTER
@@ -1219,6 +1223,7 @@ wires:
       - PMT21350:LI21
       sum_l_meters: 16.003
       type: WIRE
+      wire_type: fast
   WS04:
     controls_information:
       PVs:
@@ -1261,3 +1266,4 @@ wires:
       - PMT21350:LI21
       sum_l_meters: 18.519
       type: WIRE
+      wire_type: slow
