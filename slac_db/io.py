@@ -1,0 +1,39 @@
+import collections.abc
+import copy
+import yaml
+import yaml.constructor
+import yaml.loader
+import yaml.nodes
+
+def read_dict(p):
+    with open(p, 'r') as r:
+        return yaml.load(r, Loader=_MultiDictLoader)
+
+class _MultiDictLoader(yaml.loader.SafeLoader):
+    def construct_mapping(self, node, deep=False):
+        if not isinstance(node, yaml.nodes.MappingNode):
+            raise yaml.constructor.ConstructorError(None, None,
+                    "expected a mapping node, but found %s" % node.id,
+                    node.start_mark)
+        mapping = {}
+        for key_node, value_node in node.value:
+            if isinstance(key_node, yaml.nodes.SequenceNode):
+                key = self.construct_sequence(key_node, deep=deep)
+                k_list = []
+                for k in key:
+                    self._require_hashable(node, key_node, k)
+                    k_list.append(k)
+                value = self.construct_object(value_node, deep=deep)
+                mapping.update({k: value for k in k_list})
+            else:
+                key = self.construct_object(key_node, deep=deep)
+                self._require_hashable(node, key_node, key)
+                value = self.construct_object(value_node, deep=deep)
+                mapping[key] = value
+        return mapping
+
+    def _require_hashable(self, mapping_node, key_node, key):
+        if not isinstance(key, collections.abc.Hashable):
+            raise yaml.constructor.ConstructorError(
+                "while constructing a mapping", mapping_node.start_mark,
+                "found unhashable key", key_node.start_mark)

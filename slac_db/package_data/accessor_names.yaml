@@ -1,0 +1,87 @@
+[SOLE, QUAD, XCOR, YCOR, BEND]:
+    BACT: None
+    BCTRL: None
+    BCON: None
+    BDES: None
+    CTRL: None
+    BMIN: None
+    BMAX: None
+
+PROF:
+    IMAGE: image
+    Image:ArrayData: image
+    RESOLUTION: None
+    Image:ArraySize0_RBV: n_row
+    Image:ArraySize1_RBV: n_col
+    N_OF_COL: n_col
+    N_OF_ROW: n_row
+    N_OF_BITS: n_bits
+    SYS_TYPE: sys_type
+    FRAME_RATE: ref_rate_vme
+    ArrayRate_RBV: ref_rate
+    PNEUMATIC: target_control
+    TGT_STS: target_status
+    FLT1_STS: filter_1_status
+    FLT1_CTRL: filter_1_control
+    FLT2_STS: filter_2_status
+    FLT2_CTRL: filter_2_control
+    TGT_LAMP_PWR: lamp_power
+    X_ORIENT: orient_x
+    Y_ORIENT: orient_y
+
+WIRE:
+    MOTR.STOP: abort_scan
+    BEAMRATE: beam_rate
+    MOTR_ENABLED_STS: enabled
+    MOTR_HOMED_STS: homed
+    MOTR_INIT: initialize
+    MOTR_INIT_STS: initialize_status
+    INSTALLANGLE: install_angle
+    MOTR: motor
+    MOTR.RBV: motor_rbv
+    MOTR_RETRACT: retract
+    SCANPULSES: scan_pulses
+    MOTR.VELO: speed
+    MOTR.VMAX: speed_max
+    MOTR.VBAS: speed_min
+    STARTSCAN: start_scan
+    TEMP: temperature
+    MOTR_TIMEOUTEN: timeout
+    USEUWIRE: use_u_wire
+    USEXWIRE: use_x_wire
+    USEYWIRE: use_y_wire
+    UWIRESIZE: u_size
+    UWIREINNER: u_wire_inner
+    UWIREOUTER: u_wire_outer
+    XWIRESIZE: x_size
+    XWIREINNER: x_wire_inner
+    XWIREOUTER: x_wire_outer
+    YWIRESIZE: y_size
+    YWIREINNER: y_wire_inner
+    YWIREOUTER: y_wire_outer
+
+LBLM:
+    GATED_INTEGRAL: gated_integral
+    I0_LOSS: i0_loss
+    FAST_AMP_GAIN: gain
+    FAST_AMP_BYP: bypass
+
+BPM:
+    X: x
+    Y: y
+    TMIT: tmit
+
+LCAV:
+    AREQ: amplitude
+    PREQ: phase
+    RF_ENABLE: rf_enable
+    AFBENB: amplitude_fbenb
+    PFBENB: phase_fbenb
+    AFBST: amplitude_fbst
+    PFBST: phase_fbst
+    MODECFG: mode_config
+    PACT_AVGNT: phase_avgnt
+    AMPL_W0CH0: amplitude_wocho
+
+INST:
+    QDCRAW: qdcraw

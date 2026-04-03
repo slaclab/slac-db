@@ -42,9 +42,14 @@ def _init_db(uri=None):
         uri = _device_db_uri()
     uri = _db_type_prefix(uri)
     schema = {
+        "accessors": {
+            "device_name": "str 64 primary_key",
+            "accessor_name": "str 64 primary_key",
+            "cs_address": "str 64",
+        },
         "addresses": {
             "device_name": "str 64 primary_key",
-            "cs_address": "str 64 primary_key",            
+            "cs_address": "str 64 primary_key",
         },
     }
     _meta = pykern.sql_db.Meta(

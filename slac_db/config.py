@@ -7,4 +7,4 @@ def package_data():
     return root() / "slac_db" / "package_data"
 
 def yaml():
-    return root() / "slac_db" / "yaml"
+    return package_data() / "yaml"

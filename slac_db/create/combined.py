@@ -1,26 +1,37 @@
-import slac_db.aida
+import slac_db.config
+import slac_db.directory_service
 import slac_db.oracle
 import slac_db.device
+import yaml
 from pykern.pkcollections import PKDict
 
+_ACCESSOR_YAML = (
+    slac_db.config.package_data() / "accessor_names.yaml"
+)
 _DELIM = ":"
 
-def to_accessor_device():
+def to_device_db():
     return slac_db.device.recreate(_Parser())
 
 class _Parser():        
     def __init__(self):
+        self._accessor_map()
         self._address_map()
-        self._address_pairs()
+        self._address_meta()
 
-    def _address_pairs(self):
+    def _accessor_map(self):
+        with open(_ACCESSOR_YAML, "r") as r:
+            return yaml.safe_load(r)
+
+    def _address_meta(self):
         def _build():
             for r in slac_db.oracle.get_all_rows():
-                yield from _pairs(
+                yield from _meta(
                     r["element"],
-                    r["control system name"]
+                    r["control system name"],
+                    r["keyword"],
                 )
-        def _pairs(device, head):
+        def _meta(device, head, type):
             for t in self.address_map.get(head, [None]):
                 if t is None:
                     continue
@@ -52,4 +63,4 @@ class _Parser():
             p = name.split(_DELIM)
             return _DELIM.join(p[:3]), _DELIM.join(p[3:])
 
-        self.address_map = dict(_parse(slac_db.aida.get_all()))
+        self.address_map = dict(_parse(slac_db.directory_service.get_all()))
