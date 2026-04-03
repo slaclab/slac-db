@@ -143,7 +143,7 @@ def recreate(parser):
     if not hasattr(parser, "rows"):
         raise AssertionError(
             "Parser is missing attribute 'rows'. "
-        )        
+        )
     if os.path.exists(_oracle_location()):
         os.remove(_oracle_location())
     _Inserter(parser)

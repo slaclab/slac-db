@@ -18,23 +18,13 @@ def to_device_db():
 class _Parser():
     """Container for DB row data.
     Pulls from copies of oracle and directory service.
+    Expects EPICS Addresses to be 3 units long, e.g. (AAA:BBB:CCC)
     """
     def __init__(self):
         self._address_map()
         self._address_meta()
 
     def _address_meta(self):
-        """Create a dictionary that combines accessor names
-        with device names and addresses.
-
-        Sets:
-            self.device_address_meta
-        """
-        def get_accessor_name(d_type, tail):
-            if dev_map := accessor_map.get(d_type, None):
-                return dev_map.get(tail, None)
-            return None
-
         def _build():
             for r in slac_db.oracle.get_all_rows():
                 yield from _meta(
@@ -43,6 +33,11 @@ class _Parser():
                     r["keyword"],
                 )
 
+        def _get_accessor(d_type, pv_tail):
+            if (m := self.accessor_map.get(d_type, None)) is not None:
+                return m.get(pv_tail, None)
+            return m
+
         def _meta(device, pv_head, d_type):
             for pv_tail in self.address_map.get(pv_head, [None]):
                 if pv_tail is None:
@@ -50,10 +45,10 @@ class _Parser():
                 yield PKDict(
                     device_name=device,
                     cs_address=_DELIM.join([pv_head, pv_tail]),
-                    accessor_name=get_accessor_name(d_type, pv_tail)
+                    accessor_name=_get_accessor(d_type, pv_tail)
                 )
 
-        accessor_map = slac_db.io.read_dict(_ACCESSOR_YAML)
+        self.accessor_map = slac_db.io.read_dict(_ACCESSOR_YAML)
         self.device_address_meta = list(_build())
 
     def _address_map(self):
@@ -67,6 +62,7 @@ class _Parser():
             names = list(reversed(sorted(names)))
             while names:
                 yield _parse_group(names)
+            
 
         def _parse_group(names):
             h, t = _split_one(names.pop())
