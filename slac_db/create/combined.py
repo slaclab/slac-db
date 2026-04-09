@@ -25,6 +25,12 @@ class _Parser():
         self._address_meta()
 
     def _address_meta(self):
+        """Create a dictionary that combines accessor names
+        with device names and addresses.
+
+        Sets:
+            self.device_address_meta
+        """
         def _build():
             for r in slac_db.oracle.get_all_rows():
                 yield from _meta(
