@@ -1136,6 +1136,7 @@ wires:
         install_angle: WIRE:IN20:561:INSTALLANGLE
         motor: WIRE:IN20:561:MOTR
         motor_rbv: WIRE:IN20:561:MOTR.RBV
+        on_status: WIRE:IN20:561:MOTR_ON_STS
         retract: WIRE:IN20:561:MOTR_RETRACT
         scan_pulses: WIRE:IN20:561:SCANPULSES
         speed: WIRE:IN20:561:MOTR.VELO
@@ -1187,6 +1188,7 @@ wires:
         install_angle: WIRE:IN20:611:INSTALLANGLE
         motor: WIRE:IN20:611:MOTR
         motor_rbv: WIRE:IN20:611:MOTR.RBV
+        on_status: WIRE:IN20:611:MOTR_ON_STS
         retract: WIRE:IN20:611:MOTR_RETRACT
         scan_pulses: WIRE:IN20:611:SCANPULSES
         speed: WIRE:IN20:611:MOTR.VELO

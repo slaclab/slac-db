@@ -294,8 +294,10 @@ wires:
         motor: WIRE:EMIT2:600:MOTR
         motor_rbv: WIRE:EMIT2:600:MOTR.RBV
         mps_speed: WIRE:EMIT2:600:MPSSPEED
+        on_status: WIRE:EMIT2:600:MOTR_ON_STS
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         scan_pulses: WIRE:EMIT2:600:SCANPULSES
+        scan_status: WIRE:EMIT2:600:SCANSTAT
         speed: WIRE:EMIT2:600:MOTR.VELO
         speed_max: WIRE:EMIT2:600:MOTR.VMAX
         speed_min: WIRE:EMIT2:600:MOTR.VBAS

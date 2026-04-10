@@ -1741,8 +1741,10 @@ wires:
         motor: WIRE:BPN12:850:MOTR
         motor_rbv: WIRE:BPN12:850:MOTR.RBV
         mps_speed: WIRE:BPN12:850:MPSSPEED
+        on_status: WIRE:BPN12:850:MOTR_ON_STS
         retract: WIRE:BPN12:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN12:850:SCANPULSES
+        scan_status: WIRE:BPN12:850:SCANSTAT
         speed: WIRE:BPN12:850:MOTR.VELO
         speed_max: WIRE:BPN12:850:MOTR.VMAX
         speed_min: WIRE:BPN12:850:MOTR.VBAS
@@ -1826,8 +1828,10 @@ wires:
         motor: WIRE:BPN14:850:MOTR
         motor_rbv: WIRE:BPN14:850:MOTR.RBV
         mps_speed: WIRE:BPN14:850:MPSSPEED
+        on_status: WIRE:BPN14:850:MOTR_ON_STS
         retract: WIRE:BPN14:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN14:850:SCANPULSES
+        scan_status: WIRE:BPN14:850:SCANSTAT
         speed: WIRE:BPN14:850:MOTR.VELO
         speed_max: WIRE:BPN14:850:MOTR.VMAX
         speed_min: WIRE:BPN14:850:MOTR.VBAS
@@ -1911,8 +1915,10 @@ wires:
         motor: WIRE:BPN16:850:MOTR
         motor_rbv: WIRE:BPN16:850:MOTR.RBV
         mps_speed: WIRE:BPN16:850:MPSSPEED
+        on_status: WIRE:BPN16:850:MOTR_ON_STS
         retract: WIRE:BPN16:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN16:850:SCANPULSES
+        scan_status: WIRE:BPN16:850:SCANSTAT
         speed: WIRE:BPN16:850:MOTR.VELO
         speed_max: WIRE:BPN16:850:MOTR.VMAX
         speed_min: WIRE:BPN16:850:MOTR.VBAS

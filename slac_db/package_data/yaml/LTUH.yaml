@@ -2896,8 +2896,10 @@ wires:
         motor: WIRE:LTUH:715:MOTR
         motor_rbv: WIRE:LTUH:715:MOTR.RBV
         mps_speed: WIRE:LTUH:715:MPSSPEED
+        on_status: WIRE:LTUH:715:MOTR_ON_STS
         retract: WIRE:LTUH:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:715:SCANPULSES
+        scan_status: WIRE:LTUH:715:SCANSTAT
         speed: WIRE:LTUH:715:MOTR.VELO
         speed_max: WIRE:LTUH:715:MOTR.VMAX
         speed_min: WIRE:LTUH:715:MOTR.VBAS
@@ -2954,8 +2956,10 @@ wires:
         motor: WIRE:LTUH:735:MOTR
         motor_rbv: WIRE:LTUH:735:MOTR.RBV
         mps_speed: WIRE:LTUH:735:MPSSPEED
+        on_status: WIRE:LTUH:735:MOTR_ON_STS
         retract: WIRE:LTUH:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:735:SCANPULSES
+        scan_status: WIRE:LTUH:735:SCANSTAT
         speed: WIRE:LTUH:735:MOTR.VELO
         speed_max: WIRE:LTUH:735:MOTR.VMAX
         speed_min: WIRE:LTUH:735:MOTR.VBAS
@@ -3012,8 +3016,10 @@ wires:
         motor: WIRE:LTUH:755:MOTR
         motor_rbv: WIRE:LTUH:755:MOTR.RBV
         mps_speed: WIRE:LTUH:755:MPSSPEED
+        on_status: WIRE:LTUH:755:MOTR_ON_STS
         retract: WIRE:LTUH:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:755:SCANPULSES
+        scan_status: WIRE:LTUH:755:SCANSTAT
         speed: WIRE:LTUH:755:MOTR.VELO
         speed_max: WIRE:LTUH:755:MOTR.VMAX
         speed_min: WIRE:LTUH:755:MOTR.VBAS
@@ -3070,8 +3076,10 @@ wires:
         motor: WIRE:LTUH:775:MOTR
         motor_rbv: WIRE:LTUH:775:MOTR.RBV
         mps_speed: WIRE:LTUH:775:MPSSPEED
+        on_status: WIRE:LTUH:775:MOTR_ON_STS
         retract: WIRE:LTUH:775:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:775:SCANPULSES
+        scan_status: WIRE:LTUH:775:SCANSTAT
         speed: WIRE:LTUH:775:MOTR.VELO
         speed_max: WIRE:LTUH:775:MOTR.VMAX
         speed_min: WIRE:LTUH:775:MOTR.VBAS
@@ -3128,8 +3136,10 @@ wires:
         motor: WIRE:LTUH:246:MOTR
         motor_rbv: WIRE:LTUH:246:MOTR.RBV
         mps_speed: WIRE:LTUH:246:MPSSPEED
+        on_status: WIRE:LTUH:246:MOTR_ON_STS
         retract: WIRE:LTUH:246:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:246:SCANPULSES
+        scan_status: WIRE:LTUH:246:SCANSTAT
         speed: WIRE:LTUH:246:MOTR.VELO
         speed_max: WIRE:LTUH:246:MOTR.VMAX
         speed_min: WIRE:LTUH:246:MOTR.VBAS
@@ -3208,8 +3218,10 @@ wires:
         motor: WIRE:LTUH:122:MOTR
         motor_rbv: WIRE:LTUH:122:MOTR.RBV
         mps_speed: WIRE:LTUH:122:MPSSPEED
+        on_status: WIRE:LTUH:122:MOTR_ON_STS
         retract: WIRE:LTUH:122:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:122:SCANPULSES
+        scan_status: WIRE:LTUH:122:SCANSTAT
         speed: WIRE:LTUH:122:MOTR.VELO
         speed_max: WIRE:LTUH:122:MOTR.VMAX
         speed_min: WIRE:LTUH:122:MOTR.VBAS

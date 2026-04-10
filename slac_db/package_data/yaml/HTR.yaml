@@ -1117,8 +1117,10 @@ wires:
         motor: WIRE:HTR:340:MOTR
         motor_rbv: WIRE:HTR:340:MOTR.RBV
         mps_speed: WIRE:HTR:340:MPSSPEED
+        on_status: WIRE:HTR:340:MOTR_ON_STS
         retract: WIRE:HTR:340:MOTR_RETRACT
         scan_pulses: WIRE:HTR:340:SCANPULSES
+        scan_status: WIRE:HTR:340:SCANSTAT
         speed: WIRE:HTR:340:MOTR.VELO
         speed_max: WIRE:HTR:340:MOTR.VMAX
         speed_min: WIRE:HTR:340:MOTR.VBAS

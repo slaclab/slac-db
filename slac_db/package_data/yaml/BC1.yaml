@@ -675,8 +675,10 @@ wires:
         motor: WIRE:LI21:285:MOTR
         motor_rbv: WIRE:LI21:285:MOTR.RBV
         mps_speed: WIRE:LI21:285:MPSSPEED
+        on_status: WIRE:LI21:285:MOTR_ON_STS
         retract: WIRE:LI21:285:MOTR_RETRACT
         scan_pulses: WIRE:LI21:285:SCANPULSES
+        scan_status: WIRE:LI21:285:SCANSTAT
         speed: WIRE:LI21:285:MOTR.VELO
         speed_max: WIRE:LI21:285:MOTR.VMAX
         speed_min: WIRE:LI21:285:MOTR.VBAS
@@ -730,8 +732,10 @@ wires:
         motor: WIRE:LI21:293:MOTR
         motor_rbv: WIRE:LI21:293:MOTR.RBV
         mps_speed: WIRE:LI21:293:MPSSPEED
+        on_status: WIRE:LI21:293:MOTR_ON_STS
         retract: WIRE:LI21:293:MOTR_RETRACT
         scan_pulses: WIRE:LI21:293:SCANPULSES
+        scan_status: WIRE:LI21:293:SCANSTAT
         speed: WIRE:LI21:293:MOTR.VELO
         speed_max: WIRE:LI21:293:MOTR.VMAX
         speed_min: WIRE:LI21:293:MOTR.VBAS
@@ -785,8 +789,10 @@ wires:
         motor: WIRE:LI21:301:MOTR
         motor_rbv: WIRE:LI21:301:MOTR.RBV
         mps_speed: WIRE:LI21:301:MPSSPEED
+        on_status: WIRE:LI21:301:MOTR_ON_STS
         retract: WIRE:LI21:301:MOTR_RETRACT
         scan_pulses: WIRE:LI21:301:SCANPULSES
+        scan_status: WIRE:LI21:301:SCANSTAT
         speed: WIRE:LI21:301:MOTR.VELO
         speed_max: WIRE:LI21:301:MOTR.VMAX
         speed_min: WIRE:LI21:301:MOTR.VBAS

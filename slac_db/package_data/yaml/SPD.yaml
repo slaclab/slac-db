@@ -378,8 +378,10 @@ wires:
         motor: WIRE:SPD:872:MOTR
         motor_rbv: WIRE:SPD:872:MOTR.RBV
         mps_speed: WIRE:SPD:872:MPSSPEED
+        on_status: WIRE:SPD:872:MOTR_ON_STS
         retract: WIRE:SPD:872:MOTR_RETRACT
         scan_pulses: WIRE:SPD:872:SCANPULSES
+        scan_status: WIRE:SPD:872:SCANSTAT
         speed: WIRE:SPD:872:MOTR.VELO
         speed_max: WIRE:SPD:872:MOTR.VMAX
         speed_min: WIRE:SPD:872:MOTR.VBAS
