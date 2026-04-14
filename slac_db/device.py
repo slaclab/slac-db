@@ -64,8 +64,28 @@ class _Inserter():
     def __init__(self, parser):
         self.parser = parser
         with _session() as s:
+            print("Creating Beampath")
+            self.create_beampath_db(s)
+            print("Creating Area")
+            self.create_area_db(s)
+            print("Creating device")
+            self.create_device_db(s)
+            print("Creating Address")
             self.create_address_db(s)
+            print("Creating Accessor")
             self.create_accessor_db(s)
+
+    def create_device_db(self, s):
+        for d in self.parser.device_meta:
+            s.insert("devices", **d)
+
+    def create_area_db(self, s):
+        for a, b in self.parser.area_map.items():
+            s.insert("areas", area=a, beampath=b)
+
+    def create_beampath_db(self, s):
+        for b in set(self.parser.area_map.values()):
+            s.insert("beampaths", beampath=b)
 
     def create_address_db(self, s):
         for p in self.parser.device_address_meta:
@@ -100,14 +120,27 @@ def _init_db(location=None):
         location = _device_db_location()
     uri = _db_type_prefix(location)
     schema = {
-        "accessors": {
+        "beampaths": {
+            "beampath": "str 64 primary_key",
+        },
+        "areas": {
+            "area": "str 64 primary_key",
+            "beampath": "str 64 primary_key foreign"
+        },
+        "devices": {
             "device_name": "str 64 primary_key",
-            "accessor_name": "str 64 primary_key",
-            "cs_address": "str 64",
+            "area": "str 64",
+            "device_type": "str 64",
+            "cs_name": "str 64"
         },
         "addresses": {
-            "device_name": "str 64 primary_key",
+            "device_name": "str 64 primary_key foreign",
             "cs_address": "str 64 primary_key",
+        },
+        "accessors": {
+            "device_name": "str 64 primary_key foreign",
+            "accessor_name": "str 64 primary_key",
+            "cs_address": "str 64",
         },
     }
     _meta = pykern.sql_db.Meta(
