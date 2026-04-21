@@ -2,9 +2,7 @@ import csv
 from sqlalchemy import create_engine, text
 import slac_db.config
 import slac_db.oracle
-
-_ORACLE_TNS      = 'slacprod' # name of Oracle DB on prod
-_ORACLE_USERNAME = 'lcls_read'
+from slac_db.oracle_remote import get_connection
 
 def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
     """Get the lcls_elements.csv file from Oracle. 
@@ -13,9 +11,7 @@ def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
     Args:
         csv_output: Name of the output csv file.
     """
-    password  = _get_oracle_pw(_ORACLE_USERNAME)
-    connection_string = f'oracle+cx_oracle://{_ORACLE_USERNAME}:{password}@{_ORACLE_TNS}'
-    engine    = create_engine(connection_string)
+    engine    = get_connection()
     sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
 
     try:
@@ -61,15 +57,5 @@ class _Parser():
             self.rows[i] =  dict(zip(names, values))
             i += 1
 
-def _get_oracle_pw(username=_ORACLE_USERNAME):
-    """Get Oracle password. This only works on production.
-    """
-    try:
-        import subprocess
-        cmd      = subprocess.run(['getPwd', username], capture_output=True, text=True, check=True)
-        password = cmd.stdout.strip()
-        return password
-    except Exception as e:
-        print(f"Could not get Oracle password: {e}")
-        return None
+
 
