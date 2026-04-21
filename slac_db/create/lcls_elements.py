@@ -1,6 +1,31 @@
 import csv
+from sqlalchemy import create_engine, text
 import slac_db.config
 import slac_db.oracle
+from slac_db.oracle_remote import get_connection
+
+def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
+    """Get the lcls_elements.csv file from Oracle. 
+    This function only works on production.
+    
+    Args:
+        csv_output: Name of the output csv file.
+    """
+    engine    = get_connection()
+    sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
+
+    try:
+        with engine.connect() as connection:
+            import pandas as pd
+            df = pd.read_sql(sql_query, connection)
+            df.to_csv(csv_output, index=False)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    engine.dispose()
+    return None
+
 
 def to_oracle_db(csv_source=None):
     """ Build  oracle DB with SQLAlchemy.
@@ -31,3 +56,6 @@ class _Parser():
             values = [None if v == '' else v for v in row]
             self.rows[i] =  dict(zip(names, values))
             i += 1
+
+
+
