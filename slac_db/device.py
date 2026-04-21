@@ -38,7 +38,7 @@ def get_beampath(beampath=None, device_type=None):
             selection = selection.where(s.t.devices.c["device_type"] == device_type)
         return sorted([d["device_name"] for d in s.select(selection)])
 
-def get_device(area=None, device_type=None):
+def get_devices(area=None, device_type=None):
     """ Get all devices in an area of a type.
 
     Args:
