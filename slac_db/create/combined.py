@@ -21,7 +21,13 @@ class _Parser():
     Expects EPICS Addresses to be 3 units long, e.g. (AAA:BBB:CCC)
     """
     def __init__(self):
+        print("Parsing Area")
+        self._area_map()
+        print("Parsing Device")
+        self._device_meta()
+        print("Parsing Address")
         self._address_map()
+        print("Parsing Accessor")
         self._address_meta()
 
     def _address_meta(self):
@@ -33,6 +39,8 @@ class _Parser():
         """
         def _build():
             for r in slac_db.oracle.get_all_rows():
+                if r["element"] not in self.devices:
+                    continue
                 yield from _meta(
                     r["element"],
                     r["control system name"],
@@ -85,4 +93,41 @@ class _Parser():
             p = name.split(_DELIM)
             return _DELIM.join(p[:3]), _DELIM.join(p[3:])
 
-        self.address_map = dict(_parse(slac_db.directory_service.get_all_addresses()))
+        self.address_map = dict(
+            _parse(
+                slac_db.directory_service.get_all_addresses()
+            )
+        )
+
+    def _area_map(self):
+        def parse_beampaths(beampath_csv):
+            if beampath_csv is None:
+                return []
+            beampaths = beampath_csv.replace(' ', '').split(',')
+            beampaths = filter(None, beampaths)
+            yield from beampaths
+
+        self.areas = set()
+        rv = set()
+        for r in slac_db.oracle.get_all_rows():
+            beampath_csv = r["beampath"]
+            area = r["area"]
+            rv = rv.union(set((area, b) for b in parse_beampaths(beampath_csv)))
+            self.areas.add(area)
+        self.area_map = list(rv)
+
+    def _device_meta(self):
+        def _parse_device():
+            for r in slac_db.oracle.get_all_rows():
+                yv = {
+                    "device_name": r["element"],
+                    "area": r["area"],
+                    "device_type": r["keyword"],
+                    "cs_name": r["control system name"]                    
+                }
+                if None in yv.values() or ":" in r["element"]:
+                    continue
+                self.devices.add(r["element"])
+                yield yv
+        self.devices = set()
+        self.device_meta = [device for device in _parse_device()]
