@@ -1,5 +1,6 @@
 import yaml
 import slac_db.device
+import slac_db.oracle
 
 _ORACLE_TO_YAML_TYPE_MAP = {
     "SOLE": "magnets",
@@ -8,7 +9,7 @@ _ORACLE_TO_YAML_TYPE_MAP = {
     "YCOR": "magnets",
     "BEND": "magnets",
     "PROF": "screens",
-    "WIRE": "wire",
+    "WIRE": "wires",
     "LBLM": "lblms",
     "BPM": "bpms",
     "LCAV": "tcavs",
@@ -34,6 +35,12 @@ def _build_devices(area, device_type):
         area=area, device_type=device_type
     )
     for d in devices:
+        if device_type == "INST" and not d.startswith("PMT"):
+            continue
+        if device_type == "LCAV":
+            r = slac_db.oracle.get_device_row(d)
+            if r["engineering name"] != "TRANS_DEFL":
+                continue
         cs = _build_controls_information(d)
         meta = _build_metadata(area, d)
         yield d, {
@@ -42,11 +49,16 @@ def _build_devices(area, device_type):
         }
 
 def _build_types(area):
+    all_types = {}
     for oracle, yaml in _ORACLE_TO_YAML_TYPE_MAP.items():
-        devices = {name: data for name, data in _build_devices(area, oracle)}
-        if not devices:
+        d = {name: data for name, data in _build_devices(area, oracle)}
+        if not d:
             continue
-        yield yaml, devices
+        if yaml not in all_types:
+            all_types[yaml] = d
+        else:
+            all_types[yaml].update(d)
+        yield yaml, all_types[yaml]
 
 def _build_areas(areas):
     for a in areas:
