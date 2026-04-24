@@ -1,14 +1,30 @@
+from numpy import isdtype
 import slac_db.config
 import slac_db.directory_service
 import slac_db.io
 import slac_db.oracle
 import slac_db.device
 from pykern.pkcollections import PKDict
+import yaml
 
 _ACCESSOR_YAML = (
     slac_db.config.package_data() / "accessor_names.yaml"
 )
 _DELIM = ":"
+_DEFAULT_DEVICE_META = [("suml (m)", "sum_l_meters")]
+_MAGNET_META = [("effective length (m)", "l_eff")]
+_DEVICE_META_MAP = {
+    "SOLE": _MAGNET_META,
+    "QUAD": _MAGNET_META,
+    "XCOR": _MAGNET_META,
+    "YCOR": _MAGNET_META,
+    "BEND": _MAGNET_META,
+    "LCAV": [
+        ("effective length (m)", "l_eff"),
+        ("rf frequency (mhz)", "rf_freq")
+    ]
+}
+_STRING_META_LOC = slac_db.config.package_data() / "wire_metadata.yaml"
 
 def to_device_db():
     """ Build  device DB with SQLAlchemy
@@ -24,6 +40,8 @@ class _Parser():
         print("Parsing Area")
         self._area_map()
         print("Parsing Device")
+        self._devices()
+        print("Parsing Device Meta")
         self._device_meta()
         print("Parsing Address")
         self._address_map()
@@ -39,7 +57,7 @@ class _Parser():
         """
         def _build():
             for r in slac_db.oracle.get_all_rows():
-                if r["element"] not in self.devices:
+                if r["element"] not in self.device_names:
                     continue
                 yield from _meta(
                     r["element"],
@@ -47,20 +65,30 @@ class _Parser():
                     r["keyword"],
                 )
 
-        def _get_accessor(d_type, pv_tail):
-            if (m := self.accessor_map.get(d_type, None)) is not None:
-                return m.get(pv_tail, None)
-            return m
+        def _get_accessors(d_type, address):
+            if not (device_map := self.accessor_map.get(d_type, None)):
+                return
+            if not (accessor := device_map.get(address, None)):
+                return
+            if f"_{address}_attributes" in device_map:
+                attribute_map = device_map[f"_{address}_attributes"]
+                yield from [
+                    (".".join([address, attr]), a)
+                    for attr, a in attribute_map.items()
+                ]
+            if accessor is not None:
+                yield (address, accessor)
 
         def _meta(device, pv_head, d_type):
             for pv_tail in self.address_map.get(pv_head, [None]):
                 if pv_tail is None:
                     continue
-                yield PKDict(
-                    device_name=device,
-                    cs_address=_DELIM.join([pv_head, pv_tail]),
-                    accessor_name=_get_accessor(d_type, pv_tail)
-                )
+                accessor_names = _get_accessors(d_type, pv_tail)
+                yield from [PKDict(
+                        device_name=device,
+                        cs_address=_DELIM.join([pv_head, address]),
+                        accessor_name=accessor
+                ) for address, accessor in accessor_names]
 
         self.accessor_map = slac_db.io.read_dict(_ACCESSOR_YAML)
         self.device_address_meta = list(_build())
@@ -91,11 +119,22 @@ class _Parser():
 
         def _split_one(name):
             p = name.split(_DELIM)
-            return _DELIM.join(p[:3]), _DELIM.join(p[3:])
+            return _DELIM.join(p[:addr_l]), _DELIM.join(p[addr_l:])
+
+        addr_l = 3
 
         self.address_map = dict(
             _parse(
                 slac_db.directory_service.get_all_addresses()
+            )
+        )
+
+        addr_l = 4
+        self.address_map.update(
+            dict(
+                _parse(
+                    slac_db.directory_service.get_all_addresses()
+                )
             )
         )
 
@@ -116,7 +155,7 @@ class _Parser():
             self.areas.add(area)
         self.area_map = list(rv)
 
-    def _device_meta(self):
+    def _devices(self):
         def _parse_device():
             for r in slac_db.oracle.get_all_rows():
                 yv = {
@@ -127,7 +166,63 @@ class _Parser():
                 }
                 if None in yv.values() or ":" in r["element"]:
                     continue
-                self.devices.add(r["element"])
                 yield yv
-        self.devices = set()
-        self.device_meta = [device for device in _parse_device()]
+
+        self.devices = [device for device in _parse_device()]
+        self.device_names = {d["device_name"] for d in self.devices}
+
+    def _device_meta(self):
+        def _get_meta_float(device_name, device_type, row):
+            meta = _DEVICE_META_MAP.get(device_type, []) + _DEFAULT_DEVICE_META
+            for column, meta_name in meta:
+                yv = {
+                    "device_name": device_name,
+                    "device_meta_name": meta_name,
+                    "meta_value": row[column],
+                }
+                if None in yv.values():
+                    continue
+                yield yv
+        
+        def _parse_meta_float():
+            for r in slac_db.oracle.get_all_rows():
+                if r["element"] not in self.device_names:
+                    continue
+                yield from _get_meta_float(r["element"], r["keyword"], r)
+
+        def _fixup_string(value):
+            return yaml.safe_dump(value)
+
+        def _parse_meta_string(device_name, meta):
+            for meta_name, value in meta.items():
+                yv = {
+                    "device_name": device_name,
+                    "device_meta_name": meta_name,
+                    "meta_value": _fixup_string(value)
+                }
+                if None in yv.values():
+                    continue
+                yield yv
+
+        def _parse_yaml():
+            string_meta = slac_db.io.read_dict(_STRING_META_LOC)
+            for device_name, meta in string_meta.items():
+                if device_name in self.device_names:
+                    yield from _parse_meta_string(device_name, meta)
+
+        self.device_meta_float = [m for m in _parse_meta_float()]
+        self.device_meta = [
+            {
+                "device_name": m["device_name"],
+                "device_meta_name": m["device_meta_name"],
+                "meta_type": "float"
+            } for m in self.device_meta_float
+        ]
+        self.device_meta_string = [m for m in _parse_yaml()]
+        self.device_meta = self.device_meta + [
+            {
+                "device_name": m["device_name"],
+                "device_meta_name": m["device_meta_name"],
+                "meta_type": "string"
+            } for m in self.device_meta_string            
+        ]
