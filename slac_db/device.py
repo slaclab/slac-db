@@ -2,6 +2,7 @@ import os
 import pykern.sql_db
 import slac_db.config
 import sqlalchemy
+import yaml
 
 _meta = None
 
@@ -129,10 +130,8 @@ def get_all_device_beampaths(device):
 def get_all_meta(device_name):
     def _fixup_string(val):
         if type(val) is str:
-            o = val.split(" ")
-            return o if len(o) > 1 else o[0]
-        else:
-            return val
+            val = yaml.safe_load(val)
+        return val
 
     with _session() as s:
         return {

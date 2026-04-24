@@ -15,7 +15,7 @@ _DEFAULT_DEVICE_META = [("suml (m)", "sum_l_meters")]
 _MAGNET_META = [("effective length (m)", "l_eff")]
 _DEVICE_META_MAP = {
     "SOLE": _MAGNET_META,
-    "QAUD": _MAGNET_META,
+    "QUAD": _MAGNET_META,
     "XCOR": _MAGNET_META,
     "YCOR": _MAGNET_META,
     "BEND": _MAGNET_META,
@@ -65,20 +65,30 @@ class _Parser():
                     r["keyword"],
                 )
 
-        def _get_accessor(d_type, pv_tail):
-            if (m := self.accessor_map.get(d_type, None)) is not None:
-                return m.get(pv_tail, None)
-            return m
+        def _get_accessors(d_type, address):
+            if not (device_map := self.accessor_map.get(d_type, None)):
+                return
+            if not (accessor := device_map.get(address, None)):
+                return
+            if f"_{address}_attributes" in device_map:
+                attribute_map = device_map[f"_{address}_attributes"]
+                yield from [
+                    (".".join([address, attr]), a)
+                    for attr, a in attribute_map.items()
+                ]
+            if accessor is not None:
+                yield (address, accessor)
 
         def _meta(device, pv_head, d_type):
             for pv_tail in self.address_map.get(pv_head, [None]):
                 if pv_tail is None:
                     continue
-                yield PKDict(
-                    device_name=device,
-                    cs_address=_DELIM.join([pv_head, pv_tail]),
-                    accessor_name=_get_accessor(d_type, pv_tail)
-                )
+                accessor_names = _get_accessors(d_type, pv_tail)
+                yield from [PKDict(
+                        device_name=device,
+                        cs_address=_DELIM.join([pv_head, address]),
+                        accessor_name=accessor
+                ) for address, accessor in accessor_names]
 
         self.accessor_map = slac_db.io.read_dict(_ACCESSOR_YAML)
         self.device_address_meta = list(_build())
@@ -109,11 +119,22 @@ class _Parser():
 
         def _split_one(name):
             p = name.split(_DELIM)
-            return _DELIM.join(p[:3]), _DELIM.join(p[3:])
+            return _DELIM.join(p[:addr_l]), _DELIM.join(p[addr_l:])
+
+        addr_l = 3
 
         self.address_map = dict(
             _parse(
                 slac_db.directory_service.get_all_addresses()
+            )
+        )
+
+        addr_l = 4
+        self.address_map.update(
+            dict(
+                _parse(
+                    slac_db.directory_service.get_all_addresses()
+                )
             )
         )
 
@@ -170,15 +191,7 @@ class _Parser():
                 yield from _get_meta_float(r["element"], r["keyword"], r)
 
         def _fixup_string(value):
-            if type(value) is list:
-                return " ".join(value)
-            elif type(value) is str:
-                return value
-            else:
-                raise ValueError(
-                    f"value={value} of type type=({type(value)})"
-                    + "is not supported by SQL String parser."
-                )
+            return yaml.safe_dump(value)
 
         def _parse_meta_string(device_name, meta):
             for meta_name, value in meta.items():

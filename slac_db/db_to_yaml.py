@@ -1,6 +1,7 @@
 import yaml
 import slac_db.device
 import slac_db.oracle
+import slac_db.create.combined
 
 _ORACLE_TO_YAML_TYPE_MAP = {
     "SOLE": "magnets",
@@ -16,17 +17,41 @@ _ORACLE_TO_YAML_TYPE_MAP = {
     "INST": "pmts"
 }
 
-def _build_metadata(area, device_name):
+def _build_metadata(area, device_type, device_name):
+    def parse_beampaths(beampath_csv):
+            if beampath_csv is None:
+                return []
+            beampaths = beampath_csv.replace(' ', '').split(',')
+            beampaths = filter(None, beampaths)
+            yield from beampaths
+    
+    def _round_values(meta):
+        for i, v in meta.items():
+            if type(v) is float:
+                meta[i] = round(v, 3)
+        return meta
     rv =  {
         "area": area,
-        "beam_path": slac_db.device.get_all_device_beampaths(device_name),
+        "beam_path": list(
+            parse_beampaths(
+                slac_db.oracle.get_device_row(device_name)["beampath"]
+            )
+        ),
+        "type": device_type
     }
-    rv.update(slac_db.device.get_all_meta(device_name))
+    rv.update(_round_values(slac_db.device.get_all_meta(device_name)))
+    expected_meta = slac_db.create.combined._DEVICE_META_MAP.get(device_type, [])
+    for m in expected_meta + slac_db.create.combined._DEFAULT_DEVICE_META:
+        if m[1] not in rv:
+            if m[1] == "l_eff" or m[1] == "rf_freq":
+                rv.update({m[1]: 0.0})
+            else:
+                rv.update({m[1]: None})
     return rv
 
 def _build_controls_information(device_name):
     return {
-        "pv": slac_db.device.get_all_accessors(device_name),
+        "PVs": slac_db.device.get_all_accessors(device_name),
         "control_name": slac_db.device.get_cs_name(device_name),
     }
 
@@ -42,7 +67,7 @@ def _build_devices(area, device_type):
             if r["engineering name"] != "TRANS_DEFL":
                 continue
         cs = _build_controls_information(d)
-        meta = _build_metadata(area, d)
+        meta = _build_metadata(area, device_type, d)
         yield d, {
             "controls_information": cs,
             "metadata": meta,
