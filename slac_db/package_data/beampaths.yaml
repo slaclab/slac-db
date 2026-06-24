@@ -33,7 +33,8 @@ SC_HXR:
   - *SC
   - SPH
   - SLTH
-  - BSYH
+  - BSYH1
+  - BSYH2
   - LTUH
   - UNDH
   - DMPH
@@ -75,8 +76,10 @@ CU: &CU
 
 CU_HXR:
   - *CU
-  - CLTH
-  - BSYH
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYH2
   - LTUH
   - UNDH
   - DMPH
@@ -91,6 +94,8 @@ CU_SXR:
 
 CU_ALINE:
   - *CU
-  - CLTH
-  - BSYH
-  - BSYA
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYA1
+  - BSYA2
