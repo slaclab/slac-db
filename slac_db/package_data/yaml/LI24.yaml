@@ -33,15 +33,6 @@ wires:
     metadata:
       area: LI24
       beam_path: []
-      default_detector: PMT24705:LI24
-      detectors:
-      - PMT24705:LI24
-      - PMT24706:LI24
-      jitter_bpms:
-      - BPM24401
-      - BPM24501
-      - BPM24601
-      - BPM24701
       sum_l_meters: null
       type: WIRE
   WS22:
@@ -51,15 +42,6 @@ wires:
     metadata:
       area: LI24
       beam_path: []
-      default_detector: PMT24705:LI24
-      detectors:
-      - PMT24705:LI24
-      - PMT24706:LI24
-      jitter_bpms:
-      - BPM24401
-      - BPM24501
-      - BPM24601
-      - BPM24701
       sum_l_meters: null
       type: WIRE
   WS23:
@@ -69,14 +51,5 @@ wires:
     metadata:
       area: LI24
       beam_path: []
-      default_detector: PMT24705:LI24
-      detectors:
-      - PMT24705:LI24
-      - PMT24706:LI24
-      jitter_bpms:
-      - BPM24401
-      - BPM24501
-      - BPM24601
-      - BPM24701
       sum_l_meters: null
       type: WIRE
