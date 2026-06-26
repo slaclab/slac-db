@@ -3270,6 +3270,36 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1255.337
       type: WIRE
   WSDL4:
@@ -3305,6 +3335,36 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1360.003
       type: WIRE
   WSVM2:
@@ -3352,5 +3412,35 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1211.773
       type: WIRE
