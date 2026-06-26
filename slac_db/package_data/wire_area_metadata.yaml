@@ -1,4 +1,4 @@
-IN20:
+DL1:
   detectors:
   - PMTINJ03:DL1
   - PMTINJ05:DL1
@@ -10,7 +10,7 @@ IN20:
   - BPM11
   - BPM13
   - BPM14
-LI21:
+BC1:
   detectors:
   - PMT2111:DL1
   - PMT21293:LI21
@@ -22,7 +22,7 @@ LI21:
   jitter_bpms:
   - BPMM12
   - BPM21301
-LI24:
+BC2:
   detectors:
   - PMT24705:LI24
   - PMT24706:LI24
@@ -145,6 +145,44 @@ EMIT2:
     - BPMBP36
     - BPMBP31
     - BPMBP32
+DOG:
+  detectors:
+  - LBLM11A_1:BYP
+  - LBLM11A_2:BYP
+  - LBLM11A_3:BYP
+  - TMITLOSS:BYP
+  default_detector: TMITLOSS:BYP
+  tmitloss:
+    upstream:
+    - CMB35
+    - BPMX01
+    - BPMX02
+    - BPMDOG1
+    - BPMDOG2
+    - BPMDOG3
+    - BPMDOG6
+    - BPMDOG7
+    - BPMDOG8
+    - BPML2P
+    - BPML3P
+    - BPML4P
+    - BPML5P
+    downstream:
+    - BPMBP23
+    - BPMBP24
+    - BPMBP25
+    - BPMBP26
+    - BPMBP27
+    - BPMBP35
+    - BPMBP28
+    - BPMSPH
+    - BPMSP1
+    - BPMSP2
+    - BPMSPS
+    - BPMSP1D
+    - BPMDAS
+    - BPMSP2D
+    - BPMSP3D
 BYP:
   detectors:
   - LBLM11A_1:BYP
@@ -183,7 +221,7 @@ BYP:
     - BPMDAS
     - BPMSP2D
     - BPMSP3D
-SPS:
+SPD:
   detectors:
   - LBLM22A:SPS
   default_detector: LBLM22A:SPS
