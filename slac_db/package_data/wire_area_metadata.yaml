@@ -1,4 +1,4 @@
-IN20:
+DL1:
   detectors:
   - PMTINJ03:DL1
   - PMTINJ05:DL1
@@ -10,7 +10,7 @@ IN20:
   - BPM11
   - BPM13
   - BPM14
-LI21:
+BC1:
   detectors:
   - PMT2111:DL1
   - PMT21293:LI21
@@ -32,7 +32,7 @@ LI24:
   - BPM24501
   - BPM24601
   - BPM24701
-LI28:
+L3:
   detectors:
   - PMT29150:LI29
   - PMT756:LTUH
