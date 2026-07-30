@@ -35,6 +35,45 @@ bpms:
       - CU_SXR
       sum_l_meters: 26.334
       type: BPM
+klystrons:
+  KLYS:LI21:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI21:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI21:11:BEAMCODE2_STAT
+        dsta: KLYS:LI21:11:DSTA
+        energy_gain: KLYS:LI21:11:ENLD
+        hdsc: KLYS:LI21:11:HDSC
+        phase: KLYS:LI21:11:PHAS
+        phase_actual: KLYS:LI21:11:PACT
+        phase_desired: KLYS:LI21:11:PDES
+        stat: KLYS:LI21:11:STAT
+        swrd: KLYS:LI21:11:SWRD
+      control_name: KLYS:LI21:11
+    metadata:
+      accelerate_pvname: KLYS:LI21:11:BEAMCODE1_STAT
+      area: L1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 21, station 1
+      dsta_pvname: KLYS:LI21:11:DSTA
+      enld_pvname: KLYS:LI21:11:ENLD
+      hdsc_pvname: KLYS:LI21:11:HDSC
+      l_eff: 2.869
+      name: K21_1
+      phase_pvname: KLYS:LI21:11:PHAS
+      rf_freq: 2856.0
+      sector: 21
+      stat_pvname: KLYS:LI21:11:STAT
+      station: 1
+      sum_l_meters: 21.768
+      swrd_pvname: KLYS:LI21:11:SWRD
+      type: LCAV
 magnets:
   QA11:
     controls_information:

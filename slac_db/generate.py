@@ -12,6 +12,7 @@ from slac_db.metadata import (
     get_bpm_metadata,
     get_tcav_metadata,
     get_pmt_metadata,
+    get_klystron_metadata,
 )
 from slac_db.controls_information import (
     get_magnet_controls_information,
@@ -21,6 +22,7 @@ from slac_db.controls_information import (
     get_bpm_controls_information,
     get_tcav_controls_information,
     get_pmt_controls_information,
+    get_klystron_controls_information,
 )
 
 
@@ -537,6 +539,69 @@ class YAMLGenerator:
             return complete_tcav_data
         else:
             return {}
+
+    def extract_klystrons(self, area: Union[str, List[str]] = ["L2"]) -> dict:
+        """Extract klystron stations for an area, keyed by cs_name.
+
+        Finds all LCAV elements whose Control System Name starts with
+        'KLYS:', deduplicates by cs_name (one entry per station), and
+        enriches with metadata from the lcls-live JSON datamaps.
+
+        Parameters
+        ----------
+        area : str or list of str
+            Area name(s) to extract klystrons from (e.g. 'L2', 'L3').
+
+        Returns
+        -------
+        dict
+            {cs_name: {controls_information: ..., metadata: ...}}
+        """
+        required_klystron_types = ["LCAV"]
+        possible_klystron_pvs = {
+            "ENLD": "energy_gain",
+            "PHAS": "phase",
+            "PACT": "phase_actual",
+            "PDES": "phase_desired",
+            "BEAMCODE1_STAT": "beamcode1",
+            "BEAMCODE2_STAT": "beamcode2",
+            "SWRD": "swrd",
+            "STAT": "stat",
+            "HDSC": "hdsc",
+            "DSTA": "dsta",
+        }
+
+        basic_lcav_data = self.extract_devices(
+            area=area,
+            required_types=required_klystron_types,
+            pv_search_terms=possible_klystron_pvs,
+        )
+        if not basic_lcav_data:
+            return {}
+
+        # Filter to KLYS: cs_names only and deduplicate by cs_name
+        klystron_data = {}
+        for mad_name, info in basic_lcav_data.items():
+            cs_name = info["controls_information"]["control_name"]
+            if not cs_name.startswith("KLYS:"):
+                continue
+            if cs_name in klystron_data:
+                continue
+            klystron_data[cs_name] = info
+
+        if not klystron_data:
+            return {}
+
+        cs_names = list(klystron_data.keys())
+        additional_metadata = get_klystron_metadata(cs_names)
+        additional_controls = get_klystron_controls_information(cs_names)
+
+        complete_klystron_data = self.add_extra_data_to_device(
+            device_data=klystron_data,
+            additional_controls_information=additional_controls,
+            additional_metadata=additional_metadata,
+        )
+        return complete_klystron_data
 
     def extract_pmts(self, area: Union[str, List[str]] = ["HTR"]):
         required_pmt_types = [

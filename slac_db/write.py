@@ -37,6 +37,7 @@ class YAMLWriter:
             "lblms": self.generator.extract_lblms,
             "bpms": self.generator.extract_bpms,
             "tcavs": self.generator.extract_tcavs,
+            "klystrons": self.generator.extract_klystrons,
             "pmts": self.generator.extract_pmts,
         }
 

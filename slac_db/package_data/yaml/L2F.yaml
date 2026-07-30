@@ -311,6 +311,132 @@ bpms:
       - F2_SCAV
       sum_l_meters: 383.32
       type: BPM
+klystrons:
+  KLYS:LI11:41:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:41
+    metadata:
+      accelerate_pvname: KLYS:LI11:41:BEAMCODE1_STAT
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      description: Klystron in sector 11, station 4
+      dsta_pvname: KLYS:LI11:41:DSTA
+      enld_pvname: KLYS:LI11:41:ENLD
+      hdsc_pvname: KLYS:LI11:41:HDSC
+      l_eff: 2.169
+      name: K11_4
+      phase_pvname: KLYS:LI11:41:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:41:STAT
+      station: 4
+      sum_l_meters: 54.996
+      swrd_pvname: KLYS:LI11:41:SWRD
+      type: LCAV
+  KLYS:LI11:51:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:51
+    metadata:
+      accelerate_pvname: KLYS:LI11:51:BEAMCODE1_STAT
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      description: Klystron in sector 11, station 5
+      dsta_pvname: KLYS:LI11:51:DSTA
+      enld_pvname: KLYS:LI11:51:ENLD
+      hdsc_pvname: KLYS:LI11:51:HDSC
+      l_eff: 3.044
+      name: K11_5
+      phase_pvname: KLYS:LI11:51:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:51:STAT
+      station: 5
+      sum_l_meters: 67.778
+      swrd_pvname: KLYS:LI11:51:SWRD
+      type: LCAV
+  KLYS:LI11:61:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:61
+    metadata:
+      accelerate_pvname: KLYS:LI11:61:BEAMCODE1_STAT
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      description: Klystron in sector 11, station 6
+      dsta_pvname: KLYS:LI11:61:DSTA
+      enld_pvname: KLYS:LI11:61:ENLD
+      hdsc_pvname: KLYS:LI11:61:HDSC
+      l_eff: 2.169
+      name: K11_6
+      phase_pvname: KLYS:LI11:61:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:61:STAT
+      station: 6
+      sum_l_meters: 79.685
+      swrd_pvname: KLYS:LI11:61:SWRD
+      type: LCAV
+  KLYS:LI11:71:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:71
+    metadata:
+      accelerate_pvname: KLYS:LI11:71:BEAMCODE1_STAT
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      description: Klystron in sector 11, station 7
+      dsta_pvname: KLYS:LI11:71:DSTA
+      enld_pvname: KLYS:LI11:71:ENLD
+      hdsc_pvname: KLYS:LI11:71:HDSC
+      l_eff: 3.044
+      name: K11_7
+      phase_pvname: KLYS:LI11:71:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:71:STAT
+      station: 7
+      sum_l_meters: 92.467
+      swrd_pvname: KLYS:LI11:71:SWRD
+      type: LCAV
+  KLYS:LI11:81:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:81
+    metadata:
+      accelerate_pvname: KLYS:LI11:81:BEAMCODE1_STAT
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      description: Klystron in sector 11, station 8
+      dsta_pvname: KLYS:LI11:81:DSTA
+      enld_pvname: KLYS:LI11:81:ENLD
+      hdsc_pvname: KLYS:LI11:81:HDSC
+      l_eff: 3.044
+      name: K11_8
+      phase_pvname: KLYS:LI11:81:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:81:STAT
+      station: 8
+      sum_l_meters: 104.811
+      swrd_pvname: KLYS:LI11:81:SWRD
+      type: LCAV
 magnets:
   Q11501:
     controls_information:

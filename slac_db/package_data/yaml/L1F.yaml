@@ -43,6 +43,55 @@ bpms:
       - F2_SCAV
       sum_l_meters: 38.433
       type: BPM
+klystrons:
+  KLYS:LI11:11:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:11
+    metadata:
+      accelerate_pvname: KLYS:LI11:11:BEAMCODE1_STAT
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      description: Klystron in sector 11, station 1
+      dsta_pvname: KLYS:LI11:11:DSTA
+      enld_pvname: KLYS:LI11:11:ENLD
+      hdsc_pvname: KLYS:LI11:11:HDSC
+      l_eff: 2.869
+      name: K11_1
+      phase_pvname: KLYS:LI11:11:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:11:STAT
+      station: 1
+      sum_l_meters: 21.325
+      swrd_pvname: KLYS:LI11:11:SWRD
+      type: LCAV
+  KLYS:LI11:21:
+    controls_information:
+      PVs: {}
+      control_name: KLYS:LI11:21
+    metadata:
+      accelerate_pvname: KLYS:LI11:21:BEAMCODE1_STAT
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      description: Klystron in sector 11, station 2
+      dsta_pvname: KLYS:LI11:21:DSTA
+      enld_pvname: KLYS:LI11:21:ENLD
+      hdsc_pvname: KLYS:LI11:21:HDSC
+      l_eff: 3.044
+      name: K11_2
+      phase_pvname: KLYS:LI11:21:PHAS
+      rf_freq: 2856.0
+      sector: 11
+      stat_pvname: KLYS:LI11:21:STAT
+      station: 2
+      sum_l_meters: 30.713
+      swrd_pvname: KLYS:LI11:21:SWRD
+      type: LCAV
 magnets:
   Q11201:
     controls_information:

@@ -845,6 +845,1830 @@ bpms:
       - CU_SXR
       sum_l_meters: 1017.865
       type: BPM
+klystrons:
+  KLYS:LI25:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:11:BEAMCODE2_STAT
+        dsta: KLYS:LI25:11:DSTA
+        energy_gain: KLYS:LI25:11:ENLD
+        hdsc: KLYS:LI25:11:HDSC
+        phase: KLYS:LI25:11:PHAS
+        phase_actual: KLYS:LI25:11:PACT
+        phase_desired: KLYS:LI25:11:PDES
+        stat: KLYS:LI25:11:STAT
+        swrd: KLYS:LI25:11:SWRD
+      control_name: KLYS:LI25:11
+    metadata:
+      accelerate_pvname: KLYS:LI25:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 1
+      dsta_pvname: KLYS:LI25:11:DSTA
+      enld_pvname: KLYS:LI25:11:ENLD
+      hdsc_pvname: KLYS:LI25:11:HDSC
+      l_eff: 3.044
+      name: K25_1
+      phase_pvname: KLYS:LI25:11:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:11:STAT
+      station: 1
+      sum_l_meters: 425.257
+      swrd_pvname: KLYS:LI25:11:SWRD
+      type: LCAV
+  KLYS:LI25:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:21:BEAMCODE2_STAT
+        dsta: KLYS:LI25:21:DSTA
+        energy_gain: KLYS:LI25:21:ENLD
+        hdsc: KLYS:LI25:21:HDSC
+        phase: KLYS:LI25:21:PHAS
+        phase_actual: KLYS:LI25:21:PACT
+        phase_desired: KLYS:LI25:21:PDES
+        stat: KLYS:LI25:21:STAT
+        swrd: KLYS:LI25:21:SWRD
+      control_name: KLYS:LI25:21
+    metadata:
+      accelerate_pvname: KLYS:LI25:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 2
+      dsta_pvname: KLYS:LI25:21:DSTA
+      enld_pvname: KLYS:LI25:21:ENLD
+      hdsc_pvname: KLYS:LI25:21:HDSC
+      l_eff: 3.044
+      name: K25_2
+      phase_pvname: KLYS:LI25:21:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:21:STAT
+      station: 2
+      sum_l_meters: 437.601
+      swrd_pvname: KLYS:LI25:21:SWRD
+      type: LCAV
+  KLYS:LI25:31:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:31:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:31:BEAMCODE2_STAT
+        dsta: KLYS:LI25:31:DSTA
+        energy_gain: KLYS:LI25:31:ENLD
+        hdsc: KLYS:LI25:31:HDSC
+        phase: KLYS:LI25:31:PHAS
+        phase_actual: KLYS:LI25:31:PACT
+        phase_desired: KLYS:LI25:31:PDES
+        stat: KLYS:LI25:31:STAT
+        swrd: KLYS:LI25:31:SWRD
+      control_name: KLYS:LI25:31
+    metadata:
+      accelerate_pvname: KLYS:LI25:31:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 3
+      dsta_pvname: KLYS:LI25:31:DSTA
+      enld_pvname: KLYS:LI25:31:ENLD
+      hdsc_pvname: KLYS:LI25:31:HDSC
+      l_eff: 3.044
+      name: K25_3
+      phase_pvname: KLYS:LI25:31:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:31:STAT
+      station: 3
+      sum_l_meters: 449.946
+      swrd_pvname: KLYS:LI25:31:SWRD
+      type: LCAV
+  KLYS:LI25:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:41:BEAMCODE2_STAT
+        dsta: KLYS:LI25:41:DSTA
+        energy_gain: KLYS:LI25:41:ENLD
+        hdsc: KLYS:LI25:41:HDSC
+        phase: KLYS:LI25:41:PHAS
+        phase_actual: KLYS:LI25:41:PACT
+        phase_desired: KLYS:LI25:41:PDES
+        stat: KLYS:LI25:41:STAT
+        swrd: KLYS:LI25:41:SWRD
+      control_name: KLYS:LI25:41
+    metadata:
+      accelerate_pvname: KLYS:LI25:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 4
+      dsta_pvname: KLYS:LI25:41:DSTA
+      enld_pvname: KLYS:LI25:41:ENLD
+      hdsc_pvname: KLYS:LI25:41:HDSC
+      l_eff: 3.044
+      name: K25_4
+      phase_pvname: KLYS:LI25:41:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:41:STAT
+      station: 4
+      sum_l_meters: 462.29
+      swrd_pvname: KLYS:LI25:41:SWRD
+      type: LCAV
+  KLYS:LI25:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:51:BEAMCODE2_STAT
+        dsta: KLYS:LI25:51:DSTA
+        energy_gain: KLYS:LI25:51:ENLD
+        hdsc: KLYS:LI25:51:HDSC
+        phase: KLYS:LI25:51:PHAS
+        phase_actual: KLYS:LI25:51:PACT
+        phase_desired: KLYS:LI25:51:PDES
+        stat: KLYS:LI25:51:STAT
+        swrd: KLYS:LI25:51:SWRD
+      control_name: KLYS:LI25:51
+    metadata:
+      accelerate_pvname: KLYS:LI25:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 5
+      dsta_pvname: KLYS:LI25:51:DSTA
+      enld_pvname: KLYS:LI25:51:ENLD
+      hdsc_pvname: KLYS:LI25:51:HDSC
+      l_eff: 3.044
+      name: K25_5
+      phase_pvname: KLYS:LI25:51:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:51:STAT
+      station: 5
+      sum_l_meters: 474.634
+      swrd_pvname: KLYS:LI25:51:SWRD
+      type: LCAV
+  KLYS:LI25:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:61:BEAMCODE2_STAT
+        dsta: KLYS:LI25:61:DSTA
+        energy_gain: KLYS:LI25:61:ENLD
+        hdsc: KLYS:LI25:61:HDSC
+        phase: KLYS:LI25:61:PHAS
+        phase_actual: KLYS:LI25:61:PACT
+        phase_desired: KLYS:LI25:61:PDES
+        stat: KLYS:LI25:61:STAT
+        swrd: KLYS:LI25:61:SWRD
+      control_name: KLYS:LI25:61
+    metadata:
+      accelerate_pvname: KLYS:LI25:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 6
+      dsta_pvname: KLYS:LI25:61:DSTA
+      enld_pvname: KLYS:LI25:61:ENLD
+      hdsc_pvname: KLYS:LI25:61:HDSC
+      l_eff: 3.044
+      name: K25_6
+      phase_pvname: KLYS:LI25:61:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:61:STAT
+      station: 6
+      sum_l_meters: 486.979
+      swrd_pvname: KLYS:LI25:61:SWRD
+      type: LCAV
+  KLYS:LI25:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:71:BEAMCODE2_STAT
+        dsta: KLYS:LI25:71:DSTA
+        energy_gain: KLYS:LI25:71:ENLD
+        hdsc: KLYS:LI25:71:HDSC
+        phase: KLYS:LI25:71:PHAS
+        phase_actual: KLYS:LI25:71:PACT
+        phase_desired: KLYS:LI25:71:PDES
+        stat: KLYS:LI25:71:STAT
+        swrd: KLYS:LI25:71:SWRD
+      control_name: KLYS:LI25:71
+    metadata:
+      accelerate_pvname: KLYS:LI25:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 7
+      dsta_pvname: KLYS:LI25:71:DSTA
+      enld_pvname: KLYS:LI25:71:ENLD
+      hdsc_pvname: KLYS:LI25:71:HDSC
+      l_eff: 3.044
+      name: K25_7
+      phase_pvname: KLYS:LI25:71:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:71:STAT
+      station: 7
+      sum_l_meters: 499.323
+      swrd_pvname: KLYS:LI25:71:SWRD
+      type: LCAV
+  KLYS:LI25:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI25:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI25:81:BEAMCODE2_STAT
+        dsta: KLYS:LI25:81:DSTA
+        energy_gain: KLYS:LI25:81:ENLD
+        hdsc: KLYS:LI25:81:HDSC
+        phase: KLYS:LI25:81:PHAS
+        phase_actual: KLYS:LI25:81:PACT
+        phase_desired: KLYS:LI25:81:PDES
+        stat: KLYS:LI25:81:STAT
+        swrd: KLYS:LI25:81:SWRD
+      control_name: KLYS:LI25:81
+    metadata:
+      accelerate_pvname: KLYS:LI25:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 25, station 8
+      dsta_pvname: KLYS:LI25:81:DSTA
+      enld_pvname: KLYS:LI25:81:ENLD
+      hdsc_pvname: KLYS:LI25:81:HDSC
+      l_eff: 3.044
+      name: K25_8
+      phase_pvname: KLYS:LI25:81:PHAS
+      rf_freq: 2856.0
+      sector: 25
+      stat_pvname: KLYS:LI25:81:STAT
+      station: 8
+      sum_l_meters: 511.668
+      swrd_pvname: KLYS:LI25:81:SWRD
+      type: LCAV
+  KLYS:LI26:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:11:BEAMCODE2_STAT
+        dsta: KLYS:LI26:11:DSTA
+        energy_gain: KLYS:LI26:11:ENLD
+        hdsc: KLYS:LI26:11:HDSC
+        phase: KLYS:LI26:11:PHAS
+        phase_actual: KLYS:LI26:11:PACT
+        phase_desired: KLYS:LI26:11:PDES
+        stat: KLYS:LI26:11:STAT
+        swrd: KLYS:LI26:11:SWRD
+      control_name: KLYS:LI26:11
+    metadata:
+      accelerate_pvname: KLYS:LI26:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 1
+      dsta_pvname: KLYS:LI26:11:DSTA
+      enld_pvname: KLYS:LI26:11:ENLD
+      hdsc_pvname: KLYS:LI26:11:HDSC
+      l_eff: 3.044
+      name: K26_1
+      phase_pvname: KLYS:LI26:11:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:11:STAT
+      station: 1
+      sum_l_meters: 526.857
+      swrd_pvname: KLYS:LI26:11:SWRD
+      type: LCAV
+  KLYS:LI26:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:21:BEAMCODE2_STAT
+        dsta: KLYS:LI26:21:DSTA
+        energy_gain: KLYS:LI26:21:ENLD
+        hdsc: KLYS:LI26:21:HDSC
+        phase: KLYS:LI26:21:PHAS
+        phase_actual: KLYS:LI26:21:PACT
+        phase_desired: KLYS:LI26:21:PDES
+        stat: KLYS:LI26:21:STAT
+        swrd: KLYS:LI26:21:SWRD
+      control_name: KLYS:LI26:21
+    metadata:
+      accelerate_pvname: KLYS:LI26:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 2
+      dsta_pvname: KLYS:LI26:21:DSTA
+      enld_pvname: KLYS:LI26:21:ENLD
+      hdsc_pvname: KLYS:LI26:21:HDSC
+      l_eff: 3.044
+      name: K26_2
+      phase_pvname: KLYS:LI26:21:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:21:STAT
+      station: 2
+      sum_l_meters: 539.201
+      swrd_pvname: KLYS:LI26:21:SWRD
+      type: LCAV
+  KLYS:LI26:31:
+    controls_information:
+      PVs:
+        beamcode2: KLYS:LI26:31:BEAMCODE2_STAT
+        dsta: KLYS:LI26:31:DSTA
+        energy_gain: KLYS:LI26:31:ENLD
+        hdsc: KLYS:LI26:31:HDSC
+        phase: KLYS:LI26:31:PHAS
+        phase_actual: KLYS:LI26:31:PACT
+        phase_desired: KLYS:LI26:31:PDES
+        stat: KLYS:LI26:31:STAT
+        swrd: KLYS:LI26:31:SWRD
+      control_name: KLYS:LI26:31
+    metadata:
+      accelerate_pvname: ''
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 3
+      dsta_pvname: KLYS:LI26:31:DSTA
+      enld_pvname: KLYS:LI26:31:ENLD
+      hdsc_pvname: KLYS:LI26:31:HDSC
+      l_eff: 3.044
+      name: K26_3
+      phase_pvname: KLYS:LI26:31:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:31:STAT
+      station: 3
+      sum_l_meters: 551.546
+      swrd_pvname: KLYS:LI26:31:SWRD
+      type: LCAV
+  KLYS:LI26:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:41:BEAMCODE2_STAT
+        dsta: KLYS:LI26:41:DSTA
+        energy_gain: KLYS:LI26:41:ENLD
+        hdsc: KLYS:LI26:41:HDSC
+        phase: KLYS:LI26:41:PHAS
+        phase_actual: KLYS:LI26:41:PACT
+        phase_desired: KLYS:LI26:41:PDES
+        stat: KLYS:LI26:41:STAT
+        swrd: KLYS:LI26:41:SWRD
+      control_name: KLYS:LI26:41
+    metadata:
+      accelerate_pvname: KLYS:LI26:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 4
+      dsta_pvname: KLYS:LI26:41:DSTA
+      enld_pvname: KLYS:LI26:41:ENLD
+      hdsc_pvname: KLYS:LI26:41:HDSC
+      l_eff: 3.044
+      name: K26_4
+      phase_pvname: KLYS:LI26:41:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:41:STAT
+      station: 4
+      sum_l_meters: 563.89
+      swrd_pvname: KLYS:LI26:41:SWRD
+      type: LCAV
+  KLYS:LI26:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:51:BEAMCODE2_STAT
+        dsta: KLYS:LI26:51:DSTA
+        energy_gain: KLYS:LI26:51:ENLD
+        hdsc: KLYS:LI26:51:HDSC
+        phase: KLYS:LI26:51:PHAS
+        phase_actual: KLYS:LI26:51:PACT
+        phase_desired: KLYS:LI26:51:PDES
+        stat: KLYS:LI26:51:STAT
+        swrd: KLYS:LI26:51:SWRD
+      control_name: KLYS:LI26:51
+    metadata:
+      accelerate_pvname: KLYS:LI26:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 5
+      dsta_pvname: KLYS:LI26:51:DSTA
+      enld_pvname: KLYS:LI26:51:ENLD
+      hdsc_pvname: KLYS:LI26:51:HDSC
+      l_eff: 3.044
+      name: K26_5
+      phase_pvname: KLYS:LI26:51:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:51:STAT
+      station: 5
+      sum_l_meters: 576.234
+      swrd_pvname: KLYS:LI26:51:SWRD
+      type: LCAV
+  KLYS:LI26:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:61:BEAMCODE2_STAT
+        dsta: KLYS:LI26:61:DSTA
+        energy_gain: KLYS:LI26:61:ENLD
+        hdsc: KLYS:LI26:61:HDSC
+        phase: KLYS:LI26:61:PHAS
+        phase_actual: KLYS:LI26:61:PACT
+        phase_desired: KLYS:LI26:61:PDES
+        stat: KLYS:LI26:61:STAT
+        swrd: KLYS:LI26:61:SWRD
+      control_name: KLYS:LI26:61
+    metadata:
+      accelerate_pvname: KLYS:LI26:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 6
+      dsta_pvname: KLYS:LI26:61:DSTA
+      enld_pvname: KLYS:LI26:61:ENLD
+      hdsc_pvname: KLYS:LI26:61:HDSC
+      l_eff: 3.044
+      name: K26_6
+      phase_pvname: KLYS:LI26:61:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:61:STAT
+      station: 6
+      sum_l_meters: 588.579
+      swrd_pvname: KLYS:LI26:61:SWRD
+      type: LCAV
+  KLYS:LI26:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:71:BEAMCODE2_STAT
+        dsta: KLYS:LI26:71:DSTA
+        energy_gain: KLYS:LI26:71:ENLD
+        hdsc: KLYS:LI26:71:HDSC
+        phase: KLYS:LI26:71:PHAS
+        phase_actual: KLYS:LI26:71:PACT
+        phase_desired: KLYS:LI26:71:PDES
+        stat: KLYS:LI26:71:STAT
+        swrd: KLYS:LI26:71:SWRD
+      control_name: KLYS:LI26:71
+    metadata:
+      accelerate_pvname: KLYS:LI26:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 7
+      dsta_pvname: KLYS:LI26:71:DSTA
+      enld_pvname: KLYS:LI26:71:ENLD
+      hdsc_pvname: KLYS:LI26:71:HDSC
+      l_eff: 3.044
+      name: K26_7
+      phase_pvname: KLYS:LI26:71:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:71:STAT
+      station: 7
+      sum_l_meters: 600.923
+      swrd_pvname: KLYS:LI26:71:SWRD
+      type: LCAV
+  KLYS:LI26:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI26:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI26:81:BEAMCODE2_STAT
+        dsta: KLYS:LI26:81:DSTA
+        energy_gain: KLYS:LI26:81:ENLD
+        hdsc: KLYS:LI26:81:HDSC
+        phase: KLYS:LI26:81:PHAS
+        phase_actual: KLYS:LI26:81:PACT
+        phase_desired: KLYS:LI26:81:PDES
+        stat: KLYS:LI26:81:STAT
+        swrd: KLYS:LI26:81:SWRD
+      control_name: KLYS:LI26:81
+    metadata:
+      accelerate_pvname: KLYS:LI26:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 26, station 8
+      dsta_pvname: KLYS:LI26:81:DSTA
+      enld_pvname: KLYS:LI26:81:ENLD
+      hdsc_pvname: KLYS:LI26:81:HDSC
+      l_eff: 3.044
+      name: K26_8
+      phase_pvname: KLYS:LI26:81:PHAS
+      rf_freq: 2856.0
+      sector: 26
+      stat_pvname: KLYS:LI26:81:STAT
+      station: 8
+      sum_l_meters: 613.268
+      swrd_pvname: KLYS:LI26:81:SWRD
+      type: LCAV
+  KLYS:LI27:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:11:BEAMCODE2_STAT
+        dsta: KLYS:LI27:11:DSTA
+        energy_gain: KLYS:LI27:11:ENLD
+        hdsc: KLYS:LI27:11:HDSC
+        phase: KLYS:LI27:11:PHAS
+        phase_actual: KLYS:LI27:11:PACT
+        phase_desired: KLYS:LI27:11:PDES
+        stat: KLYS:LI27:11:STAT
+        swrd: KLYS:LI27:11:SWRD
+      control_name: KLYS:LI27:11
+    metadata:
+      accelerate_pvname: KLYS:LI27:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 1
+      dsta_pvname: KLYS:LI27:11:DSTA
+      enld_pvname: KLYS:LI27:11:ENLD
+      hdsc_pvname: KLYS:LI27:11:HDSC
+      l_eff: 3.044
+      name: K27_1
+      phase_pvname: KLYS:LI27:11:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:11:STAT
+      station: 1
+      sum_l_meters: 628.457
+      swrd_pvname: KLYS:LI27:11:SWRD
+      type: LCAV
+  KLYS:LI27:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:21:BEAMCODE2_STAT
+        dsta: KLYS:LI27:21:DSTA
+        energy_gain: KLYS:LI27:21:ENLD
+        hdsc: KLYS:LI27:21:HDSC
+        phase: KLYS:LI27:21:PHAS
+        phase_actual: KLYS:LI27:21:PACT
+        phase_desired: KLYS:LI27:21:PDES
+        stat: KLYS:LI27:21:STAT
+        swrd: KLYS:LI27:21:SWRD
+      control_name: KLYS:LI27:21
+    metadata:
+      accelerate_pvname: KLYS:LI27:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 2
+      dsta_pvname: KLYS:LI27:21:DSTA
+      enld_pvname: KLYS:LI27:21:ENLD
+      hdsc_pvname: KLYS:LI27:21:HDSC
+      l_eff: 3.044
+      name: K27_2
+      phase_pvname: KLYS:LI27:21:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:21:STAT
+      station: 2
+      sum_l_meters: 640.801
+      swrd_pvname: KLYS:LI27:21:SWRD
+      type: LCAV
+  KLYS:LI27:31:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:31:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:31:BEAMCODE2_STAT
+        dsta: KLYS:LI27:31:DSTA
+        energy_gain: KLYS:LI27:31:ENLD
+        hdsc: KLYS:LI27:31:HDSC
+        phase: KLYS:LI27:31:PHAS
+        phase_actual: KLYS:LI27:31:PACT
+        phase_desired: KLYS:LI27:31:PDES
+        stat: KLYS:LI27:31:STAT
+        swrd: KLYS:LI27:31:SWRD
+      control_name: KLYS:LI27:31
+    metadata:
+      accelerate_pvname: KLYS:LI27:31:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 3
+      dsta_pvname: KLYS:LI27:31:DSTA
+      enld_pvname: KLYS:LI27:31:ENLD
+      hdsc_pvname: KLYS:LI27:31:HDSC
+      l_eff: 3.044
+      name: K27_3
+      phase_pvname: KLYS:LI27:31:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:31:STAT
+      station: 3
+      sum_l_meters: 653.146
+      swrd_pvname: KLYS:LI27:31:SWRD
+      type: LCAV
+  KLYS:LI27:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:41:BEAMCODE2_STAT
+        dsta: KLYS:LI27:41:DSTA
+        energy_gain: KLYS:LI27:41:ENLD
+        hdsc: KLYS:LI27:41:HDSC
+        phase: KLYS:LI27:41:PHAS
+        phase_actual: KLYS:LI27:41:PACT
+        phase_desired: KLYS:LI27:41:PDES
+        stat: KLYS:LI27:41:STAT
+        swrd: KLYS:LI27:41:SWRD
+      control_name: KLYS:LI27:41
+    metadata:
+      accelerate_pvname: KLYS:LI27:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 4
+      dsta_pvname: KLYS:LI27:41:DSTA
+      enld_pvname: KLYS:LI27:41:ENLD
+      hdsc_pvname: KLYS:LI27:41:HDSC
+      l_eff: 3.044
+      name: K27_4
+      phase_pvname: KLYS:LI27:41:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:41:STAT
+      station: 4
+      sum_l_meters: 665.49
+      swrd_pvname: KLYS:LI27:41:SWRD
+      type: LCAV
+  KLYS:LI27:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:51:BEAMCODE2_STAT
+        dsta: KLYS:LI27:51:DSTA
+        energy_gain: KLYS:LI27:51:ENLD
+        hdsc: KLYS:LI27:51:HDSC
+        phase: KLYS:LI27:51:PHAS
+        phase_actual: KLYS:LI27:51:PACT
+        phase_desired: KLYS:LI27:51:PDES
+        stat: KLYS:LI27:51:STAT
+        swrd: KLYS:LI27:51:SWRD
+      control_name: KLYS:LI27:51
+    metadata:
+      accelerate_pvname: KLYS:LI27:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 5
+      dsta_pvname: KLYS:LI27:51:DSTA
+      enld_pvname: KLYS:LI27:51:ENLD
+      hdsc_pvname: KLYS:LI27:51:HDSC
+      l_eff: 3.044
+      name: K27_5
+      phase_pvname: KLYS:LI27:51:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:51:STAT
+      station: 5
+      sum_l_meters: 677.834
+      swrd_pvname: KLYS:LI27:51:SWRD
+      type: LCAV
+  KLYS:LI27:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:61:BEAMCODE2_STAT
+        dsta: KLYS:LI27:61:DSTA
+        energy_gain: KLYS:LI27:61:ENLD
+        hdsc: KLYS:LI27:61:HDSC
+        phase: KLYS:LI27:61:PHAS
+        phase_actual: KLYS:LI27:61:PACT
+        phase_desired: KLYS:LI27:61:PDES
+        stat: KLYS:LI27:61:STAT
+        swrd: KLYS:LI27:61:SWRD
+      control_name: KLYS:LI27:61
+    metadata:
+      accelerate_pvname: KLYS:LI27:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 6
+      dsta_pvname: KLYS:LI27:61:DSTA
+      enld_pvname: KLYS:LI27:61:ENLD
+      hdsc_pvname: KLYS:LI27:61:HDSC
+      l_eff: 3.044
+      name: K27_6
+      phase_pvname: KLYS:LI27:61:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:61:STAT
+      station: 6
+      sum_l_meters: 690.179
+      swrd_pvname: KLYS:LI27:61:SWRD
+      type: LCAV
+  KLYS:LI27:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:71:BEAMCODE2_STAT
+        dsta: KLYS:LI27:71:DSTA
+        energy_gain: KLYS:LI27:71:ENLD
+        hdsc: KLYS:LI27:71:HDSC
+        phase: KLYS:LI27:71:PHAS
+        phase_actual: KLYS:LI27:71:PACT
+        phase_desired: KLYS:LI27:71:PDES
+        stat: KLYS:LI27:71:STAT
+        swrd: KLYS:LI27:71:SWRD
+      control_name: KLYS:LI27:71
+    metadata:
+      accelerate_pvname: KLYS:LI27:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 7
+      dsta_pvname: KLYS:LI27:71:DSTA
+      enld_pvname: KLYS:LI27:71:ENLD
+      hdsc_pvname: KLYS:LI27:71:HDSC
+      l_eff: 3.044
+      name: K27_7
+      phase_pvname: KLYS:LI27:71:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:71:STAT
+      station: 7
+      sum_l_meters: 702.523
+      swrd_pvname: KLYS:LI27:71:SWRD
+      type: LCAV
+  KLYS:LI27:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI27:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI27:81:BEAMCODE2_STAT
+        dsta: KLYS:LI27:81:DSTA
+        energy_gain: KLYS:LI27:81:ENLD
+        hdsc: KLYS:LI27:81:HDSC
+        phase: KLYS:LI27:81:PHAS
+        phase_actual: KLYS:LI27:81:PACT
+        phase_desired: KLYS:LI27:81:PDES
+        stat: KLYS:LI27:81:STAT
+        swrd: KLYS:LI27:81:SWRD
+      control_name: KLYS:LI27:81
+    metadata:
+      accelerate_pvname: KLYS:LI27:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 27, station 8
+      dsta_pvname: KLYS:LI27:81:DSTA
+      enld_pvname: KLYS:LI27:81:ENLD
+      hdsc_pvname: KLYS:LI27:81:HDSC
+      l_eff: 3.044
+      name: K27_8
+      phase_pvname: KLYS:LI27:81:PHAS
+      rf_freq: 2856.0
+      sector: 27
+      stat_pvname: KLYS:LI27:81:STAT
+      station: 8
+      sum_l_meters: 714.868
+      swrd_pvname: KLYS:LI27:81:SWRD
+      type: LCAV
+  KLYS:LI28:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:11:BEAMCODE2_STAT
+        dsta: KLYS:LI28:11:DSTA
+        energy_gain: KLYS:LI28:11:ENLD
+        hdsc: KLYS:LI28:11:HDSC
+        phase: KLYS:LI28:11:PHAS
+        phase_actual: KLYS:LI28:11:PACT
+        phase_desired: KLYS:LI28:11:PDES
+        stat: KLYS:LI28:11:STAT
+        swrd: KLYS:LI28:11:SWRD
+      control_name: KLYS:LI28:11
+    metadata:
+      accelerate_pvname: KLYS:LI28:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 1
+      dsta_pvname: KLYS:LI28:11:DSTA
+      enld_pvname: KLYS:LI28:11:ENLD
+      hdsc_pvname: KLYS:LI28:11:HDSC
+      l_eff: 3.044
+      name: K28_1
+      phase_pvname: KLYS:LI28:11:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:11:STAT
+      station: 1
+      sum_l_meters: 730.057
+      swrd_pvname: KLYS:LI28:11:SWRD
+      type: LCAV
+  KLYS:LI28:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:21:BEAMCODE2_STAT
+        dsta: KLYS:LI28:21:DSTA
+        energy_gain: KLYS:LI28:21:ENLD
+        hdsc: KLYS:LI28:21:HDSC
+        phase: KLYS:LI28:21:PHAS
+        phase_actual: KLYS:LI28:21:PACT
+        phase_desired: KLYS:LI28:21:PDES
+        stat: KLYS:LI28:21:STAT
+        swrd: KLYS:LI28:21:SWRD
+      control_name: KLYS:LI28:21
+    metadata:
+      accelerate_pvname: KLYS:LI28:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 2
+      dsta_pvname: KLYS:LI28:21:DSTA
+      enld_pvname: KLYS:LI28:21:ENLD
+      hdsc_pvname: KLYS:LI28:21:HDSC
+      l_eff: 3.044
+      name: K28_2
+      phase_pvname: KLYS:LI28:21:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:21:STAT
+      station: 2
+      sum_l_meters: 742.401
+      swrd_pvname: KLYS:LI28:21:SWRD
+      type: LCAV
+  KLYS:LI28:31:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:31:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:31:BEAMCODE2_STAT
+        dsta: KLYS:LI28:31:DSTA
+        energy_gain: KLYS:LI28:31:ENLD
+        hdsc: KLYS:LI28:31:HDSC
+        phase: KLYS:LI28:31:PHAS
+        phase_actual: KLYS:LI28:31:PACT
+        phase_desired: KLYS:LI28:31:PDES
+        stat: KLYS:LI28:31:STAT
+        swrd: KLYS:LI28:31:SWRD
+      control_name: KLYS:LI28:31
+    metadata:
+      accelerate_pvname: KLYS:LI28:31:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 3
+      dsta_pvname: KLYS:LI28:31:DSTA
+      enld_pvname: KLYS:LI28:31:ENLD
+      hdsc_pvname: KLYS:LI28:31:HDSC
+      l_eff: 3.044
+      name: K28_3
+      phase_pvname: KLYS:LI28:31:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:31:STAT
+      station: 3
+      sum_l_meters: 754.746
+      swrd_pvname: KLYS:LI28:31:SWRD
+      type: LCAV
+  KLYS:LI28:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:41:BEAMCODE2_STAT
+        dsta: KLYS:LI28:41:DSTA
+        energy_gain: KLYS:LI28:41:ENLD
+        hdsc: KLYS:LI28:41:HDSC
+        phase: KLYS:LI28:41:PHAS
+        phase_actual: KLYS:LI28:41:PACT
+        phase_desired: KLYS:LI28:41:PDES
+        stat: KLYS:LI28:41:STAT
+        swrd: KLYS:LI28:41:SWRD
+      control_name: KLYS:LI28:41
+    metadata:
+      accelerate_pvname: KLYS:LI28:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 4
+      dsta_pvname: KLYS:LI28:41:DSTA
+      enld_pvname: KLYS:LI28:41:ENLD
+      hdsc_pvname: KLYS:LI28:41:HDSC
+      l_eff: 3.044
+      name: K28_4
+      phase_pvname: KLYS:LI28:41:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:41:STAT
+      station: 4
+      sum_l_meters: 767.09
+      swrd_pvname: KLYS:LI28:41:SWRD
+      type: LCAV
+  KLYS:LI28:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:51:BEAMCODE2_STAT
+        dsta: KLYS:LI28:51:DSTA
+        energy_gain: KLYS:LI28:51:ENLD
+        hdsc: KLYS:LI28:51:HDSC
+        phase: KLYS:LI28:51:PHAS
+        phase_actual: KLYS:LI28:51:PACT
+        phase_desired: KLYS:LI28:51:PDES
+        stat: KLYS:LI28:51:STAT
+        swrd: KLYS:LI28:51:SWRD
+      control_name: KLYS:LI28:51
+    metadata:
+      accelerate_pvname: KLYS:LI28:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 5
+      dsta_pvname: KLYS:LI28:51:DSTA
+      enld_pvname: KLYS:LI28:51:ENLD
+      hdsc_pvname: KLYS:LI28:51:HDSC
+      l_eff: 3.044
+      name: K28_5
+      phase_pvname: KLYS:LI28:51:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:51:STAT
+      station: 5
+      sum_l_meters: 779.434
+      swrd_pvname: KLYS:LI28:51:SWRD
+      type: LCAV
+  KLYS:LI28:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:61:BEAMCODE2_STAT
+        dsta: KLYS:LI28:61:DSTA
+        energy_gain: KLYS:LI28:61:ENLD
+        hdsc: KLYS:LI28:61:HDSC
+        phase: KLYS:LI28:61:PHAS
+        phase_actual: KLYS:LI28:61:PACT
+        phase_desired: KLYS:LI28:61:PDES
+        stat: KLYS:LI28:61:STAT
+        swrd: KLYS:LI28:61:SWRD
+      control_name: KLYS:LI28:61
+    metadata:
+      accelerate_pvname: KLYS:LI28:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 6
+      dsta_pvname: KLYS:LI28:61:DSTA
+      enld_pvname: KLYS:LI28:61:ENLD
+      hdsc_pvname: KLYS:LI28:61:HDSC
+      l_eff: 3.044
+      name: K28_6
+      phase_pvname: KLYS:LI28:61:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:61:STAT
+      station: 6
+      sum_l_meters: 791.779
+      swrd_pvname: KLYS:LI28:61:SWRD
+      type: LCAV
+  KLYS:LI28:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:71:BEAMCODE2_STAT
+        dsta: KLYS:LI28:71:DSTA
+        energy_gain: KLYS:LI28:71:ENLD
+        hdsc: KLYS:LI28:71:HDSC
+        phase: KLYS:LI28:71:PHAS
+        phase_actual: KLYS:LI28:71:PACT
+        phase_desired: KLYS:LI28:71:PDES
+        stat: KLYS:LI28:71:STAT
+        swrd: KLYS:LI28:71:SWRD
+      control_name: KLYS:LI28:71
+    metadata:
+      accelerate_pvname: KLYS:LI28:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 7
+      dsta_pvname: KLYS:LI28:71:DSTA
+      enld_pvname: KLYS:LI28:71:ENLD
+      hdsc_pvname: KLYS:LI28:71:HDSC
+      l_eff: 3.044
+      name: K28_7
+      phase_pvname: KLYS:LI28:71:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:71:STAT
+      station: 7
+      sum_l_meters: 804.123
+      swrd_pvname: KLYS:LI28:71:SWRD
+      type: LCAV
+  KLYS:LI28:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI28:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI28:81:BEAMCODE2_STAT
+        dsta: KLYS:LI28:81:DSTA
+        energy_gain: KLYS:LI28:81:ENLD
+        hdsc: KLYS:LI28:81:HDSC
+        phase: KLYS:LI28:81:PHAS
+        phase_actual: KLYS:LI28:81:PACT
+        phase_desired: KLYS:LI28:81:PDES
+        stat: KLYS:LI28:81:STAT
+        swrd: KLYS:LI28:81:SWRD
+      control_name: KLYS:LI28:81
+    metadata:
+      accelerate_pvname: KLYS:LI28:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 28, station 8
+      dsta_pvname: KLYS:LI28:81:DSTA
+      enld_pvname: KLYS:LI28:81:ENLD
+      hdsc_pvname: KLYS:LI28:81:HDSC
+      l_eff: 3.044
+      name: K28_8
+      phase_pvname: KLYS:LI28:81:PHAS
+      rf_freq: 2856.0
+      sector: 28
+      stat_pvname: KLYS:LI28:81:STAT
+      station: 8
+      sum_l_meters: 816.468
+      swrd_pvname: KLYS:LI28:81:SWRD
+      type: LCAV
+  KLYS:LI29:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:11:BEAMCODE2_STAT
+        dsta: KLYS:LI29:11:DSTA
+        energy_gain: KLYS:LI29:11:ENLD
+        hdsc: KLYS:LI29:11:HDSC
+        phase: KLYS:LI29:11:PHAS
+        phase_actual: KLYS:LI29:11:PACT
+        phase_desired: KLYS:LI29:11:PDES
+        stat: KLYS:LI29:11:STAT
+        swrd: KLYS:LI29:11:SWRD
+      control_name: KLYS:LI29:11
+    metadata:
+      accelerate_pvname: KLYS:LI29:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 1
+      dsta_pvname: KLYS:LI29:11:DSTA
+      enld_pvname: KLYS:LI29:11:ENLD
+      hdsc_pvname: KLYS:LI29:11:HDSC
+      l_eff: 3.044
+      name: K29_1
+      phase_pvname: KLYS:LI29:11:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:11:STAT
+      station: 1
+      sum_l_meters: 831.657
+      swrd_pvname: KLYS:LI29:11:SWRD
+      type: LCAV
+  KLYS:LI29:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:21:BEAMCODE2_STAT
+        dsta: KLYS:LI29:21:DSTA
+        energy_gain: KLYS:LI29:21:ENLD
+        hdsc: KLYS:LI29:21:HDSC
+        phase: KLYS:LI29:21:PHAS
+        phase_actual: KLYS:LI29:21:PACT
+        phase_desired: KLYS:LI29:21:PDES
+        stat: KLYS:LI29:21:STAT
+        swrd: KLYS:LI29:21:SWRD
+      control_name: KLYS:LI29:21
+    metadata:
+      accelerate_pvname: KLYS:LI29:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 2
+      dsta_pvname: KLYS:LI29:21:DSTA
+      enld_pvname: KLYS:LI29:21:ENLD
+      hdsc_pvname: KLYS:LI29:21:HDSC
+      l_eff: 3.044
+      name: K29_2
+      phase_pvname: KLYS:LI29:21:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:21:STAT
+      station: 2
+      sum_l_meters: 844.001
+      swrd_pvname: KLYS:LI29:21:SWRD
+      type: LCAV
+  KLYS:LI29:31:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:31:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:31:BEAMCODE2_STAT
+        dsta: KLYS:LI29:31:DSTA
+        energy_gain: KLYS:LI29:31:ENLD
+        hdsc: KLYS:LI29:31:HDSC
+        phase: KLYS:LI29:31:PHAS
+        phase_actual: KLYS:LI29:31:PACT
+        phase_desired: KLYS:LI29:31:PDES
+        stat: KLYS:LI29:31:STAT
+        swrd: KLYS:LI29:31:SWRD
+      control_name: KLYS:LI29:31
+    metadata:
+      accelerate_pvname: KLYS:LI29:31:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 3
+      dsta_pvname: KLYS:LI29:31:DSTA
+      enld_pvname: KLYS:LI29:31:ENLD
+      hdsc_pvname: KLYS:LI29:31:HDSC
+      l_eff: 3.044
+      name: K29_3
+      phase_pvname: KLYS:LI29:31:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:31:STAT
+      station: 3
+      sum_l_meters: 856.346
+      swrd_pvname: KLYS:LI29:31:SWRD
+      type: LCAV
+  KLYS:LI29:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:41:BEAMCODE2_STAT
+        dsta: KLYS:LI29:41:DSTA
+        energy_gain: KLYS:LI29:41:ENLD
+        hdsc: KLYS:LI29:41:HDSC
+        phase: KLYS:LI29:41:PHAS
+        phase_actual: KLYS:LI29:41:PACT
+        phase_desired: KLYS:LI29:41:PDES
+        stat: KLYS:LI29:41:STAT
+        swrd: KLYS:LI29:41:SWRD
+      control_name: KLYS:LI29:41
+    metadata:
+      accelerate_pvname: KLYS:LI29:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 4
+      dsta_pvname: KLYS:LI29:41:DSTA
+      enld_pvname: KLYS:LI29:41:ENLD
+      hdsc_pvname: KLYS:LI29:41:HDSC
+      l_eff: 3.044
+      name: K29_4
+      phase_pvname: KLYS:LI29:41:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:41:STAT
+      station: 4
+      sum_l_meters: 868.69
+      swrd_pvname: KLYS:LI29:41:SWRD
+      type: LCAV
+  KLYS:LI29:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:51:BEAMCODE2_STAT
+        dsta: KLYS:LI29:51:DSTA
+        energy_gain: KLYS:LI29:51:ENLD
+        hdsc: KLYS:LI29:51:HDSC
+        phase: KLYS:LI29:51:PHAS
+        phase_actual: KLYS:LI29:51:PACT
+        phase_desired: KLYS:LI29:51:PDES
+        stat: KLYS:LI29:51:STAT
+        swrd: KLYS:LI29:51:SWRD
+      control_name: KLYS:LI29:51
+    metadata:
+      accelerate_pvname: KLYS:LI29:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 5
+      dsta_pvname: KLYS:LI29:51:DSTA
+      enld_pvname: KLYS:LI29:51:ENLD
+      hdsc_pvname: KLYS:LI29:51:HDSC
+      l_eff: 3.044
+      name: K29_5
+      phase_pvname: KLYS:LI29:51:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:51:STAT
+      station: 5
+      sum_l_meters: 881.034
+      swrd_pvname: KLYS:LI29:51:SWRD
+      type: LCAV
+  KLYS:LI29:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:61:BEAMCODE2_STAT
+        dsta: KLYS:LI29:61:DSTA
+        energy_gain: KLYS:LI29:61:ENLD
+        hdsc: KLYS:LI29:61:HDSC
+        phase: KLYS:LI29:61:PHAS
+        phase_actual: KLYS:LI29:61:PACT
+        phase_desired: KLYS:LI29:61:PDES
+        stat: KLYS:LI29:61:STAT
+        swrd: KLYS:LI29:61:SWRD
+      control_name: KLYS:LI29:61
+    metadata:
+      accelerate_pvname: KLYS:LI29:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 6
+      dsta_pvname: KLYS:LI29:61:DSTA
+      enld_pvname: KLYS:LI29:61:ENLD
+      hdsc_pvname: KLYS:LI29:61:HDSC
+      l_eff: 3.044
+      name: K29_6
+      phase_pvname: KLYS:LI29:61:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:61:STAT
+      station: 6
+      sum_l_meters: 893.379
+      swrd_pvname: KLYS:LI29:61:SWRD
+      type: LCAV
+  KLYS:LI29:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:71:BEAMCODE2_STAT
+        dsta: KLYS:LI29:71:DSTA
+        energy_gain: KLYS:LI29:71:ENLD
+        hdsc: KLYS:LI29:71:HDSC
+        phase: KLYS:LI29:71:PHAS
+        phase_actual: KLYS:LI29:71:PACT
+        phase_desired: KLYS:LI29:71:PDES
+        stat: KLYS:LI29:71:STAT
+        swrd: KLYS:LI29:71:SWRD
+      control_name: KLYS:LI29:71
+    metadata:
+      accelerate_pvname: KLYS:LI29:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 7
+      dsta_pvname: KLYS:LI29:71:DSTA
+      enld_pvname: KLYS:LI29:71:ENLD
+      hdsc_pvname: KLYS:LI29:71:HDSC
+      l_eff: 3.044
+      name: K29_7
+      phase_pvname: KLYS:LI29:71:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:71:STAT
+      station: 7
+      sum_l_meters: 905.723
+      swrd_pvname: KLYS:LI29:71:SWRD
+      type: LCAV
+  KLYS:LI29:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI29:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI29:81:BEAMCODE2_STAT
+        dsta: KLYS:LI29:81:DSTA
+        energy_gain: KLYS:LI29:81:ENLD
+        hdsc: KLYS:LI29:81:HDSC
+        phase: KLYS:LI29:81:PHAS
+        phase_actual: KLYS:LI29:81:PACT
+        phase_desired: KLYS:LI29:81:PDES
+        stat: KLYS:LI29:81:STAT
+        swrd: KLYS:LI29:81:SWRD
+      control_name: KLYS:LI29:81
+    metadata:
+      accelerate_pvname: KLYS:LI29:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 29, station 8
+      dsta_pvname: KLYS:LI29:81:DSTA
+      enld_pvname: KLYS:LI29:81:ENLD
+      hdsc_pvname: KLYS:LI29:81:HDSC
+      l_eff: 3.044
+      name: K29_8
+      phase_pvname: KLYS:LI29:81:PHAS
+      rf_freq: 2856.0
+      sector: 29
+      stat_pvname: KLYS:LI29:81:STAT
+      station: 8
+      sum_l_meters: 918.068
+      swrd_pvname: KLYS:LI29:81:SWRD
+      type: LCAV
+  KLYS:LI30:11:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:11:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:11:BEAMCODE2_STAT
+        dsta: KLYS:LI30:11:DSTA
+        energy_gain: KLYS:LI30:11:ENLD
+        hdsc: KLYS:LI30:11:HDSC
+        phase: KLYS:LI30:11:PHAS
+        phase_actual: KLYS:LI30:11:PACT
+        phase_desired: KLYS:LI30:11:PDES
+        stat: KLYS:LI30:11:STAT
+        swrd: KLYS:LI30:11:SWRD
+      control_name: KLYS:LI30:11
+    metadata:
+      accelerate_pvname: KLYS:LI30:11:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 1
+      dsta_pvname: KLYS:LI30:11:DSTA
+      enld_pvname: KLYS:LI30:11:ENLD
+      hdsc_pvname: KLYS:LI30:11:HDSC
+      l_eff: 3.044
+      name: K30_1
+      phase_pvname: KLYS:LI30:11:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:11:STAT
+      station: 1
+      sum_l_meters: 933.257
+      swrd_pvname: KLYS:LI30:11:SWRD
+      type: LCAV
+  KLYS:LI30:21:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:21:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:21:BEAMCODE2_STAT
+        dsta: KLYS:LI30:21:DSTA
+        energy_gain: KLYS:LI30:21:ENLD
+        hdsc: KLYS:LI30:21:HDSC
+        phase: KLYS:LI30:21:PHAS
+        phase_actual: KLYS:LI30:21:PACT
+        phase_desired: KLYS:LI30:21:PDES
+        stat: KLYS:LI30:21:STAT
+        swrd: KLYS:LI30:21:SWRD
+      control_name: KLYS:LI30:21
+    metadata:
+      accelerate_pvname: KLYS:LI30:21:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 2
+      dsta_pvname: KLYS:LI30:21:DSTA
+      enld_pvname: KLYS:LI30:21:ENLD
+      hdsc_pvname: KLYS:LI30:21:HDSC
+      l_eff: 3.044
+      name: K30_2
+      phase_pvname: KLYS:LI30:21:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:21:STAT
+      station: 2
+      sum_l_meters: 945.601
+      swrd_pvname: KLYS:LI30:21:SWRD
+      type: LCAV
+  KLYS:LI30:31:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:31:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:31:BEAMCODE2_STAT
+        dsta: KLYS:LI30:31:DSTA
+        energy_gain: KLYS:LI30:31:ENLD
+        hdsc: KLYS:LI30:31:HDSC
+        phase: KLYS:LI30:31:PHAS
+        phase_actual: KLYS:LI30:31:PACT
+        phase_desired: KLYS:LI30:31:PDES
+        stat: KLYS:LI30:31:STAT
+        swrd: KLYS:LI30:31:SWRD
+      control_name: KLYS:LI30:31
+    metadata:
+      accelerate_pvname: KLYS:LI30:31:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 3
+      dsta_pvname: KLYS:LI30:31:DSTA
+      enld_pvname: KLYS:LI30:31:ENLD
+      hdsc_pvname: KLYS:LI30:31:HDSC
+      l_eff: 3.044
+      name: K30_3
+      phase_pvname: KLYS:LI30:31:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:31:STAT
+      station: 3
+      sum_l_meters: 957.946
+      swrd_pvname: KLYS:LI30:31:SWRD
+      type: LCAV
+  KLYS:LI30:41:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:41:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:41:BEAMCODE2_STAT
+        dsta: KLYS:LI30:41:DSTA
+        energy_gain: KLYS:LI30:41:ENLD
+        hdsc: KLYS:LI30:41:HDSC
+        phase: KLYS:LI30:41:PHAS
+        phase_actual: KLYS:LI30:41:PACT
+        phase_desired: KLYS:LI30:41:PDES
+        stat: KLYS:LI30:41:STAT
+        swrd: KLYS:LI30:41:SWRD
+      control_name: KLYS:LI30:41
+    metadata:
+      accelerate_pvname: KLYS:LI30:41:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 4
+      dsta_pvname: KLYS:LI30:41:DSTA
+      enld_pvname: KLYS:LI30:41:ENLD
+      hdsc_pvname: KLYS:LI30:41:HDSC
+      l_eff: 3.044
+      name: K30_4
+      phase_pvname: KLYS:LI30:41:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:41:STAT
+      station: 4
+      sum_l_meters: 970.29
+      swrd_pvname: KLYS:LI30:41:SWRD
+      type: LCAV
+  KLYS:LI30:51:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:51:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:51:BEAMCODE2_STAT
+        dsta: KLYS:LI30:51:DSTA
+        energy_gain: KLYS:LI30:51:ENLD
+        hdsc: KLYS:LI30:51:HDSC
+        phase: KLYS:LI30:51:PHAS
+        phase_actual: KLYS:LI30:51:PACT
+        phase_desired: KLYS:LI30:51:PDES
+        stat: KLYS:LI30:51:STAT
+        swrd: KLYS:LI30:51:SWRD
+      control_name: KLYS:LI30:51
+    metadata:
+      accelerate_pvname: KLYS:LI30:51:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 5
+      dsta_pvname: KLYS:LI30:51:DSTA
+      enld_pvname: KLYS:LI30:51:ENLD
+      hdsc_pvname: KLYS:LI30:51:HDSC
+      l_eff: 3.044
+      name: K30_5
+      phase_pvname: KLYS:LI30:51:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:51:STAT
+      station: 5
+      sum_l_meters: 982.634
+      swrd_pvname: KLYS:LI30:51:SWRD
+      type: LCAV
+  KLYS:LI30:61:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:61:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:61:BEAMCODE2_STAT
+        dsta: KLYS:LI30:61:DSTA
+        energy_gain: KLYS:LI30:61:ENLD
+        hdsc: KLYS:LI30:61:HDSC
+        phase: KLYS:LI30:61:PHAS
+        phase_actual: KLYS:LI30:61:PACT
+        phase_desired: KLYS:LI30:61:PDES
+        stat: KLYS:LI30:61:STAT
+        swrd: KLYS:LI30:61:SWRD
+      control_name: KLYS:LI30:61
+    metadata:
+      accelerate_pvname: KLYS:LI30:61:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 6
+      dsta_pvname: KLYS:LI30:61:DSTA
+      enld_pvname: KLYS:LI30:61:ENLD
+      hdsc_pvname: KLYS:LI30:61:HDSC
+      l_eff: 3.044
+      name: K30_6
+      phase_pvname: KLYS:LI30:61:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:61:STAT
+      station: 6
+      sum_l_meters: 994.979
+      swrd_pvname: KLYS:LI30:61:SWRD
+      type: LCAV
+  KLYS:LI30:71:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:71:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:71:BEAMCODE2_STAT
+        dsta: KLYS:LI30:71:DSTA
+        energy_gain: KLYS:LI30:71:ENLD
+        hdsc: KLYS:LI30:71:HDSC
+        phase: KLYS:LI30:71:PHAS
+        phase_actual: KLYS:LI30:71:PACT
+        phase_desired: KLYS:LI30:71:PDES
+        stat: KLYS:LI30:71:STAT
+        swrd: KLYS:LI30:71:SWRD
+      control_name: KLYS:LI30:71
+    metadata:
+      accelerate_pvname: KLYS:LI30:71:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 7
+      dsta_pvname: KLYS:LI30:71:DSTA
+      enld_pvname: KLYS:LI30:71:ENLD
+      hdsc_pvname: KLYS:LI30:71:HDSC
+      l_eff: 3.044
+      name: K30_7
+      phase_pvname: KLYS:LI30:71:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:71:STAT
+      station: 7
+      sum_l_meters: 1007.323
+      swrd_pvname: KLYS:LI30:71:SWRD
+      type: LCAV
+  KLYS:LI30:81:
+    controls_information:
+      PVs:
+        beamcode1: KLYS:LI30:81:BEAMCODE1_STAT
+        beamcode2: KLYS:LI30:81:BEAMCODE2_STAT
+        dsta: KLYS:LI30:81:DSTA
+        energy_gain: KLYS:LI30:81:ENLD
+        hdsc: KLYS:LI30:81:HDSC
+        phase: KLYS:LI30:81:PHAS
+        phase_actual: KLYS:LI30:81:PACT
+        phase_desired: KLYS:LI30:81:PDES
+        stat: KLYS:LI30:81:STAT
+        swrd: KLYS:LI30:81:SWRD
+      control_name: KLYS:LI30:81
+    metadata:
+      accelerate_pvname: KLYS:LI30:81:BEAMCODE1_STAT
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      description: Klystron in sector 30, station 8
+      dsta_pvname: KLYS:LI30:81:DSTA
+      enld_pvname: KLYS:LI30:81:ENLD
+      hdsc_pvname: KLYS:LI30:81:HDSC
+      l_eff: 3.044
+      name: K30_8
+      phase_pvname: KLYS:LI30:81:PHAS
+      rf_freq: 2856.0
+      sector: 30
+      stat_pvname: KLYS:LI30:81:STAT
+      station: 8
+      sum_l_meters: 1019.668
+      swrd_pvname: KLYS:LI30:81:SWRD
+      type: LCAV
 magnets:
   Q25201:
     controls_information:

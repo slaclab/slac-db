@@ -90,3 +90,17 @@ LCAV:
 
 INST:
     QDCRAW: qdcraw
+
+KLYS:
+    ENLD: energy_gain
+    PHAS: phase
+    PACT: phase_actual
+    PDES: phase_desired
+    BEAMCODE1_STAT: beamcode1
+    BEAMCODE2_STAT: beamcode2
+    SWRD: swrd
+    STAT: stat
+    HDSC: hdsc
+    DSTA: dsta
+
+

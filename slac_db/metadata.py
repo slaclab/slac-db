@@ -6,6 +6,15 @@ import os
 import slac_db.config
 import yaml
 
+# Exceptions to the standard KLYS:{cs_name}:{SUFFIX} PV derivation rule.
+# Keys are cs_name strings; values override only the differing fields.
+_KLYSTRON_PV_OVERRIDES = {
+    "KLYS:LI24:11": {"phase_pvname": "ACCL:LI24:100:KLY_PDES"},
+    "KLYS:LI24:21": {"phase_pvname": "ACCL:LI24:200:KLY_PDES"},
+    "KLYS:LI24:31": {"phase_pvname": "ACCL:LI24:300:KLY_PDES"},
+    "KLYS:LI26:31": {"accelerate_pvname": ""},
+}
+
 
 def get_magnet_metadata(
     magnet_names: List[str] = [], method: callable = None, **kwargs
@@ -154,6 +163,57 @@ def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwa
         return device_elements
     else:
         return {}
+
+
+def get_klystron_metadata(klystron_cs_names: List[str] = []) -> Dict[str, Dict[str, Any]]:
+    """Return metadata and PV names for klystron stations.
+
+    All fields are derived algorithmically from the cs_name
+    (e.g. 'KLYS:LI21:31'). Four stations with non-standard PV names
+    are handled via _KLYSTRON_PV_OVERRIDES.
+
+    Only cs_names starting with 'KLYS:' are supported. Injector and
+    sub-booster stations (GUN:, ACCL:) are not handled here.
+
+    Parameters
+    ----------
+    klystron_cs_names : list of str
+        Control system names to include (e.g. ['KLYS:LI21:31']). If empty,
+        returns an empty dict.
+
+    Returns
+    -------
+    dict
+        {cs_name: {field: value, ...}} where fields are: name, sector,
+        station, description, enld_pvname, phase_pvname, accelerate_pvname,
+        swrd_pvname, stat_pvname, hdsc_pvname, dsta_pvname.
+    """
+    result = {}
+    for cs_name in klystron_cs_names:
+        if not cs_name.startswith("KLYS:"):
+            continue
+        # cs_name format: KLYS:LI{SS}:{S}1
+        # e.g. KLYS:LI21:31 -> sector=21, station=3
+        parts = cs_name.split(":")
+        sector = int(parts[1][2:])
+        station = int(parts[2]) // 10
+        name = f"K{sector}_{station}"
+        entry = {
+            "name": name,
+            "sector": sector,
+            "station": station,
+            "description": f"Klystron in sector {sector}, station {station}",
+            "enld_pvname":       f"{cs_name}:ENLD",
+            "phase_pvname":      f"{cs_name}:PHAS",
+            "accelerate_pvname": f"{cs_name}:BEAMCODE1_STAT",
+            "swrd_pvname":       f"{cs_name}:SWRD",
+            "stat_pvname":       f"{cs_name}:STAT",
+            "hdsc_pvname":       f"{cs_name}:HDSC",
+            "dsta_pvname":       f"{cs_name}:DSTA",
+        }
+        entry.update(_KLYSTRON_PV_OVERRIDES.get(cs_name, {}))
+        result[cs_name] = entry
+    return result
 
 
 def get_pmt_metadata(pmt_names: List[str] = []):
