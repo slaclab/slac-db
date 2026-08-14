@@ -42,25 +42,7 @@ def get_screen_metadata(basic_screen_data: dict):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    from meme.names import list_pvs
-
-    metadata = {}
-    for mad_name, info in basic_screen_data.items():
-        metadata[mad_name] = {}
-        ctrl_name = info["controls_information"]["control_name"]
-        flags = list_pvs(ctrl_name + "%INSTALLED")
-        hardware = {}
-        for i in flags:
-            name = re.search("(?<=^" + ctrl_name + ":).*(?=INSTALLED)", i)
-            if name is None:
-                continue
-            name = name.group(0)
-            status = caget(i)
-            if status is not None:
-                hardware[name] = status
-
-        metadata[mad_name]["hardware"] = hardware
-    return metadata
+    return {}
 
 
 def get_wire_metadata(basic_wire_data: dict) -> Dict[str, Dict[str, Any]]:
