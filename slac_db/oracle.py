@@ -160,7 +160,7 @@ class _Inserter:
         for r in rows.values():
             ins = {}
             for c in session.t.elements.c:
-                ins[c.name] = r[c.name]
+                ins[c.name] = r[c.name.lower()]
             session.insert("elements", **ins)
 
 def _db_type_prefix(uri):

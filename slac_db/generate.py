@@ -55,6 +55,7 @@ class YAMLGenerator:
             open(self.filter_location, "r") as file_filter,
         ):
             # convert csv file into dictionary for filtering
+            next(file_csv)
             csv_reader = csv.DictReader(f=file_csv)
             filter_dict = yaml.safe_load(file_filter)
 
@@ -103,7 +104,7 @@ class YAMLGenerator:
         [
             beampaths.append(beampath)
             for element in self.elements
-            for beampath in element["Beampath"].split(",")
+            for beampath in element["Beampath"].replace(' ', '').split(",")
             if beampath not in beampaths and beampath != ""
         ]
         return beampaths

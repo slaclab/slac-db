@@ -44,6 +44,7 @@ class _Parser():
             self._parse_csv(reader)
 
     def _parse_csv(self, reader):
+        next(reader)  # skip group header row
         names = [r.lower() for r in next(reader)]
         i = 0
         # Track station names already recorded for KLYS sub-cavity dedup.
