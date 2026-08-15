@@ -37,7 +37,6 @@ class TestOracle(unittest.TestCase):
     def test_get_oracle_beampaths(self):
         expected_beampaths = sorted(self.generator.extract_beampaths())
         beampaths = sorted(slac_db.oracle.get_beampaths())
-        print(expected_beampaths)
         self.assertEqual(beampaths, expected_beampaths)
 
     def test_get_profile_monitors(self):
