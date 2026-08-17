@@ -45,7 +45,6 @@ def basic_wire_data():
 class TestGetWireMetadata:
     def test_loads_real_yaml(self, basic_wire_data):
         result = get_wire_metadata(basic_wire_data)
-        print(list(result.keys()))
         assert "WS01" in result
         assert "WS31B" in result
         assert result["WS01"]["wire_type"] == "slow"
