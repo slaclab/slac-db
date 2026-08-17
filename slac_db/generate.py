@@ -4,6 +4,7 @@ import os
 from typing import Any, Union, List, Dict, Optional
 import numpy as np
 import slac_db.config
+import slac_db.directory_service
 from slac_db.metadata import (
     get_magnet_metadata,
     get_screen_metadata,
@@ -31,6 +32,7 @@ class YAMLGenerator:
         self,
         csv_location=slac_db.config.package_data() / "lcls_elements.csv",
         filter_location=slac_db.config.package_data() / "filter.yaml",
+        use_meme=True,
     ):
         self.csv_location = csv_location
         self.filter_location = filter_location
@@ -45,6 +47,7 @@ class YAMLGenerator:
             "SumL (m)",
         ]
         self.elements = self._filter_elements_by_fields(self._required_fields)
+        self.use_meme = use_meme
         self._areas = self.extract_areas()
         self._beam_paths = self.extract_beampaths()
 
@@ -158,7 +161,12 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
-        from meme import names
+
+        if self.use_meme:
+            from meme import names
+            query_pv = names.list_pvs
+        else:
+            query_pv = slac_db.directory_service.verify_address
 
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
@@ -170,7 +178,7 @@ class YAMLGenerator:
                 search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
-                pv_list = names.list_pvs(name + ":" + search_term, sort_by="z")
+                pv_list = query_pv(name + ":" + search_term)
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:
