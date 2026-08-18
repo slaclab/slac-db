@@ -135,7 +135,7 @@ class YAMLGenerator:
             },
             "metadata": {
                 "beam_path": [
-                    item.strip() for item in element["Beampath"].split(",") if item
+                    item.strip() for item in element["Beampath"].split(",") if item.strip()
                 ],
                 "area": element["Area"],
                 "type": element["Keyword"],

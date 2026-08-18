@@ -1,9 +1,6 @@
-import os
 import slac_db
-import slac_db.config
 import slac_db.db_to_yaml
 import slac_db.write
-import yaml
 
 
 def test_compare_yaml():
@@ -19,10 +16,10 @@ def test_compare_yaml():
     def compare_devices(note, test_devices, example_devices):
         assert {note: sorted(test_devices.keys())} == {note: sorted(example_devices.keys())}
         for name in test_devices.keys():
-            assert test_devices[name] == example_devices[name]
+            assert test_devices[name] == example_devices[name], f"Mismatch at {note + (name,)}"
     
-    def compare_types(note, test_devices, example_devices):
-        assert {note: sorted(test_devices.keys())} == {note: sorted(example_devices.keys())}
+    def compare_types(area, test_devices, example_devices):
+        assert {area: sorted(test_devices.keys())} == {area: sorted(example_devices.keys())}
         for device_type in test_devices.keys():
             compare_devices(
                 (area, device_type),
