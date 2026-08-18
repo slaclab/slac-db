@@ -54,6 +54,17 @@ class YAMLGenerator:
             open(self.csv_location, "r") as file_csv,
             open(self.filter_location, "r") as file_filter,
         ):
+            # The production lcls_elements.csv has a group header row before the
+            # real column-name row; test CSVs do not.  Peek at the first row and
+            # skip it only when it does not contain the expected column names.
+            first_line = next(file_csv)
+            peek_fields = next(csv.reader([first_line]))
+            if "Area" not in peek_fields:
+                # first row is a group header — let DictReader read the next row
+                pass
+            else:
+                # first row IS the real header — seek back so DictReader sees it
+                file_csv.seek(0)
             # convert csv file into dictionary for filtering
             csv_reader = csv.DictReader(f=file_csv)
             filter_dict = yaml.safe_load(file_filter)
