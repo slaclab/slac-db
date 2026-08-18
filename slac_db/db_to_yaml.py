@@ -69,7 +69,7 @@ def _build_controls_information(device_name):
     pvs = slac_db.device.get_all_accessors(device_name)
     return {
         "control_name": slac_db.device.get_attribute(device_name, "cs_name"),
-        "PVs": pvs if pvs != {} else None,
+        "PVs": pvs,
     }
 
 

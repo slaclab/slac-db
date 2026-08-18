@@ -18,7 +18,7 @@ def verify_address(address):
         None if it does not.
     """
     with _session() as s:
-        return tuple(sorted(
+        return list(sorted(
             r["address"] for r in s.select(
                 sqlalchemy.select(
                     s.t.addresses.c["address"]

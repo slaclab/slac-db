@@ -33,6 +33,7 @@ class YAMLGenerator:
         csv_location=slac_db.config.package_data() / "lcls_elements.csv",
         filter_location=slac_db.config.package_data() / "filter.yaml",
         use_meme=True,
+        suppress_warnings=False,
     ):
         self.csv_location = csv_location
         self.filter_location = filter_location
@@ -48,6 +49,7 @@ class YAMLGenerator:
         ]
         self.elements = self._filter_elements_by_fields(self._required_fields)
         self.use_meme = use_meme
+        self.suppress_warnings = suppress_warnings
         self._areas = self.extract_areas()
         self._beam_paths = self.extract_beampaths()
 
@@ -146,6 +148,7 @@ class YAMLGenerator:
                 ),
             },
         }
+        print(device_information["metadata"]["beam_path"])
         [
             device_information["metadata"].update({field_name: field_value})
             for field_name, field_value in additional_metadata_fields.items()
@@ -237,7 +240,8 @@ class YAMLGenerator:
             ]
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
-            print(f"No devices of types {required_types} found in area {area}")
+            if not self.suppress_warnings:
+                print(f"No devices of types {required_types} found in area {area}")
             return
         # Fill in the dict that will become the yaml file
         for device in device_elements:
@@ -272,7 +276,8 @@ class YAMLGenerator:
             try:
                 device_data[device]["metadata"].update(additional_metadata[device])
             except KeyError:
-                print("No additional metadata found for ", device)
+                if not self.suppress_warnings:
+                    print("No additional metadata found for ", device)
 
         return device_data
 
@@ -287,7 +292,8 @@ class YAMLGenerator:
                     additional_controls_information[device]
                 )
             except KeyError:
-                print("No additional controls information found for ", device)
+                if not self.suppress_warnings:
+                    print("No additional controls information found for ", device)
         return device_data
 
     def add_extra_data_to_device(
