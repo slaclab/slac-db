@@ -103,7 +103,7 @@ class YAMLGenerator:
         [
             beampaths.append(beampath)
             for element in self.elements
-            for beampath in element["Beampath"].split(",")
+            for beampath in element["Beampath"].replace(' ', '').split(",")
             if beampath not in beampaths and beampath != ""
         ]
         return beampaths
