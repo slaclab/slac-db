@@ -3,7 +3,7 @@ import slac_db.directory_service
 import slac_db.io
 import slac_db.oracle
 import slac_db.device
-from slac_db.metadata import get_wire_metadata
+from slac_db.metadata import get_wire_metadata, get_pmt_metadata
 from pykern.pkcollections import PKDict
 import yaml
 

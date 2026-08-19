@@ -145,15 +145,18 @@ def get_pmt_metadata(pmt_names: List[str] = []):
     #  pmt-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    pmt_metadata = {}
+    return {}
 
-    here = slac_db.config.package_data()
-    yaml_path = os.path.join(here, "pmt_metadata.yaml")
+    # EY 08/18/2026 - Removed because of Oracle update.
+    # pmt_metadata = {}
 
-    with open(yaml_path, "r") as f:
-        pmt_metadata = yaml.safe_load(f)
+    # here = slac_db.config.package_data()
+    # yaml_path = os.path.join(here, "pmt_metadata.yaml")
 
-    return pmt_metadata
+    # with open(yaml_path, "r") as f:
+    #     pmt_metadata = yaml.safe_load(f)
+
+    # return pmt_metadata
 
 
 def get_toroid_metadata(toroid_names: List[str] = []):
