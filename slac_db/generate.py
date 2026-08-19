@@ -71,7 +71,6 @@ class YAMLGenerator:
                 # first row IS the real header — seek back so DictReader sees it
                 file_csv.seek(0)
             # convert csv file into dictionary for filtering
-            next(file_csv)
             csv_reader = csv.DictReader(f=file_csv)
             filter_dict = yaml.safe_load(file_filter)
 
