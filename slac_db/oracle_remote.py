@@ -1,9 +1,7 @@
+from contextlib import contextmanager
 import slac_db.config
 import sqlalchemy
 import pykern.sql_db
-import os.path
-import os
-from oracle import get_address_header, get_devices, get_all_rows, get_device_row, get_beampaths, get_areas, recreate
 
 _ORACLE_TNS      = 'slacprod' # name/connection of Oracle DB on prod
 _ORACLE_USERNAME = 'lcls_read'
@@ -49,12 +47,20 @@ def get_beampaths():
             parse_beampaths(r.beampath)
     return sorted(list(beampaths))
 
+@contextmanager
 def get_connection():
-    """Start and return connection to Oracle. This only works on production."""
-    password  = _get_oracle_pw(_ORACLE_USERNAME)
-    connection_string = _get_remote_uri()
-    engine    = sqlalchemy.create_engine(connection_string)
-    return engine.connect() # TODO: Do I need to watch out how this is closed if I pass this way?
+    """Yield a connection to Oracle. Only works on production.
+    Using as a context manager so the connection and engine are always cleaned up:
+    with get_connection() as conn:
+    """
+    engine = sqlalchemy.create_engine(_get_remote_uri())
+    conn = engine.connect()
+    try:
+        yield conn
+    finally:
+        conn.close()
+        engine.dispose()
+
 
 def _get_oracle_pw(username=_ORACLE_USERNAME):
     """Get Oracle password. This only works on production.
@@ -67,9 +73,9 @@ def _get_oracle_pw(username=_ORACLE_USERNAME):
     except Exception as e:
         print(f"Could not get Oracle password: {e}")
         return None
-    
+
 def _get_remote_uri():
-    """Get string needed to connect to Oracle remotely. 
+    """Get string needed to connect to Oracle remotely.
     """
     password  = _get_oracle_pw(_ORACLE_USERNAME)
     connection_string = f'oracle+cx_oracle://{_ORACLE_USERNAME}:{password}@{_ORACLE_TNS}'
@@ -82,7 +88,6 @@ def _init_remote_db():
        _meta: wrapper that holds sqlalchemy metadata.
     """
     global _meta
-    connection = get_connection()
     #TODO: grab schema from Oracle?
     schema = None
     #TODO: is uri just the connection string?

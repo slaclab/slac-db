@@ -1,0 +1,383 @@
+DL1:
+  detectors:
+  - PMTINJ03:DL1
+  - PMTINJ05:DL1
+  - PMT21350:LI21
+  default_detector: PMTINJ03:DL1
+  jitter_bpms:
+  - BPM9
+  - BPM10
+  - BPM11
+  - BPM13
+  - BPM14
+  charge_toroids:
+  - IM01
+  - IM02
+  - IM03
+  - BPM2
+BC1:
+  detectors:
+  - PMT2111:DL1
+  - PMT21293:LI21
+  - PMT2113:LI21
+  - PMT21350:LI21
+  - PMT2114:LI21
+  - PMT2115:LI21
+  default_detector: PMT21350:LI21
+  jitter_bpms:
+  - BPMM12
+  - BPM21301
+  charge_toroids:
+  - IMBC1I
+  - IMBC1O
+  - BPMM12
+BC2:
+  detectors:
+  - PMT24705:LI24
+  - PMT24706:LI24
+  default_detector: PMT24705:LI24
+  jitter_bpms:
+  - BPM24401
+  - BPM24501
+  - BPM24601
+  - BPM24701
+  charge_toroids:
+  - IMBC2I
+  - IMBC2O
+  - BPM24701
+L3:
+  detectors:
+  - PMT29150:LI29
+  - PMT756:LTUH
+  - PMT820:LTUH
+  - TMITLOSS:L3
+  default_detector: PMT29150:LI29
+  charge_toroids:
+  - BPM2
+  tmitloss:
+    upstream:
+    - BPM27301
+    - BPM27401
+    - BPM27501
+    - BPM27601
+    downstream:
+    - BPM30501
+    - BPM30601
+    - BPM30701
+    - BPM30801
+  jitter_bpms:
+  - BPM27201
+  - BPM27301
+  - BPM27401
+  - BPM27501
+  - BPM27601
+  - BPM27701
+  - BPM27801
+  - BPM27901
+  - BPM28201
+  - BPM28301
+  - BPM28401
+  - BPM28501
+  - BPM28601
+  - BPM28701
+  - BPM28801
+  - BPM28901
+HTR:
+  detectors:
+  - LBLM01A:HTR
+  - LBLM01B:HTR
+  - TMITLOSS:HTR
+  default_detector: TMITLOSS:HTR
+  charge_toroids:
+  - BPM0H01
+  tmitloss:
+    upstream:
+    - BPM2B
+    - BPM0H01
+    - BPM0H04
+    downstream:
+    - BPMH2
+    - BPMHD01
+    - BPMHD02
+    - BPMHD03
+  jitter_bpms:
+  - BPM0H01
+  - BPM0H04
+  - BPM0H05
+  - BPM0H08
+  - BPMH1
+  - BPMH2
+  - BPMHD01
+  - BPMHD02
+  - BPMHD03
+  - BPMHD04
+DIAG0:
+  detectors:
+  - SBLM01A:DIAG0
+  - LBLM01A:HTR
+  - LBLM01B:HTR
+  - TMITLOSS:DIAG0
+  default_detector: LBLM01A:HTR
+  charge_toroids:
+  - BPMDG000
+  tmitloss:
+    upstream:
+    - BPMDG001
+    - BPMDG002
+    - BPMDG003
+    - BPMDG004
+    - BPMDG005
+    - BPMDG0RF
+    - BPMDG008
+    - BPMDG009
+    downstream:
+    - BPMDG011
+    - BPMDG012
+  jitter_bpms:
+  - RFBDG001
+  - BPMDG001
+  - BPMDG002
+  - BPMDG003
+  - BPMDG004
+  - BPMDG005
+  - BPMDG0RF
+  - BPMDG008
+  - BPMDG009
+  - RFBDG002
+  - BPMDG011
+  - RFBDG003
+  - BPMDG012
+  - BPMDG000
+COL1:
+  detectors:
+  - LBLM03A:L1B
+  - LBLM04A:L2B
+  - TMITLOSS:COL1
+  default_detector: TMITLOSS:COL1
+  charge_toroids:
+  - BPMC101
+  tmitloss:
+    upstream:
+    - BPM1C01
+    - BPM11B
+    - BPMC101
+    - BPMC102
+    - BPMC103
+    - BPMC104
+    downstream:
+    - BPMBP27
+    - BPMBP35
+    - BPMBP28
+    - BPMSPH
+    - BPMSP1
+    - BPMSP2
+    - BPMSPS
+    - BPMSP1D
+  jitter_bpms:
+  - BPMC101
+  - BPMC102
+  - BPMC103
+  - BPMC104
+  - BPMC105
+  - BPMC106
+  - BPMC107
+  - BPMC108
+  - BPMC109
+  - BPMC110
+  - BPMC111
+  - BPMC112
+EMIT2:
+  detectors:
+  - LBLM04A:L2B
+  - LBLM07A:L3B
+  - TMITLOSS:EMIT2
+  default_detector: TMITLOSS:EMIT2
+  charge_toroids:
+  - BPME201
+  tmitloss:
+    upstream:
+    - BPM2C01
+    - BPM21B
+    - BPME201
+    - BPME202
+    downstream:
+    - BPMSP7S
+    - BPMSP8S
+    - BPMSP9S
+    - BPMBP36
+    - BPMBP31
+    - BPMBP32
+  jitter_bpms:
+  - BPME201
+  - BPME202
+  - BPME203
+  - BPME204
+BYP:
+  detectors:
+  - LBLM11A_1:BYP
+  - LBLM11A_2:BYP
+  - LBLM11A_3:BYP
+  - TMITLOSS:BYP
+  default_detector: TMITLOSS:BYP
+  charge_toroids:
+  - BPMBP13
+  - LBLM11A_3
+  tmitloss:
+    upstream:
+    - CMB35
+    - BPMX01
+    - BPMX02
+    - BPMDOG1
+    - BPMDOG2
+    - BPMDOG3
+    - BPMDOG6
+    - BPMDOG7
+    - BPMDOG8
+    - BPML2P
+    - BPML3P
+    - BPML4P
+    - BPML5P
+    downstream:
+    - BPMBP23
+    - BPMBP24
+    - BPMBP25
+    - BPMBP26
+    - BPMBP27
+    - BPMBP35
+    - BPMBP28
+    - BPMSPH
+    - BPMSP1
+    - BPMSP2
+    - BPMSPS
+    - BPMSP1D
+    - BPMDAS
+    - BPMSP2D
+    - BPMSP3D
+  jitter_bpms:
+  - BPMDOG1
+  - BPMDOG2
+  - BPMDOG3
+  - BPMDOG4
+  - BPMDOG5
+  - BPMDOG6
+  - BPMDOG7
+  - BPMDOG8
+  - BPML1P
+  - BPML2P
+  - BPML3P
+  - BPML4P
+  - BPML5P
+  - BPMBP10
+  - BPMBP11
+  - BPMBP12
+  - BPMBP13
+  - BPMBP14
+  - BPMBP15
+  - BPMBP16
+  - BPMBP17
+  - BPMBP18
+  - BPMBP19
+  - BPMBP20
+  - BPMBP21
+  - BPMBP22
+  - BPMBP23
+  - BPMBP24
+  - BPMBP25
+  - BPMBP26
+  - BPMBP27
+  - BPMBP35
+  - BPMBP28
+SPS:
+  detectors:
+  - LBLM22A:SPS
+  default_detector: LBLM22A:SPS
+  charge_toroids:
+  - BPMSP1D
+  tmitloss:
+    upstream:
+    - BPMSPH
+    - BPMSP1
+    - BPMSP2
+    - BPMSPS
+    - BPMSP1D
+    - BPMDAS
+    downstream:
+    - BPMSP2D
+    - BPMSP3D
+    - BPMSP4D
+  jitter_bpms:
+  - BPMSPH
+  - BPMSP1
+  - BPMSP2
+  - BPMSPS
+  - BPMSP1D
+  - BPMDAS
+  - BPMSP2D
+  - BPMSP3D
+LTUH:
+  detectors:
+  - PMT122:LTUH
+  - PMT246:LTUH
+  - PMT430:LTUH
+  - PMT431:LTUH
+  - PMT550:LTUH
+  - PMT755:LTUH
+  - PMT756:LTUH
+  - PMT820:LTUH
+  - PMT850:LTUH
+  - LBLM32A:LTUH
+  default_detector: LBLM32A:LTUH
+  charge_toroids:
+  - BPMVM4
+  - BPME31
+  jitter_bpms:
+  - BPMEM4
+  - BPME31
+  - BPME32
+  - BPME33
+  - BPME34
+  - BPME35
+  - BPME36
+  - BPMUM1
+  - BPMVM3
+  - BPMVM4
+  - BPMDL1
+  - BPMT12
+  - BPMBSYQ6
+  - BPMBSYQA0
+  - BPMVM1
+  - BPMVM2
+  - BPMDL4
+LTUS:
+  detectors:
+  - LBLMS32A:LTUS
+  - TMITLOSS:LTUS
+  default_detector: TMITLOSS:LTUS
+  charge_toroids:
+  - BPME33B
+  tmitloss:
+    upstream:
+    - BPMBP27
+    - BPMBP35
+    - BPMBP28
+    - BPMSPH
+    - BPMSP1
+    - BPMSP2
+    - BPMSP1S
+    - BPMSP2S
+    - BPMSP3S
+    - BPMSP5S
+    - BPMSP6S
+    - BPMSP7S
+    - BPMSP8S
+    - BPMSP9S
+    - BPMBP36
+    downstream:
+    - BPMUE2B
+    - BPMQDB
+    - BPMDDB
+  jitter_bpms:
+  - BPMEM4B
+  - BPME33B
+  - BPME34B
+  - BPMUM1B

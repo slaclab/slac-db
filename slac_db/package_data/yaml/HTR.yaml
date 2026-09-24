@@ -1103,6 +1103,43 @@ screens:
         TLAMP: 1.0
       sum_l_meters: 33.311
       type: PROF
+toroids:
+  IMBCSI1:
+    controls_information:
+      PVs: {}
+      control_name: ACM:HTR:910
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 39.865
+      type: IMON
+  IMBCSI2:
+    controls_information:
+      PVs: {}
+      control_name: ACM:HTR:922
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 40.171
+      type: IMON
 wires:
   WS0H04:
     controls_information:
@@ -1117,8 +1154,10 @@ wires:
         motor: WIRE:HTR:340:MOTR
         motor_rbv: WIRE:HTR:340:MOTR.RBV
         mps_speed: WIRE:HTR:340:MPSSPEED
+        on_status: WIRE:HTR:340:MOTR_ON_STS
         retract: WIRE:HTR:340:MOTR_RETRACT
         scan_pulses: WIRE:HTR:340:SCANPULSES
+        scan_status: WIRE:HTR:340:SCANSTAT
         speed: WIRE:HTR:340:MOTR.VELO
         speed_max: WIRE:HTR:340:MOTR.VMAX
         speed_min: WIRE:HTR:340:MOTR.VBAS
@@ -1151,20 +1190,23 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:HTR:760
-      - BPMS:HTR:830
-      - BPMS:HTR:860
-      - BPMS:HTR:960
-      bpms_before_wire:
-      - BPMS:GUNB:925
-      - BPMS:HTR:120
-      - BPMS:HTR:320
+      charge_toroids:
+      - BPM0H01
       default_detector: TMITLOSS:HTR
       detectors:
       - LBLM01A:HTR
       - LBLM01B:HTR
       - TMITLOSS:HTR
       sum_l_meters: 24.589
+      tmitloss:
+        downstream:
+        - BPMH2
+        - BPMHD01
+        - BPMHD02
+        - BPMHD03
+        upstream:
+        - BPM2B
+        - BPM0H01
+        - BPM0H04
       type: WIRE
       wire_type: fast

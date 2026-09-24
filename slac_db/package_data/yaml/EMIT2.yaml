@@ -280,6 +280,25 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 392.485
       type: YCOR
+toroids:
+  IM21B:
+    controls_information:
+      PVs:
+        tmit: TORO:EMIT2:170:TMIT
+      control_name: TORO:EMIT2:170
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 368.891
+      type: IMON
 wires:
   WSEMIT2:
     controls_information:
@@ -294,8 +313,10 @@ wires:
         motor: WIRE:EMIT2:600:MOTR
         motor_rbv: WIRE:EMIT2:600:MOTR.RBV
         mps_speed: WIRE:EMIT2:600:MPSSPEED
+        on_status: WIRE:EMIT2:600:MOTR_ON_STS
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         scan_pulses: WIRE:EMIT2:600:SCANPULSES
+        scan_status: WIRE:EMIT2:600:SCANSTAT
         speed: WIRE:EMIT2:600:MOTR.VELO
         speed_max: WIRE:EMIT2:600:MOTR.VMAX
         speed_min: WIRE:EMIT2:600:MOTR.VBAS
@@ -327,23 +348,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:SPS:780
-      - BPMS:SPS:830
-      - BPMS:SPS:840
-      - BPMS:SLTS:150
-      - BPMS:SLTS:430
-      - BPMS:SLTS:460
-      bpms_before_wire:
-      - BPMS:BC2B:150
-      - BPMS:BC2B:530
-      - BPMS:EMIT2:150
-      - BPMS:EMIT2:300
+      charge_toroids:
+      - BPME201
       default_detector: TMITLOSS:EMIT2
       detectors:
       - LBLM04A:L2B
       - LBLM07A:L3B
       - TMITLOSS:EMIT2
       sum_l_meters: 384.229
+      tmitloss:
+        downstream:
+        - BPMSP7S
+        - BPMSP8S
+        - BPMSP9S
+        - BPMBP36
+        - BPMBP31
+        - BPMBP32
+        upstream:
+        - BPM2C01
+        - BPM21B
+        - BPME201
+        - BPME202
       type: WIRE
       wire_type: fast

@@ -155,11 +155,12 @@ class _Inserter:
     def __init__(self, parser):
         with _session() as s:
             self._rows(parser.rows, s)
+
     def _rows(self, rows, session):
         for r in rows.values():
             ins = {}
             for c in session.t.elements.c:
-                ins[c.name] = r[c.name]
+                ins[c.name] = r[c.name.lower()]
             session.insert("elements", **ins)
 
 def _db_type_prefix(uri):
@@ -186,7 +187,8 @@ def _init_db(location=None):
             "Beampath": "str 64 nullable",
             "SumL (m)": "float 64 nullable",
             "Effective Length (m)": "float 64 nullable",
-            "Rf Frequency (MHz)": "float 64 nullable"
+            "Rf Frequency (MHz)": "float 64 nullable",
+            "Engineering Name": "str 64 nullable"
         }
     }
     _meta = pykern.sql_db.Meta(

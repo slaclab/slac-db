@@ -2787,8 +2787,10 @@ wires:
         motor: WIRE:LTUS:715:MOTR
         motor_rbv: WIRE:LTUS:715:MOTR.RBV
         mps_speed: WIRE:LTUS:715:MPSSPEED
+        on_status: WIRE:LTUS:715:MOTR_ON_STS
         retract: WIRE:LTUS:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:715:SCANPULSES
+        scan_status: WIRE:LTUS:715:SCANSTAT
         speed: WIRE:LTUS:715:MOTR.VELO
         speed_max: WIRE:LTUS:715:MOTR.VMAX
         speed_min: WIRE:LTUS:715:MOTR.VBAS
@@ -2818,31 +2820,39 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:DMPS:381
-      - BPMS:DMPS:502
-      - BPMS:DMPS:693
-      bpms_before_wire:
-      - BPMS:BPN27:400
-      - BPMS:BPN28:200
-      - BPMS:BPN28:400
-      - BPMS:SPD:135
-      - BPMS:SPD:255
-      - BPMS:SPD:340
-      - BPMS:SPS:572
-      - BPMS:SPS:580
-      - BPMS:SPS:640
-      - BPMS:SPS:710
-      - BPMS:SPS:770
-      - BPMS:SPS:780
-      - BPMS:SPS:830
-      - BPMS:SPS:840
-      - BPMS:SLTS:150
+      charge_toroids:
+      - BPME33B
       default_detector: TMITLOSS:LTUS
       detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
+      jitter_bpms:
+      - BPMEM4B
+      - BPME33B
+      - BPME34B
+      - BPMUM1B
       sum_l_meters: 3434.508
+      tmitloss:
+        downstream:
+        - BPMUE2B
+        - BPMQDB
+        - BPMDDB
+        upstream:
+        - BPMBP27
+        - BPMBP35
+        - BPMBP28
+        - BPMSPH
+        - BPMSP1
+        - BPMSP2
+        - BPMSP1S
+        - BPMSP2S
+        - BPMSP3S
+        - BPMSP5S
+        - BPMSP6S
+        - BPMSP7S
+        - BPMSP8S
+        - BPMSP9S
+        - BPMBP36
       type: WIRE
       wire_type: fast
   WS32B:
@@ -2858,8 +2868,10 @@ wires:
         motor: WIRE:LTUS:735:MOTR
         motor_rbv: WIRE:LTUS:735:MOTR.RBV
         mps_speed: WIRE:LTUS:735:MPSSPEED
+        on_status: WIRE:LTUS:735:MOTR_ON_STS
         retract: WIRE:LTUS:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:735:SCANPULSES
+        scan_status: WIRE:LTUS:735:SCANSTAT
         speed: WIRE:LTUS:735:MOTR.VELO
         speed_max: WIRE:LTUS:735:MOTR.VMAX
         speed_min: WIRE:LTUS:735:MOTR.VBAS
@@ -2889,31 +2901,39 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:DMPS:381
-      - BPMS:DMPS:502
-      - BPMS:DMPS:693
-      bpms_before_wire:
-      - BPMS:BPN27:400
-      - BPMS:BPN28:200
-      - BPMS:BPN28:400
-      - BPMS:SPD:135
-      - BPMS:SPD:255
-      - BPMS:SPD:340
-      - BPMS:SPS:572
-      - BPMS:SPS:580
-      - BPMS:SPS:640
-      - BPMS:SPS:710
-      - BPMS:SPS:770
-      - BPMS:SPS:780
-      - BPMS:SPS:830
-      - BPMS:SPS:840
-      - BPMS:SLTS:150
+      charge_toroids:
+      - BPME33B
       default_detector: TMITLOSS:LTUS
       detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
+      jitter_bpms:
+      - BPMEM4B
+      - BPME33B
+      - BPME34B
+      - BPMUM1B
       sum_l_meters: 3469.772
+      tmitloss:
+        downstream:
+        - BPMUE2B
+        - BPMQDB
+        - BPMDDB
+        upstream:
+        - BPMBP27
+        - BPMBP35
+        - BPMBP28
+        - BPMSPH
+        - BPMSP1
+        - BPMSP2
+        - BPMSP1S
+        - BPMSP2S
+        - BPMSP3S
+        - BPMSP5S
+        - BPMSP6S
+        - BPMSP7S
+        - BPMSP8S
+        - BPMSP9S
+        - BPMBP36
       type: WIRE
       wire_type: fast
   WS33B:
@@ -2929,8 +2949,10 @@ wires:
         motor: WIRE:LTUS:755:MOTR
         motor_rbv: WIRE:LTUS:755:MOTR.RBV
         mps_speed: WIRE:LTUS:755:MPSSPEED
+        on_status: WIRE:LTUS:755:MOTR_ON_STS
         retract: WIRE:LTUS:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:755:SCANPULSES
+        scan_status: WIRE:LTUS:755:SCANSTAT
         speed: WIRE:LTUS:755:MOTR.VELO
         speed_max: WIRE:LTUS:755:MOTR.VMAX
         speed_min: WIRE:LTUS:755:MOTR.VBAS
@@ -2960,31 +2982,39 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:DMPS:381
-      - BPMS:DMPS:502
-      - BPMS:DMPS:693
-      bpms_before_wire:
-      - BPMS:BPN27:400
-      - BPMS:BPN28:200
-      - BPMS:BPN28:400
-      - BPMS:SPD:135
-      - BPMS:SPD:255
-      - BPMS:SPD:340
-      - BPMS:SPS:572
-      - BPMS:SPS:580
-      - BPMS:SPS:640
-      - BPMS:SPS:710
-      - BPMS:SPS:770
-      - BPMS:SPS:780
-      - BPMS:SPS:830
-      - BPMS:SPS:840
-      - BPMS:SLTS:150
+      charge_toroids:
+      - BPME33B
       default_detector: TMITLOSS:LTUS
       detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
+      jitter_bpms:
+      - BPMEM4B
+      - BPME33B
+      - BPME34B
+      - BPMUM1B
       sum_l_meters: 3505.035
+      tmitloss:
+        downstream:
+        - BPMUE2B
+        - BPMQDB
+        - BPMDDB
+        upstream:
+        - BPMBP27
+        - BPMBP35
+        - BPMBP28
+        - BPMSPH
+        - BPMSP1
+        - BPMSP2
+        - BPMSP1S
+        - BPMSP2S
+        - BPMSP3S
+        - BPMSP5S
+        - BPMSP6S
+        - BPMSP7S
+        - BPMSP8S
+        - BPMSP9S
+        - BPMBP36
       type: WIRE
       wire_type: fast
   WS34B:
@@ -3000,8 +3030,10 @@ wires:
         motor: WIRE:LTUS:785:MOTR
         motor_rbv: WIRE:LTUS:785:MOTR.RBV
         mps_speed: WIRE:LTUS:785:MPSSPEED
+        on_status: WIRE:LTUS:785:MOTR_ON_STS
         retract: WIRE:LTUS:785:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:785:SCANPULSES
+        scan_status: WIRE:LTUS:785:SCANSTAT
         speed: WIRE:LTUS:785:MOTR.VELO
         speed_max: WIRE:LTUS:785:MOTR.VMAX
         speed_min: WIRE:LTUS:785:MOTR.VBAS
@@ -3031,30 +3063,38 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      bpms_after_wire:
-      - BPMS:DMPS:381
-      - BPMS:DMPS:502
-      - BPMS:DMPS:693
-      bpms_before_wire:
-      - BPMS:BPN27:400
-      - BPMS:BPN28:200
-      - BPMS:BPN28:400
-      - BPMS:SPD:135
-      - BPMS:SPD:255
-      - BPMS:SPD:340
-      - BPMS:SPS:572
-      - BPMS:SPS:580
-      - BPMS:SPS:640
-      - BPMS:SPS:710
-      - BPMS:SPS:770
-      - BPMS:SPS:780
-      - BPMS:SPS:830
-      - BPMS:SPS:840
-      - BPMS:SLTS:150
+      charge_toroids:
+      - BPME33B
       default_detector: TMITLOSS:LTUS
       detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
+      jitter_bpms:
+      - BPMEM4B
+      - BPME33B
+      - BPME34B
+      - BPMUM1B
       sum_l_meters: 3540.299
+      tmitloss:
+        downstream:
+        - BPMUE2B
+        - BPMQDB
+        - BPMDDB
+        upstream:
+        - BPMBP27
+        - BPMBP35
+        - BPMBP28
+        - BPMSPH
+        - BPMSP1
+        - BPMSP2
+        - BPMSP1S
+        - BPMSP2S
+        - BPMSP3S
+        - BPMSP5S
+        - BPMSP6S
+        - BPMSP7S
+        - BPMSP8S
+        - BPMSP9S
+        - BPMBP36
       type: WIRE
       wire_type: fast

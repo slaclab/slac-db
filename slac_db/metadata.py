@@ -1,5 +1,6 @@
+import copy
 import re
-from typing import List
+from typing import Any, Dict, List
 from epics import caget
 import os
 import slac_db.config
@@ -41,43 +42,37 @@ def get_screen_metadata(basic_screen_data: dict):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    from meme.names import list_pvs
-
-    metadata = {}
-    for mad_name, info in basic_screen_data.items():
-        metadata[mad_name] = {}
-        ctrl_name = info["controls_information"]["control_name"]
-        flags = list_pvs(ctrl_name + "%INSTALLED")
-        hardware = {}
-        for i in flags:
-            name = re.search("(?<=^" + ctrl_name + ":).*(?=INSTALLED)", i)
-            if name is None:
-                continue
-            name = name.group(0)
-            status = caget(i)
-            if status is not None:
-                hardware[name] = status
-
-        metadata[mad_name]["hardware"] = hardware
-    return metadata
+    return {}
 
 
-def get_wire_metadata(wire_names: List[str] = []):
-    # return a data structure of the form:
-    # {
-    #  wire-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
-    #  wire-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
-    #  ...
-    # }
-    wire_metadata = {}
+def get_wire_metadata(basic_wire_data: dict) -> Dict[str, Dict[str, Any]]:
+    """Load wire and area metadata, merge into per-wire dict.
 
+    Args:
+        basic_wire_data: {wire_name: {"metadata": {"area": ...}, ...}}
+
+    Returns: {wire_name: {field: value, ...}}
+    """
     here = slac_db.config.package_data()
-    yaml_path = os.path.join(here, "wire_metadata.yaml")
 
-    with open(yaml_path, "r") as f:
-        wire_metadata = yaml.safe_load(f)
+    with open(os.path.join(here, "wire_area_metadata.yaml"), "r") as f:
+        area_raw = yaml.safe_load(f)
 
-    return wire_metadata
+    with open(os.path.join(here, "wire_metadata.yaml"), "r") as f:
+        wire_raw = yaml.safe_load(f)
+
+    result = {}
+    for wire_name, info in basic_wire_data.items():
+        area_name = info["metadata"]["area"]
+        if area_name not in area_raw:
+            continue
+        entry = copy.deepcopy(area_raw[area_name])
+        wire_overrides = wire_raw.get(wire_name, {})
+        if wire_overrides:
+            entry.update(wire_overrides)
+        result[wire_name] = entry
+
+    return result
 
 
 def get_lblm_metadata(lblm_names: List[str] = []):
@@ -146,10 +141,27 @@ def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwa
 def get_pmt_metadata(pmt_names: List[str] = []):
     # return a data structure of the form:
     # {
-    #  bpm-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
-    #  bpm-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  pmt-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  pmt-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    if pmt_names:
-        raise NotImplementedError("No method of getting additional metadata for pmts.")
+    return {}
+
+    # EY 08/18/2026 - Removed because of Oracle update.
+    # pmt_metadata = {}
+
+    # here = slac_db.config.package_data()
+    # yaml_path = os.path.join(here, "pmt_metadata.yaml")
+
+    # with open(yaml_path, "r") as f:
+    #     pmt_metadata = yaml.safe_load(f)
+
+    # return pmt_metadata
+
+
+def get_toroid_metadata(toroid_names: List[str] = []):
+    if toroid_names:
+        raise NotImplementedError(
+            "No method of getting additional metadata for toroids."
+        )
     return {}

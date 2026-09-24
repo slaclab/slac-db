@@ -726,6 +726,18 @@ tcavs:
       rf_freq: 2856.0
       sum_l_meters: 53.313
       type: LCAV
+toroids:
+  FCDG0DU:
+    controls_information:
+      PVs:
+        tmit: FARC:DIAG0:530:TMIT
+      control_name: FARC:DIAG0:530
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 62.171
+      type: IMON
 wires:
   WSDG01:
     controls_information:
@@ -756,23 +768,27 @@ wires:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      bpms_after_wire:
-      - BPMS:DIAG0:470
-      - BPMS:DIAG0:520
-      bpms_before_wire:
-      - BPMS:DIAG0:190
-      - BPMS:DIAG0:210
-      - BPMS:DIAG0:230
-      - BPMS:DIAG0:270
-      - BPMS:DIAG0:285
-      - BPMS:DIAG0:330
-      - BPMS:DIAG0:370
-      - BPMS:DIAG0:390
+      charge_toroids:
+      - BPMDG000
       default_detector: LBLM01A:HTR
       detectors:
       - SBLM01A:DIAG0
       - LBLM01A:HTR
       - LBLM01B:HTR
+      - TMITLOSS:DIAG0
       sum_l_meters: 57.113
+      tmitloss:
+        downstream:
+        - BPMDG011
+        - BPMDG012
+        upstream:
+        - BPMDG001
+        - BPMDG002
+        - BPMDG003
+        - BPMDG004
+        - BPMDG005
+        - BPMDG0RF
+        - BPMDG008
+        - BPMDG009
       type: WIRE
       wire_type: slow

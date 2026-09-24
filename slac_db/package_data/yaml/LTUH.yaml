@@ -2739,7 +2739,12 @@ pmts:
       control_name: PMT:LTUH:122
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
   PMT246:
@@ -2749,7 +2754,12 @@ pmts:
       control_name: PMT:LTUH:246
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
   PMT550:
@@ -2759,7 +2769,12 @@ pmts:
       control_name: PMT:LTUH:550
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
   PMT755:
@@ -2768,7 +2783,12 @@ pmts:
       control_name: PMT:LTUH:755
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
   PMT756:
@@ -2778,7 +2798,12 @@ pmts:
       control_name: PMT:LTUH:756
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
   PMT820:
@@ -2788,7 +2813,12 @@ pmts:
       control_name: PMT:LTUH:820
     metadata:
       area: LTUH
-      beam_path: []
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
       sum_l_meters: null
       type: INST
 screens:
@@ -2882,6 +2912,80 @@ screens:
         TLAMP: 1.0
       sum_l_meters: 1461.796
       type: PROF
+toroids:
+  IM31:
+    controls_information:
+      PVs:
+        tmit: TORO:LTUH:195:TMIT
+      control_name: TORO:LTUH:195
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1240.296
+      type: IMON
+  IM36:
+    controls_information:
+      PVs:
+        tmit: TORO:LTUH:605:TMIT
+      control_name: TORO:LTUH:605
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1384.131
+      type: IMON
+  IMBCS1:
+    controls_information:
+      PVs: {}
+      control_name: TORO:LTUH:196
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1240.403
+      type: IMON
+  IMBCS2:
+    controls_information:
+      PVs: {}
+      control_name: TORO:LTUH:510
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1350.98
+      type: IMON
+  IMUNDI:
+    controls_information:
+      PVs:
+        tmit: TORO:LTUH:920:TMIT
+      control_name: TORO:LTUH:920
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1542.373
+      type: IMON
 wires:
   WS31:
     controls_information:
@@ -2896,8 +3000,10 @@ wires:
         motor: WIRE:LTUH:715:MOTR
         motor_rbv: WIRE:LTUH:715:MOTR.RBV
         mps_speed: WIRE:LTUH:715:MPSSPEED
+        on_status: WIRE:LTUH:715:MOTR_ON_STS
         retract: WIRE:LTUH:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:715:SCANPULSES
+        scan_status: WIRE:LTUH:715:SCANSTAT
         speed: WIRE:LTUH:715:MOTR.VELO
         speed_max: WIRE:LTUH:715:MOTR.VMAX
         speed_min: WIRE:LTUH:715:MOTR.VBAS
@@ -2926,6 +3032,9 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
       default_detector: LBLM32A:LTUH
       detectors:
       - PMT122:LTUH
@@ -2938,6 +3047,24 @@ wires:
       - PMT820:LTUH
       - PMT850:LTUH
       - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1409.712
       type: WIRE
       wire_type: fast
@@ -2954,8 +3081,10 @@ wires:
         motor: WIRE:LTUH:735:MOTR
         motor_rbv: WIRE:LTUH:735:MOTR.RBV
         mps_speed: WIRE:LTUH:735:MPSSPEED
+        on_status: WIRE:LTUH:735:MOTR_ON_STS
         retract: WIRE:LTUH:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:735:SCANPULSES
+        scan_status: WIRE:LTUH:735:SCANSTAT
         speed: WIRE:LTUH:735:MOTR.VELO
         speed_max: WIRE:LTUH:735:MOTR.VMAX
         speed_min: WIRE:LTUH:735:MOTR.VBAS
@@ -2984,6 +3113,9 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
       default_detector: LBLM32A:LTUH
       detectors:
       - PMT122:LTUH
@@ -2996,6 +3128,24 @@ wires:
       - PMT820:LTUH
       - PMT850:LTUH
       - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1444.975
       type: WIRE
       wire_type: fast
@@ -3012,8 +3162,10 @@ wires:
         motor: WIRE:LTUH:755:MOTR
         motor_rbv: WIRE:LTUH:755:MOTR.RBV
         mps_speed: WIRE:LTUH:755:MPSSPEED
+        on_status: WIRE:LTUH:755:MOTR_ON_STS
         retract: WIRE:LTUH:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:755:SCANPULSES
+        scan_status: WIRE:LTUH:755:SCANSTAT
         speed: WIRE:LTUH:755:MOTR.VELO
         speed_max: WIRE:LTUH:755:MOTR.VMAX
         speed_min: WIRE:LTUH:755:MOTR.VBAS
@@ -3042,6 +3194,9 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
       default_detector: LBLM32A:LTUH
       detectors:
       - PMT122:LTUH
@@ -3054,6 +3209,24 @@ wires:
       - PMT820:LTUH
       - PMT850:LTUH
       - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1480.239
       type: WIRE
       wire_type: fast
@@ -3070,8 +3243,10 @@ wires:
         motor: WIRE:LTUH:775:MOTR
         motor_rbv: WIRE:LTUH:775:MOTR.RBV
         mps_speed: WIRE:LTUH:775:MPSSPEED
+        on_status: WIRE:LTUH:775:MOTR_ON_STS
         retract: WIRE:LTUH:775:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:775:SCANPULSES
+        scan_status: WIRE:LTUH:775:SCANSTAT
         speed: WIRE:LTUH:775:MOTR.VELO
         speed_max: WIRE:LTUH:775:MOTR.VMAX
         speed_min: WIRE:LTUH:775:MOTR.VBAS
@@ -3100,6 +3275,9 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
       default_detector: LBLM32A:LTUH
       detectors:
       - PMT122:LTUH
@@ -3112,6 +3290,24 @@ wires:
       - PMT820:LTUH
       - PMT850:LTUH
       - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1515.502
       type: WIRE
       wire_type: fast
@@ -3128,8 +3324,10 @@ wires:
         motor: WIRE:LTUH:246:MOTR
         motor_rbv: WIRE:LTUH:246:MOTR.RBV
         mps_speed: WIRE:LTUH:246:MPSSPEED
+        on_status: WIRE:LTUH:246:MOTR_ON_STS
         retract: WIRE:LTUH:246:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:246:SCANPULSES
+        scan_status: WIRE:LTUH:246:SCANSTAT
         speed: WIRE:LTUH:246:MOTR.VELO
         speed_max: WIRE:LTUH:246:MOTR.VMAX
         speed_min: WIRE:LTUH:246:MOTR.VBAS
@@ -3158,6 +3356,39 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1255.337
       type: WIRE
   WSDL4:
@@ -3193,6 +3424,39 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1360.003
       type: WIRE
   WSVM2:
@@ -3208,8 +3472,10 @@ wires:
         motor: WIRE:LTUH:122:MOTR
         motor_rbv: WIRE:LTUH:122:MOTR.RBV
         mps_speed: WIRE:LTUH:122:MPSSPEED
+        on_status: WIRE:LTUH:122:MOTR_ON_STS
         retract: WIRE:LTUH:122:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:122:SCANPULSES
+        scan_status: WIRE:LTUH:122:SCANSTAT
         speed: WIRE:LTUH:122:MOTR.VELO
         speed_max: WIRE:LTUH:122:MOTR.VMAX
         speed_min: WIRE:LTUH:122:MOTR.VBAS
@@ -3238,5 +3504,38 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      charge_toroids:
+      - BPMVM4
+      - BPME31
+      default_detector: LBLM32A:LTUH
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
+      jitter_bpms:
+      - BPMEM4
+      - BPME31
+      - BPME32
+      - BPME33
+      - BPME34
+      - BPME35
+      - BPME36
+      - BPMUM1
+      - BPMVM3
+      - BPMVM4
+      - BPMDL1
+      - BPMT12
+      - BPMBSYQ6
+      - BPMBSYQA0
+      - BPMVM1
+      - BPMVM2
+      - BPMDL4
       sum_l_meters: 1211.773
       type: WIRE

@@ -25,15 +25,7 @@ def get_screen_controls_information(screen_information: Dict = None):
     # }
 
     # Stuff like Device-Position mappings for motor/ladder-based screens
-    controls_information = {}
-    for k, v in screen_information.items():
-        pv_cache = {}
-        pvs = v["controls_information"]["PVs"]
-        if "orient_x" in pvs and "orient_y" in pvs:
-            pv_cache["orient_x"] = caget(pvs["orient_x"], as_string=True)
-            pv_cache["orient_y"] = caget(pvs["orient_y"], as_string=True)
-        controls_information[k] = {"pv_cache": pv_cache}
-    return controls_information
+    return {}
 
 
 def get_wire_controls_information(wire_names: List[str] = None):
@@ -110,5 +102,13 @@ def get_pmt_controls_information(pmt_names: List[str] = None):
     if pmt_names:
         raise NotImplementedError(
             "No method of getting additional controls_information for PMTs."
+        )
+    return {}
+
+
+def get_toroid_controls_information(toroid_names: List[str] = None):
+    if toroid_names:
+        raise NotImplementedError(
+            "No method of getting additional controls_information for toroids."
         )
     return {}

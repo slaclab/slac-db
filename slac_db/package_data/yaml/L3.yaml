@@ -4353,6 +4353,23 @@ tcavs:
       rf_freq: 2856.0
       sum_l_meters: 446.761
       type: LCAV
+toroids:
+  IMBC2O:
+    controls_information:
+      PVs:
+        tmit: TORO:LI25:235:TMIT
+      control_name: TORO:LI25:235
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 445.276
+      type: IMON
 wires:
   WS27644:
     controls_information:
@@ -4367,8 +4384,10 @@ wires:
         motor: WIRE:LI27:644:MOTR
         motor_rbv: WIRE:LI27:644:MOTR.RBV
         mps_speed: WIRE:LI27:644:MPSSPEED
+        on_status: WIRE:LI27:644:MOTR_ON_STS
         retract: WIRE:LI27:644:MOTR_RETRACT
         scan_pulses: WIRE:LI27:644:SCANPULSES
+        scan_status: WIRE:LI27:644:SCANSTAT
         speed: WIRE:LI27:644:MOTR.VELO
         speed_max: WIRE:LI27:644:MOTR.VMAX
         speed_min: WIRE:LI27:644:MOTR.VBAS
@@ -4398,12 +4417,43 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - BPM2
       default_detector: PMT29150:LI29
       detectors:
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 700.132
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
   WS28144:
@@ -4419,8 +4469,10 @@ wires:
         motor: WIRE:LI28:144:MOTR
         motor_rbv: WIRE:LI28:144:MOTR.RBV
         mps_speed: WIRE:LI28:144:MPSSPEED
+        on_status: WIRE:LI28:144:MOTR_ON_STS
         retract: WIRE:LI28:144:MOTR_RETRACT
         scan_pulses: WIRE:LI28:144:SCANPULSES
+        scan_status: WIRE:LI28:144:SCANSTAT
         speed: WIRE:LI28:144:MOTR.VELO
         speed_max: WIRE:LI28:144:MOTR.VMAX
         speed_min: WIRE:LI28:144:MOTR.VBAS
@@ -4450,12 +4502,43 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - BPM2
       default_detector: PMT29150:LI29
       detectors:
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 740.508
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
   WS28444:
@@ -4471,8 +4554,10 @@ wires:
         motor: WIRE:LI28:444:MOTR
         motor_rbv: WIRE:LI28:444:MOTR.RBV
         mps_speed: WIRE:LI28:444:MPSSPEED
+        on_status: WIRE:LI28:444:MOTR_ON_STS
         retract: WIRE:LI28:444:MOTR_RETRACT
         scan_pulses: WIRE:LI28:444:SCANPULSES
+        scan_status: WIRE:LI28:444:SCANSTAT
         speed: WIRE:LI28:444:MOTR.VELO
         speed_max: WIRE:LI28:444:MOTR.VMAX
         speed_min: WIRE:LI28:444:MOTR.VBAS
@@ -4502,12 +4587,43 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - BPM2
       default_detector: PMT29150:LI29
       detectors:
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 777.541
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
   WS28744:
@@ -4523,8 +4639,10 @@ wires:
         motor: WIRE:LI28:744:MOTR
         motor_rbv: WIRE:LI28:744:MOTR.RBV
         mps_speed: WIRE:LI28:744:MPSSPEED
+        on_status: WIRE:LI28:744:MOTR_ON_STS
         retract: WIRE:LI28:744:MOTR_RETRACT
         scan_pulses: WIRE:LI28:744:SCANPULSES
+        scan_status: WIRE:LI28:744:SCANSTAT
         speed: WIRE:LI28:744:MOTR.VELO
         speed_max: WIRE:LI28:744:MOTR.VMAX
         speed_min: WIRE:LI28:744:MOTR.VBAS
@@ -4554,11 +4672,42 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - BPM2
       default_detector: PMT29150:LI29
       detectors:
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 814.077
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast

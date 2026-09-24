@@ -1,16 +1,16 @@
 [SOLE, QUAD, XCOR, YCOR, BEND]:
-    BACT: BACT
-    BCTRL: BCTRL
-    BCON: BCON
-    BDES: BDES
-    CTRL: CTRL
-    BMIN: BMIN
-    BMAX: BMAX
+    BACT: bact
+    BCTRL: bctrl
+    BCON: bcon
+    BDES: bdes
+    CTRL: ctrl
+    BMIN: bmin
+    BMAX: bmax
 
 PROF:
     IMAGE: image
     Image:ArrayData: image
-    RESOLUTION: RESOLUTION
+    RESOLUTION: resolution
     Image:ArraySize0_RBV: n_row
     Image:ArraySize1_RBV: n_col
     N_OF_COL: n_col
@@ -30,7 +30,6 @@ PROF:
     Y_ORIENT: orient_y
 
 WIRE:
-    MOTR.STOP: abort_scan
     BEAMRATE: beam_rate
     MOTR_ENABLED_STS: enabled
     MOTR_HOMED_STS: homed
@@ -38,15 +37,15 @@ WIRE:
     MOTR_INIT_STS: initialize_status
     INSTALLANGLE: install_angle
     MOTR: motor
-    MOTR.RBV: motor_rbv
+    MPSSPEED: mps_speed
+    MOTR_ON_STS: on_status
     MOTR_RETRACT: retract
     SCANPULSES: scan_pulses
-    MOTR.VELO: speed
-    MOTR.VMAX: speed_max
-    MOTR.VBAS: speed_min
+    SCANSTAT: scan_status
     STARTSCAN: start_scan
     TEMP: temperature
     MOTR_TIMEOUTEN: timeout
+    MOTR_SWITCH_ON_CMD: torque_enable
     USEUWIRE: use_u_wire
     USEXWIRE: use_x_wire
     USEYWIRE: use_y_wire
@@ -59,6 +58,12 @@ WIRE:
     YWIRESIZE: y_size
     YWIREINNER: y_wire_inner
     YWIREOUTER: y_wire_outer
+    _MOTR_attributes:
+            STOP: abort_scan
+            RBV: motor_rbv
+            VELO: speed
+            VMAX: speed_max
+            VBAS: speed_min
 
 LBLM:
     GATED_INTEGRAL: gated_integral
@@ -83,5 +88,118 @@ LCAV:
     PACT_AVGNT: phase_avgnt
     AMPL_W0CH0: amplitude_wocho
 
+IMON:
+    TMIT: tmit
+
 INST:
     QDCRAW: qdcraw
+
+KLYS:
+    ENLD: amplitude
+    PHAS: phase
+    PACT: phase_actual
+    PDES: phase_desired
+    BEAMCODE1_STAT: beamcode1
+    BEAMCODE2_STAT: beamcode2
+    SWRD: swrd
+    STAT: stat
+    HDSC: hdsc
+    DSTA: dsta
+
+# Per-device PV overrides for stations that deviate from the normal pattern.
+# Keys are device MAD names; values are flat dicts of accessor_name: full_pv_address.
+# An empty string means the PV is absent and the accessor is omitted from the DB.
+_overrides:
+    # --- TCAV0 ---
+    TCAV0:
+        amplitude_act_beamcode1: TCAV:IN20:490:TC0_AACT_DS0
+        amplitude_des_beamcode1: TCAV:IN20:490:TC0_ADES_DS0
+        phase_des_beamcode1: TCAV:IN20:490:TC0_PDES_DS0
+        phase_act_beamcode1: TCAV:IN20:490:TC0_PACT_DS0
+        amplitude_act_beamcode2: TCAV:IN20:490:TC0_AACT_DS3
+        amplitude_des_beamcode2: TCAV:IN20:490:TC0_ADES_DS3
+        phase_des_beamcode2: TCAV:IN20:490:TC0_PDES_DS3
+        phase_act_beamcode2: TCAV:IN20:490:TC0_PACT_DS3
+        rf_enable_beamcode1: KLYS:LI20:51:BEAMCODE1_TCTL
+        rf_enable_beamcode2: KLYS:LI20:51:BEAMCODE2_TCTL
+        amplitude_fbenb: TCAV:IN20:490:TC0_AMPL_FB
+        amplitude_fbst: TCAV:IN20:490:TC0_AMPL_FB
+        amplitude_wocho: TCAV:IN20:490:TC0_ADES
+        phase_fbenb: TCAV:IN20:490:TC0_PHAS_FB
+        phase_fbst: TCAV:IN20:490:TC0_PHAS_FB
+
+
+    # --- GUN klystron ---
+    K20_6:
+        amplitude: GUN:IN20:1:GN1_AAVG
+        amplitude_des: GUN:IN20:1:GN1_ADES
+        phase_actual: GUN:IN20:1:GN1_PAVG
+        phase_desired: GUN:IN20:1:GN1_PDES
+
+    # --- L0A injector linac ---
+    K20_7:
+        amplitude_beamcode1: ACCL:IN20:300:L0A_AACT_DS0
+        amplitude_des_beamcode1: ACCL:IN20:300:L0A_ADES_DS0
+        phase_actual_beamcode1: ACCL:IN20:300:L0A_PACT_DS0
+        phase_desired_beamcode1: ACCL:IN20:300:L0A_PDES_DS0
+        amplitude_beamcode2: ACCL:IN20:300:L0A_AACT_DS1
+        amplitude_des_beamcode2: ACCL:IN20:300:L0A_ADES_DS1
+        phase_actual_beamcode2: ACCL:IN20:300:L0A_PACT_DS1
+        phase_desired_beamcode2: ACCL:IN20:300:L0A_PDES_DS1
+
+    # --- L0B injector linac ---
+    K20_8:
+        amplitude_beamcode1: ACCL:IN20:400:L0B_AACT_DS0
+        amplitude_des_beamcode1: ACCL:IN20:400:L0B_ADES_DS0
+        phase_actual_beamcode1: ACCL:IN20:400:L0B_PACT_DS0
+        phase_desired_beamcode1: ACCL:IN20:400:L0B_PDES_DS0
+        amplitude_beamcode2: ACCL:IN20:400:L0B_AACT_DS1
+        amplitude_des_beamcode2: ACCL:IN20:400:L0B_ADES_DS1
+        phase_actual_beamcode2: ACCL:IN20:400:L0B_PACT_DS1
+        phase_desired_beamcode2: ACCL:IN20:400:L0B_PDES_DS1
+
+    # --- L1S sub-booster ---
+    K21_1:
+        amplitude_beamcode1: ACCL:LI21:1:L1S_AACT_DS0
+        amplitude_des_beamcode1: ACCL:LI21:1:L1S_ADES_DS0
+        phase_actual_beamcode1: ACCL:LI21:1:L1S_PACT_DS0
+        phase_desired_beamcode1: ACCL:LI21:1:L1S_PDES_DS0
+        amplitude_beamcode2: ACCL:LI21:1:L1S_AACT_DS1
+        amplitude_des_beamcode2: ACCL:LI21:1:L1S_ADES_DS1
+        phase_actual_beamcode2: ACCL:LI21:1:L1S_PACT_DS1
+        phase_desired_beamcode2: ACCL:LI21:1:L1S_PDES_DS1
+
+    # --- L1X 3rd-harmonic linearizer ---
+    K21_2:
+        amplitude_beamcode1: ACCL:LI21:180:L1X_AACT_DS0
+        amplitude_des_beamcode1: ACCL:LI21:180:L1X_ADES_DS0
+        phase_actual_beamcode1: ACCL:LI21:180:L1X_PACT_DS0
+        phase_desired_beamcode1: ACCL:LI21:180:L1X_PDES_DS0
+        amplitude_beamcode2: ACCL:LI21:180:L1X_AACT_DS1
+        amplitude_des_beamcode2: ACCL:LI21:180:L1X_ADES_DS1
+        phase_actual_beamcode2: ACCL:LI21:180:L1X_PACT_DS1
+        phase_desired_beamcode2: ACCL:LI21:180:L1X_PDES_DS1
+
+    # --- L2 feedback klystrons (normal ENLD/fault PVs, special phase PV) ---
+    K24_1:
+        phase_actual_beamcode1: ACCL:LI24:100:KLY_PDES:SETDATA_1
+        phase_desired_beamcode1: ACCL:LI24:100:KLY_PDES:SETDATA_1
+        phase_actual_beamcode2: ACCL:LI24:100:KLY_PDES:SETDATA_2
+        phase_desired_beamcode2: ACCL:LI24:100:KLY_PDES:SETDATA_2
+
+    K24_2:
+        phase_actual_beamcode1: ACCL:LI24:200:KLY_PDES:SETDATA_1
+        phase_desired_beamcode1: ACCL:LI24:200:KLY_PDES:SETDATA_1
+        phase_actual_beamcode2: ACCL:LI24:200:KLY_PDES:SETDATA_2
+        phase_desired_beamcode2: ACCL:LI24:200:KLY_PDES:SETDATA_2
+
+    K24_3:
+        phase_actual_beamcode1: ACCL:LI24:300:KLY_PDES:SETDATA_1
+        phase_desired_beamcode1: ACCL:LI24:300:KLY_PDES:SETDATA_1
+        phase_actual_beamcode2: ACCL:LI24:300:KLY_PDES:SETDATA_2
+        phase_desired_beamcode2: ACCL:LI24:300:KLY_PDES:SETDATA_2
+
+    # --- Test Stand Station ---
+    K26_3:
+        is_ignored: KLYS:LI26:31:IGNORE.RVAL
+        accelerate: KLYS:LI26:31:TMODE_DES.RVAL

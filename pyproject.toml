@@ -18,12 +18,16 @@ dependencies = [
     "pyepics",
     "pykern",
     "pyyaml",
+    "SQLAlchemy>=1.4,<2",
 ]
 description = "Tools to support high level application development at SLAC using Python"
 dynamic = ["version"]
 name = "slac-db"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = ["pytest"]
 
 [options]
 include_package_data = true

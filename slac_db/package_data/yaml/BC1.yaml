@@ -661,6 +661,39 @@ screens:
       hardware: {}
       sum_l_meters: 41.512
       type: PROF
+toroids:
+  IMBC1I:
+    controls_information:
+      PVs:
+        tmit: TORO:LI21:205:TMIT
+      control_name: TORO:LI21:205
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 30.872
+      type: IMON
+  IMBC1O:
+    controls_information:
+      PVs:
+        tmit: TORO:LI21:277:TMIT
+      control_name: TORO:LI21:277
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 38.734
+      type: IMON
 wires:
   WS11:
     controls_information:
@@ -675,8 +708,10 @@ wires:
         motor: WIRE:LI21:285:MOTR
         motor_rbv: WIRE:LI21:285:MOTR.RBV
         mps_speed: WIRE:LI21:285:MPSSPEED
+        on_status: WIRE:LI21:285:MOTR_ON_STS
         retract: WIRE:LI21:285:MOTR_RETRACT
         scan_pulses: WIRE:LI21:285:SCANPULSES
+        scan_status: WIRE:LI21:285:SCANSTAT
         speed: WIRE:LI21:285:MOTR.VELO
         speed_max: WIRE:LI21:285:MOTR.VMAX
         speed_min: WIRE:LI21:285:MOTR.VBAS
@@ -706,6 +741,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - IMBC1I
+      - IMBC1O
+      - BPMM12
       default_detector: PMT21350:LI21
       detectors:
       - PMT2111:DL1
@@ -714,6 +753,9 @@ wires:
       - PMT21350:LI21
       - PMT2114:LI21
       - PMT2115:LI21
+      jitter_bpms:
+      - BPMM12
+      - BPM21301
       sum_l_meters: 39.56
       type: WIRE
       wire_type: fast
@@ -730,8 +772,10 @@ wires:
         motor: WIRE:LI21:293:MOTR
         motor_rbv: WIRE:LI21:293:MOTR.RBV
         mps_speed: WIRE:LI21:293:MPSSPEED
+        on_status: WIRE:LI21:293:MOTR_ON_STS
         retract: WIRE:LI21:293:MOTR_RETRACT
         scan_pulses: WIRE:LI21:293:SCANPULSES
+        scan_status: WIRE:LI21:293:SCANSTAT
         speed: WIRE:LI21:293:MOTR.VELO
         speed_max: WIRE:LI21:293:MOTR.VMAX
         speed_min: WIRE:LI21:293:MOTR.VBAS
@@ -761,6 +805,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - IMBC1I
+      - IMBC1O
+      - BPMM12
       default_detector: PMT21350:LI21
       detectors:
       - PMT2111:DL1
@@ -769,6 +817,9 @@ wires:
       - PMT21350:LI21
       - PMT2114:LI21
       - PMT2115:LI21
+      jitter_bpms:
+      - BPMM12
+      - BPM21301
       sum_l_meters: 41.217
       type: WIRE
       wire_type: fast
@@ -785,8 +836,10 @@ wires:
         motor: WIRE:LI21:301:MOTR
         motor_rbv: WIRE:LI21:301:MOTR.RBV
         mps_speed: WIRE:LI21:301:MPSSPEED
+        on_status: WIRE:LI21:301:MOTR_ON_STS
         retract: WIRE:LI21:301:MOTR_RETRACT
         scan_pulses: WIRE:LI21:301:SCANPULSES
+        scan_status: WIRE:LI21:301:SCANSTAT
         speed: WIRE:LI21:301:MOTR.VELO
         speed_max: WIRE:LI21:301:MOTR.VMAX
         speed_min: WIRE:LI21:301:MOTR.VBAS
@@ -816,6 +869,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      charge_toroids:
+      - IMBC1I
+      - IMBC1O
+      - BPMM12
       default_detector: PMT21350:LI21
       detectors:
       - PMT2111:DL1
@@ -824,6 +881,9 @@ wires:
       - PMT21350:LI21
       - PMT2114:LI21
       - PMT2115:LI21
+      jitter_bpms:
+      - BPMM12
+      - BPM21301
       sum_l_meters: 42.873
       type: WIRE
       wire_type: fast

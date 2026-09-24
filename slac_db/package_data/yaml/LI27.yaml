@@ -26,7 +26,10 @@ pmts:
       control_name: PMT:LI27:644
     metadata:
       area: LI27
-      beam_path: []
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
       sum_l_meters: null
       type: INST
 wires:
@@ -43,8 +46,10 @@ wires:
         motor: WIRE:LI27:644:MOTR
         motor_rbv: WIRE:LI27:644:MOTR.RBV
         mps_speed: WIRE:LI27:644:MPSSPEED
+        on_status: WIRE:LI27:644:MOTR_ON_STS
         retract: WIRE:LI27:644:MOTR_RETRACT
         scan_pulses: WIRE:LI27:644:SCANPULSES
+        scan_status: WIRE:LI27:644:SCANSTAT
         speed: WIRE:LI27:644:MOTR.VELO
         speed_max: WIRE:LI27:644:MOTR.VMAX
         speed_min: WIRE:LI27:644:MOTR.VBAS
