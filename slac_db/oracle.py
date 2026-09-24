@@ -52,6 +52,7 @@ def _init_remote_db():
     #TODO: grab schema from Oracle?
     schema = None
     uri = _get_remote_uri()
+
     _meta = pykern.sql_db.Meta(
         uri=uri,
         schema=None
