@@ -44,14 +44,13 @@ def _get_remote_uri():
 
 
 def _init_remote_db():
-    """Assumes remote oracle DB. TODO: Make this more general?
+    """Assumes remote oracle DB. 
 
        _meta: wrapper that holds sqlalchemy metadata.
     """
     global _meta
     #TODO: grab schema from Oracle?
     schema = None
-    #TODO: is uri just the connection string?
     uri = _get_remote_uri()
     _meta = pykern.sql_db.Meta(
         uri=uri,
