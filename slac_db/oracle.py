@@ -8,45 +8,6 @@ _ORACLE_USERNAME = 'lcls_read'
 
 _meta = None
 
-def get_address_header(device=None):
-    """Get address header of a device.
-
-    Args:
-        device (str): MAD name of the device as found in Oracle.
-
-    Returns:
-        tuple: The address header.
-    """
-    with _session() as s:
-        return s.select_one(
-            sqlalchemy.select(
-                s.t.elements.c["control system name"]
-            ).where(
-                s.t.elements.c["element"] == device
-            )
-        )["control system name"]
-
-
-def get_beampaths():
-    """Get all beampaths from Oracle.
-
-    Returns:
-        List of beampaths sorted alphabetically.
-    """
-    beampaths = set()
-    def parse_beampaths(beampath_csv):
-        if beampath_csv is None:
-            return
-        c = beampath_csv.replace(' ', '').split(',')
-        c = filter(None, c)
-        beampaths.update(c)
-
-    with _session() as s:
-        query = sqlalchemy.select(s.t.elements.c.beampath).distinct()
-        for r in s.select(query):
-            parse_beampaths(r.beampath)
-    return sorted(list(beampaths))
-
 @contextmanager
 def get_connection():
     """Yield a connection to Oracle. Only works on production.
