@@ -1,5 +1,4 @@
 import unittest
-import csv
 from pathlib import Path
 import slac_db.sql
 import slac_db.generate
