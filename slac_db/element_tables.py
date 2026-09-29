@@ -190,6 +190,7 @@ def _init_db(location=None):
             "Rf Frequency (MHz)": "float 64 nullable",
             "Engineering Name": "str 64 nullable",
             "Active": "str 1 nullable",
+            "yaml_type": "str 64 nullable",
         }
     }
     _meta = pykern.sql_db.Meta(

@@ -65,12 +65,11 @@ def get_wire_metadata(basic_wire_data: dict) -> Dict[str, Dict[str, Any]]:
     for wire_name, info in basic_wire_data.items():
         area_name = info["metadata"]["area"]
         if area_name not in area_raw:
-            continue
-        entry = copy.deepcopy(area_raw[area_name])
-        wire_overrides = wire_raw.get(wire_name, {})
-        if wire_overrides:
-            entry.update(wire_overrides)
-        result[wire_name] = entry
+            area_name = ""
+        wire_overrides = (
+            area_raw.get(area_name, {}) | wire_raw.get(wire_name, {})
+        )
+        result[wire_name] = wire_overrides
 
     return result
 

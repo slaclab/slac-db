@@ -3,7 +3,6 @@ import slac_db.directory_service
 import slac_db.io
 import slac_db.element_tables
 import slac_db.device
-from slac_db.metadata import get_wire_metadata, get_pmt_metadata
 from pykern.pkcollections import PKDict
 import yaml
 
@@ -256,13 +255,22 @@ class _Parser:
                 yield yv
 
         def _parse_yaml():
-            basic_wire_data = {
-                d["device_name"]: {"metadata": {"area": d["area"]}}
-                for d in self.devices
-                if d["device_type"] == "WIRE"
-            }
-            string_meta = get_wire_metadata(basic_wire_data)
-            for device_name, meta in string_meta.items():
+            device_meta = {}
+            area_meta = {}
+            for f in slac_db.config.package_data().rglob('*_metadata.yaml'):
+                if f.name.endswith('_area_metadata.yaml'):
+                    area_meta[f.name[:-19]] = slac_db.io.read_dict(f)
+                elif f.name.endswith('_metadata.yaml'):
+                    device_meta.update(slac_db.io.read_dict(f))
+            for r in slac_db.oracle.get_all_rows():
+                yaml_type = r["yaml_type"]
+                area = r["area"]
+                name = r["element"]
+                m = area_meta.get(yaml_type, {})
+                device_meta[name] = (
+                    m.get(area, {}) | device_meta.get(name, {})
+                )
+            for device_name, meta in device_meta.items():
                 if device_name in self.device_names:
                     yield from _parse_meta_string(device_name, meta)
 

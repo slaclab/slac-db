@@ -3,6 +3,21 @@ from sqlalchemy import text
 import slac_db.config
 import slac_db.element_tables
 
+_ORACLE_TO_YAML_TYPE_MAP = {
+    "SOLE": "magnet",
+    "QUAD": "magnet",
+    "XCOR": "magnet",
+    "YCOR": "magnet",
+    "BEND": "magnet",
+    "PROF": "screen",
+    "WIRE": "wire",
+    "LBLM": "lblm",
+    "BPM": "bpm",
+    "LCAV": "tcav",
+    "INST": "pmt",
+    "IMON": "toroid",
+}
+
 def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
     """Get the lcls_elements.csv file from Oracle.
     This function only works on production.
@@ -55,6 +70,7 @@ class _Parser():
         for row in reader:
             values = [None if v == '' else v for v in row]
             d = dict(zip(names, values))
+            d["yaml_type"] = _ORACLE_TO_YAML_TYPE_MAP.get(d["keyword"], None)
             element = d.get("element") or ""
             cs_name = d.get("control system name") or ""
             keyword = d.get("keyword") or ""
