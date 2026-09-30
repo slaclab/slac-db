@@ -50,6 +50,28 @@ def get_addresses(device=None):
             )
         ))
 
+def get_addresses_new(device=None):
+    """Get all addresses per device.
+
+    Args:
+        device (str): MAD name of the device as found in Oracle.
+
+    Returns:
+        tuple: Sorted address values.
+    """
+    head = slac_db.element_tables.get_address_header(device=device)
+    with _session() as s:
+        cs_address = s.t.addresses.c["address"]
+        return tuple(sorted(
+            r["address"] for r in s.select(
+                sqlalchemy.select(
+                    cs_address
+                ).where(
+                    s.t.addresses.c["head"] == head
+                )
+            )
+        ))
+
 def get_all_addresses():
     """Get all addresses in a generator.
 
