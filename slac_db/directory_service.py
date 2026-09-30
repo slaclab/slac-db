@@ -92,8 +92,15 @@ class _Inserter:
         # Bulk insert is not faster.
         n = len(addresses)
         i = 0
-        for a in addresses:
-            session.insert("addresses", address=a)
+        for parts, address in addresses.items():
+            entry = {
+                "type": parts[0],
+                "area": parts[1],
+                "unit": parts[2],
+            }
+            session.insert(**entry)
+            entry["address"] = address
+            session.insert("addresses", **entry)
             i += 1
             print("{i} / {n}", end='\r')
 
@@ -113,7 +120,15 @@ def _init_db(location=None):
         location = _directory_service_location()
     uri = _db_type_prefix(location)
     schema = {
+        "headers": {
+            "type": "str 64 primary",
+            "area": "str 64 primary",
+            "unit": "str 64 primary",
+        },
         "addresses": {
+            "type": "str 64 foreign",
+            "area": "str 64 foreign",
+            "unit": "str 64 foreign",
             "address": "str 64 primary_key",
         }
     }
