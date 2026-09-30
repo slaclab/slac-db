@@ -1,11 +1,62 @@
 import csv
-from sqlalchemy import text
+from sqlalchemy import text, create_engine
+from contextlib import contextmanager
 import slac_db.config
-import slac_db.sql
-from slac_db.oracle import get_connection
+import slac_db.element_tables
 
-def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
-    """Get the lcls_elements.csv file from Oracle.
+_ORACLE_TNS      = 'slacprod' # name/connection of Oracle DB on prod
+_ORACLE_USERNAME = 'lcls_read'
+
+_ORACLE_TO_REFERENCE = {
+    "area":                       "Area",
+    "element":                    "Element",
+    "epics_channel_access_name":  "Control System Name",
+    "keyword":                    "Keyword",
+    "beampath":                   "Beampath",
+    "suml_m":                     "SumL (m)",
+    "effective_length":           "Effective Length (m)",
+    "rf_frequency":               "Rf Frequency (MHz)",
+    "engineering_name":           "Engineering Name",
+    "active_flag":                "Active",
+}
+
+@contextmanager
+def get_connection():
+    """Yield a connection to Oracle. Only works on production.
+    Using as a context manager so the connection and engine are always cleaned up:
+        with get_connection() as conn:
+    """
+    engine = create_engine(_get_remote_uri())
+    conn = engine.connect()
+    try:
+        yield conn
+    finally:
+        conn.close()
+        engine.dispose()
+
+
+def _get_oracle_pw(username=_ORACLE_USERNAME):
+    """Get Oracle password. This only works on production.
+    """
+    try:
+        import subprocess
+        cmd      = subprocess.run(['getPwd', username], capture_output=True, text=True, check=True)
+        password = cmd.stdout.strip()
+        return password
+    except Exception as e:
+        print(f"Could not get Oracle password: {e}")
+        return None
+
+def _get_remote_uri():
+    """Get string needed to connect to Oracle remotely.
+    """
+    password  = _get_oracle_pw(_ORACLE_USERNAME)
+    connection_string = f'oracle+cx_oracle://{_ORACLE_USERNAME}:{password}@{_ORACLE_TNS}'
+    return connection_string
+
+
+def get_oracle_elements_csv(csv_output='oracle_elements.csv'):
+    """Get a csv file from Oracle that has all devices in LCLS_ELEMENTS table.
     This function only works on production.
 
     Args:
@@ -28,7 +79,7 @@ def to_oracle_db(csv_source=None):
         csv_source: Location of Oracle CSV file
     """
     p = _Parser(csv_source=csv_source)
-    return slac_db.sql.recreate(p)
+    return slac_db.element_tables.recreate(p)
 
 class _Parser():
     """Container for DB row data.
