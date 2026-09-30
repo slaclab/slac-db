@@ -121,9 +121,9 @@ def _init_db(location=None):
     uri = _db_type_prefix(location)
     schema = {
         "headers": {
-            "type": "str 64 primary",
-            "area": "str 64 primary",
-            "unit": "str 64 primary",
+            "type": "str 64 primary_key",
+            "area": "str 64 primary_key",
+            "unit": "str 64 primary_key",
         },
         "addresses": {
             "type": "str 64 foreign",
