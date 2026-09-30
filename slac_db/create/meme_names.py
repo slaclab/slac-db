@@ -9,7 +9,10 @@ class _Parser:
     """Container for DB row data.
     """
     def __init__(self):
-        self.addresses = dict()
+        self.areas = set()
+        self.types = set()
+        self.heads = dict()
+        self.addresses = list()
         self._get_from_meme()
 
     def _get_from_meme(self):
@@ -19,4 +22,17 @@ class _Parser:
             part = a.split(':')
             if len(part) < 4:
                 continue
-            self.addresses[(part[0], part[1], part[2])] = a
+            head = ':'.join(part[0:3])
+            entry = {
+                'head': head,
+                'type': part[0],
+                'area': part[1],
+                'unit': part[2],
+            }
+            self.types.add(entry['type'])
+            self.areas.add(entry['area'])
+            self.heads[head] = entry
+            self.addresses.append(
+                {'head': head,
+                 'address': a}
+            )

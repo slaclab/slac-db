@@ -85,24 +85,27 @@ class _Inserter:
     def __init__(self, parser):
         self.counts = {"addresses": 0}
         with _session() as s:
+            self._types(parser.types, s)
+            self._areas(parser.areas, s)
             self._addresses(parser.addresses, s)
+
+    def _types(self, types, session):
+        for t in types:
+            session.insert("types", type=t)
+
+    def _areas(self, areas, session):
+        for a in areas:
+            session.insert("areas", area=a)
+
+    def _headers(self, headers, session):
+        for h in headers:
+            session.insert("headers", **h)
 
     def _addresses(self, addresses, session):
         # We have to do it this way unfortunately.
         # Bulk insert is not faster.
-        n = len(addresses)
-        i = 0
-        for parts, address in addresses.items():
-            entry = {
-                "type": parts[0],
-                "area": parts[1],
-                "unit": parts[2],
-            }
+        for entry in addresses:
             session.insert(**entry)
-            entry["address"] = address
-            session.insert("addresses", **entry)
-            i += 1
-            print("{i} / {n}", end='\r')
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):
@@ -120,15 +123,20 @@ def _init_db(location=None):
         location = _directory_service_location()
     uri = _db_type_prefix(location)
     schema = {
-        "headers": {
-            "type": "str 64 primary_key",
+        "areas": {
             "area": "str 64 primary_key",
-            "unit": "str 64 primary_key",
+        },
+        "types": {
+            "type": "str 64 primary_key",
+        },
+        "headers": {
+            "area": "str 64 foreign",
+            "type": "str 64 foreign",
+            "unit": "str 64",
+            "head": "str 64 primary_key",
         },
         "addresses": {
-            "type": "str 64 foreign",
-            "area": "str 64 foreign",
-            "unit": "str 64 foreign",
+            "head": "str 64 foreign",
             "address": "str 64 primary_key",
         }
     }
