@@ -70,6 +70,27 @@ def get_oracle_elements_csv(csv_output='oracle_elements.csv'):
             df.to_csv(csv_output, index=False)
     except Exception as e:
         print(f"An error occurred {e}")
+        raise
+
+
+def build_lcls_elements_csv(oracle_csv, lcls_csv):
+    """Convert oracle csv into the curated lcls_elements.csv format."""
+    try:
+        with open(oracle_csv, newline="") as input_csv, open(lcls_csv, "w", newline="") as output_csv:
+            keymap = _ORACLE_TO_REFERENCE
+            reader = csv.DictReader(input_csv)
+            writer = csv.writer(output_csv)
+            writer.writerow(keymap.values())
+            for row in reader:
+                writer.writerow(row[c] for c in keymap)
+    except Exception as e:
+        print(f"Unable to build the LCLS elements csv: {e}")
+        raise
+
+def get_lcls_elements_csv(oracle_csv='oracle_elements.csv', lcls_csv='lcls_elements.csv'):
+    """Get oracle csv on production, then convert to lcls_element.csv needed for this repo."""
+    get_oracle_elements_csv(csv_output=oracle_csv)
+    build_lcls_elements_csv(oracle_csv, lcls_csv)
 
 
 def to_oracle_db(csv_source=None):
