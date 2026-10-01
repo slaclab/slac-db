@@ -369,15 +369,19 @@ class YAMLGenerator:
         required_screen_types = ["PROF"]
         # PV suffix as the key, the name we want to store it as in yaml file as the value
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        # Later entries take priority in the case of multiple handles.
         possible_screen_pvs = {
+            # Basic cameras
             "IMAGE": "image",
-            "Image:ArrayData": "image",
-            "RESOLUTION": None,
-            "Image:ArraySize0_RBV": "n_row",
-            "Image:ArraySize1_RBV": "n_col",
             "N_OF_COL": "n_col",
             "N_OF_ROW": "n_row",
+            # AD Cameras
+            "Image:ArrayData": "image",
+            "Image:ArraySize0_RBV": "n_row",
+            "Image:ArraySize1_RBV": "n_col",
+            # Unique PVs
             "N_OF_BITS": "n_bits",
+            "RESOLUTION": None,
             "SYS_TYPE": "sys_type",
             "FRAME_RATE": "ref_rate_vme",
             "ArrayRate_RBV": "ref_rate",

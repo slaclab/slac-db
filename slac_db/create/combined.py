@@ -32,10 +32,10 @@ class _Parser:
     """
 
     def __init__(self):
-        print("Parsing Area")
-        self._area_map()
         print("Parsing Device")
         self._devices()
+        print("Parsing Area")
+        self._area_map()
         print("Parsing Device Meta")
         self._device_meta()
         print("Parsing Address")
@@ -183,6 +183,8 @@ class _Parser:
         self.areas = set()
         rv = set()
         for r in slac_db.element_tables.get_all_rows():
+            if r['element'] not in self.device_names:
+                continue
             beampath_csv = r["beampath"]
             area = r["area"]
             rv = rv.union(set((area, b) for b in parse_beampaths(beampath_csv)))
@@ -262,7 +264,7 @@ class _Parser:
                     area_meta[f.name[:-19]] = slac_db.io.read_dict(f)
                 elif f.name.endswith('_metadata.yaml'):
                     device_meta.update(slac_db.io.read_dict(f))
-            for r in slac_db.oracle.get_all_rows():
+            for r in slac_db.element_tables.get_all_rows():
                 yaml_type = r["yaml_type"]
                 area = r["area"]
                 name = r["element"]

@@ -60,11 +60,11 @@ def get_all_rows():
         list: Row object with each column.
     """
     with _session() as s:
-        return [r for r in s.select(
-            sqlalchemy.select(
-                s.t.elements
+        return [
+            r for r in s.select(
+                sqlalchemy.select(s.t.elements)
             )
-        )]
+        ]
 
 def get_device_row(element=None):
     """Get the full row for an element.

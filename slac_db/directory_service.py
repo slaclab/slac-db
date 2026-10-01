@@ -18,7 +18,7 @@ def verify_address(address):
         None if it does not.
     """
     with _session() as s:
-        return list(sorted(
+        return list(
             r["address"] for r in s.select(
                 sqlalchemy.select(
                     s.t.addresses.c["address"]
@@ -26,9 +26,40 @@ def verify_address(address):
                     s.t.addresses.c["address"] == address
                 )
             )
-        ))
+        )
 
-def get_addresses(device=None):
+def verify_head(head, instance=None):
+    """Verify that an address header exists.
+    PVs are written as 'type:area:unit:instance'.
+    Our db index by 'type:area:unit'.
+
+    Args:
+        address (str): EPICS PV address
+        instance (str): 
+
+    Returns:
+        All addresses under head.
+        None if none are found.
+    """
+    with _session() as s:
+        selection = sqlalchemy.select(
+            s.t.addresses.c["head"]
+        ).where(
+            s.t.addresses.c["head"] == head
+        )
+
+        if instance:
+            selection.where(
+                s.t.addresses.c["head"].like(
+                    head + ':' + instance + ':%'
+                )
+            )
+        
+        return set(
+            r["address"] for r in s.select(selection)
+        )
+
+def get_addresses(device=None, cs_name=''):
     """Get all addresses per device.
 
     Args:
@@ -37,40 +68,32 @@ def get_addresses(device=None):
     Returns:
         tuple: Sorted address values.
     """
-    head = slac_db.element_tables.get_address_header(device=device)
+    if not device and not cs_name:
+        raise ValueError("Must include only one keyword device=device_name or cs_name=pv as argument.")
+    if device and cs_name:
+        raise ValueError("Must include only one keyword device=device_name or cs_name=pv as argument.")
+    if device:
+        cs_name = slac_db.element_tables.get_address_header(device=device)
+    pv_codes = cs_name.split(':')
+    instance = None
+    if len(pv_codes) == 4:
+        instance = pv_codes[3]
+        cs_name = ':'.join(pv_codes[:3])
     with _session() as s:
-        cs_address = s.t.addresses.c["address"]
-        return tuple(sorted(
-            r["address"] for r in s.select(
-                sqlalchemy.select(
-                    cs_address
-                ).where(
-                    cs_address.like(f"{head}%")
+        selection = sqlalchemy.select(
+            s.t.addresses.c["head"]
+        ).where(
+            s.t.addresses.c["head"] == cs_name
+        )
+        if instance:
+            selection.where(
+                s.t.addresses.c["head"].like(
+                    cs_name + ':' + instance + ':%'
                 )
             )
-        ))
-
-def get_addresses_new(device=None):
-    """Get all addresses per device.
-
-    Args:
-        device (str): MAD name of the device as found in Oracle.
-
-    Returns:
-        tuple: Sorted address values.
-    """
-    head = slac_db.element_tables.get_address_header(device=device)
-    with _session() as s:
-        cs_address = s.t.addresses.c["address"]
-        return tuple(sorted(
-            r["address"] for r in s.select(
-                sqlalchemy.select(
-                    cs_address
-                ).where(
-                    s.t.addresses.c["head"] == head
-                )
-            )
-        ))
+        return list(
+            r["address"] for r in s.select(selection)
+        )
 
 def get_all_addresses():
     """Get all addresses in a generator.
