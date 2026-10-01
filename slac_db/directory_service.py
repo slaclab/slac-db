@@ -132,6 +132,7 @@ class _Inserter:
         with _session() as s:
             self._types(parser.types, s)
             self._areas(parser.areas, s)
+            self._headers(parser.headers, s)
             self._addresses(parser.addresses, s)
 
     def _types(self, types, session):
@@ -143,14 +144,14 @@ class _Inserter:
             session.insert("areas", area=a)
 
     def _headers(self, headers, session):
-        for h in headers:
+        for h in headers.values():
             session.insert("headers", **h)
 
     def _addresses(self, addresses, session):
         # We have to do it this way unfortunately.
         # Bulk insert is not faster.
         for entry in addresses:
-            session.insert(**entry)
+            session.insert("addresses", **entry)
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):
