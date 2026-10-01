@@ -102,15 +102,26 @@ class _Parser:
                         accessor_name=accessor,
                     )
                 if accessor in override:
-                    rv["cs_address"] = address
+                    rv["cs_address"] = override.pop(device)
                 yield rv
 
-        def _meta(device, pv_head, d_type): 
+        def _build_overrides(device):
+            override = self.accessor_overrides.get(device, {})
+            for accessor_name, cs_address in override.items():
+                if cs_address:
+                    yield PKDict(
+                        device_name=device,
+                        cs_address=cs_address,
+                        accessor_name=accessor_name,
+                    )
+
+        def _meta(device, pv_head, d_type):
             for pv in slac_db.directory_service.get_addresses(device):
-                pv_tail = pv[len(pv_head):]
+                pv_tail = pv[len(pv_head)+1:]
                 if pv_tail is None:
                     continue
                 yield from _build_accessors(device, d_type, pv_head, pv_tail)
+            yield from _build_overrides(device)
 
         self.accessor_meta += list(_build())
 
@@ -121,7 +132,7 @@ class _Parser:
         Sets:
             self.address_meta
         """
-        cs_name = row["control system address"]
+        cs_name = row["control system name"]
         addresses = slac_db.directory_service.get_addresses(
             cs_name=cs_name
         )

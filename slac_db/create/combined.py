@@ -103,7 +103,8 @@ class _Parser:
 
         def _meta(device, pv_head, d_type):
             override = self.accessor_overrides.get(device, {})
-            for pv_tail in self.address_map.get(pv_head, [None]):
+            for pv in self.address_map.get(pv_head, []):
+                pv_tail = pv[len(pv_head)+1:]
                 if pv_tail is None:
                     continue
                 accessor_names = _get_accessors(d_type, pv_tail)
@@ -142,19 +143,19 @@ class _Parser:
                 yield _parse_group(names, addr_length)
 
         def _parse_group(names, addr_length):
-            h, t = _split_one(names.pop(), addr_length)
-            rv = [t]
+            h, pv = _split_one(names.pop(), addr_length)
+            rv = [pv]
             while names:
-                next_h, next_t = _split_one(names[-1], addr_length)
+                next_h, pv = _split_one(names[-1], addr_length)
                 if next_h != h:
                     break
                 names.pop()
-                rv.append(next_t)
+                rv.append(pv)
             return h, rv
 
         def _split_one(name, addr_length):
             p = name.split(_DELIM)
-            return _DELIM.join(p[:addr_length]), _DELIM.join(p[addr_length:])
+            return _DELIM.join(p[:addr_length]), name
 
         # Addresses with 3 units (AAA:BBB:CCC:)
         self.address_map = dict(

@@ -81,13 +81,13 @@ def get_addresses(device=None, cs_name=''):
         cs_name = ':'.join(pv_codes[:3])
     with _session() as s:
         selection = sqlalchemy.select(
-            s.t.addresses.c["head"]
+            s.t.addresses.c["address"]
         ).where(
             s.t.addresses.c["head"] == cs_name
         )
         if instance:
-            selection.where(
-                s.t.addresses.c["head"].like(
+            selection = selection.where(
+                s.t.addresses.c["address"].like(
                     cs_name + ':' + instance + ':%'
                 )
             )
