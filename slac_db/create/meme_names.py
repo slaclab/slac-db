@@ -11,7 +11,7 @@ class _Parser:
     def __init__(self):
         self.areas = set()
         self.types = set()
-        self.heads = dict()
+        self.headers = dict()
         self.addresses = list()
         self._get_from_meme()
 
@@ -31,7 +31,7 @@ class _Parser:
             }
             self.types.add(entry['type'])
             self.areas.add(entry['area'])
-            self.heads[head] = entry
+            self.headers[head] = entry
             self.addresses.append(
                 {'head': head,
                  'address': a}
