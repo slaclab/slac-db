@@ -1,5 +1,5 @@
 import csv
-
+import unittest
 import slac_db.config
 from slac_db.create.lcls_elements import (
     _ORACLE_TO_REFERENCE,
@@ -36,7 +36,7 @@ def _num(v):
     except (ValueError, TypeError):
         return v
 
-
+@unittest.skipUnless(generate_tcsv, "Skipping test on workflow, this is manual currently.")
 def test_csv_matches_reference():
     build_lcls_elements_csv(str(oracle_csv), str(test_csv))
 
