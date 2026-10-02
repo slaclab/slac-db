@@ -1,23 +1,99 @@
 import csv
-from sqlalchemy import text
+from sqlalchemy import text, create_engine
+from contextlib import contextmanager
 import slac_db.config
 import slac_db.element_tables
 
-def get_lcls_elements_csv(csv_output='lcls_elements.csv'):
-    """Get the lcls_elements.csv file from Oracle.
+_ORACLE_TNS      = 'slacprod' # name/connection of Oracle DB on prod
+_ORACLE_USERNAME = 'lcls_read'
+
+_ORACLE_TO_REFERENCE = {
+    "area":                       "Area",
+    "element":                    "Element",
+    "epics_channel_access_name":  "Control System Name",
+    "keyword":                    "Keyword",
+    "beampath":                   "Beampath",
+    "suml_m":                     "SumL (m)",
+    "effective_length":           "Effective Length (m)",
+    "rf_frequency":               "Rf Frequency (MHz)",
+    "engineering_name":           "Engineering Name",
+    "active_flag":                "Active",
+}
+
+@contextmanager
+def get_connection():
+    """Yield a connection to Oracle. Only works on production.
+    Using as a context manager so the connection and engine are always cleaned up:
+        with get_connection() as conn:
+    """
+    engine = create_engine(_get_remote_uri())
+    conn = engine.connect()
+    try:
+        yield conn
+    finally:
+        conn.close()
+        engine.dispose()
+
+
+def _get_oracle_pw(username=_ORACLE_USERNAME):
+    """Get Oracle password. This only works on production.
+    """
+    try:
+        import subprocess
+        cmd      = subprocess.run(['getPwd', username], capture_output=True, text=True, check=True)
+        password = cmd.stdout.strip()
+        return password
+    except Exception as e:
+        print(f"Could not get Oracle password: {e}")
+        return None
+
+def _get_remote_uri():
+    """Get string needed to connect to Oracle remotely.
+    """
+    password  = _get_oracle_pw(_ORACLE_USERNAME)
+    connection_string = f'oracle+cx_oracle://{_ORACLE_USERNAME}:{password}@{_ORACLE_TNS}'
+    return connection_string
+
+
+def get_oracle_elements_csv(oracle_csv='oracle_elements.csv'):
+    """Get a csv file from Oracle that has all devices in LCLS_ELEMENTS table.
     This function only works on production.
 
     Args:
-        csv_output: Name of the output csv file.
+        oracle_csv: Name of the output csv file.
     """
-    import pandas as pd
     sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
     try:
-        with get_connection() as connection:
-            df = pd.read_sql(sql_query, connection)
-            df.to_csv(csv_output, index=False)
+        with get_connection() as connection, \
+             open(oracle_csv, "w", newline="") as output_csv:
+            result = connection.execute(sql_query)
+            writer = csv.writer(output_csv)
+            writer.writerow(result.keys())
+            for row in result:
+                writer.writerow("" if v is None else str(v) for v in row)
     except Exception as e:
         print(f"An error occurred {e}")
+        raise
+
+
+def build_lcls_elements_csv(oracle_csv, lcls_csv):
+    """Convert oracle csv into the curated lcls_elements.csv format."""
+    try:
+        with open(oracle_csv, newline="") as input_csv, open(lcls_csv, "w", newline="") as output_csv:
+            keymap = _ORACLE_TO_REFERENCE
+            reader = csv.DictReader(input_csv)
+            writer = csv.writer(output_csv)
+            writer.writerow(keymap.values())
+            for row in reader:
+                writer.writerow(row[c] for c in keymap)
+    except Exception as e:
+        print(f"Unable to build the LCLS elements csv: {e}")
+        raise
+
+def get_lcls_elements_csv(oracle_csv='oracle_elements.csv', lcls_csv='lcls_elements.csv'):
+    """Get oracle csv on production, then convert to lcls_element.csv needed for this repo."""
+    get_oracle_elements_csv(oracle_csv=oracle_csv)
+    build_lcls_elements_csv(oracle_csv, lcls_csv)
 
 
 def to_oracle_db(csv_source=None):
