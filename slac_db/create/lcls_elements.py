@@ -55,19 +55,22 @@ def _get_remote_uri():
     return connection_string
 
 
-def get_oracle_elements_csv(csv_output='oracle_elements.csv'):
+def get_oracle_elements_csv(oracle_csv='oracle_elements.csv'):
     """Get a csv file from Oracle that has all devices in LCLS_ELEMENTS table.
     This function only works on production.
 
     Args:
-        csv_output: Name of the output csv file.
+        oracle_csv: Name of the output csv file.
     """
-    import pandas as pd
     sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
     try:
-        with get_connection() as connection:
-            df = pd.read_sql(sql_query, connection)
-            df.to_csv(csv_output, index=False)
+        with get_connection() as connection, \
+             open(oracle_csv, "w", newline="") as output_csv:
+            result = connection.execute(sql_query)
+            writer = csv.writer(output_csv)
+            writer.writerow(result.keys())
+            for row in result:
+                writer.writerow("" if v is None else str(v) for v in row)
     except Exception as e:
         print(f"An error occurred {e}")
         raise
@@ -89,7 +92,7 @@ def build_lcls_elements_csv(oracle_csv, lcls_csv):
 
 def get_lcls_elements_csv(oracle_csv='oracle_elements.csv', lcls_csv='lcls_elements.csv'):
     """Get oracle csv on production, then convert to lcls_element.csv needed for this repo."""
-    get_oracle_elements_csv(csv_output=oracle_csv)
+    get_oracle_elements_csv(oracle_csv=oracle_csv)
     build_lcls_elements_csv(oracle_csv, lcls_csv)
 
 
