@@ -204,6 +204,7 @@ def _get_remote_uri():
     return connection_string
 
 
+<<<<<<< HEAD
 def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
     """Export Oracle elements with web-style columns and one header row.
 
@@ -220,6 +221,20 @@ def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
             open(csv_output, "w", newline="") as output_csv:
             query = text(sql) if isinstance(sql, str) else sql
             result = connection.execute(query)
+=======
+def get_oracle_elements_csv(oracle_csv='oracle_elements.csv'):
+    """Get a csv file from Oracle that has all devices in LCLS_ELEMENTS table.
+    This function only works on production.
+
+    Args:
+        oracle_csv: Name of the output csv file.
+    """
+    sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
+    try:
+        with get_connection() as connection, \
+             open(oracle_csv, "w", newline="") as output_csv:
+            result = connection.execute(sql_query)
+>>>>>>> 26f1878 (removed pandas dump updated test)
             writer = csv.writer(output_csv)
             writer.writerow(result.keys())
             for row in result:
@@ -228,6 +243,30 @@ def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
         print(f"An error occurred {e}")
         raise
 
+<<<<<<< HEAD
+=======
+
+def build_lcls_elements_csv(oracle_csv, lcls_csv):
+    """Convert oracle csv into the curated lcls_elements.csv format."""
+    try:
+        with open(oracle_csv, newline="") as input_csv, open(lcls_csv, "w", newline="") as output_csv:
+            keymap = _ORACLE_TO_REFERENCE
+            reader = csv.DictReader(input_csv)
+            writer = csv.writer(output_csv)
+            writer.writerow(keymap.values())
+            for row in reader:
+                writer.writerow(row[c] for c in keymap)
+    except Exception as e:
+        print(f"Unable to build the LCLS elements csv: {e}")
+        raise
+
+def get_lcls_elements_csv(oracle_csv='oracle_elements.csv', lcls_csv='lcls_elements.csv'):
+    """Get oracle csv on production, then convert to lcls_element.csv needed for this repo."""
+    get_oracle_elements_csv(oracle_csv=oracle_csv)
+    build_lcls_elements_csv(oracle_csv, lcls_csv)
+
+
+>>>>>>> 26f1878 (removed pandas dump updated test)
 def to_oracle_db(csv_source=None):
     """Build  oracle DB with SQLAlchemy.
 
