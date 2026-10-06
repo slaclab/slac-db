@@ -52,28 +52,32 @@ class _Parser():
             csv_source = (
                 slac_db.config.package_data() / "lcls_elements.csv"
             )
-        self.rows = {}
+        self.rows = []
         with open(csv_source, "r") as c:
             reader = csv.reader(c)
             self._parse_csv(reader)
 
     def _parse_csv(self, reader):
         next(reader)  # skip group header row
-        names = [r.lower() for r in next(reader)]
-        i = 0
-        # Track station names already recorded for KLYS sub-cavity dedup.
-        # Maps station_name -> index in self.rows for the canonical row.
-        # Keyed on the stripped element name (e.g. "K21_5") so that dirty
-        # cs_name data (truncated or transposed digits in sectors 12-19)
-        # cannot produce duplicate station entries.
-        _klys_seen = {}
+        i = 1
+        header = next(reader)
+        index = {r.lower(): i for r, i in zip(header, range(0,len(header)))}
+        wanted_cols = [
+            k.lower()
+            for k in slac_db.element_tables.schema['elements'].keys() if k != 'yaml_type'
+        ]
+        def get_col(row, col):
+            return row[index[col]]
+        _klys_seen = set()
         for row in reader:
-            values = [None if v == '' else v for v in row]
-            d = dict(zip(names, values))
-            d["yaml_type"] = _ORACLE_TO_YAML_TYPE_MAP.get(d["keyword"], None)
-            element = d.get("element") or ""
-            cs_name = d.get("control system name") or ""
-            keyword = d.get("keyword") or ""
+            d = {
+                c: get_col(row, c) or None
+                for c in wanted_cols
+            }
+            d['yaml_type'] = _ORACLE_TO_YAML_TYPE_MAP.get(d['keyword'], None)
+            cs_name = d['control system name'] or ""
+            element = d["element"] or ""
+            keyword = d['keyword'] or ""
             # Deduplicate klystron sub-cavities (K21_5A/B/C/D -> K21_5).
             # A sub-cavity row is an LCAV whose element ends in A-D and whose
             # cs_name contains "KLYS" (handles both "KLYS:LI{s}:{n}1" and
@@ -83,7 +87,7 @@ class _Parser():
             # duplicate entries (e.g. K12_3A has cs LI12:KLYS:3 while
             # K12_3B/C/D have LI12:KLYS:31).
             if (
-                keyword == "LCAV"
+                d['keyword'] == "LCAV"
                 and "KLYS" in cs_name
                 and len(element) > 1
                 and element[-1] in "ABCD"
@@ -94,6 +98,5 @@ class _Parser():
                     continue
                 # First time seeing this station: record it and rename element.
                 d["element"] = station
-                _klys_seen[station] = i
-            self.rows[i] = d
-            i += 1
+                _klys_seen.add(station)
+            self.rows.append(d)

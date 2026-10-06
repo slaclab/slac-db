@@ -55,10 +55,11 @@ class _Parser:
             self._area_map(r)
             self._device_meta_float(r)
             self._device_meta_string(r, area_yaml, device_yaml)
-            self._address_meta(r)
-            self._accessor_meta(r)
+            addresses = slac_db.directory_service.get_addresses(r['element'])
+            self._address_meta(r, addresses)
+            self._accessor_meta(r, addresses)
 
-    def _accessor_meta(self, r):
+    def _accessor_meta(self, r, addresses):
         """Create a dictionary that combines accessor names
         with device names and addresses.
 
@@ -116,7 +117,7 @@ class _Parser:
                     )
 
         def _meta(device, pv_head, d_type):
-            for pv in slac_db.directory_service.get_addresses(device):
+            for pv in addresses:
                 pv_tail = pv[len(pv_head)+1:]
                 if pv_tail is None:
                     continue
@@ -125,19 +126,16 @@ class _Parser:
 
         self.accessor_meta += list(_build())
 
-    def _address_meta(self, row):
+    def _address_meta(self, row, addresses):
         """Create a list of tuples connecting device names
         to device addresses.
 
         Sets:
             self.address_meta
         """
-        cs_name = row["control system name"]
-        addresses = slac_db.directory_service.get_addresses(
-            cs_name=cs_name
-        )
         if not addresses:
             return
+        cs_name = row["control system name"]
         self.address_meta += [
             PKDict(device_name=row["element"], cs_address=c)
             for c in addresses
@@ -180,7 +178,7 @@ class _Parser:
             "device_type": row["keyword"],
             "cs_name": row["control system name"],
         }
-        if None in entry.values():
+        if not all(entry.values()):
             return
         if ":" in row["element"]:
             return

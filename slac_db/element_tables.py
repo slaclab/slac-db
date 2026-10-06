@@ -7,6 +7,22 @@ import os
 
 _meta = None
 
+schema = {
+    "elements": {
+        "Area": "str 64 nullable",
+        "Element": "str 64 primary_key",
+        "Control System Name": "str 64 nullable",
+        "Keyword": "str 64 nullable",
+        "Beampath": "str 64 nullable",
+        "SumL (m)": "float 64 nullable",
+        "Effective Length (m)": "float 64 nullable",
+        "Rf Frequency (MHz)": "float 64 nullable",
+        "Engineering Name": "str 64 nullable",
+        "Active": "str 1 nullable",
+        "yaml_type": "str 64 nullable",
+    }
+}
+
 def get_address_header(device=None):
     """Get address header of a device.
 
@@ -154,14 +170,8 @@ class _Inserter:
     """
     def __init__(self, parser):
         with _session() as s:
-            self._rows(parser.rows, s)
-
-    def _rows(self, rows, session):
-        for r in rows.values():
-            ins = {}
-            for c in session.t.elements.c:
-                ins[c.name] = r[c.name.lower()]
-            session.insert("elements", **ins)
+            s.execute(sqlalchemy.text('SELECT 1')) # init _conn
+            s._conn.execute(s.t.elements.insert(), parser.rows)
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):
@@ -174,25 +184,10 @@ def _init_db(location=None):
 
        _meta: wrapper that holds sqlalchemy metadata.
     """
-    global _meta
+    global _meta, schema
     if location is None:
         location = _oracle_location()
     uri = _db_type_prefix(location)
-    schema = {
-        "elements": {
-            "Area": "str 64 nullable",
-            "Element": "str 64 primary_key",
-            "Control System Name": "str 64 nullable",
-            "Keyword": "str 64 nullable",
-            "Beampath": "str 64 nullable",
-            "SumL (m)": "float 64 nullable",
-            "Effective Length (m)": "float 64 nullable",
-            "Rf Frequency (MHz)": "float 64 nullable",
-            "Engineering Name": "str 64 nullable",
-            "Active": "str 1 nullable",
-            "yaml_type": "str 64 nullable",
-        }
-    }
     _meta = pykern.sql_db.Meta(
         uri=uri,
         schema=schema

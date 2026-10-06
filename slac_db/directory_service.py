@@ -50,8 +50,8 @@ def verify_head(head, instance=None):
 
         if instance:
             selection.where(
-                s.t.addresses.c["head"].like(
-                    head + ':' + instance + ':%'
+                s.t.addresses.c["head"].op('GLOB')(
+                    head + ':' + instance + ':*'
                 )
             )
         
@@ -87,8 +87,8 @@ def get_addresses(device=None, cs_name=''):
         )
         if instance:
             selection = selection.where(
-                s.t.addresses.c["address"].like(
-                    cs_name + ':' + instance + ':%'
+                s.t.addresses.c["address"].op('GLOB')(
+                    cs_name + ':' + instance + ':*'
                 )
             )
         return list(
