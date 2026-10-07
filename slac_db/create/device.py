@@ -38,7 +38,7 @@ class _Parser:
     def __init__(self):
         device_yaml = {}
         area_yaml = {}
-        for f in slac_db.config.package_data().rglob('*_metadata.yaml'):
+        for f in slac_db.config.package_data().glob('*_metadata.yaml'):
             if f.name.endswith('_area_metadata.yaml'):
                 area_yaml[f.name[:-19]] = slac_db.io.read_dict(f)
             elif f.name.endswith('_metadata.yaml'):
