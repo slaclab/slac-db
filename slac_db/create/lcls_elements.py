@@ -59,7 +59,6 @@ class _Parser():
 
     def _parse_csv(self, reader):
         next(reader)  # skip group header row
-        i = 1
         header = next(reader)
         index = {r.lower(): i for r, i in zip(header, range(0,len(header)))}
         wanted_cols = [

@@ -35,6 +35,7 @@ class _Parser:
     device_meta = list()
     device_meta_float = list()
     device_meta_string = list()
+    device_meta_names = set()
 
 
     def __init__(self):
@@ -50,14 +51,25 @@ class _Parser:
         self.accessor_overrides = self.accessor_map.pop("_overrides", {})
         for r in slac_db.element_tables.get_all_rows():
             # Skip a row if it is an excluded device.
-            if not self._devices(r):
+            if not (d := self._devices(r)):
                 continue
-            self._area_map(r)
-            self._device_meta_float(r)
-            self._device_meta_string(r, area_yaml, device_yaml)
+            self.devices.append(d)
+            self.device_names.update(d["device_name"])
+            self.areas.add(self._area_map(r))
+            meta_float, meta_float_entry = self._device_meta_float(r)
+            meta_string, meta_string_entry = self._device_meta_string(r, area_yaml, device_yaml)
+            self.device_meta_float += meta_float
+            self.device_meta_string += meta_string
+            device_meta = meta_float_entry + meta_string_entry
+            self.device_meta += device_meta
+            self.device_names.union(
+                self._unique_meta_entries(device_meta)
+            )
             addresses = slac_db.directory_service.get_addresses(r['element'])
-            self._address_meta(r, addresses)
-            self._accessor_meta(r, addresses)
+            if addresses is None:
+                continue
+            self.address_meta += self._address_meta(r, addresses)
+            self.accessor_meta += self._accessor_meta(r, addresses)
 
     def _accessor_meta(self, r, addresses):
         """Create a dictionary that combines accessor names
@@ -124,7 +136,7 @@ class _Parser:
                 yield from _build_accessors(device, d_type, pv_head, pv_tail)
             yield from _build_overrides(device)
 
-        self.accessor_meta += list(_build())
+        return list(_build())
 
     def _address_meta(self, row, addresses):
         """Create a list of tuples connecting device names
@@ -133,10 +145,8 @@ class _Parser:
         Sets:
             self.address_meta
         """
-        if not addresses:
-            return
         cs_name = row["control system name"]
-        self.address_meta += [
+        return [
             PKDict(device_name=row["element"], cs_address=c)
             for c in addresses
         ]
@@ -162,7 +172,7 @@ class _Parser:
                 (area, b) for b in parse_beampaths(beampath_csv)
             )
         )
-        self.areas.add(area)
+        return area
 
     def _devices(self, row):
         """Creates a list of devices and their basic meta.
@@ -185,9 +195,7 @@ class _Parser:
         entry["is_active"] = (
             row["active"] == 'A' if row["active"] is not None else None
         )
-        self.devices.append(entry)
-        self.device_names.update(entry["device_name"])
-        return True
+        return entry
 
     def _device_meta_float(self, row):
         
@@ -203,16 +211,17 @@ class _Parser:
                     continue
                 yield entry
 
-        new_meta = [m for m in get_meta_float()]
-        self.device_meta_float += new_meta
-        self.device_meta += [
+        meta_float = [m for m in get_meta_float()]
+        meta_entry = [
             {
                 "device_name": m["device_name"],
                 "device_meta_name": m["device_meta_name"],
                 "meta_type": "float",
             }
-            for m in new_meta
+            for m in meta_float
         ]
+        
+        return meta_float, meta_entry
 
     def _device_meta_string(self, row, area_yaml, device_yaml):
         def _fixup_string(value):
@@ -238,13 +247,26 @@ class _Parser:
             )
             yield from _parse_meta_string(name, meta)
 
-        new_meta = [m for m in _parse_yaml()]
-        self.device_meta_string += new_meta
-        self.device_meta += [
+        meta_string = [m for m in _parse_yaml()]
+        meta_entry = [
             {
                 "device_name": m["device_name"],
                 "device_meta_name": m["device_meta_name"],
                 "meta_type": "string",
             }
-            for m in new_meta
+            for m in meta_string
         ]
+
+        return meta_string, meta_entry
+
+    def _unique_meta_entries(self, meta):
+        def name_meta_pairs(entries):
+            for e in entries:
+                yield (e['device_name'], e['device_meta_name'])
+        names = set()
+        for e in name_meta_pairs(meta):
+            if e in names:
+                ValueError(f"Conflicting Meta name entries {intersection}")
+            names.add(e)
+        return names
+

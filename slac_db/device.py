@@ -227,6 +227,25 @@ class _Inserter():
             print("Creating Accessor")
             self.create_accessor_db(s)
 
+    def create_address_db(self, s):
+        s._conn.execute(s.t.addresses.insert(), self.parser.address_meta)
+
+    def create_accessor_db(self, s):
+        for p in self.parser.accessor_meta:
+            if not p.accessor_name:
+                raise ValueError(f"No accessor name for {p.cs_address}")
+        s._conn.execute(s.t.accessors.insert(), self.parser.accessor_meta)
+
+    def create_areas_db(self, s):
+        ins = [{'area': a} for a in self.parser.areas]
+        s._conn.execute(s.t.areas.insert(), ins)
+
+    def create_beampaths_db(self, s):
+        def _ins():
+            for (a, b) in self.parser.area_map:
+                yield {'area': a, 'beampath': b}
+        s._conn.execute(s.t.beampaths.insert(), list(_ins()))
+
     def create_device_db(self, s):
         s._conn.execute(s.t.devices.insert(), self.parser.devices)
 
@@ -238,25 +257,6 @@ class _Inserter():
 
     def create_device_meta_string_db(self, s):
         s._conn.execute(s.t.device_meta_string.insert(), self.parser.device_meta_string)
-
-    def create_beampaths_db(self, s):
-        def _ins():
-            for (a, b) in self.parser.area_map:
-                yield {'area': a, 'beampath': b}
-        s._conn.execute(s.t.beampaths.insert(), list(_ins()))
-
-    def create_areas_db(self, s):
-        ins = [{'area': a} for a in self.parser.areas]
-        s._conn.execute(s.t.areas.insert(), ins)
-
-    def create_address_db(self, s):
-        s._conn.execute(s.t.addresses.insert(), self.parser.address_meta)
-
-    def create_accessor_db(self, s):
-        for p in self.parser.accessor_meta:
-            if not p.accessor_name:
-                raise ValueError(f"Empty accessor name for {p.cs_address}")
-        s._conn.execute(s.t.accessors.insert(), self.parser.accessor_meta)
 
 def _db_type_prefix(uri):
     if not uri.startswith("sqlite"):
