@@ -24,19 +24,16 @@ def to_device_db():
     slac_db.device.recreate(_Parser())
 
 class _Parser:
-    accessor_map = dict()
-    accessor_meta = list()
-    # address_map = dict()
-    address_meta = list()
-    areas = set()
-    area_map = set()
-    devices = list()
-    device_names = set()
-    device_meta = list()
-    device_meta_float = list()
-    device_meta_string = list()
-    device_meta_names = set()
-
+    accessor_map: dict
+    accessor_meta: list
+    address_meta: list
+    areas: set
+    area_map: set
+    devices: list
+    device_meta: list
+    device_meta_float: list
+    device_meta_string: list
+    device_meta_names: list
 
     def __init__(self):
         device_yaml = {}
@@ -54,7 +51,6 @@ class _Parser:
             if not (d := self._devices(r)):
                 continue
             self.devices.append(d)
-            self.device_names.update(d["device_name"])
             self.areas.add(self._area_map(r))
             meta_float, meta_float_entry = self._device_meta_float(r)
             meta_string, meta_string_entry = self._device_meta_string(r, area_yaml, device_yaml)
@@ -62,8 +58,8 @@ class _Parser:
             self.device_meta_string += meta_string
             device_meta = meta_float_entry + meta_string_entry
             self.device_meta += device_meta
-            self.device_names.union(
-                self._unique_meta_entries(device_meta)
+            self.device_meta_names.add(
+                self._unique_meta_entries(device_meta, self.device_meta_names)
             )
             addresses = slac_db.directory_service.get_addresses(r['element'])
             if addresses is None:
@@ -259,14 +255,14 @@ class _Parser:
 
         return meta_string, meta_entry
 
-    def _unique_meta_entries(self, meta):
+    def _unique_meta_entries(self, meta, entries):
         def name_meta_pairs(entries):
             for e in entries:
                 yield (e['device_name'], e['device_meta_name'])
         names = set()
         for e in name_meta_pairs(meta):
-            if e in names:
-                ValueError(f"Conflicting Meta name entries {intersection}")
+            if e in names or e in entries:
+                raise ValueError(f"Conflicting Meta name entries {e}")
             names.add(e)
         return names
 
