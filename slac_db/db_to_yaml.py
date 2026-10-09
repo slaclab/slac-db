@@ -1,6 +1,8 @@
+import slac_db.config
 import slac_db.device
 import slac_db.element_tables
 import slac_db.create.combined
+import yaml
 
 _ORACLE_TO_YAML_TYPE_MAP = {
     "SOLE": "magnets",
@@ -173,3 +175,13 @@ def build():
     areas = list(_parse_areas())
     out = {a: d for a, d in _build_areas(areas) if d != {}}
     return out
+
+def write():
+    def _yaml_dump(area, output):
+        filename = area + ".yaml"
+        fullpath = slac_db.config.yaml().joinpath(filename)
+        if output:
+            with open(fullpath, "w") as file:
+                yaml.safe_dump(output, file)
+    for area, y in build().items():
+        _yaml_dump(area, y)
