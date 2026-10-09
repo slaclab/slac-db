@@ -1,13 +1,13 @@
 bpms:
-  CMB16:
+  CMB37:
     controls_information:
       PVs:
-        tmit: BPMS:L3B:1683:TMIT
-        x: BPMS:L3B:1683:X
-        y: BPMS:L3B:1683:Y
-      control_name: BPMS:L3B:1683
+        tmit: BPMS:L4B:3783:TMIT
+        x: BPMS:L4B:3783:X
+        y: BPMS:L4B:3783:Y
+      control_name: BPMS:L4B:3783
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -25,17 +25,17 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 412.261
+      sum_l_meters: 673.988
       type: BPM
-  CMB17:
+  CMB38:
     controls_information:
       PVs:
-        tmit: BPMS:L3B:1783:TMIT
-        x: BPMS:L3B:1783:X
-        y: BPMS:L3B:1783:Y
-      control_name: BPMS:L3B:1783
+        tmit: BPMS:L4B:3883:TMIT
+        x: BPMS:L4B:3883:X
+        y: BPMS:L4B:3883:Y
+      control_name: BPMS:L4B:3883
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -53,17 +53,17 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 424.482
+      sum_l_meters: 686.208
       type: BPM
-  CMB18:
+  CMB39:
     controls_information:
       PVs:
-        tmit: BPMS:L3B:1883:TMIT
-        x: BPMS:L3B:1883:X
-        y: BPMS:L3B:1883:Y
-      control_name: BPMS:L3B:1883
+        tmit: BPMS:L4B:3983:TMIT
+        x: BPMS:L4B:3983:X
+        y: BPMS:L4B:3983:Y
+      control_name: BPMS:L4B:3983
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -81,17 +81,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 436.702
+      sum_l_meters: 698.429
       type: BPM
-  CMB19:
+  CMB40:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:1983:TMIT
-        x: BPMS:L3B:1983:X
-        y: BPMS:L3B:1983:Y
-      control_name: BPMS:L3B:1983
+      PVs: {}
+      control_name: BPMS:L4B:4083
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -109,17 +106,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 448.922
+      sum_l_meters: 710.649
       type: BPM
-  CMB20:
+  CMB41:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2083:TMIT
-        x: BPMS:L3B:2083:X
-        y: BPMS:L3B:2083:Y
-      control_name: BPMS:L3B:2083
+      PVs: {}
+      control_name: BPMS:L4B:4183
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -137,17 +131,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 461.143
+      sum_l_meters: 722.87
       type: BPM
-  CMB21:
+  CMB42:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2183:TMIT
-        x: BPMS:L3B:2183:X
-        y: BPMS:L3B:2183:Y
-      control_name: BPMS:L3B:2183
+      PVs: {}
+      control_name: BPMS:L4B:4283
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -165,17 +156,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 473.363
+      sum_l_meters: 735.09
       type: BPM
-  CMB22:
+  CMB43:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2283:TMIT
-        x: BPMS:L3B:2283:X
-        y: BPMS:L3B:2283:Y
-      control_name: BPMS:L3B:2283
+      PVs: {}
+      control_name: BPMS:L4B:4383
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -193,17 +181,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 485.583
+      sum_l_meters: 747.31
       type: BPM
-  CMB23:
+  CMB44:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2383:TMIT
-        x: BPMS:L3B:2383:X
-        y: BPMS:L3B:2383:Y
-      control_name: BPMS:L3B:2383
+      PVs: {}
+      control_name: BPMS:L4B:4483
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -221,17 +206,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 497.804
+      sum_l_meters: 759.531
       type: BPM
-  CMB24:
+  CMB45:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2483:TMIT
-        x: BPMS:L3B:2483:X
-        y: BPMS:L3B:2483:Y
-      control_name: BPMS:L3B:2483
+      PVs: {}
+      control_name: BPMS:L4B:4583
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -249,17 +231,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 510.024
+      sum_l_meters: 771.751
       type: BPM
-  CMB25:
+  CMB46:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2583:TMIT
-        x: BPMS:L3B:2583:X
-        y: BPMS:L3B:2583:Y
-      control_name: BPMS:L3B:2583
+      PVs: {}
+      control_name: BPMS:L4B:4683
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -277,17 +256,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 522.245
+      sum_l_meters: 783.971
       type: BPM
-  CMB26:
+  CMB47:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2683:TMIT
-        x: BPMS:L3B:2683:X
-        y: BPMS:L3B:2683:Y
-      control_name: BPMS:L3B:2683
+      PVs: {}
+      control_name: BPMS:L4B:4783
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -305,17 +281,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 537.014
+      sum_l_meters: 796.192
       type: BPM
-  CMB27:
+  CMB48:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2783:TMIT
-        x: BPMS:L3B:2783:X
-        y: BPMS:L3B:2783:Y
-      control_name: BPMS:L3B:2783
+      PVs: {}
+      control_name: BPMS:L4B:4883
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -333,17 +306,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 549.235
+      sum_l_meters: 808.412
       type: BPM
-  CMB28:
+  CMB49:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2883:TMIT
-        x: BPMS:L3B:2883:X
-        y: BPMS:L3B:2883:Y
-      control_name: BPMS:L3B:2883
+      PVs: {}
+      control_name: BPMS:L4B:4983
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -361,17 +331,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 561.455
+      sum_l_meters: 823.182
       type: BPM
-  CMB29:
+  CMB50:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:2983:TMIT
-        x: BPMS:L3B:2983:X
-        y: BPMS:L3B:2983:Y
-      control_name: BPMS:L3B:2983
+      PVs: {}
+      control_name: BPMS:L4B:5083
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -389,17 +356,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 573.676
+      sum_l_meters: 835.402
       type: BPM
-  CMB30:
+  CMB51:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3083:TMIT
-        x: BPMS:L3B:3083:X
-        y: BPMS:L3B:3083:Y
-      control_name: BPMS:L3B:3083
+      PVs: {}
+      control_name: BPMS:L4B:5183
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -417,17 +381,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 585.896
+      sum_l_meters: 847.623
       type: BPM
-  CMB31:
+  CMB52:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3183:TMIT
-        x: BPMS:L3B:3183:X
-        y: BPMS:L3B:3183:Y
-      control_name: BPMS:L3B:3183
+      PVs: {}
+      control_name: BPMS:L4B:5283
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -445,17 +406,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 598.116
+      sum_l_meters: 859.843
       type: BPM
-  CMB32:
+  CMB53:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3283:TMIT
-        x: BPMS:L3B:3283:X
-        y: BPMS:L3B:3283:Y
-      control_name: BPMS:L3B:3283
+      PVs: {}
+      control_name: BPMS:L4B:5383
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -473,17 +431,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 610.337
+      sum_l_meters: 872.064
       type: BPM
-  CMB33:
+  CMB54:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3383:TMIT
-        x: BPMS:L3B:3383:X
-        y: BPMS:L3B:3383:Y
-      control_name: BPMS:L3B:3383
+      PVs: {}
+      control_name: BPMS:L4B:5483
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -501,17 +456,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 622.557
+      sum_l_meters: 884.284
       type: BPM
-  CMB34:
+  CMB55:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3483:TMIT
-        x: BPMS:L3B:3483:X
-        y: BPMS:L3B:3483:Y
-      control_name: BPMS:L3B:3483
+      PVs: {}
+      control_name: BPMS:L4B:5583
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -529,17 +481,14 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 634.777
+      sum_l_meters: 896.504
       type: BPM
-  CMB35:
+  CMB56:
     controls_information:
-      PVs:
-        tmit: BPMS:L3B:3583:TMIT
-        x: BPMS:L3B:3583:X
-        y: BPMS:L3B:3583:Y
-      control_name: BPMS:L3B:3583
+      PVs: {}
+      control_name: BPMS:L4B:5683
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -557,80 +506,97 @@ bpms:
       - SC_STXI2
       - SC_SXR
       - SC_SXR2
-      sum_l_meters: 646.998
+      sum_l_meters: 908.725
       type: BPM
-lblms:
-  LBLM07A:
+  CMB57:
     controls_information:
-      PVs:
-        bypass: LBLM:L3B:1600:A:FAST_AMP_BYP
-        gain: LBLM:L3B:1600:A:FAST_AMP_GAIN
-        gated_integral: LBLM:L3B:1600:A:GATED_INTEGRAL
-      control_name: LBLM:L3B:1600:A
+      PVs: {}
+      control_name: BPMS:L4B:5783
     metadata:
-      area: L3B
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM07B:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      sum_l_meters: 920.945
+      type: BPM
+  CMB58:
     controls_information:
-      PVs:
-        bypass: LBLM:L3B:1600:B:FAST_AMP_BYP
-        gain: LBLM:L3B:1600:B:FAST_AMP_GAIN
-      control_name: LBLM:L3B:1600:B
+      PVs: {}
+      control_name: BPMS:L4B:5883
     metadata:
-      area: L3B
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM08A:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      sum_l_meters: 933.165
+      type: BPM
+  CMB59:
     controls_information:
-      PVs:
-        bypass: LBLM:L3B:2600:A:FAST_AMP_BYP
-        gain: LBLM:L3B:2600:A:FAST_AMP_GAIN
-      control_name: LBLM:L3B:2600:A
+      PVs: {}
+      control_name: BPMS:L4B:5983
     metadata:
-      area: L3B
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM08B:
-    controls_information:
-      PVs:
-        bypass: LBLM:L3B:2600:B:FAST_AMP_BYP
-        gain: LBLM:L3B:2600:B:FAST_AMP_GAIN
-      control_name: LBLM:L3B:2600:B
-    metadata:
-      area: L3B
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM09A:
-    controls_information:
-      PVs:
-        bypass: LBLM:L3B:3578:A:FAST_AMP_BYP
-        gain: LBLM:L3B:3578:A:FAST_AMP_GAIN
-        i0_loss: LBLM:L3B:3578:A:I0_LOSS
-      control_name: LBLM:L3B:3578:A
-    metadata:
-      area: L3B
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      sum_l_meters: 945.386
+      type: BPM
 magnets:
-  QCM16:
+  QCM37:
     controls_information:
       PVs:
-        bact: QUAD:L3B:1685:BACT
-        bcon: QUAD:L3B:1685:BCON
-        bctrl: QUAD:L3B:1685:BCTRL
-        bdes: QUAD:L3B:1685:BDES
-        bmax: QUAD:L3B:1685:BMAX
-        bmin: QUAD:L3B:1685:BMIN
-        ctrl: QUAD:L3B:1685:CTRL
-      control_name: QUAD:L3B:1685
+        bact: QUAD:L4B:3785:BACT
+        bcon: QUAD:L4B:3785:BCON
+        bctrl: QUAD:L4B:3785:BCTRL
+        bdes: QUAD:L4B:3785:BDES
+        bmax: QUAD:L4B:3785:BMAX
+        bmin: QUAD:L4B:3785:BMIN
+        ctrl: QUAD:L4B:3785:CTRL
+      control_name: QUAD:L4B:3785
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -649,21 +615,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 412.526
+      sum_l_meters: 674.252
       type: QUAD
-  QCM17:
+  QCM38:
     controls_information:
       PVs:
-        bact: QUAD:L3B:1785:BACT
-        bcon: QUAD:L3B:1785:BCON
-        bctrl: QUAD:L3B:1785:BCTRL
-        bdes: QUAD:L3B:1785:BDES
-        bmax: QUAD:L3B:1785:BMAX
-        bmin: QUAD:L3B:1785:BMIN
-        ctrl: QUAD:L3B:1785:CTRL
-      control_name: QUAD:L3B:1785
+        bact: QUAD:L4B:3885:BACT
+        bcon: QUAD:L4B:3885:BCON
+        bctrl: QUAD:L4B:3885:BCTRL
+        bdes: QUAD:L4B:3885:BDES
+        bmax: QUAD:L4B:3885:BMAX
+        bmin: QUAD:L4B:3885:BMIN
+        ctrl: QUAD:L4B:3885:CTRL
+      control_name: QUAD:L4B:3885
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -682,21 +648,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 424.746
+      sum_l_meters: 686.473
       type: QUAD
-  QCM18:
+  QCM39:
     controls_information:
       PVs:
-        bact: QUAD:L3B:1885:BACT
-        bcon: QUAD:L3B:1885:BCON
-        bctrl: QUAD:L3B:1885:BCTRL
-        bdes: QUAD:L3B:1885:BDES
-        bmax: QUAD:L3B:1885:BMAX
-        bmin: QUAD:L3B:1885:BMIN
-        ctrl: QUAD:L3B:1885:CTRL
-      control_name: QUAD:L3B:1885
+        bact: QUAD:L4B:3985:BACT
+        bcon: QUAD:L4B:3985:BCON
+        bctrl: QUAD:L4B:3985:BCTRL
+        bdes: QUAD:L4B:3985:BDES
+        bmax: QUAD:L4B:3985:BMAX
+        bmin: QUAD:L4B:3985:BMIN
+        ctrl: QUAD:L4B:3985:CTRL
+      control_name: QUAD:L4B:3985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -715,21 +681,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 436.966
+      sum_l_meters: 698.693
       type: QUAD
-  QCM19:
+  QCM40:
     controls_information:
       PVs:
-        bact: QUAD:L3B:1985:BACT
-        bcon: QUAD:L3B:1985:BCON
-        bctrl: QUAD:L3B:1985:BCTRL
-        bdes: QUAD:L3B:1985:BDES
-        bmax: QUAD:L3B:1985:BMAX
-        bmin: QUAD:L3B:1985:BMIN
-        ctrl: QUAD:L3B:1985:CTRL
-      control_name: QUAD:L3B:1985
+        bact: QUAD:L4B:4085:BACT
+        bcon: QUAD:L4B:4085:BCON
+        bctrl: QUAD:L4B:4085:BCTRL
+        bdes: QUAD:L4B:4085:BDES
+        bmax: QUAD:L4B:4085:BMAX
+        bmin: QUAD:L4B:4085:BMIN
+        ctrl: QUAD:L4B:4085:CTRL
+      control_name: QUAD:L4B:4085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -748,21 +714,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 449.187
+      sum_l_meters: 710.914
       type: QUAD
-  QCM20:
+  QCM41:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2085:BACT
-        bcon: QUAD:L3B:2085:BCON
-        bctrl: QUAD:L3B:2085:BCTRL
-        bdes: QUAD:L3B:2085:BDES
-        bmax: QUAD:L3B:2085:BMAX
-        bmin: QUAD:L3B:2085:BMIN
-        ctrl: QUAD:L3B:2085:CTRL
-      control_name: QUAD:L3B:2085
+        bact: QUAD:L4B:4185:BACT
+        bcon: QUAD:L4B:4185:BCON
+        bctrl: QUAD:L4B:4185:BCTRL
+        bdes: QUAD:L4B:4185:BDES
+        bmax: QUAD:L4B:4185:BMAX
+        bmin: QUAD:L4B:4185:BMIN
+        ctrl: QUAD:L4B:4185:CTRL
+      control_name: QUAD:L4B:4185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -781,21 +747,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 461.407
+      sum_l_meters: 723.134
       type: QUAD
-  QCM21:
+  QCM42:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2185:BACT
-        bcon: QUAD:L3B:2185:BCON
-        bctrl: QUAD:L3B:2185:BCTRL
-        bdes: QUAD:L3B:2185:BDES
-        bmax: QUAD:L3B:2185:BMAX
-        bmin: QUAD:L3B:2185:BMIN
-        ctrl: QUAD:L3B:2185:CTRL
-      control_name: QUAD:L3B:2185
+        bact: QUAD:L4B:4285:BACT
+        bcon: QUAD:L4B:4285:BCON
+        bctrl: QUAD:L4B:4285:BCTRL
+        bdes: QUAD:L4B:4285:BDES
+        bmax: QUAD:L4B:4285:BMAX
+        bmin: QUAD:L4B:4285:BMIN
+        ctrl: QUAD:L4B:4285:CTRL
+      control_name: QUAD:L4B:4285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -814,21 +780,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 473.628
+      sum_l_meters: 735.354
       type: QUAD
-  QCM22:
+  QCM43:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2285:BACT
-        bcon: QUAD:L3B:2285:BCON
-        bctrl: QUAD:L3B:2285:BCTRL
-        bdes: QUAD:L3B:2285:BDES
-        bmax: QUAD:L3B:2285:BMAX
-        bmin: QUAD:L3B:2285:BMIN
-        ctrl: QUAD:L3B:2285:CTRL
-      control_name: QUAD:L3B:2285
+        bact: QUAD:L4B:4385:BACT
+        bcon: QUAD:L4B:4385:BCON
+        bctrl: QUAD:L4B:4385:BCTRL
+        bdes: QUAD:L4B:4385:BDES
+        bmax: QUAD:L4B:4385:BMAX
+        bmin: QUAD:L4B:4385:BMIN
+        ctrl: QUAD:L4B:4385:CTRL
+      control_name: QUAD:L4B:4385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -847,21 +813,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 485.848
+      sum_l_meters: 747.575
       type: QUAD
-  QCM23:
+  QCM44:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2385:BACT
-        bcon: QUAD:L3B:2385:BCON
-        bctrl: QUAD:L3B:2385:BCTRL
-        bdes: QUAD:L3B:2385:BDES
-        bmax: QUAD:L3B:2385:BMAX
-        bmin: QUAD:L3B:2385:BMIN
-        ctrl: QUAD:L3B:2385:CTRL
-      control_name: QUAD:L3B:2385
+        bact: QUAD:L4B:4485:BACT
+        bcon: QUAD:L4B:4485:BCON
+        bctrl: QUAD:L4B:4485:BCTRL
+        bdes: QUAD:L4B:4485:BDES
+        bmax: QUAD:L4B:4485:BMAX
+        bmin: QUAD:L4B:4485:BMIN
+        ctrl: QUAD:L4B:4485:CTRL
+      control_name: QUAD:L4B:4485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -880,21 +846,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 498.068
+      sum_l_meters: 759.795
       type: QUAD
-  QCM24:
+  QCM45:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2485:BACT
-        bcon: QUAD:L3B:2485:BCON
-        bctrl: QUAD:L3B:2485:BCTRL
-        bdes: QUAD:L3B:2485:BDES
-        bmax: QUAD:L3B:2485:BMAX
-        bmin: QUAD:L3B:2485:BMIN
-        ctrl: QUAD:L3B:2485:CTRL
-      control_name: QUAD:L3B:2485
+        bact: QUAD:L4B:4585:BACT
+        bcon: QUAD:L4B:4585:BCON
+        bctrl: QUAD:L4B:4585:BCTRL
+        bdes: QUAD:L4B:4585:BDES
+        bmax: QUAD:L4B:4585:BMAX
+        bmin: QUAD:L4B:4585:BMIN
+        ctrl: QUAD:L4B:4585:CTRL
+      control_name: QUAD:L4B:4585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -913,21 +879,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 510.289
+      sum_l_meters: 772.016
       type: QUAD
-  QCM25:
+  QCM46:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2585:BACT
-        bcon: QUAD:L3B:2585:BCON
-        bctrl: QUAD:L3B:2585:BCTRL
-        bdes: QUAD:L3B:2585:BDES
-        bmax: QUAD:L3B:2585:BMAX
-        bmin: QUAD:L3B:2585:BMIN
-        ctrl: QUAD:L3B:2585:CTRL
-      control_name: QUAD:L3B:2585
+        bact: QUAD:L4B:4685:BACT
+        bcon: QUAD:L4B:4685:BCON
+        bctrl: QUAD:L4B:4685:BCTRL
+        bdes: QUAD:L4B:4685:BDES
+        bmax: QUAD:L4B:4685:BMAX
+        bmin: QUAD:L4B:4685:BMIN
+        ctrl: QUAD:L4B:4685:CTRL
+      control_name: QUAD:L4B:4685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -946,21 +912,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 522.509
+      sum_l_meters: 784.236
       type: QUAD
-  QCM26:
+  QCM47:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2685:BACT
-        bcon: QUAD:L3B:2685:BCON
-        bctrl: QUAD:L3B:2685:BCTRL
-        bdes: QUAD:L3B:2685:BDES
-        bmax: QUAD:L3B:2685:BMAX
-        bmin: QUAD:L3B:2685:BMIN
-        ctrl: QUAD:L3B:2685:CTRL
-      control_name: QUAD:L3B:2685
+        bact: QUAD:L4B:4785:BACT
+        bcon: QUAD:L4B:4785:BCON
+        bctrl: QUAD:L4B:4785:BCTRL
+        bdes: QUAD:L4B:4785:BDES
+        bmax: QUAD:L4B:4785:BMAX
+        bmin: QUAD:L4B:4785:BMIN
+        ctrl: QUAD:L4B:4785:CTRL
+      control_name: QUAD:L4B:4785
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -979,21 +945,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 537.279
+      sum_l_meters: 796.456
       type: QUAD
-  QCM27:
+  QCM48:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2785:BACT
-        bcon: QUAD:L3B:2785:BCON
-        bctrl: QUAD:L3B:2785:BCTRL
-        bdes: QUAD:L3B:2785:BDES
-        bmax: QUAD:L3B:2785:BMAX
-        bmin: QUAD:L3B:2785:BMIN
-        ctrl: QUAD:L3B:2785:CTRL
-      control_name: QUAD:L3B:2785
+        bact: QUAD:L4B:4885:BACT
+        bcon: QUAD:L4B:4885:BCON
+        bctrl: QUAD:L4B:4885:BCTRL
+        bdes: QUAD:L4B:4885:BDES
+        bmax: QUAD:L4B:4885:BMAX
+        bmin: QUAD:L4B:4885:BMIN
+        ctrl: QUAD:L4B:4885:CTRL
+      control_name: QUAD:L4B:4885
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1012,21 +978,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 549.499
+      sum_l_meters: 808.677
       type: QUAD
-  QCM28:
+  QCM49:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2885:BACT
-        bcon: QUAD:L3B:2885:BCON
-        bctrl: QUAD:L3B:2885:BCTRL
-        bdes: QUAD:L3B:2885:BDES
-        bmax: QUAD:L3B:2885:BMAX
-        bmin: QUAD:L3B:2885:BMIN
-        ctrl: QUAD:L3B:2885:CTRL
-      control_name: QUAD:L3B:2885
+        bact: QUAD:L4B:4985:BACT
+        bcon: QUAD:L4B:4985:BCON
+        bctrl: QUAD:L4B:4985:BCTRL
+        bdes: QUAD:L4B:4985:BDES
+        bmax: QUAD:L4B:4985:BMAX
+        bmin: QUAD:L4B:4985:BMIN
+        ctrl: QUAD:L4B:4985:CTRL
+      control_name: QUAD:L4B:4985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1045,21 +1011,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 561.72
+      sum_l_meters: 823.446
       type: QUAD
-  QCM29:
+  QCM50:
     controls_information:
       PVs:
-        bact: QUAD:L3B:2985:BACT
-        bcon: QUAD:L3B:2985:BCON
-        bctrl: QUAD:L3B:2985:BCTRL
-        bdes: QUAD:L3B:2985:BDES
-        bmax: QUAD:L3B:2985:BMAX
-        bmin: QUAD:L3B:2985:BMIN
-        ctrl: QUAD:L3B:2985:CTRL
-      control_name: QUAD:L3B:2985
+        bact: QUAD:L4B:5085:BACT
+        bcon: QUAD:L4B:5085:BCON
+        bctrl: QUAD:L4B:5085:BCTRL
+        bdes: QUAD:L4B:5085:BDES
+        bmax: QUAD:L4B:5085:BMAX
+        bmin: QUAD:L4B:5085:BMIN
+        ctrl: QUAD:L4B:5085:CTRL
+      control_name: QUAD:L4B:5085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1078,21 +1044,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 573.94
+      sum_l_meters: 835.667
       type: QUAD
-  QCM30:
+  QCM51:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3085:BACT
-        bcon: QUAD:L3B:3085:BCON
-        bctrl: QUAD:L3B:3085:BCTRL
-        bdes: QUAD:L3B:3085:BDES
-        bmax: QUAD:L3B:3085:BMAX
-        bmin: QUAD:L3B:3085:BMIN
-        ctrl: QUAD:L3B:3085:CTRL
-      control_name: QUAD:L3B:3085
+        bact: QUAD:L4B:5185:BACT
+        bcon: QUAD:L4B:5185:BCON
+        bctrl: QUAD:L4B:5185:BCTRL
+        bdes: QUAD:L4B:5185:BDES
+        bmax: QUAD:L4B:5185:BMAX
+        bmin: QUAD:L4B:5185:BMIN
+        ctrl: QUAD:L4B:5185:CTRL
+      control_name: QUAD:L4B:5185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1111,21 +1077,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 586.16
+      sum_l_meters: 847.887
       type: QUAD
-  QCM31:
+  QCM52:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3185:BACT
-        bcon: QUAD:L3B:3185:BCON
-        bctrl: QUAD:L3B:3185:BCTRL
-        bdes: QUAD:L3B:3185:BDES
-        bmax: QUAD:L3B:3185:BMAX
-        bmin: QUAD:L3B:3185:BMIN
-        ctrl: QUAD:L3B:3185:CTRL
-      control_name: QUAD:L3B:3185
+        bact: QUAD:L4B:5285:BACT
+        bcon: QUAD:L4B:5285:BCON
+        bctrl: QUAD:L4B:5285:BCTRL
+        bdes: QUAD:L4B:5285:BDES
+        bmax: QUAD:L4B:5285:BMAX
+        bmin: QUAD:L4B:5285:BMIN
+        ctrl: QUAD:L4B:5285:CTRL
+      control_name: QUAD:L4B:5285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1144,21 +1110,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 598.381
+      sum_l_meters: 860.108
       type: QUAD
-  QCM32:
+  QCM53:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3285:BACT
-        bcon: QUAD:L3B:3285:BCON
-        bctrl: QUAD:L3B:3285:BCTRL
-        bdes: QUAD:L3B:3285:BDES
-        bmax: QUAD:L3B:3285:BMAX
-        bmin: QUAD:L3B:3285:BMIN
-        ctrl: QUAD:L3B:3285:CTRL
-      control_name: QUAD:L3B:3285
+        bact: QUAD:L4B:5385:BACT
+        bcon: QUAD:L4B:5385:BCON
+        bctrl: QUAD:L4B:5385:BCTRL
+        bdes: QUAD:L4B:5385:BDES
+        bmax: QUAD:L4B:5385:BMAX
+        bmin: QUAD:L4B:5385:BMIN
+        ctrl: QUAD:L4B:5385:CTRL
+      control_name: QUAD:L4B:5385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1177,21 +1143,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 610.601
+      sum_l_meters: 872.328
       type: QUAD
-  QCM33:
+  QCM54:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3385:BACT
-        bcon: QUAD:L3B:3385:BCON
-        bctrl: QUAD:L3B:3385:BCTRL
-        bdes: QUAD:L3B:3385:BDES
-        bmax: QUAD:L3B:3385:BMAX
-        bmin: QUAD:L3B:3385:BMIN
-        ctrl: QUAD:L3B:3385:CTRL
-      control_name: QUAD:L3B:3385
+        bact: QUAD:L4B:5485:BACT
+        bcon: QUAD:L4B:5485:BCON
+        bctrl: QUAD:L4B:5485:BCTRL
+        bdes: QUAD:L4B:5485:BDES
+        bmax: QUAD:L4B:5485:BMAX
+        bmin: QUAD:L4B:5485:BMIN
+        ctrl: QUAD:L4B:5485:CTRL
+      control_name: QUAD:L4B:5485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1210,21 +1176,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 622.822
+      sum_l_meters: 884.548
       type: QUAD
-  QCM34:
+  QCM55:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3485:BACT
-        bcon: QUAD:L3B:3485:BCON
-        bctrl: QUAD:L3B:3485:BCTRL
-        bdes: QUAD:L3B:3485:BDES
-        bmax: QUAD:L3B:3485:BMAX
-        bmin: QUAD:L3B:3485:BMIN
-        ctrl: QUAD:L3B:3485:CTRL
-      control_name: QUAD:L3B:3485
+        bact: QUAD:L4B:5585:BACT
+        bcon: QUAD:L4B:5585:BCON
+        bctrl: QUAD:L4B:5585:BCTRL
+        bdes: QUAD:L4B:5585:BDES
+        bmax: QUAD:L4B:5585:BMAX
+        bmin: QUAD:L4B:5585:BMIN
+        ctrl: QUAD:L4B:5585:CTRL
+      control_name: QUAD:L4B:5585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1243,21 +1209,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 635.042
+      sum_l_meters: 896.769
       type: QUAD
-  QCM35:
+  QCM56:
     controls_information:
       PVs:
-        bact: QUAD:L3B:3585:BACT
-        bcon: QUAD:L3B:3585:BCON
-        bctrl: QUAD:L3B:3585:BCTRL
-        bdes: QUAD:L3B:3585:BDES
-        bmax: QUAD:L3B:3585:BMAX
-        bmin: QUAD:L3B:3585:BMIN
-        ctrl: QUAD:L3B:3585:CTRL
-      control_name: QUAD:L3B:3585
+        bact: QUAD:L4B:5685:BACT
+        bcon: QUAD:L4B:5685:BCON
+        bctrl: QUAD:L4B:5685:BCTRL
+        bdes: QUAD:L4B:5685:BDES
+        bmax: QUAD:L4B:5685:BMAX
+        bmin: QUAD:L4B:5685:BMIN
+        ctrl: QUAD:L4B:5685:CTRL
+      control_name: QUAD:L4B:5685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1276,21 +1242,120 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.23
-      sum_l_meters: 647.262
+      sum_l_meters: 908.989
       type: QUAD
-  XCM16:
+  QCM57:
     controls_information:
       PVs:
-        bact: XCOR:L3B:1685:BACT
-        bcon: XCOR:L3B:1685:BCON
-        bctrl: XCOR:L3B:1685:BCTRL
-        bdes: XCOR:L3B:1685:BDES
-        bmax: XCOR:L3B:1685:BMAX
-        bmin: XCOR:L3B:1685:BMIN
-        ctrl: XCOR:L3B:1685:CTRL
-      control_name: XCOR:L3B:1685
+        bact: QUAD:L4B:5785:BACT
+        bcon: QUAD:L4B:5785:BCON
+        bctrl: QUAD:L4B:5785:BCTRL
+        bdes: QUAD:L4B:5785:BDES
+        bmax: QUAD:L4B:5785:BMAX
+        bmin: QUAD:L4B:5785:BMIN
+        ctrl: QUAD:L4B:5785:CTRL
+      control_name: QUAD:L4B:5785
     metadata:
-      area: L3B
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.23
+      sum_l_meters: 921.21
+      type: QUAD
+  QCM58:
+    controls_information:
+      PVs:
+        bact: QUAD:L4B:5885:BACT
+        bcon: QUAD:L4B:5885:BCON
+        bctrl: QUAD:L4B:5885:BCTRL
+        bdes: QUAD:L4B:5885:BDES
+        bmax: QUAD:L4B:5885:BMAX
+        bmin: QUAD:L4B:5885:BMIN
+        ctrl: QUAD:L4B:5885:CTRL
+      control_name: QUAD:L4B:5885
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.23
+      sum_l_meters: 933.43
+      type: QUAD
+  QCM59:
+    controls_information:
+      PVs:
+        bact: QUAD:L4B:5985:BACT
+        bcon: QUAD:L4B:5985:BCON
+        bctrl: QUAD:L4B:5985:BCTRL
+        bdes: QUAD:L4B:5985:BDES
+        bmax: QUAD:L4B:5985:BMAX
+        bmin: QUAD:L4B:5985:BMIN
+        ctrl: QUAD:L4B:5985:CTRL
+      control_name: QUAD:L4B:5985
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.23
+      sum_l_meters: 945.65
+      type: QUAD
+  XCM37:
+    controls_information:
+      PVs:
+        bact: XCOR:L4B:3785:BACT
+        bcon: XCOR:L4B:3785:BCON
+        bctrl: XCOR:L4B:3785:BCTRL
+        bdes: XCOR:L4B:3785:BDES
+        bmax: XCOR:L4B:3785:BMAX
+        bmin: XCOR:L4B:3785:BMIN
+        ctrl: XCOR:L4B:3785:CTRL
+      control_name: XCOR:L4B:3785
+    metadata:
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1309,21 +1374,14 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 412.526
+      sum_l_meters: 674.252
       type: XCOR
-  XCM17:
+  XCM38:
     controls_information:
-      PVs:
-        bact: XCOR:L3B:1785:BACT
-        bcon: XCOR:L3B:1785:BCON
-        bctrl: XCOR:L3B:1785:BCTRL
-        bdes: XCOR:L3B:1785:BDES
-        bmax: XCOR:L3B:1785:BMAX
-        bmin: XCOR:L3B:1785:BMIN
-        ctrl: XCOR:L3B:1785:CTRL
-      control_name: XCOR:L3B:1785
+      PVs: {}
+      control_name: XCOR:L4B:3805
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1342,21 +1400,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 424.746
+      sum_l_meters: 686.473
       type: XCOR
-  XCM18:
+  XCM39:
     controls_information:
       PVs:
-        bact: XCOR:L3B:1885:BACT
-        bcon: XCOR:L3B:1885:BCON
-        bctrl: XCOR:L3B:1885:BCTRL
-        bdes: XCOR:L3B:1885:BDES
-        bmax: XCOR:L3B:1885:BMAX
-        bmin: XCOR:L3B:1885:BMIN
-        ctrl: XCOR:L3B:1885:CTRL
-      control_name: XCOR:L3B:1885
+        bact: XCOR:L4B:3985:BACT
+        bcon: XCOR:L4B:3985:BCON
+        bctrl: XCOR:L4B:3985:BCTRL
+        bdes: XCOR:L4B:3985:BDES
+        bmax: XCOR:L4B:3985:BMAX
+        bmin: XCOR:L4B:3985:BMIN
+        ctrl: XCOR:L4B:3985:CTRL
+      control_name: XCOR:L4B:3985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1375,21 +1433,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 436.966
+      sum_l_meters: 698.693
       type: XCOR
-  XCM19:
+  XCM40:
     controls_information:
       PVs:
-        bact: XCOR:L3B:1985:BACT
-        bcon: XCOR:L3B:1985:BCON
-        bctrl: XCOR:L3B:1985:BCTRL
-        bdes: XCOR:L3B:1985:BDES
-        bmax: XCOR:L3B:1985:BMAX
-        bmin: XCOR:L3B:1985:BMIN
-        ctrl: XCOR:L3B:1985:CTRL
-      control_name: XCOR:L3B:1985
+        bact: XCOR:L4B:4085:BACT
+        bcon: XCOR:L4B:4085:BCON
+        bctrl: XCOR:L4B:4085:BCTRL
+        bdes: XCOR:L4B:4085:BDES
+        bmax: XCOR:L4B:4085:BMAX
+        bmin: XCOR:L4B:4085:BMIN
+        ctrl: XCOR:L4B:4085:CTRL
+      control_name: XCOR:L4B:4085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1408,21 +1466,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 449.187
+      sum_l_meters: 710.914
       type: XCOR
-  XCM20:
+  XCM41:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2085:BACT
-        bcon: XCOR:L3B:2085:BCON
-        bctrl: XCOR:L3B:2085:BCTRL
-        bdes: XCOR:L3B:2085:BDES
-        bmax: XCOR:L3B:2085:BMAX
-        bmin: XCOR:L3B:2085:BMIN
-        ctrl: XCOR:L3B:2085:CTRL
-      control_name: XCOR:L3B:2085
+        bact: XCOR:L4B:4185:BACT
+        bcon: XCOR:L4B:4185:BCON
+        bctrl: XCOR:L4B:4185:BCTRL
+        bdes: XCOR:L4B:4185:BDES
+        bmax: XCOR:L4B:4185:BMAX
+        bmin: XCOR:L4B:4185:BMIN
+        ctrl: XCOR:L4B:4185:CTRL
+      control_name: XCOR:L4B:4185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1441,21 +1499,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 461.407
+      sum_l_meters: 723.134
       type: XCOR
-  XCM21:
+  XCM42:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2185:BACT
-        bcon: XCOR:L3B:2185:BCON
-        bctrl: XCOR:L3B:2185:BCTRL
-        bdes: XCOR:L3B:2185:BDES
-        bmax: XCOR:L3B:2185:BMAX
-        bmin: XCOR:L3B:2185:BMIN
-        ctrl: XCOR:L3B:2185:CTRL
-      control_name: XCOR:L3B:2185
+        bact: XCOR:L4B:4285:BACT
+        bcon: XCOR:L4B:4285:BCON
+        bctrl: XCOR:L4B:4285:BCTRL
+        bdes: XCOR:L4B:4285:BDES
+        bmax: XCOR:L4B:4285:BMAX
+        bmin: XCOR:L4B:4285:BMIN
+        ctrl: XCOR:L4B:4285:CTRL
+      control_name: XCOR:L4B:4285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1474,21 +1532,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 473.628
+      sum_l_meters: 735.354
       type: XCOR
-  XCM22:
+  XCM43:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2285:BACT
-        bcon: XCOR:L3B:2285:BCON
-        bctrl: XCOR:L3B:2285:BCTRL
-        bdes: XCOR:L3B:2285:BDES
-        bmax: XCOR:L3B:2285:BMAX
-        bmin: XCOR:L3B:2285:BMIN
-        ctrl: XCOR:L3B:2285:CTRL
-      control_name: XCOR:L3B:2285
+        bact: XCOR:L4B:4385:BACT
+        bcon: XCOR:L4B:4385:BCON
+        bctrl: XCOR:L4B:4385:BCTRL
+        bdes: XCOR:L4B:4385:BDES
+        bmax: XCOR:L4B:4385:BMAX
+        bmin: XCOR:L4B:4385:BMIN
+        ctrl: XCOR:L4B:4385:CTRL
+      control_name: XCOR:L4B:4385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1507,21 +1565,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 485.848
+      sum_l_meters: 747.575
       type: XCOR
-  XCM23:
+  XCM44:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2385:BACT
-        bcon: XCOR:L3B:2385:BCON
-        bctrl: XCOR:L3B:2385:BCTRL
-        bdes: XCOR:L3B:2385:BDES
-        bmax: XCOR:L3B:2385:BMAX
-        bmin: XCOR:L3B:2385:BMIN
-        ctrl: XCOR:L3B:2385:CTRL
-      control_name: XCOR:L3B:2385
+        bact: XCOR:L4B:4485:BACT
+        bcon: XCOR:L4B:4485:BCON
+        bctrl: XCOR:L4B:4485:BCTRL
+        bdes: XCOR:L4B:4485:BDES
+        bmax: XCOR:L4B:4485:BMAX
+        bmin: XCOR:L4B:4485:BMIN
+        ctrl: XCOR:L4B:4485:CTRL
+      control_name: XCOR:L4B:4485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1540,21 +1598,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 498.068
+      sum_l_meters: 759.795
       type: XCOR
-  XCM24:
+  XCM45:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2485:BACT
-        bcon: XCOR:L3B:2485:BCON
-        bctrl: XCOR:L3B:2485:BCTRL
-        bdes: XCOR:L3B:2485:BDES
-        bmax: XCOR:L3B:2485:BMAX
-        bmin: XCOR:L3B:2485:BMIN
-        ctrl: XCOR:L3B:2485:CTRL
-      control_name: XCOR:L3B:2485
+        bact: XCOR:L4B:4585:BACT
+        bcon: XCOR:L4B:4585:BCON
+        bctrl: XCOR:L4B:4585:BCTRL
+        bdes: XCOR:L4B:4585:BDES
+        bmax: XCOR:L4B:4585:BMAX
+        bmin: XCOR:L4B:4585:BMIN
+        ctrl: XCOR:L4B:4585:CTRL
+      control_name: XCOR:L4B:4585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1573,21 +1631,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 510.289
+      sum_l_meters: 772.016
       type: XCOR
-  XCM25:
+  XCM46:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2585:BACT
-        bcon: XCOR:L3B:2585:BCON
-        bctrl: XCOR:L3B:2585:BCTRL
-        bdes: XCOR:L3B:2585:BDES
-        bmax: XCOR:L3B:2585:BMAX
-        bmin: XCOR:L3B:2585:BMIN
-        ctrl: XCOR:L3B:2585:CTRL
-      control_name: XCOR:L3B:2585
+        bact: XCOR:L4B:4685:BACT
+        bcon: XCOR:L4B:4685:BCON
+        bctrl: XCOR:L4B:4685:BCTRL
+        bdes: XCOR:L4B:4685:BDES
+        bmax: XCOR:L4B:4685:BMAX
+        bmin: XCOR:L4B:4685:BMIN
+        ctrl: XCOR:L4B:4685:CTRL
+      control_name: XCOR:L4B:4685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1606,21 +1664,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 522.509
+      sum_l_meters: 784.236
       type: XCOR
-  XCM26:
+  XCM47:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2685:BACT
-        bcon: XCOR:L3B:2685:BCON
-        bctrl: XCOR:L3B:2685:BCTRL
-        bdes: XCOR:L3B:2685:BDES
-        bmax: XCOR:L3B:2685:BMAX
-        bmin: XCOR:L3B:2685:BMIN
-        ctrl: XCOR:L3B:2685:CTRL
-      control_name: XCOR:L3B:2685
+        bact: XCOR:L4B:4785:BACT
+        bcon: XCOR:L4B:4785:BCON
+        bctrl: XCOR:L4B:4785:BCTRL
+        bdes: XCOR:L4B:4785:BDES
+        bmax: XCOR:L4B:4785:BMAX
+        bmin: XCOR:L4B:4785:BMIN
+        ctrl: XCOR:L4B:4785:CTRL
+      control_name: XCOR:L4B:4785
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1639,21 +1697,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 537.279
+      sum_l_meters: 796.456
       type: XCOR
-  XCM27:
+  XCM48:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2785:BACT
-        bcon: XCOR:L3B:2785:BCON
-        bctrl: XCOR:L3B:2785:BCTRL
-        bdes: XCOR:L3B:2785:BDES
-        bmax: XCOR:L3B:2785:BMAX
-        bmin: XCOR:L3B:2785:BMIN
-        ctrl: XCOR:L3B:2785:CTRL
-      control_name: XCOR:L3B:2785
+        bact: XCOR:L4B:4885:BACT
+        bcon: XCOR:L4B:4885:BCON
+        bctrl: XCOR:L4B:4885:BCTRL
+        bdes: XCOR:L4B:4885:BDES
+        bmax: XCOR:L4B:4885:BMAX
+        bmin: XCOR:L4B:4885:BMIN
+        ctrl: XCOR:L4B:4885:CTRL
+      control_name: XCOR:L4B:4885
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1672,21 +1730,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 549.499
+      sum_l_meters: 808.677
       type: XCOR
-  XCM28:
+  XCM49:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2885:BACT
-        bcon: XCOR:L3B:2885:BCON
-        bctrl: XCOR:L3B:2885:BCTRL
-        bdes: XCOR:L3B:2885:BDES
-        bmax: XCOR:L3B:2885:BMAX
-        bmin: XCOR:L3B:2885:BMIN
-        ctrl: XCOR:L3B:2885:CTRL
-      control_name: XCOR:L3B:2885
+        bact: XCOR:L4B:4985:BACT
+        bcon: XCOR:L4B:4985:BCON
+        bctrl: XCOR:L4B:4985:BCTRL
+        bdes: XCOR:L4B:4985:BDES
+        bmax: XCOR:L4B:4985:BMAX
+        bmin: XCOR:L4B:4985:BMIN
+        ctrl: XCOR:L4B:4985:CTRL
+      control_name: XCOR:L4B:4985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1705,21 +1763,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 561.72
+      sum_l_meters: 823.446
       type: XCOR
-  XCM29:
+  XCM50:
     controls_information:
       PVs:
-        bact: XCOR:L3B:2985:BACT
-        bcon: XCOR:L3B:2985:BCON
-        bctrl: XCOR:L3B:2985:BCTRL
-        bdes: XCOR:L3B:2985:BDES
-        bmax: XCOR:L3B:2985:BMAX
-        bmin: XCOR:L3B:2985:BMIN
-        ctrl: XCOR:L3B:2985:CTRL
-      control_name: XCOR:L3B:2985
+        bact: XCOR:L4B:5085:BACT
+        bcon: XCOR:L4B:5085:BCON
+        bctrl: XCOR:L4B:5085:BCTRL
+        bdes: XCOR:L4B:5085:BDES
+        bmax: XCOR:L4B:5085:BMAX
+        bmin: XCOR:L4B:5085:BMIN
+        ctrl: XCOR:L4B:5085:CTRL
+      control_name: XCOR:L4B:5085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1738,21 +1796,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 573.94
+      sum_l_meters: 835.667
       type: XCOR
-  XCM30:
+  XCM51:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3085:BACT
-        bcon: XCOR:L3B:3085:BCON
-        bctrl: XCOR:L3B:3085:BCTRL
-        bdes: XCOR:L3B:3085:BDES
-        bmax: XCOR:L3B:3085:BMAX
-        bmin: XCOR:L3B:3085:BMIN
-        ctrl: XCOR:L3B:3085:CTRL
-      control_name: XCOR:L3B:3085
+        bact: XCOR:L4B:5185:BACT
+        bcon: XCOR:L4B:5185:BCON
+        bctrl: XCOR:L4B:5185:BCTRL
+        bdes: XCOR:L4B:5185:BDES
+        bmax: XCOR:L4B:5185:BMAX
+        bmin: XCOR:L4B:5185:BMIN
+        ctrl: XCOR:L4B:5185:CTRL
+      control_name: XCOR:L4B:5185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1771,21 +1829,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 586.16
+      sum_l_meters: 847.887
       type: XCOR
-  XCM31:
+  XCM52:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3185:BACT
-        bcon: XCOR:L3B:3185:BCON
-        bctrl: XCOR:L3B:3185:BCTRL
-        bdes: XCOR:L3B:3185:BDES
-        bmax: XCOR:L3B:3185:BMAX
-        bmin: XCOR:L3B:3185:BMIN
-        ctrl: XCOR:L3B:3185:CTRL
-      control_name: XCOR:L3B:3185
+        bact: XCOR:L4B:5285:BACT
+        bcon: XCOR:L4B:5285:BCON
+        bctrl: XCOR:L4B:5285:BCTRL
+        bdes: XCOR:L4B:5285:BDES
+        bmax: XCOR:L4B:5285:BMAX
+        bmin: XCOR:L4B:5285:BMIN
+        ctrl: XCOR:L4B:5285:CTRL
+      control_name: XCOR:L4B:5285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1804,21 +1862,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 598.381
+      sum_l_meters: 860.108
       type: XCOR
-  XCM32:
+  XCM53:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3285:BACT
-        bcon: XCOR:L3B:3285:BCON
-        bctrl: XCOR:L3B:3285:BCTRL
-        bdes: XCOR:L3B:3285:BDES
-        bmax: XCOR:L3B:3285:BMAX
-        bmin: XCOR:L3B:3285:BMIN
-        ctrl: XCOR:L3B:3285:CTRL
-      control_name: XCOR:L3B:3285
+        bact: XCOR:L4B:5385:BACT
+        bcon: XCOR:L4B:5385:BCON
+        bctrl: XCOR:L4B:5385:BCTRL
+        bdes: XCOR:L4B:5385:BDES
+        bmax: XCOR:L4B:5385:BMAX
+        bmin: XCOR:L4B:5385:BMIN
+        ctrl: XCOR:L4B:5385:CTRL
+      control_name: XCOR:L4B:5385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1837,21 +1895,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 610.601
+      sum_l_meters: 872.328
       type: XCOR
-  XCM33:
+  XCM54:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3385:BACT
-        bcon: XCOR:L3B:3385:BCON
-        bctrl: XCOR:L3B:3385:BCTRL
-        bdes: XCOR:L3B:3385:BDES
-        bmax: XCOR:L3B:3385:BMAX
-        bmin: XCOR:L3B:3385:BMIN
-        ctrl: XCOR:L3B:3385:CTRL
-      control_name: XCOR:L3B:3385
+        bact: XCOR:L4B:5485:BACT
+        bcon: XCOR:L4B:5485:BCON
+        bctrl: XCOR:L4B:5485:BCTRL
+        bdes: XCOR:L4B:5485:BDES
+        bmax: XCOR:L4B:5485:BMAX
+        bmin: XCOR:L4B:5485:BMIN
+        ctrl: XCOR:L4B:5485:CTRL
+      control_name: XCOR:L4B:5485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1870,21 +1928,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 622.822
+      sum_l_meters: 884.548
       type: XCOR
-  XCM34:
+  XCM55:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3485:BACT
-        bcon: XCOR:L3B:3485:BCON
-        bctrl: XCOR:L3B:3485:BCTRL
-        bdes: XCOR:L3B:3485:BDES
-        bmax: XCOR:L3B:3485:BMAX
-        bmin: XCOR:L3B:3485:BMIN
-        ctrl: XCOR:L3B:3485:CTRL
-      control_name: XCOR:L3B:3485
+        bact: XCOR:L4B:5585:BACT
+        bcon: XCOR:L4B:5585:BCON
+        bctrl: XCOR:L4B:5585:BCTRL
+        bdes: XCOR:L4B:5585:BDES
+        bmax: XCOR:L4B:5585:BMAX
+        bmin: XCOR:L4B:5585:BMIN
+        ctrl: XCOR:L4B:5585:CTRL
+      control_name: XCOR:L4B:5585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1903,21 +1961,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 635.042
+      sum_l_meters: 896.769
       type: XCOR
-  XCM35:
+  XCM56:
     controls_information:
       PVs:
-        bact: XCOR:L3B:3585:BACT
-        bcon: XCOR:L3B:3585:BCON
-        bctrl: XCOR:L3B:3585:BCTRL
-        bdes: XCOR:L3B:3585:BDES
-        bmax: XCOR:L3B:3585:BMAX
-        bmin: XCOR:L3B:3585:BMIN
-        ctrl: XCOR:L3B:3585:CTRL
-      control_name: XCOR:L3B:3585
+        bact: XCOR:L4B:5685:BACT
+        bcon: XCOR:L4B:5685:BCON
+        bctrl: XCOR:L4B:5685:BCTRL
+        bdes: XCOR:L4B:5685:BDES
+        bmax: XCOR:L4B:5685:BMAX
+        bmin: XCOR:L4B:5685:BMIN
+        ctrl: XCOR:L4B:5685:CTRL
+      control_name: XCOR:L4B:5685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1936,21 +1994,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 647.262
+      sum_l_meters: 908.989
       type: XCOR
-  YCM16:
+  XCM57:
     controls_information:
       PVs:
-        bact: YCOR:L3B:1685:BACT
-        bcon: YCOR:L3B:1685:BCON
-        bctrl: YCOR:L3B:1685:BCTRL
-        bdes: YCOR:L3B:1685:BDES
-        bmax: YCOR:L3B:1685:BMAX
-        bmin: YCOR:L3B:1685:BMIN
-        ctrl: YCOR:L3B:1685:CTRL
-      control_name: YCOR:L3B:1685
+        bact: XCOR:L4B:5785:BACT
+        bcon: XCOR:L4B:5785:BCON
+        bctrl: XCOR:L4B:5785:BCTRL
+        bdes: XCOR:L4B:5785:BDES
+        bmax: XCOR:L4B:5785:BMAX
+        bmin: XCOR:L4B:5785:BMIN
+        ctrl: XCOR:L4B:5785:CTRL
+      control_name: XCOR:L4B:5785
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -1969,21 +2027,120 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 412.526
+      sum_l_meters: 921.21
+      type: XCOR
+  XCM58:
+    controls_information:
+      PVs:
+        bact: XCOR:L4B:5885:BACT
+        bcon: XCOR:L4B:5885:BCON
+        bctrl: XCOR:L4B:5885:BCTRL
+        bdes: XCOR:L4B:5885:BDES
+        bmax: XCOR:L4B:5885:BMAX
+        bmin: XCOR:L4B:5885:BMIN
+        ctrl: XCOR:L4B:5885:CTRL
+      control_name: XCOR:L4B:5885
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 933.43
+      type: XCOR
+  XCM59:
+    controls_information:
+      PVs:
+        bact: XCOR:L4B:5985:BACT
+        bcon: XCOR:L4B:5985:BCON
+        bctrl: XCOR:L4B:5985:BCTRL
+        bdes: XCOR:L4B:5985:BDES
+        bmax: XCOR:L4B:5985:BMAX
+        bmin: XCOR:L4B:5985:BMIN
+        ctrl: XCOR:L4B:5985:CTRL
+      control_name: XCOR:L4B:5985
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 945.65
+      type: XCOR
+  YCM37:
+    controls_information:
+      PVs:
+        bact: YCOR:L4B:3785:BACT
+        bcon: YCOR:L4B:3785:BCON
+        bctrl: YCOR:L4B:3785:BCTRL
+        bdes: YCOR:L4B:3785:BDES
+        bmax: YCOR:L4B:3785:BMAX
+        bmin: YCOR:L4B:3785:BMIN
+        ctrl: YCOR:L4B:3785:CTRL
+      control_name: YCOR:L4B:3785
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 674.252
       type: YCOR
-  YCM17:
+  YCM38:
     controls_information:
       PVs:
-        bact: YCOR:L3B:1785:BACT
-        bcon: YCOR:L3B:1785:BCON
-        bctrl: YCOR:L3B:1785:BCTRL
-        bdes: YCOR:L3B:1785:BDES
-        bmax: YCOR:L3B:1785:BMAX
-        bmin: YCOR:L3B:1785:BMIN
-        ctrl: YCOR:L3B:1785:CTRL
-      control_name: YCOR:L3B:1785
+        bact: YCOR:L4B:3885:BACT
+        bcon: YCOR:L4B:3885:BCON
+        bctrl: YCOR:L4B:3885:BCTRL
+        bdes: YCOR:L4B:3885:BDES
+        bmax: YCOR:L4B:3885:BMAX
+        bmin: YCOR:L4B:3885:BMIN
+        ctrl: YCOR:L4B:3885:CTRL
+      control_name: YCOR:L4B:3885
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2002,21 +2159,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 424.746
+      sum_l_meters: 686.473
       type: YCOR
-  YCM18:
+  YCM39:
     controls_information:
       PVs:
-        bact: YCOR:L3B:1885:BACT
-        bcon: YCOR:L3B:1885:BCON
-        bctrl: YCOR:L3B:1885:BCTRL
-        bdes: YCOR:L3B:1885:BDES
-        bmax: YCOR:L3B:1885:BMAX
-        bmin: YCOR:L3B:1885:BMIN
-        ctrl: YCOR:L3B:1885:CTRL
-      control_name: YCOR:L3B:1885
+        bact: YCOR:L4B:3985:BACT
+        bcon: YCOR:L4B:3985:BCON
+        bctrl: YCOR:L4B:3985:BCTRL
+        bdes: YCOR:L4B:3985:BDES
+        bmax: YCOR:L4B:3985:BMAX
+        bmin: YCOR:L4B:3985:BMIN
+        ctrl: YCOR:L4B:3985:CTRL
+      control_name: YCOR:L4B:3985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2035,21 +2192,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 436.966
+      sum_l_meters: 698.693
       type: YCOR
-  YCM19:
+  YCM40:
     controls_information:
       PVs:
-        bact: YCOR:L3B:1985:BACT
-        bcon: YCOR:L3B:1985:BCON
-        bctrl: YCOR:L3B:1985:BCTRL
-        bdes: YCOR:L3B:1985:BDES
-        bmax: YCOR:L3B:1985:BMAX
-        bmin: YCOR:L3B:1985:BMIN
-        ctrl: YCOR:L3B:1985:CTRL
-      control_name: YCOR:L3B:1985
+        bact: YCOR:L4B:4085:BACT
+        bcon: YCOR:L4B:4085:BCON
+        bctrl: YCOR:L4B:4085:BCTRL
+        bdes: YCOR:L4B:4085:BDES
+        bmax: YCOR:L4B:4085:BMAX
+        bmin: YCOR:L4B:4085:BMIN
+        ctrl: YCOR:L4B:4085:CTRL
+      control_name: YCOR:L4B:4085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2068,21 +2225,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 449.187
+      sum_l_meters: 710.914
       type: YCOR
-  YCM20:
+  YCM41:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2085:BACT
-        bcon: YCOR:L3B:2085:BCON
-        bctrl: YCOR:L3B:2085:BCTRL
-        bdes: YCOR:L3B:2085:BDES
-        bmax: YCOR:L3B:2085:BMAX
-        bmin: YCOR:L3B:2085:BMIN
-        ctrl: YCOR:L3B:2085:CTRL
-      control_name: YCOR:L3B:2085
+        bact: YCOR:L4B:4185:BACT
+        bcon: YCOR:L4B:4185:BCON
+        bctrl: YCOR:L4B:4185:BCTRL
+        bdes: YCOR:L4B:4185:BDES
+        bmax: YCOR:L4B:4185:BMAX
+        bmin: YCOR:L4B:4185:BMIN
+        ctrl: YCOR:L4B:4185:CTRL
+      control_name: YCOR:L4B:4185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2101,21 +2258,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 461.407
+      sum_l_meters: 723.134
       type: YCOR
-  YCM21:
+  YCM42:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2185:BACT
-        bcon: YCOR:L3B:2185:BCON
-        bctrl: YCOR:L3B:2185:BCTRL
-        bdes: YCOR:L3B:2185:BDES
-        bmax: YCOR:L3B:2185:BMAX
-        bmin: YCOR:L3B:2185:BMIN
-        ctrl: YCOR:L3B:2185:CTRL
-      control_name: YCOR:L3B:2185
+        bact: YCOR:L4B:4285:BACT
+        bcon: YCOR:L4B:4285:BCON
+        bctrl: YCOR:L4B:4285:BCTRL
+        bdes: YCOR:L4B:4285:BDES
+        bmax: YCOR:L4B:4285:BMAX
+        bmin: YCOR:L4B:4285:BMIN
+        ctrl: YCOR:L4B:4285:CTRL
+      control_name: YCOR:L4B:4285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2134,21 +2291,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 473.628
+      sum_l_meters: 735.354
       type: YCOR
-  YCM22:
+  YCM43:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2285:BACT
-        bcon: YCOR:L3B:2285:BCON
-        bctrl: YCOR:L3B:2285:BCTRL
-        bdes: YCOR:L3B:2285:BDES
-        bmax: YCOR:L3B:2285:BMAX
-        bmin: YCOR:L3B:2285:BMIN
-        ctrl: YCOR:L3B:2285:CTRL
-      control_name: YCOR:L3B:2285
+        bact: YCOR:L4B:4385:BACT
+        bcon: YCOR:L4B:4385:BCON
+        bctrl: YCOR:L4B:4385:BCTRL
+        bdes: YCOR:L4B:4385:BDES
+        bmax: YCOR:L4B:4385:BMAX
+        bmin: YCOR:L4B:4385:BMIN
+        ctrl: YCOR:L4B:4385:CTRL
+      control_name: YCOR:L4B:4385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2167,21 +2324,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 485.848
+      sum_l_meters: 747.575
       type: YCOR
-  YCM23:
+  YCM44:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2385:BACT
-        bcon: YCOR:L3B:2385:BCON
-        bctrl: YCOR:L3B:2385:BCTRL
-        bdes: YCOR:L3B:2385:BDES
-        bmax: YCOR:L3B:2385:BMAX
-        bmin: YCOR:L3B:2385:BMIN
-        ctrl: YCOR:L3B:2385:CTRL
-      control_name: YCOR:L3B:2385
+        bact: YCOR:L4B:4485:BACT
+        bcon: YCOR:L4B:4485:BCON
+        bctrl: YCOR:L4B:4485:BCTRL
+        bdes: YCOR:L4B:4485:BDES
+        bmax: YCOR:L4B:4485:BMAX
+        bmin: YCOR:L4B:4485:BMIN
+        ctrl: YCOR:L4B:4485:CTRL
+      control_name: YCOR:L4B:4485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2200,21 +2357,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 498.068
+      sum_l_meters: 759.795
       type: YCOR
-  YCM24:
+  YCM45:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2485:BACT
-        bcon: YCOR:L3B:2485:BCON
-        bctrl: YCOR:L3B:2485:BCTRL
-        bdes: YCOR:L3B:2485:BDES
-        bmax: YCOR:L3B:2485:BMAX
-        bmin: YCOR:L3B:2485:BMIN
-        ctrl: YCOR:L3B:2485:CTRL
-      control_name: YCOR:L3B:2485
+        bact: YCOR:L4B:4585:BACT
+        bcon: YCOR:L4B:4585:BCON
+        bctrl: YCOR:L4B:4585:BCTRL
+        bdes: YCOR:L4B:4585:BDES
+        bmax: YCOR:L4B:4585:BMAX
+        bmin: YCOR:L4B:4585:BMIN
+        ctrl: YCOR:L4B:4585:CTRL
+      control_name: YCOR:L4B:4585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2233,21 +2390,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 510.289
+      sum_l_meters: 772.016
       type: YCOR
-  YCM25:
+  YCM46:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2585:BACT
-        bcon: YCOR:L3B:2585:BCON
-        bctrl: YCOR:L3B:2585:BCTRL
-        bdes: YCOR:L3B:2585:BDES
-        bmax: YCOR:L3B:2585:BMAX
-        bmin: YCOR:L3B:2585:BMIN
-        ctrl: YCOR:L3B:2585:CTRL
-      control_name: YCOR:L3B:2585
+        bact: YCOR:L4B:4685:BACT
+        bcon: YCOR:L4B:4685:BCON
+        bctrl: YCOR:L4B:4685:BCTRL
+        bdes: YCOR:L4B:4685:BDES
+        bmax: YCOR:L4B:4685:BMAX
+        bmin: YCOR:L4B:4685:BMIN
+        ctrl: YCOR:L4B:4685:CTRL
+      control_name: YCOR:L4B:4685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2266,21 +2423,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 522.509
+      sum_l_meters: 784.236
       type: YCOR
-  YCM26:
+  YCM47:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2685:BACT
-        bcon: YCOR:L3B:2685:BCON
-        bctrl: YCOR:L3B:2685:BCTRL
-        bdes: YCOR:L3B:2685:BDES
-        bmax: YCOR:L3B:2685:BMAX
-        bmin: YCOR:L3B:2685:BMIN
-        ctrl: YCOR:L3B:2685:CTRL
-      control_name: YCOR:L3B:2685
+        bact: YCOR:L4B:4785:BACT
+        bcon: YCOR:L4B:4785:BCON
+        bctrl: YCOR:L4B:4785:BCTRL
+        bdes: YCOR:L4B:4785:BDES
+        bmax: YCOR:L4B:4785:BMAX
+        bmin: YCOR:L4B:4785:BMIN
+        ctrl: YCOR:L4B:4785:CTRL
+      control_name: YCOR:L4B:4785
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2299,21 +2456,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 537.279
+      sum_l_meters: 796.456
       type: YCOR
-  YCM27:
+  YCM48:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2785:BACT
-        bcon: YCOR:L3B:2785:BCON
-        bctrl: YCOR:L3B:2785:BCTRL
-        bdes: YCOR:L3B:2785:BDES
-        bmax: YCOR:L3B:2785:BMAX
-        bmin: YCOR:L3B:2785:BMIN
-        ctrl: YCOR:L3B:2785:CTRL
-      control_name: YCOR:L3B:2785
+        bact: YCOR:L4B:4885:BACT
+        bcon: YCOR:L4B:4885:BCON
+        bctrl: YCOR:L4B:4885:BCTRL
+        bdes: YCOR:L4B:4885:BDES
+        bmax: YCOR:L4B:4885:BMAX
+        bmin: YCOR:L4B:4885:BMIN
+        ctrl: YCOR:L4B:4885:CTRL
+      control_name: YCOR:L4B:4885
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2332,21 +2489,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 549.499
+      sum_l_meters: 808.677
       type: YCOR
-  YCM28:
+  YCM49:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2885:BACT
-        bcon: YCOR:L3B:2885:BCON
-        bctrl: YCOR:L3B:2885:BCTRL
-        bdes: YCOR:L3B:2885:BDES
-        bmax: YCOR:L3B:2885:BMAX
-        bmin: YCOR:L3B:2885:BMIN
-        ctrl: YCOR:L3B:2885:CTRL
-      control_name: YCOR:L3B:2885
+        bact: YCOR:L4B:4985:BACT
+        bcon: YCOR:L4B:4985:BCON
+        bctrl: YCOR:L4B:4985:BCTRL
+        bdes: YCOR:L4B:4985:BDES
+        bmax: YCOR:L4B:4985:BMAX
+        bmin: YCOR:L4B:4985:BMIN
+        ctrl: YCOR:L4B:4985:CTRL
+      control_name: YCOR:L4B:4985
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2365,21 +2522,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 561.72
+      sum_l_meters: 823.446
       type: YCOR
-  YCM29:
+  YCM50:
     controls_information:
       PVs:
-        bact: YCOR:L3B:2985:BACT
-        bcon: YCOR:L3B:2985:BCON
-        bctrl: YCOR:L3B:2985:BCTRL
-        bdes: YCOR:L3B:2985:BDES
-        bmax: YCOR:L3B:2985:BMAX
-        bmin: YCOR:L3B:2985:BMIN
-        ctrl: YCOR:L3B:2985:CTRL
-      control_name: YCOR:L3B:2985
+        bact: YCOR:L4B:5085:BACT
+        bcon: YCOR:L4B:5085:BCON
+        bctrl: YCOR:L4B:5085:BCTRL
+        bdes: YCOR:L4B:5085:BDES
+        bmax: YCOR:L4B:5085:BMAX
+        bmin: YCOR:L4B:5085:BMIN
+        ctrl: YCOR:L4B:5085:CTRL
+      control_name: YCOR:L4B:5085
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2398,21 +2555,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 573.94
+      sum_l_meters: 835.667
       type: YCOR
-  YCM30:
+  YCM51:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3085:BACT
-        bcon: YCOR:L3B:3085:BCON
-        bctrl: YCOR:L3B:3085:BCTRL
-        bdes: YCOR:L3B:3085:BDES
-        bmax: YCOR:L3B:3085:BMAX
-        bmin: YCOR:L3B:3085:BMIN
-        ctrl: YCOR:L3B:3085:CTRL
-      control_name: YCOR:L3B:3085
+        bact: YCOR:L4B:5185:BACT
+        bcon: YCOR:L4B:5185:BCON
+        bctrl: YCOR:L4B:5185:BCTRL
+        bdes: YCOR:L4B:5185:BDES
+        bmax: YCOR:L4B:5185:BMAX
+        bmin: YCOR:L4B:5185:BMIN
+        ctrl: YCOR:L4B:5185:CTRL
+      control_name: YCOR:L4B:5185
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2431,21 +2588,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 586.16
+      sum_l_meters: 847.887
       type: YCOR
-  YCM31:
+  YCM52:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3185:BACT
-        bcon: YCOR:L3B:3185:BCON
-        bctrl: YCOR:L3B:3185:BCTRL
-        bdes: YCOR:L3B:3185:BDES
-        bmax: YCOR:L3B:3185:BMAX
-        bmin: YCOR:L3B:3185:BMIN
-        ctrl: YCOR:L3B:3185:CTRL
-      control_name: YCOR:L3B:3185
+        bact: YCOR:L4B:5285:BACT
+        bcon: YCOR:L4B:5285:BCON
+        bctrl: YCOR:L4B:5285:BCTRL
+        bdes: YCOR:L4B:5285:BDES
+        bmax: YCOR:L4B:5285:BMAX
+        bmin: YCOR:L4B:5285:BMIN
+        ctrl: YCOR:L4B:5285:CTRL
+      control_name: YCOR:L4B:5285
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2464,21 +2621,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 598.381
+      sum_l_meters: 860.108
       type: YCOR
-  YCM32:
+  YCM53:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3285:BACT
-        bcon: YCOR:L3B:3285:BCON
-        bctrl: YCOR:L3B:3285:BCTRL
-        bdes: YCOR:L3B:3285:BDES
-        bmax: YCOR:L3B:3285:BMAX
-        bmin: YCOR:L3B:3285:BMIN
-        ctrl: YCOR:L3B:3285:CTRL
-      control_name: YCOR:L3B:3285
+        bact: YCOR:L4B:5385:BACT
+        bcon: YCOR:L4B:5385:BCON
+        bctrl: YCOR:L4B:5385:BCTRL
+        bdes: YCOR:L4B:5385:BDES
+        bmax: YCOR:L4B:5385:BMAX
+        bmin: YCOR:L4B:5385:BMIN
+        ctrl: YCOR:L4B:5385:CTRL
+      control_name: YCOR:L4B:5385
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2497,21 +2654,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 610.601
+      sum_l_meters: 872.328
       type: YCOR
-  YCM33:
+  YCM54:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3385:BACT
-        bcon: YCOR:L3B:3385:BCON
-        bctrl: YCOR:L3B:3385:BCTRL
-        bdes: YCOR:L3B:3385:BDES
-        bmax: YCOR:L3B:3385:BMAX
-        bmin: YCOR:L3B:3385:BMIN
-        ctrl: YCOR:L3B:3385:CTRL
-      control_name: YCOR:L3B:3385
+        bact: YCOR:L4B:5485:BACT
+        bcon: YCOR:L4B:5485:BCON
+        bctrl: YCOR:L4B:5485:BCTRL
+        bdes: YCOR:L4B:5485:BDES
+        bmax: YCOR:L4B:5485:BMAX
+        bmin: YCOR:L4B:5485:BMIN
+        ctrl: YCOR:L4B:5485:CTRL
+      control_name: YCOR:L4B:5485
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2530,21 +2687,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 622.822
+      sum_l_meters: 884.548
       type: YCOR
-  YCM34:
+  YCM55:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3485:BACT
-        bcon: YCOR:L3B:3485:BCON
-        bctrl: YCOR:L3B:3485:BCTRL
-        bdes: YCOR:L3B:3485:BDES
-        bmax: YCOR:L3B:3485:BMAX
-        bmin: YCOR:L3B:3485:BMIN
-        ctrl: YCOR:L3B:3485:CTRL
-      control_name: YCOR:L3B:3485
+        bact: YCOR:L4B:5585:BACT
+        bcon: YCOR:L4B:5585:BCON
+        bctrl: YCOR:L4B:5585:BCTRL
+        bdes: YCOR:L4B:5585:BDES
+        bmax: YCOR:L4B:5585:BMAX
+        bmin: YCOR:L4B:5585:BMIN
+        ctrl: YCOR:L4B:5585:CTRL
+      control_name: YCOR:L4B:5585
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2563,21 +2720,21 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 635.042
+      sum_l_meters: 896.769
       type: YCOR
-  YCM35:
+  YCM56:
     controls_information:
       PVs:
-        bact: YCOR:L3B:3585:BACT
-        bcon: YCOR:L3B:3585:BCON
-        bctrl: YCOR:L3B:3585:BCTRL
-        bdes: YCOR:L3B:3585:BDES
-        bmax: YCOR:L3B:3585:BMAX
-        bmin: YCOR:L3B:3585:BMIN
-        ctrl: YCOR:L3B:3585:CTRL
-      control_name: YCOR:L3B:3585
+        bact: YCOR:L4B:5685:BACT
+        bcon: YCOR:L4B:5685:BCON
+        bctrl: YCOR:L4B:5685:BCTRL
+        bdes: YCOR:L4B:5685:BDES
+        bmax: YCOR:L4B:5685:BMAX
+        bmin: YCOR:L4B:5685:BMIN
+        ctrl: YCOR:L4B:5685:CTRL
+      control_name: YCOR:L4B:5685
     metadata:
-      area: L3B
+      area: L4B
       beam_path:
       - SC_BSYD
       - SC_BSYD2
@@ -2596,5 +2753,104 @@ magnets:
       - SC_SXR
       - SC_SXR2
       l_eff: 0.0
-      sum_l_meters: 647.262
+      sum_l_meters: 908.989
+      type: YCOR
+  YCM57:
+    controls_information:
+      PVs:
+        bact: YCOR:L4B:5785:BACT
+        bcon: YCOR:L4B:5785:BCON
+        bctrl: YCOR:L4B:5785:BCTRL
+        bdes: YCOR:L4B:5785:BDES
+        bmax: YCOR:L4B:5785:BMAX
+        bmin: YCOR:L4B:5785:BMIN
+        ctrl: YCOR:L4B:5785:CTRL
+      control_name: YCOR:L4B:5785
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 921.21
+      type: YCOR
+  YCM58:
+    controls_information:
+      PVs:
+        bact: YCOR:L4B:5885:BACT
+        bcon: YCOR:L4B:5885:BCON
+        bctrl: YCOR:L4B:5885:BCTRL
+        bdes: YCOR:L4B:5885:BDES
+        bmax: YCOR:L4B:5885:BMAX
+        bmin: YCOR:L4B:5885:BMIN
+        ctrl: YCOR:L4B:5885:CTRL
+      control_name: YCOR:L4B:5885
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 933.43
+      type: YCOR
+  YCM59:
+    controls_information:
+      PVs:
+        bact: YCOR:L4B:5985:BACT
+        bcon: YCOR:L4B:5985:BCON
+        bctrl: YCOR:L4B:5985:BCTRL
+        bdes: YCOR:L4B:5985:BDES
+        bmax: YCOR:L4B:5985:BMAX
+        bmin: YCOR:L4B:5985:BMIN
+        ctrl: YCOR:L4B:5985:CTRL
+      control_name: YCOR:L4B:5985
+    metadata:
+      area: L4B
+      beam_path:
+      - SC_BSYD
+      - SC_BSYD2
+      - SC_DASEL
+      - SC_DASEL2
+      - SC_HXR
+      - SC_HXR2
+      - SC_S2_X
+      - SC_S2_X2
+      - SC_SFTS
+      - SC_SFTS2
+      - SC_STMO
+      - SC_STMO2
+      - SC_STXI
+      - SC_STXI2
+      - SC_SXR
+      - SC_SXR2
+      l_eff: 0.0
+      sum_l_meters: 945.65
       type: YCOR
