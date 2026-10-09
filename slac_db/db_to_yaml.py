@@ -13,6 +13,7 @@ _ORACLE_TO_YAML_TYPE_MAP = {
     "LBLM": "lblms",
     "BPM": "bpms",
     "LCAV": "tcavs",
+    "TCAV": "tcavs",
     "INST": "pmts",
     "IMON": "toroids",
 }
@@ -84,7 +85,7 @@ def _build_devices(area, device_type):
     for d in devices:
         if device_type == "INST" and not d.startswith("PMT"):
             continue
-        if device_type == "LCAV":
+        if device_type in ["TCAV", "LCAV"]:
             r = slac_db.element_tables.get_device_row(d)
             if r["engineering name"] != "TRANS_DEFL":
                 continue
