@@ -62,7 +62,7 @@ class _Parser:
                 if r["control system name"] not in self.address_map:
                     continue
                 yield from [
-                    PKDict(device_name=r["element"], cs_address=c)
+                    PKDict(device_name=r["element"], cs_address=':'.join([r["control system name"], c]))
                     for c in self.address_map[r["control system name"]]
                 ]
 
