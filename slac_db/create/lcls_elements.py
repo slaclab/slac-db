@@ -6,19 +6,152 @@ import slac_db.element_tables
 
 _ORACLE_TNS      = 'slacprod' # name/connection of Oracle DB on prod
 _ORACLE_USERNAME = 'lcls_read'
+# sql query to get only active devices
+_ORACLE_ACTIVE_QUERY = "select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG"
 
+# Mapping oracle column (V_LCLS_ELEMENTS_REPORT) -> web headers.
+# Order matches the web lcls_elements.csv so the query output is drop-in
+# interchangeable with the web export. Only the 10 Title Case headers the
+# downstream SQLite schema reads matter functionally; the rest are carried for
+# web-dump parity. "area2" and "filename" have no Oracle source (see
+# _NO_ORACLE_SOURCE); "beampath" is built by the pathway join.
 _ORACLE_TO_REFERENCE = {
-    "area":                       "Area",
-    "element":                    "Element",
-    "epics_channel_access_name":  "Control System Name",
-    "keyword":                    "Keyword",
-    "beampath":                   "Beampath",
-    "suml_m":                     "SumL (m)",
-    "effective_length":           "Effective Length (m)",
-    "rf_frequency":               "Rf Frequency (MHz)",
-    "engineering_name":           "Engineering Name",
-    "active_flag":                "Active",
+    "element":                      "Element",
+    "area":                         "Area",
+    "element_type":                 "Type",
+    "epics_channel_access_name":    "Control System Name",
+    "area2":                        "Area2",
+    "component_name":               "Component Name",
+    "component_comments":           "Component Comments",
+    "slc_name":                     "Slc Name",
+    "symbols_upload_id":            "Symbols Upload Id",
+    "ltu_upload_id":                "Ltu Upload Id",
+    "first_sourced_from":           "First Sourced From",
+    "active_flag":                  "Active",
+    "filename":                     "Filename",
+    "sector":                       "Sector",
+    "sector_location":              "Sector Location",
+    "undulator_cell":               "Undulator Cell",
+    "keyword":                      "Keyword",
+    "barcode":                      "Barcode",
+    "engineering_name":             "Engineering Name",
+    "suml_m":                       "SumL (m)",
+    "suml_ft":                      "SumL (ft)",
+    "linacz_m":                     "Linac Z (m)",
+    "linacz_ft":                    "Linac Z (ft)",
+    "ltu_suml_m":                   "Ltu SumL (m)",
+    "ltu_suml_ft":                  "Ltu SumL (ft)",
+    "ltu_linacz_m":                 "Ltu Linac Z (m)",
+    "ltu_linacz_ft":                "Ltu Linac Z (ft)",
+    "drawing_no":                   "Local Area Drawing",
+    "irmis_ioc_names":              "Irmis Ioc Names",
+    "element_comment":              "Element Comment",
+    "sections":                     "Sections",
+    "begin_dbmark":                 "Begin Dbmark",
+    "begin_suml":                   "Begin SumL (m)",
+    "end_dbmark":                   "End Dbmark",
+    "end_suml":                     "End SumL (m)",
+    "bsa_flag":                     "Bsa Device",
+    "obstruction":                  "Obstruction",
+    "effective_length":             "Effective Length (m)",
+    "rf_frequency":                 "Rf Frequency (MHz)",
+    "rf_amplitude":                 "Rf Amplitude (MeV)",
+    "rf_phase":                     "Rf Phase (deg)",
+    "rf_gradient":                  "Rf Gradient (MeV/m)",
+    "rf_power_fraction":            "Rf Power Fraction",
+    "z_length":                     "Z Length (m)",
+    "fringe_field_integral":        "Fringe Field Integral",
+    "integrated_field_bl":          "Integrated Field BL (kG-m)",
+    "field_b":                      "Field B (T)",
+    "integrated_field_grad_gl":     "Integrated Field Grad GL (kG)",
+    "field_gradient_g":             "Field Gradient G (T/m)",
+    "xal_scale_name":               "Xal Scale Name",
+    "xal_scale_value":              "Xal Scale Value",
+    "xal_polarity":                 "Xal Polarity",
+    "magnet_x_coor":                "Magnet X Coor (m)",
+    "magnet_y_coor":                "Magnet Y Coor (m)",
+    "magnet_z_coor":                "Magnet Z Coor (m)",
+    "magnet_x_angle":               "Magnet X Angle (rad)",
+    "magnet_y_angle":               "Magnet Y Angle (rad)",
+    "magnet_z_angle":               "Magnet Z Angle (rad)",
+    "solenoid_strength_ks":         "Solenoid Strength KS (1/m)",
+    "undulator_period_length":      "Undulator Period Length (m)",
+    "undulator_strength_k":         "Undulator Strength K",
+    "x_size":                       "X Size (m)",
+    "y_size":                       "Y Size (m)",
+    "section":                      "Section",
+    "dist_from_section_start":      "Dist From Section Start (m)",
+    "xal_keyword":                  "Xal Keyword",
+    "s_display":                    "S Display",
+    "ltu_rf_frequency":             "Ltu Rf Frequency (MHz)",
+    "ltu_rf_amplitude":             "Ltu Rf Amplitude (MeV)",
+    "ltu_rf_phase":                 "Ltu Rf Phase (deg)",
+    "ltu_rf_gradient":              "Ltu Rf Gradient (MeV/m)",
+    "ltu_rf_power_fraction":        "Ltu Rf Power Fraction",
+    "ltu_z_length":                 "Ltu Z Length (m)",
+    "ltu_fringe_field_integral":    "Ltu Fringe Field Integral",
+    "ltu_integrated_field_bl":      "Ltu Integrated Field BL (kG-m)",
+    "ltu_field_b":                  "Ltu Field B (T)",
+    "ltu_integrated_field_grad_gl": "Ltu Integrated Field Grad GL (kG)",
+    "ltu_field_gradient_g":         "Ltu Field Gradient G (T/m)",
+    "ltu_xal_scale_name":           "Ltu Xal Scale Name",
+    "ltu_xal_scale_value":          "Ltu Xal Scale Value",
+    "ltu_xal_polarity":             "Ltu Xal Polarity",
+    "ltu_magnet_x_coor":            "Ltu Magnet X Coor",
+    "ltu_magnet_y_coor":            "Ltu Magnet Y Coor",
+    "ltu_magnet_z_coor":            "Ltu Magnet Z Coor",
+    "ltu_magnet_x_angle":           "Ltu Magnet X Angle",
+    "ltu_magnet_y_angle":           "Ltu Magnet Y Angle",
+    "ltu_magnet_z_angle":           "Ltu Magnet Z Angle",
+    "ltu_solenoid_strength_ks":     "Ltu Solenoid Strength Ks",
+    "ltu_undulator_period_length":  "Ltu Undulator Period Length",
+    "ltu_undulator_strength_k":     "Ltu Undulator Strength K",
+    "ltu_x_size":                   "Ltu X Size",
+    "ltu_y_size":                   "Ltu Y Size",
+    "ltu_section":                  "Ltu Section",
+    "ltu_dist_from_section_start":  "Ltu Dist From Section Start",
+    "ltu_xal_keyword":              "Ltu Xal Keyword",
+    "ltu_s_display":                "Ltu S Display",
+    "ioc_captar_search":            "Ioc Captar Search",
+    "slc_captar_search":            "Slc Captar Search",
+    "ops_status":                   "Operation Status",
+    "ops_status_date":              "Op Status Date",
+    "beampath":                     "Beampath",
 }
+
+# Apex columns with no V_LCLS_ELEMENTS_REPORT source; emitted as NULL.
+_NO_ORACLE_SOURCE = {"area2", "filename"}
+
+def _select_expr(col):
+    # beampath comes from the pathway join; unsourced columns are NULL; rest from t.
+    if col == "beampath":
+        return "path.pathname"
+    if col in _NO_ORACLE_SOURCE:
+        return "NULL"
+    return f"t.{col}"
+
+_SELECT_COLUMNS = ",\n  ".join(
+    f'{_select_expr(col)} AS "{header}"'
+    for col, header in _ORACLE_TO_REFERENCE.items()
+)
+
+# sql query for curated lcls_elements.csv with inactive (active_flag='I') devices kept.
+# The nested join only exists to build beampath; the (+) outer joins keep elements with no beampath.
+_ORACLE_QUERY = f"""
+SELECT
+  {_SELECT_COLUMNS}
+FROM V_LCLS_ELEMENTS_REPORT t,
+     (SELECT u.element_id, u.area2, p.pathname
+      FROM lcls_elements_upd u,
+           (SELECT areaname,
+                   LISTAGG(pathname || ', ') WITHIN GROUP (ORDER BY pathname) AS pathname
+            FROM lcls_pathway
+            GROUP BY areaname) p
+      WHERE u.upload_id = (SELECT MAX(upload_id) FROM lcls_elements_upd)
+        AND u.area2 = p.areaname (+)) path
+WHERE t.element_id = path.element_id (+)
+  AND t.element_type = 'MAD'
+"""
 
 @contextmanager
 def get_connection():
@@ -55,14 +188,17 @@ def _get_remote_uri():
     return connection_string
 
 
-def get_oracle_elements_csv(oracle_csv='oracle_elements.csv'):
-    """Get a csv file from Oracle that has all devices in LCLS_ELEMENTS table.
-    This function only works on production.
+def get_oracle_elements_csv(oracle_csv='oracle_elements.csv', sql=_ORACLE_QUERY):
+    """Dump an Oracle query to csv. This function only works on production.
+
+    With the default _ORACLE_QUERY the output is already the
+    lcls_elements.csv format (101 Apex columns, inactive devices included).
 
     Args:
         oracle_csv: Name of the output csv file.
+        sql: Query to run. Defaults to _ORACLE_QUERY.
     """
-    sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
+    sql_query = text(sql)
     try:
         with get_connection() as connection, \
              open(oracle_csv, "w", newline="") as output_csv:
@@ -74,26 +210,6 @@ def get_oracle_elements_csv(oracle_csv='oracle_elements.csv'):
     except Exception as e:
         print(f"An error occurred {e}")
         raise
-
-
-def build_lcls_elements_csv(oracle_csv, lcls_csv):
-    """Convert oracle csv into the curated lcls_elements.csv format."""
-    try:
-        with open(oracle_csv, newline="") as input_csv, open(lcls_csv, "w", newline="") as output_csv:
-            keymap = _ORACLE_TO_REFERENCE
-            reader = csv.DictReader(input_csv)
-            writer = csv.writer(output_csv)
-            writer.writerow(keymap.values())
-            for row in reader:
-                writer.writerow(row[c] for c in keymap)
-    except Exception as e:
-        print(f"Unable to build the LCLS elements csv: {e}")
-        raise
-
-def get_lcls_elements_csv(oracle_csv='oracle_elements.csv', lcls_csv='lcls_elements.csv'):
-    """Get oracle csv on production, then convert to lcls_element.csv needed for this repo."""
-    get_oracle_elements_csv(oracle_csv=oracle_csv)
-    build_lcls_elements_csv(oracle_csv, lcls_csv)
 
 
 def to_oracle_db(csv_source=None):
@@ -119,7 +235,6 @@ class _Parser():
             self._parse_csv(reader)
 
     def _parse_csv(self, reader):
-        next(reader)  # skip group header row
         names = [r.lower() for r in next(reader)]
         i = 0
         # Track station names already recorded for KLYS sub-cavity dedup.
