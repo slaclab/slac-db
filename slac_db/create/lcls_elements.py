@@ -1,5 +1,7 @@
 import csv
-from sqlalchemy import text, create_engine
+from sqlalchemy import (
+    text, create_engine, select, table, column, func, null, String,
+)
 from contextlib import contextmanager
 import slac_db.config
 import slac_db.element_tables
@@ -136,36 +138,73 @@ _ORACLE_TO_REFERENCE = {
 # Web columns with no V_LCLS_ELEMENTS_REPORT source; set as NULL.
 _NO_ORACLE_SOURCE = {"area2", "filename"}
 
-def _select_expr(col):
-    # beampath comes from the pathway join; unsourced columns are NULL; rest from t.
-    if col == "beampath":
-        return "path.pathname"
-    if col in _NO_ORACLE_SOURCE:
-        return "NULL"
-    return f"t.{col}"
-
-_SELECT_COLUMNS = ",\n  ".join(
-    f'{_select_expr(col)} AS "{header}"'
-    for col, header in _ORACLE_TO_REFERENCE.items()
+# Lightweight table/column handles (no reflection; columns are declared by hand).
+_report_cols = [
+    col for col in _ORACLE_TO_REFERENCE
+    if col not in _NO_ORACLE_SOURCE and col != "beampath"
+]
+_v_report = table(
+    "V_LCLS_ELEMENTS_REPORT",
+    column("element_id"),
+    *(column(col) for col in _report_cols),
+)
+_lcls_pathway = table("lcls_pathway", column("areaname"), column("pathname", String))
+_lcls_elements_upd = table(
+    "lcls_elements_upd",
+    column("element_id"),
+    column("area2"),
+    column("upload_id"),
 )
 
-# sql query for curated lcls_elements.csv with inactive devices kept.
-# The nested join builds the beampath; the (+) outer joins keep elements with no beampath.
-_ORACLE_QUERY = f"""
-SELECT
-  {_SELECT_COLUMNS}
-FROM V_LCLS_ELEMENTS_REPORT t,
-     (SELECT u.element_id, u.area2, p.pathname
-      FROM lcls_elements_upd u,
-           (SELECT areaname,
-                   LISTAGG(pathname || ', ') WITHIN GROUP (ORDER BY pathname) AS pathname
-            FROM lcls_pathway
-            GROUP BY areaname) p
-      WHERE u.upload_id = (SELECT MAX(upload_id) FROM lcls_elements_upd)
-        AND u.area2 = p.areaname (+)) path
-WHERE t.element_id = path.element_id (+)
-  AND t.element_type = 'MAD'
-"""
+# Aggregate pathways per area: LISTAGG(pathname || ', ') ordered by pathname.
+_pathways = (
+    select(
+        _lcls_pathway.c.areaname,
+        func.listagg(_lcls_pathway.c.pathname.concat(", "))
+        .within_group(_lcls_pathway.c.pathname)
+        .label("pathname"),
+    )
+    .group_by(_lcls_pathway.c.areaname)
+    .subquery("p")
+)
+
+# Latest upload, left-joined to its aggregated pathname.
+_latest_upload = select(func.max(_lcls_elements_upd.c.upload_id)).scalar_subquery()
+_path = (
+    select(
+        _lcls_elements_upd.c.element_id,
+        _lcls_elements_upd.c.area2,
+        _pathways.c.pathname,
+    )
+    .select_from(
+        _lcls_elements_upd.outerjoin(
+            _pathways, _lcls_elements_upd.c.area2 == _pathways.c.areaname
+        )
+    )
+    .where(_lcls_elements_upd.c.upload_id == _latest_upload)
+    .subquery("path")
+)
+
+
+def _ref_column(col, header):
+    # beampath comes from the pathway join; unsourced columns are NULL; rest from the report view.
+    if col == "beampath":
+        expr = _path.c.pathname
+    elif col in _NO_ORACLE_SOURCE:
+        expr = null()
+    else:
+        expr = _v_report.c[col]
+    return expr.label(header)
+
+
+# Curated lcls_elements query with inactive devices kept; left join keeps elements with no beampath.
+_ORACLE_QUERY = (
+    select(*(_ref_column(col, header) for col, header in _ORACLE_TO_REFERENCE.items()))
+    .select_from(
+        _v_report.outerjoin(_path, _v_report.c.element_id == _path.c.element_id)
+    )
+    .where(_v_report.c.element_type == "MAD")
+)
 
 @contextmanager
 def get_connection():
@@ -207,12 +246,17 @@ def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
 
     Production only. The default query includes inactive elements.
     active/inactive coverage and web-export parity still need verification.
+
+    Args:
+        csv_output: Path to the output CSV file.
+        sql: SQLAlchemy query or raw SQL string to execute.
     """
 
     try:
         with get_connection() as connection, \
             open(csv_output, "w", newline="") as output_csv:
-            result = connection.execute(text(sql))
+            query = text(sql) if isinstance(sql, str) else sql
+            result = connection.execute(query)
             writer = csv.writer(output_csv)
             writer.writerow(result.keys())
             for row in result:
