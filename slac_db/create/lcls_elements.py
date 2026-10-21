@@ -145,22 +145,56 @@ _v_report = table(
     column("element_id"),
     *(column(col) for col in _report_cols),
 )
-_path = table(
-    "V_BEAMPATH_ELEMENTS",
+_lcls_pathway = table("lcls_pathway", column("areaname"), column("pathname", String))
+_lcls_elements_upd = table(
+    "lcls_elements_upd",
     column("element_id"),
     column("area2"),
-    column("beampath"),
-    column("beamline"),
+    column("upload_id"),
+)
+
+# Aggregate pathways per area: LISTAGG(pathname || ', ') ordered by pathname.
+_pathways = (
+    select(
+        _lcls_pathway.c.areaname,
+        func.listagg(_lcls_pathway.c.pathname.concat(", "))
+        .within_group(_lcls_pathway.c.pathname)
+        .label("pathname"),
+    )
+    .group_by(_lcls_pathway.c.areaname)
+    .subquery("p")
+)
+
+# Latest upload, left-joined to its aggregated pathname.
+_latest_upload = select(func.max(_lcls_elements_upd.c.upload_id)).scalar_subquery()
+_path = (
+    select(
+        _lcls_elements_upd.c.element_id,
+        _lcls_elements_upd.c.area2,
+        _pathways.c.pathname,
+    )
+    .select_from(
+        _lcls_elements_upd.outerjoin(
+            _pathways, _lcls_elements_upd.c.area2 == _pathways.c.areaname
+        )
+    )
+    .where(_lcls_elements_upd.c.upload_id == _latest_upload)
+    .subquery("path")
 )
 
 
 def _ref_column(col, header):
-    # path-sourced columns come from V_BEAMPATH_ELEMENTS; the rest from the report view.
-    expr = _path.c[_PATH_SOURCED[col]] if col in _PATH_SOURCED else _v_report.c[col]
+    # beampath comes from the pathway join; unsourced columns are NULL; rest from the report view.
+    if col == "beampath":
+        expr = _path.c.pathname
+    elif col in _NO_ORACLE_SOURCE:
+        expr = null()
+    else:
+        expr = _v_report.c[col]
     return expr.label(header)
 
 
-# lcls_elements query with inactive devices kept; left join keeps elements with no beampath.
+# Curated lcls_elements query with inactive devices kept; left join keeps elements with no beampath.
 _ORACLE_QUERY = (
     select(*(_ref_column(col, header) for col, header in _ORACLE_TO_REFERENCE.items()))
     .select_from(
