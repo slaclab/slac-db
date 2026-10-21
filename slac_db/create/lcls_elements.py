@@ -226,7 +226,6 @@ def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
         print(f"An error occurred {e}")
         raise
 
-
 def to_oracle_db(csv_source=None):
     """Build  oracle DB with SQLAlchemy.
 
