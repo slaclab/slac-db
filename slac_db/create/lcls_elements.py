@@ -26,11 +26,9 @@ _ORACLE_USERNAME = 'lcls_read'
 _ORACLE_ACTIVE_QUERY = "select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG"
 
 # Mapping oracle column (V_LCLS_ELEMENTS_REPORT) -> web headers.
-# Order matches the web lcls_elements.csv so the query output is drop-in
-# interchangeable with the web export. Only the 10 Title Case headers the
-# downstream SQLite schema reads matter functionally; the rest are carried for
-# web-dump parity. "area2" and "filename" have no Oracle source (see
-# _NO_ORACLE_SOURCE); "beampath" is built by the pathway join.
+# Order matches the web lcls_elements.csv. 
+# "area2" and "filename" have no Oracle source (see_NO_ORACLE_SOURCE); 
+# "beampath" is built by the pathway join.
 _ORACLE_TO_REFERENCE = {
     "element":                      "Element",
     "area":                         "Area",
@@ -204,22 +202,17 @@ def _get_remote_uri():
     return connection_string
 
 
-def get_oracle_elements_csv(oracle_csv='oracle_elements.csv', sql=_ORACLE_QUERY):
-    """Dump an Oracle query to csv. This function only works on production.
+def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
+    """Export Oracle elements with web-style columns and one header row.
 
-    With the default _ORACLE_QUERY the output columns match the
-    lcls_elements.csv columns (101 web columns, inactive devices included).
-	
-    Args:
-        oracle_csv: Name of the output csv file.
-        sql: Query to run. Defaults to _ORACLE_QUERY.
+    Production only. The default query includes inactive elements.
+    active/inactive coverage and web-export parity still need verification.
     """
 
-    #TODO: add code/confirm bare snake case oracle dump works.
     try:
         with get_connection() as connection, \
-            open(oracle_csv, "w", newline="") as output_csv:
-            result = connection.execute(sql)
+            open(csv_output, "w", newline="") as output_csv:
+            result = connection.execute(text(sql))
             writer = csv.writer(output_csv)
             writer.writerow(result.keys())
             for row in result:
@@ -228,16 +221,6 @@ def get_oracle_elements_csv(oracle_csv='oracle_elements.csv', sql=_ORACLE_QUERY)
         print(f"An error occurred {e}")
         raise
 
-
-def get_lcls_elements_csv(csv_output="lcls_elements.csv"):
-    """Get the lcls_elements.csv file from Oracle.
-    This function only works on production.
-    """
-
-    get_oracle_elements_csv(oracle_csv=csv_output)
-    # TODO: add code here to change formatting to match web output
-    return
-    
 def to_oracle_db(csv_source=None):
     """Build  oracle DB with SQLAlchemy.
 
@@ -260,7 +243,6 @@ class _Parser:
             self._parse_csv(reader)
 
     def _parse_csv(self, reader):
-        next(reader)  # skip group header row
         header = next(reader)
         index = {r.lower(): i for r, i in zip(header, range(len(header)))}
         wanted_cols = [
