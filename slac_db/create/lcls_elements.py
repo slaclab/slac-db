@@ -135,7 +135,7 @@ _ORACLE_TO_REFERENCE = {
     "beampath":                     "Beampath",
 }
 
-# Web columns with no V_LCLS_ELEMENTS_REPORT source; emitted as NULL.
+# Web columns with no V_LCLS_ELEMENTS_REPORT source; set as NULL.
 _NO_ORACLE_SOURCE = {"area2", "filename"}
 
 def _select_expr(col):
@@ -151,8 +151,8 @@ _SELECT_COLUMNS = ",\n  ".join(
     for col, header in _ORACLE_TO_REFERENCE.items()
 )
 
-# sql query for curated lcls_elements.csv with inactive (active_flag='I') devices kept.
-# The nested join only exists to build beampath; the (+) outer joins keep elements with no beampath.
+# sql query for curated lcls_elements.csv with inactive devices kept.
+# The nested join builds the beampath; the (+) outer joins keep elements with no beampath.
 _ORACLE_QUERY = f"""
 SELECT
   {_SELECT_COLUMNS}
@@ -208,7 +208,7 @@ def get_oracle_elements_csv(oracle_csv='oracle_elements.csv', sql=_ORACLE_QUERY)
     """Dump an Oracle query to csv. This function only works on production.
 
     With the default _ORACLE_QUERY the output columns match the
-    lcls_elements.csv columns (101 Web columns, inactive devices included).
+    lcls_elements.csv columns (101 web columns, inactive devices included).
 	
     Args:
         oracle_csv: Name of the output csv file.
@@ -235,7 +235,7 @@ def get_lcls_elements_csv(csv_output="lcls_elements.csv"):
     """
 
     get_oracle_elements_csv(oracle_csv=csv_output)
-    # TODO: code here to change formatting to match web output
+    # TODO: add code here to change formatting to match web output
     return
     
 def to_oracle_db(csv_source=None):
