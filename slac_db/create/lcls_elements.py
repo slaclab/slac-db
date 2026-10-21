@@ -1,7 +1,6 @@
 import csv
-
-from sqlalchemy import text
-
+from sqlalchemy import text, create_engine
+from contextlib import contextmanager
 import slac_db.config
 import slac_db.element_tables
 
@@ -21,24 +20,206 @@ ORACLE_TO_YAML_TYPE_MAP = {
     "IMON": "toroid",
 }
 
+_ORACLE_TNS      = 'slacprod' # name/connection of Oracle DB on prod
+_ORACLE_USERNAME = 'lcls_read'
+# sql query to get only active devices
+_ORACLE_ACTIVE_QUERY = "select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG"
 
-def get_lcls_elements_csv(csv_output="lcls_elements.csv"):
-    """Get the lcls_elements.csv file from Oracle.
-    This function only works on production.
+# Mapping oracle column (V_LCLS_ELEMENTS_REPORT) -> web headers.
+# Order matches the web lcls_elements.csv. 
+# "area2" and "filename" have no Oracle source (see_NO_ORACLE_SOURCE); 
+# "beampath" is built by the pathway join.
+_ORACLE_TO_REFERENCE = {
+    "element":                      "Element",
+    "area":                         "Area",
+    "element_type":                 "Type",
+    "epics_channel_access_name":    "Control System Name",
+    "area2":                        "Area2",
+    "component_name":               "Component Name",
+    "component_comments":           "Component Comments",
+    "slc_name":                     "Slc Name",
+    "symbols_upload_id":            "Symbols Upload Id",
+    "ltu_upload_id":                "Ltu Upload Id",
+    "first_sourced_from":           "First Sourced From",
+    "active_flag":                  "Active",
+    "filename":                     "Filename",
+    "sector":                       "Sector",
+    "sector_location":              "Sector Location",
+    "undulator_cell":               "Undulator Cell",
+    "keyword":                      "Keyword",
+    "barcode":                      "Barcode",
+    "engineering_name":             "Engineering Name",
+    "suml_m":                       "SumL (m)",
+    "suml_ft":                      "SumL (ft)",
+    "linacz_m":                     "Linac Z (m)",
+    "linacz_ft":                    "Linac Z (ft)",
+    "ltu_suml_m":                   "Ltu SumL (m)",
+    "ltu_suml_ft":                  "Ltu SumL (ft)",
+    "ltu_linacz_m":                 "Ltu Linac Z (m)",
+    "ltu_linacz_ft":                "Ltu Linac Z (ft)",
+    "drawing_no":                   "Local Area Drawing",
+    "irmis_ioc_names":              "Irmis Ioc Names",
+    "element_comment":              "Element Comment",
+    "sections":                     "Sections",
+    "begin_dbmark":                 "Begin Dbmark",
+    "begin_suml":                   "Begin SumL (m)",
+    "end_dbmark":                   "End Dbmark",
+    "end_suml":                     "End SumL (m)",
+    "bsa_flag":                     "Bsa Device",
+    "obstruction":                  "Obstruction",
+    "effective_length":             "Effective Length (m)",
+    "rf_frequency":                 "Rf Frequency (MHz)",
+    "rf_amplitude":                 "Rf Amplitude (MeV)",
+    "rf_phase":                     "Rf Phase (deg)",
+    "rf_gradient":                  "Rf Gradient (MeV/m)",
+    "rf_power_fraction":            "Rf Power Fraction",
+    "z_length":                     "Z Length (m)",
+    "fringe_field_integral":        "Fringe Field Integral",
+    "integrated_field_bl":          "Integrated Field BL (kG-m)",
+    "field_b":                      "Field B (T)",
+    "integrated_field_grad_gl":     "Integrated Field Grad GL (kG)",
+    "field_gradient_g":             "Field Gradient G (T/m)",
+    "xal_scale_name":               "Xal Scale Name",
+    "xal_scale_value":              "Xal Scale Value",
+    "xal_polarity":                 "Xal Polarity",
+    "magnet_x_coor":                "Magnet X Coor (m)",
+    "magnet_y_coor":                "Magnet Y Coor (m)",
+    "magnet_z_coor":                "Magnet Z Coor (m)",
+    "magnet_x_angle":               "Magnet X Angle (rad)",
+    "magnet_y_angle":               "Magnet Y Angle (rad)",
+    "magnet_z_angle":               "Magnet Z Angle (rad)",
+    "solenoid_strength_ks":         "Solenoid Strength KS (1/m)",
+    "undulator_period_length":      "Undulator Period Length (m)",
+    "undulator_strength_k":         "Undulator Strength K",
+    "x_size":                       "X Size (m)",
+    "y_size":                       "Y Size (m)",
+    "section":                      "Section",
+    "dist_from_section_start":      "Dist From Section Start (m)",
+    "xal_keyword":                  "Xal Keyword",
+    "s_display":                    "S Display",
+    "ltu_rf_frequency":             "Ltu Rf Frequency (MHz)",
+    "ltu_rf_amplitude":             "Ltu Rf Amplitude (MeV)",
+    "ltu_rf_phase":                 "Ltu Rf Phase (deg)",
+    "ltu_rf_gradient":              "Ltu Rf Gradient (MeV/m)",
+    "ltu_rf_power_fraction":        "Ltu Rf Power Fraction",
+    "ltu_z_length":                 "Ltu Z Length (m)",
+    "ltu_fringe_field_integral":    "Ltu Fringe Field Integral",
+    "ltu_integrated_field_bl":      "Ltu Integrated Field BL (kG-m)",
+    "ltu_field_b":                  "Ltu Field B (T)",
+    "ltu_integrated_field_grad_gl": "Ltu Integrated Field Grad GL (kG)",
+    "ltu_field_gradient_g":         "Ltu Field Gradient G (T/m)",
+    "ltu_xal_scale_name":           "Ltu Xal Scale Name",
+    "ltu_xal_scale_value":          "Ltu Xal Scale Value",
+    "ltu_xal_polarity":             "Ltu Xal Polarity",
+    "ltu_magnet_x_coor":            "Ltu Magnet X Coor",
+    "ltu_magnet_y_coor":            "Ltu Magnet Y Coor",
+    "ltu_magnet_z_coor":            "Ltu Magnet Z Coor",
+    "ltu_magnet_x_angle":           "Ltu Magnet X Angle",
+    "ltu_magnet_y_angle":           "Ltu Magnet Y Angle",
+    "ltu_magnet_z_angle":           "Ltu Magnet Z Angle",
+    "ltu_solenoid_strength_ks":     "Ltu Solenoid Strength Ks",
+    "ltu_undulator_period_length":  "Ltu Undulator Period Length",
+    "ltu_undulator_strength_k":     "Ltu Undulator Strength K",
+    "ltu_x_size":                   "Ltu X Size",
+    "ltu_y_size":                   "Ltu Y Size",
+    "ltu_section":                  "Ltu Section",
+    "ltu_dist_from_section_start":  "Ltu Dist From Section Start",
+    "ltu_xal_keyword":              "Ltu Xal Keyword",
+    "ltu_s_display":                "Ltu S Display",
+    "ioc_captar_search":            "Ioc Captar Search",
+    "slc_captar_search":            "Slc Captar Search",
+    "ops_status":                   "Operation Status",
+    "ops_status_date":              "Op Status Date",
+    "beampath":                     "Beampath",
+}
 
-    Args:
-        csv_output: Name of the output csv file.
+# Web columns with no V_LCLS_ELEMENTS_REPORT source; set as NULL.
+_NO_ORACLE_SOURCE = {"area2", "filename"}
+
+def _select_expr(col):
+    # beampath comes from the pathway join; unsourced columns are NULL; rest from t.
+    if col == "beampath":
+        return "path.pathname"
+    if col in _NO_ORACLE_SOURCE:
+        return "NULL"
+    return f"t.{col}"
+
+_SELECT_COLUMNS = ",\n  ".join(
+    f'{_select_expr(col)} AS "{header}"'
+    for col, header in _ORACLE_TO_REFERENCE.items()
+)
+
+# sql query for curated lcls_elements.csv with inactive devices kept.
+# The nested join builds the beampath; the (+) outer joins keep elements with no beampath.
+_ORACLE_QUERY = f"""
+SELECT
+  {_SELECT_COLUMNS}
+FROM V_LCLS_ELEMENTS_REPORT t,
+     (SELECT u.element_id, u.area2, p.pathname
+      FROM lcls_elements_upd u,
+           (SELECT areaname,
+                   LISTAGG(pathname || ', ') WITHIN GROUP (ORDER BY pathname) AS pathname
+            FROM lcls_pathway
+            GROUP BY areaname) p
+      WHERE u.upload_id = (SELECT MAX(upload_id) FROM lcls_elements_upd)
+        AND u.area2 = p.areaname (+)) path
+WHERE t.element_id = path.element_id (+)
+  AND t.element_type = 'MAD'
+"""
+
+@contextmanager
+def get_connection():
+    """Yield a connection to Oracle. Only works on production.
+    Using as a context manager so the connection and engine are always cleaned up:
+        with get_connection() as conn:
     """
-    import pandas as pd
-
-    sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
+    engine = create_engine(_get_remote_uri())
+    conn = engine.connect()
     try:
-        with get_connection() as connection:
-            df = pd.read_sql(sql_query, connection)
-            df.to_csv(csv_output, index=False)
+        yield conn
+    finally:
+        conn.close()
+        engine.dispose()
+
+
+def _get_oracle_pw(username=_ORACLE_USERNAME):
+    """Get Oracle password. This only works on production.
+    """
+    try:
+        import subprocess
+        cmd      = subprocess.run(['getPwd', username], capture_output=True, text=True, check=True)
+        password = cmd.stdout.strip()
+        return password
+    except Exception as e:
+        print(f"Could not get Oracle password: {e}")
+        return None
+
+def _get_remote_uri():
+    """Get string needed to connect to Oracle remotely.
+    """
+    password  = _get_oracle_pw(_ORACLE_USERNAME)
+    connection_string = f'oracle+cx_oracle://{_ORACLE_USERNAME}:{password}@{_ORACLE_TNS}'
+    return connection_string
+
+
+def get_lcls_elements_csv(csv_output="lcls_elements.csv", sql=_ORACLE_QUERY):
+    """Export Oracle elements with web-style columns and one header row.
+
+    Production only. The default query includes inactive elements.
+    active/inactive coverage and web-export parity still need verification.
+    """
+
+    try:
+        with get_connection() as connection, \
+            open(csv_output, "w", newline="") as output_csv:
+            result = connection.execute(text(sql))
+            writer = csv.writer(output_csv)
+            writer.writerow(result.keys())
+            for row in result:
+                writer.writerow("" if v is None else str(v) for v in row)
     except Exception as e:
         print(f"An error occurred {e}")
-
+        raise
 
 def to_oracle_db(csv_source=None):
     """Build  oracle DB with SQLAlchemy.
@@ -62,7 +243,6 @@ class _Parser:
             self._parse_csv(reader)
 
     def _parse_csv(self, reader):
-        next(reader)  # skip group header row
         header = next(reader)
         index = {r.lower(): i for r, i in zip(header, range(len(header)))}
         wanted_cols = [
