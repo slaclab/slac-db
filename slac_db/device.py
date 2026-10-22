@@ -213,6 +213,14 @@ def get_all_meta(device_name):
             )
         }
 
+def build_device(device_name):
+    with _session() as s:
+        device = PKDict(s.select_one("devices", PKDict(device_name=device_name)))
+    return device.pkupdate(
+        **get_all_meta(device_name),
+        accessor=get_all_accessors(device_name),
+    )
+
 
 def recreate(parser):
     """Rebuilds the device database.
