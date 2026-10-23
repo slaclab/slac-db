@@ -375,8 +375,7 @@ def _klys_pvs(mad_name, beamcode):
     return ampl_pv, phase_pv, beamcode_pv
 
 
-def get_model_devices(device_types=None, beampath=None, regions=None,
-                      first=None, last=None):
+def get_model_devices(device_types=None, beampath=None, regions=None):
     """Return modeled MAD elements keyed by MAD name with DB attributes.
 
     Queries the device database for MAD model elements matching
@@ -399,10 +398,6 @@ def get_model_devices(device_types=None, beampath=None, regions=None,
             the selection.
         regions (list[str]) optional: Area names to search; when
             given, overrides beampath for area lookup.
-        first (str) optional: MAD element bounding the slice start
-            (inclusive).
-        last (str) optional: MAD element bounding the slice end
-            (inclusive).
 
     Returns:
         dict: mad_name -> {"cs_name", "device_type", ...}
@@ -410,8 +405,7 @@ def get_model_devices(device_types=None, beampath=None, regions=None,
             also carry "amplitude_pv", "phase_pv", and "beamcode_pv".
 
     Raises:
-        ValueError: If first/last are not found in the sorted list,
-            or if a cavity-shaped device is selected without a
+        ValueError: If a cavity-shaped device is selected without a
             beampath beamcode mapping.
     """
     if device_types is None:
@@ -436,38 +430,8 @@ def get_model_devices(device_types=None, beampath=None, regions=None,
         key=lambda e: get_all_meta(e).get("sum_l_meters", 0),
     )
 
-    if first is not None:
-        try:
-            first_idx = sorted_elements.index(first)
-        except ValueError:
-            raise ValueError(
-                f"first={first!r} not found in modeled elements for "
-                f"beampath={beampath!r}"
-            )
-    else:
-        first_idx = 0
-
-    if last is not None:
-        try:
-            last_idx = sorted_elements.index(last)
-        except ValueError:
-            raise ValueError(
-                f"last={last!r} not found in modeled elements for "
-                f"beampath={beampath!r}"
-            )
-    else:
-        last_idx = len(sorted_elements) - 1
-
-    if first_idx > last_idx:
-        raise ValueError(
-            f"first={first!r} appears after last={last!r} in modeled "
-            f"elements for beampath={beampath!r}"
-        )
-
-    sliced = sorted_elements[first_idx:last_idx + 1]
-
     result = {}
-    for e in sliced:
+    for e in sorted_elements:
         cs_name = get_attribute(e, "cs_name")
         cs_prefix = cs_name.split(":")[0] if cs_name else ""
         if cs_prefix in _EXCLUDED_DEVICE_TYPES:
