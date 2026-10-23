@@ -3,7 +3,7 @@ from pathlib import Path
 
 import slac_db.device
 
-test_data_path = Path(__file__).parent / "test_data"
+test_data_path = Path(__file__).parent.joinpath("test_data")
 
 
 class test_device(unittest.TestCase):
