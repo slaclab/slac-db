@@ -328,3 +328,184 @@ def _session():
     if _meta is None:
         _init_db()
     return _meta.session()
+
+
+# Device types considered when discovering modeled MAD elements.
+_MODELED_DEVICE_TYPES = ["BEND", "BTRM", "QUAD", "XCOR", "YCOR", "LCAV"]
+
+# cs_name prefixes whose DES values are amplitude + phase, not BDES.
+_CAVITY_CS_PREFIXES = {"KLYS", "ACCL", "LCAV"}
+
+# cs_name prefixes intentionally excluded from PV generation.
+_EXCLUDED_DEVICE_TYPES = {"TCAV"}
+
+# Mapping from beam path name to klystron beamcode.
+_BEAM_PATH_BEAMCODE = {
+    "CU_HXR": 1,
+    "CU_SXR": 2,
+}
+
+
+def _klys_pvs(mad_name, beamcode):
+    """Return (amplitude_pv, phase_pv, beamcode_pv) for a cavity device.
+
+    Looks up the beamcode-specific DES accessors on the device,
+    falling back to the plain amplitude/phase_desired entries if the
+    beamcode-specific keys are absent. The beamcode PV comes from the
+    'beamcode{N}' accessor entry. Any return slot may be None.
+
+    Args:
+        mad_name (str): MAD device name.
+        beamcode (int): Klystron beamcode (e.g. 1 for CU_HXR).
+
+    Returns:
+        tuple[str | None, str | None, str | None]:
+            (amplitude_pv, phase_pv, beamcode_pv)
+    """
+    acc = get_all_accessors(mad_name) or {}
+    ampl_pv = (
+        acc.get(f"amplitude_des_beamcode{beamcode}")
+        or acc.get("amplitude")
+    )
+    phase_pv = (
+        acc.get(f"phase_desired_beamcode{beamcode}")
+        or acc.get("phase_desired")
+    )
+    beamcode_pv = acc.get(f"beamcode{beamcode}")
+    return ampl_pv, phase_pv, beamcode_pv
+
+
+def get_model_devices(device_types=None, beampath=None, regions=None):
+    """Return modeled MAD elements keyed by MAD name with DB attributes.
+
+    Queries the device database for MAD model elements matching
+    device_types in the areas implied by regions or beampath, sorts
+    by longitudinal position (sum_l_meters), and returns a dict
+    keyed by MAD element name. Each value carries cs_name and
+    device_type; cavity-shaped entries (cs_name prefix in
+    _CAVITY_CS_PREFIXES: KLYS, ACCL, LCAV) additionally carry
+    amplitude_pv, phase_pv, and beamcode_pv resolved against the
+    beamcode implied by beampath. Elements whose cs_name prefix is
+    in _EXCLUDED_DEVICE_TYPES (e.g. TCAV) are omitted.
+
+    Args:
+        device_types (list[str]) optional: Device type codes to
+            include. Defaults to _MODELED_DEVICE_TYPES.
+        beampath (str) optional: Beam path name (e.g. "CU_HXR") used
+            both to look up areas when regions is not supplied and
+            to resolve the klystron beamcode (CU_HXR -> 1,
+            CU_SXR -> 2). Required if any cavity-shaped device is in
+            the selection.
+        regions (list[str]) optional: Area names to search; when
+            given, overrides beampath for area lookup.
+
+    Returns:
+        dict: mad_name -> {"cs_name", "device_type", ...}
+            insertion-ordered by sum_l_meters. Cavity-shaped entries
+            also carry "amplitude_pv", "phase_pv", and "beamcode_pv".
+
+    Raises:
+        ValueError: If a cavity-shaped device is selected without a
+            beampath beamcode mapping.
+    """
+    if device_types is None:
+        device_types = _MODELED_DEVICE_TYPES
+    beamcode = (
+        _BEAM_PATH_BEAMCODE.get(beampath.upper()) if beampath else None
+    )
+
+    if regions:
+        mad_elements = []
+        for area in regions:
+            mad_elements.extend(
+                get_devices(area=area, device_type=device_types)
+            )
+    else:
+        mad_elements = get_devices(
+            beampath=beampath, device_type=device_types
+        )
+
+    sorted_elements = sorted(
+        mad_elements,
+        key=lambda e: get_all_meta(e).get("sum_l_meters", 0),
+    )
+
+    result = {}
+    for e in sorted_elements:
+        cs_name = get_attribute(e, "cs_name")
+        cs_prefix = cs_name.split(":")[0] if cs_name else ""
+        if cs_prefix in _EXCLUDED_DEVICE_TYPES:
+            continue
+        entry = {
+            "cs_name": cs_name,
+            "device_type": get_attribute(e, "device_type"),
+        }
+        if cs_prefix in _CAVITY_CS_PREFIXES:
+            if beamcode is None:
+                raise ValueError(
+                    f"beampath {beampath!r} is required / not supported "
+                    f"for beamcode resolution on cavity-shaped device "
+                    f"{e!r}. Supported: {list(_BEAM_PATH_BEAMCODE)}."
+                )
+            (entry["amplitude_pv"],
+             entry["phase_pv"],
+             entry["beamcode_pv"]) = _klys_pvs(e, beamcode)
+        result[e] = entry
+    return result
+
+
+# Magnet device_types mapped to their DES attribute suffixes.
+_MAGNET_DES_ATTRS = {
+    "BEND": ["BDES"],
+    "BTRM": ["BDES"],
+    "QUAD": ["BDES"],
+    "SOLN": ["BDES"],
+    "XCOR": ["BDES"],
+    "YCOR": ["BDES"],
+}
+
+
+def get_model_pvs(devices):
+    """Flatten a get_model_devices dict into a list of DES PV names.
+
+    Cavity-shaped entries (cs_name prefix in _CAVITY_CS_PREFIXES:
+    KLYS, ACCL, LCAV) contribute their pre-resolved amplitude_pv,
+    phase_pv, and beamcode_pv when present. Magnet entries contribute
+    cs_name:BDES per the _MAGNET_DES_ATTRS table. Entries whose
+    cs_name prefix is in _EXCLUDED_DEVICE_TYPES (e.g. TCAV) are
+    silently skipped.
+
+    Args:
+        devices (dict): Mapping as returned by get_model_devices.
+
+    Returns:
+        list[str]: PV names in input order; cavity entries contribute
+            up to three PVs each (amplitude, phase, beamcode), magnet
+            entries contribute one (BDES).
+
+    Raises:
+        ValueError: If a non-cavity entry's device_type is not in
+            _MAGNET_DES_ATTRS and not in _EXCLUDED_DEVICE_TYPES.
+    """
+    pvs = []
+    for mad_name, attrs in devices.items():
+        cs_name = attrs["cs_name"]
+        device_type = attrs["device_type"]
+        cs_prefix = cs_name.split(":")[0] if cs_name else ""
+        if cs_prefix in _EXCLUDED_DEVICE_TYPES:
+            continue
+        if cs_prefix in _CAVITY_CS_PREFIXES:
+            for key in ("amplitude_pv", "phase_pv", "beamcode_pv"):
+                pv = attrs.get(key)
+                if pv:
+                    pvs.append(pv)
+        elif device_type in _MAGNET_DES_ATTRS:
+            for suffix in _MAGNET_DES_ATTRS[device_type]:
+                pvs.append(f"{cs_name}:{suffix}")
+        else:
+            raise ValueError(
+                f"Unsupported device type {device_type!r} for device "
+                f"{mad_name!r} (cs_name={cs_name!r}). Supported types: "
+                f"{', '.join(sorted(_MAGNET_DES_ATTRS))}."
+            )
+    return pvs
