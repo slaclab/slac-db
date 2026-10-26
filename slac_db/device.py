@@ -63,6 +63,30 @@ def get_attribute(device_name, col_name):
         )[col_name]
 
 
+def get_device_from_cs_name(cs_name):
+    """Reverse-lookup the MAD device_name for an EPICS cs_name.
+
+    Args:
+        cs_name (str): EPICS control-system name, e.g.
+            'QUAD:IN20:361'.
+
+    Returns:
+        str | None: device_name (MAD element) for the given cs_name,
+            or None if no device matches.
+
+    Raises:
+        pykern.sql_db.MoreThanOneRow: if more than one device shares
+            this cs_name (e.g. some wire scanners and vacuum valves).
+    """
+    with _session() as s:
+        row = s.select_one_or_none(
+            sqlalchemy.select(s.t.devices).where(
+                s.t.devices.c["cs_name"] == cs_name
+            )
+        )
+        return row["device_name"] if row else None
+
+
 def get_devices(area=None, device_type=None, beampath=None,
                 include_inactive=False):
     """Get all devices filtered by area, beampath, and/or device type.
