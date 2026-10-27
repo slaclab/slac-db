@@ -1,7 +1,5 @@
 import csv
-from sqlalchemy import (
-    text, create_engine, select, table, column, func, null, String,
-)
+from sqlalchemy import text, create_engine, select, table, column
 from contextlib import contextmanager
 import slac_db.config
 import slac_db.element_tables
@@ -27,10 +25,9 @@ _ORACLE_USERNAME = 'lcls_read'
 # sql query to get only active devices
 _ORACLE_ACTIVE_QUERY = "select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG"
 
-# Mapping oracle column (V_LCLS_ELEMENTS_REPORT) -> web headers.
-# Order matches the web lcls_elements.csv. 
-# "area2" and "filename" have no Oracle source (see_NO_ORACLE_SOURCE); 
-# "beampath" is built by the pathway join.
+# Mapping oracle column (V_LCLS_ELEMENTS_REPORT) to -> web headers.
+# Order matches the web lcls_elements.csv.
+# "area2", "beampath" and "filename" come from V_BEAMPATH_ELEMENTS (see _PATH_SOURCED).
 _ORACLE_TO_REFERENCE = {
     "element":                      "Element",
     "area":                         "Area",
@@ -135,69 +132,33 @@ _ORACLE_TO_REFERENCE = {
     "beampath":                     "Beampath",
 }
 
-# Web columns with no V_LCLS_ELEMENTS_REPORT source; set as NULL.
-_NO_ORACLE_SOURCE = {"area2", "filename"}
+# Web columns sourced from V_BEAMPATH_ELEMENTS view rather
+# than the element report view (beamline is the web "Filename").
+_PATH_SOURCED = {"beampath": "beampath", "area2": "area2", "filename": "beamline"}
 
-# Lightweight table/column handles (no reflection; columns are declared by hand).
-_report_cols = [
-    col for col in _ORACLE_TO_REFERENCE
-    if col not in _NO_ORACLE_SOURCE and col != "beampath"
-]
+# Lightweight table/column handles.
+_report_cols = [col for col in _ORACLE_TO_REFERENCE if col not in _PATH_SOURCED]
 _v_report = table(
     "V_LCLS_ELEMENTS_REPORT",
     column("element_id"),
     *(column(col) for col in _report_cols),
 )
-_lcls_pathway = table("lcls_pathway", column("areaname"), column("pathname", String))
-_lcls_elements_upd = table(
-    "lcls_elements_upd",
+_path = table(
+    "V_BEAMPATH_ELEMENTS",
     column("element_id"),
     column("area2"),
-    column("upload_id"),
-)
-
-# Aggregate pathways per area: LISTAGG(pathname || ', ') ordered by pathname.
-_pathways = (
-    select(
-        _lcls_pathway.c.areaname,
-        func.listagg(_lcls_pathway.c.pathname.concat(", "))
-        .within_group(_lcls_pathway.c.pathname)
-        .label("pathname"),
-    )
-    .group_by(_lcls_pathway.c.areaname)
-    .subquery("p")
-)
-
-# Latest upload, left-joined to its aggregated pathname.
-_latest_upload = select(func.max(_lcls_elements_upd.c.upload_id)).scalar_subquery()
-_path = (
-    select(
-        _lcls_elements_upd.c.element_id,
-        _lcls_elements_upd.c.area2,
-        _pathways.c.pathname,
-    )
-    .select_from(
-        _lcls_elements_upd.outerjoin(
-            _pathways, _lcls_elements_upd.c.area2 == _pathways.c.areaname
-        )
-    )
-    .where(_lcls_elements_upd.c.upload_id == _latest_upload)
-    .subquery("path")
+    column("beampath"),
+    column("beamline"),
 )
 
 
 def _ref_column(col, header):
-    # beampath comes from the pathway join; unsourced columns are NULL; rest from the report view.
-    if col == "beampath":
-        expr = _path.c.pathname
-    elif col in _NO_ORACLE_SOURCE:
-        expr = null()
-    else:
-        expr = _v_report.c[col]
+    # path-sourced columns come from V_BEAMPATH_ELEMENTS; the rest from the report view.
+    expr = _path.c[_PATH_SOURCED[col]] if col in _PATH_SOURCED else _v_report.c[col]
     return expr.label(header)
 
 
-# Curated lcls_elements query with inactive devices kept; left join keeps elements with no beampath.
+# lcls_elements query with inactive devices kept; left join keeps elements with no beampath.
 _ORACLE_QUERY = (
     select(*(_ref_column(col, header) for col, header in _ORACLE_TO_REFERENCE.items()))
     .select_from(
