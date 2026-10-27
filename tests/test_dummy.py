@@ -1,9 +1,20 @@
-import slac_db.device
+import pytest
 import slac_db.create
+import slac_db.device
 
-slac_db.create.dummy_db()
 
-def test_dev_cameras():
+@pytest.fixture
+def setup_data():
+    prod_path = slac_db.device._db_path
+    slac_db.device._meta = None
+    slac_db.create.dummy_db()
+    yield
+    slac_db.device._meta = None
+    slac_db.device._db_path = prod_path
+
+def test_dev_cameras(setup_data):
+    slac_db.device._meta = None
+
     assert slac_db.device.get_all_areas() == ["DEV_AREA"]
     assert slac_db.device.build_device("DEV_CAMERA") == {
         'device_name': 'DEV_CAMERA',
@@ -20,3 +31,4 @@ def test_dev_cameras():
             'n_row': '13SIM1:cam1:SizeY',
         },
     }
+    slac_db.device._meta = None
