@@ -235,7 +235,7 @@ def recreate(parser):
             "Database connnection already initialized. " + "Restart Python interpreter."
         )
     if not hasattr(parser, "address_meta"):
-        raise AssertionError("Parser is missing attribute 'device_address_meta'. ")
+        raise AssertionError("Parser is missing attribute 'address_meta'. ")
     if os.path.exists(_device_db_location()):
         os.remove(_device_db_location())
     _Inserter(parser)
@@ -321,6 +321,8 @@ class _Inserter:
     def _bulk_insert(self, s, table_map):
         s.execute(sqlalchemy.text("SELECT 1"))
         for name, rows in table_map.items():
+            if not rows:
+                continue
             tab = s.t[name]
             s._conn.execute(tab.insert(), rows)
 
