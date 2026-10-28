@@ -50,7 +50,10 @@ def _normalize_value(column, value):
         return value.replace("\r\n", "\n")
     return _num(value)
 
-@unittest.skipUnless(generate_tcsv, "Skipping test on workflow, this is manual currently.")
+@unittest.skipUnless(
+    reference_csv.exists() and test_csv.exists(),
+    "Needs both lcls_elements.csv and test_lcls_elements.csv in package_data.",
+)
 def test_csv_matches_reference():
 
     _, built_rows     = _load(test_csv)
@@ -58,14 +61,27 @@ def test_csv_matches_reference():
 
     curated = list(_ORACLE_TO_REFERENCE.values())
     key = lambda r: (r["Area"], r["Element"])
+    built_by_key = {key(r): r for r in built_rows}
+    reference_by_key = {key(r): r for r in reference_rows}
 
-    def norm(rows):
-        return sorted(
-            ({c: _normalize_value(c, r[c]) for c in curated} for r in rows),
-            key=key,
-        )
+    only_built = sorted(built_by_key.keys() - reference_by_key.keys())
+    only_reference = sorted(reference_by_key.keys() - built_by_key.keys())
+    assert not only_built, f"rows only in oracle export: {only_built[:10]}"
+    assert not only_reference, f"rows only in web reference: {only_reference[:10]}"
 
-    assert norm(built_rows) == norm(reference_rows)
+    # Count value mismatches per column so a failure shows what diverged.
+    col_diffs = {}
+    for k in built_by_key:
+        built, reference = built_by_key[k], reference_by_key[k]
+        for c in curated:
+            if _normalize_value(c, built[c]) != _normalize_value(c, reference[c]):
+                col_diffs.setdefault(c, []).append((k, reference[c], built[c]))
+
+    report = "\n".join(
+        f"  {c}: {len(samples)} rows; e.g. {samples[:3]}"
+        for c, samples in col_diffs.items()
+    )
+    assert not col_diffs, f"columns differing (key, web, oracle):\n{report}"
 
 
 def summarize_elements_csv(path):
