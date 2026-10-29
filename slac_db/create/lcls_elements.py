@@ -1,6 +1,8 @@
 import csv
-from sqlalchemy import text, create_engine, select, table, column
 from contextlib import contextmanager
+
+from sqlalchemy import column, create_engine, select, table, text
+
 import slac_db.config
 import slac_db.element_tables
 

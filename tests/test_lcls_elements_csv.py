@@ -2,11 +2,13 @@ import csv
 import sys
 import unittest
 from datetime import datetime
+
 import slac_db.config
 from slac_db.create.lcls_elements import (
     _ORACLE_TO_REFERENCE,
     get_lcls_elements_csv,
 )
+
 # Assumes a web db and oracle db is downloaded in package_data
 # These should be generated/downloaded on the same day.
 package_data  = slac_db.config.package_data()

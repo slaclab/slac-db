@@ -1,5 +1,4 @@
 import yaml
-from pykern.pkdebug import pkdlog
 
 import slac_db.config
 import slac_db.create.device
