@@ -4,7 +4,7 @@ import slac_db.device
 
 
 @pytest.fixture
-def setup_data():
+def reset_db():
     prod_path = slac_db.device._db_path
     slac_db.device._meta = None
     slac_db.create.dummy_db()
@@ -12,7 +12,7 @@ def setup_data():
     slac_db.device._meta = None
     slac_db.device._db_path = prod_path
 
-def test_dev_cameras(setup_data):
+def test_dev_cameras(reset_db):
     slac_db.device._meta = None
 
     assert slac_db.device.get_all_areas() == ["DEV_AREA"]
