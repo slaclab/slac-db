@@ -10,7 +10,6 @@ import slac_db.config
 _meta = None
 _db_path = slac_db.config.package_data().joinpath("device.sqlite3")
 
-
 def build_device(device_name):
     with _session() as s:
         device = PKDict(s.select_one("devices", PKDict(device_name=device_name)))
@@ -122,14 +121,14 @@ def get_all_accessors(device):
         device (str): MAD name for a device.
     """
     with _session() as s:
-        return {
-            r["accessor_name"]: r["cs_address"]
+        return PKDict({
+            r["accessor_name"]: PKDict(r)
             for r in s.select(
                 sqlalchemy.select(s.t.accessors)
                 .where(s.t.accessors.c["device_name"] == device)
                 .order_by(s.t.accessors.c.accessor_name)
             )
-        }
+        })
 
 
 def get_all_addresses(device):
