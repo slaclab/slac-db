@@ -240,64 +240,64 @@ def recreate(parser):
         os.remove(_device_db_location())
     _Inserter(parser)
 
-def upstream_devices(device_type, required_accessor, beam_path, end_device):
+def upstream_devices(device_type, required_accessor, beampath, end_device):
     with _session() as s:
-        # select device.device_name from device_meta_float, device where device_meta_name = 'sum_l_meters' and device_meta_value < 33 and device.device_type = 'PROF' and device.device_name = device_meta_float.device_name;
+        # select device.device_name from device_meta_float, device where device_meta_name = 'sum_l_meters' and meta_value < 33 and device.device_type = 'PROF' and device.device_name = device_meta_float.device_name;
         c = s.t.device_meta_float.c.device_name
-        _assert_on_beampath(end_device, beam_path, s)
+        _assert_on_beampath(end_device, beampath, s)
         return tuple(
             r.device_name
             for r in s.select(
                 sqlalchemy.select(c)
                 .select_from(
                     s.t.device_meta_float.join(
-                        s.t.device,
-                        s.t.device.c.device_name == c,
+                        s.t.devices,
+                        s.t.devices.c.device_name == c,
                     )
                     .join(
-                        s.t.beam_path,
-                        s.t.beam_path.c.beam_area == s.t.device.c.beam_area,
+                        s.t.beampaths,
+                        s.t.beampaths.c.area == s.t.devices.c.area,
                     )
                     .join(
-                        s.t.device_accessor,
-                        s.t.device_accessor.c.device_name == c,
+                        s.t.accessors,
+                        s.t.accessors.c.device_name == c,
                     )
                 )
                 .where(
-                    s.t.beam_path.c.beam_path == beam_path,
+                    s.t.beampaths.c.beampath == beampath,
                     s.t.device_meta_float.c.device_meta_name == "sum_l_meters",
-                    s.t.device_meta_float.c.device_meta_value
+                    s.t.device_meta_float.c.meta_value
                     < _device_meta(end_device, "sum_l_meters", s),
-                    s.t.device.c.device_type == device_type,
-                    s.t.device_accessor.c.accessor_name == required_accessor,
+                    s.t.devices.c.device_type == device_type,
+                    s.t.accessors.c.accessor_name == required_accessor,
                 )
-                .order_by(s.t.device_meta_float.c.device_meta_value)
+                .order_by(s.t.device_meta_float.c.meta_value)
             )
         )
 
-def _assert_on_beampath(device, beam_path, select):
-    c = select.t.device.c.device_name
+def _assert_on_beampath(device, beampath, select):
+    c = select.t.devices.c.device_name
     v = select.select_one_or_none(
         sqlalchemy.select(c)
         .select_from(
-            select.t.device.join(
-                select.t.beam_path,
-                select.t.beam_path.c.beam_area == select.t.device.c.beam_area,
+            select.t.devices.join(
+                select.t.beampaths,
+                select.t.beampaths.c.area == select.t.devices.c.area,
             )
         )
         .where(
-            select.t.device.c.device_name == device,
-            select.t.beam_path.c.beam_path == beam_path,
+            select.t.devices.c.device_name == device,
+            select.t.beampaths.c.beampath == beampath,
         ),
         None,
     )
     if v is None:
-        raise ValueError(f"device={device} is not in beam_path={beam_path}")
+        raise ValueError(f"device={device} is not in beam_path={beampath}")
 
 def _device_meta(device, meta, select):
     return select.select_one(
         "device_meta_float", PKDict(device_name=device, device_meta_name=meta)
-    ).device_meta_value
+    ).meta_value
 
 class _Inserter:
     """Inserts rows into sqllite database."""

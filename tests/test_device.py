@@ -35,6 +35,12 @@ class test_device(unittest.TestCase):
         self.assertNotIn("BLRDG0T", active_devices)
         self.assertTrue(len(active_devices) < len(all_devices))
 
+    def test_upstream(self):
+            a = slac_db.device.upstream_devices("PROF", "target_control", "CU_HXR", "OTR11")
+            self.assertEqual(9, len(a))
+            self.assertEqual("YAG01", a[0], "Lowest Z Prof")
+            self.assertEqual("OTR4", a[-1], "Closest Z Prof")
+
     def test_get_beampath_exclude_inactive(self):
         """By default inactive devices are excluded; include_inactive=True brings them back."""
         active_lcav = slac_db.device.get_beampath(beampath="CU_HXR", device_type="LCAV")
