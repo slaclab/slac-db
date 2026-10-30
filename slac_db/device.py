@@ -11,6 +11,14 @@ _meta = None
 _db_path = slac_db.config.package_data().joinpath("device.sqlite3")
 
 def build_device(device_name):
+    """Collect basic device info, device meta, and accessor meta.
+
+    args:
+        device_name (str): Device name.
+
+    Out:
+        Device keyed by meta name and accessor[accessor_name]
+    """
     with _session() as s:
         device = PKDict(s.select_one("devices", PKDict(device_name=device_name)))
     return device.pkupdate(
@@ -240,6 +248,17 @@ def recreate(parser):
     _Inserter(parser)
 
 def upstream_devices(device_type, required_accessor, beampath, end_device):
+    """Get upstream devices, filtered by several.
+
+    Args:
+        device_type (str): Filter by this device type.
+        required_accessor (str): Filter by this accessor name.
+        beampath (str): Filter by this beampath.
+        end_device (str): Select devices upstream of this device.
+
+    Returns:
+        Tuple of devices ordered by z.
+    """
     with _session() as s:
         # select device.device_name from device_meta_float, device where device_meta_name = 'sum_l_meters' and meta_value < 33 and device.device_type = 'PROF' and device.device_name = device_meta_float.device_name;
         c = s.t.device_meta_float.c.device_name
