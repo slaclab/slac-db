@@ -1,5 +1,6 @@
 import os
 import os.path
+import itertools
 
 import pykern.sql_db
 import sqlalchemy
@@ -69,6 +70,14 @@ def get_addresses(device=None, cs_name=""):
         )
     if device:
         cs_name = slac_db.element_tables.get_address_header(device=device)
+        pv_codes = cs_name.split(":")
+        if len(pv_codes) < 3:
+            return []
+        for c in itertools.permutations(pv_codes[:2]):
+            c = ":".join(c + tuple(pv_codes[2:]))
+            addys = list(get_addresses(cs_name=c))
+            if addys:
+                return addys
     pv_codes = cs_name.split(":")
     instance = None
     if len(pv_codes) == 4:

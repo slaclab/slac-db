@@ -74,6 +74,7 @@ class _Parser:
         self.address_meta = _flatten(self._address_meta(r, a) for r, a in addresses)
         self.accessor_meta = _flatten(self._accessor_meta(r, a) for r, a in addresses)
 
+
     def _accessor_meta(self, row, addresses):
         """Combine accessor names with device names and addresses.
 
@@ -81,28 +82,26 @@ class _Parser:
         without a match are added as accessors of their own.
         """
 
-        def _get_accessors(d_type, address):
+        def _get_accessors(d_type, tail, pv):
             if not (device_map := self.accessor_map.get(d_type, None)):
                 return
-            if not (accessor := device_map.get(address, None)):
+            if not (accessor := device_map.get(tail, None)):
                 return
-            if f"_{address}_attributes" in device_map:
-                attribute_map = device_map[f"_{address}_attributes"]
+            if f"_{tail}_attributes" in device_map:
+                attribute_map = device_map[f"_{tail}_attributes"]
                 yield from [
-                    (".".join([address, attr]), a) for attr, a in attribute_map.items()
+                    (".".join([pv, attr]), a) for attr, a in attribute_map.items()
                 ]
             if accessor is not None:
-                yield (address, accessor)
+                yield (pv, accessor)
 
         def _build_accessors(device, d_type, pv_head, override):
             for pv in addresses:
                 pv_tail = pv[len(pv_head) + 1 :]
-                for address, accessor in _get_accessors(d_type, pv_tail):
+                for address, accessor in _get_accessors(d_type, pv_tail, pv):
                     yield PKDict(
                         device_name=device,
-                        cs_address=override.get(
-                            accessor, _DELIM.join([pv_head, address])
-                        ),
+                        cs_address=override.get(accessor, address),
                         accessor_name=accessor,
                     )
 
@@ -114,6 +113,7 @@ class _Parser:
                         cs_address=cs_address,
                         accessor_name=accessor_name,
                     )
+
 
         device = row["element"]
         cs_name = row["control system name"] or ""
