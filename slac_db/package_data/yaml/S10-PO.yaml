@@ -1,7 +1,10 @@
 bpms:
   M102448T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI10:2448:TMIT
+        x: BPMS:LI10:2448:X
+        y: BPMS:LI10:2448:Y
       control_name: LI10:BPMS:2448
     metadata:
       area: S10-PO

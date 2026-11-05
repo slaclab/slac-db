@@ -1,7 +1,11 @@
 magnets:
   XC29096:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:LI29:96:BACT
+        bcon: XCOR:LI29:96:BCON
+        bdes: XCOR:LI29:96:BDES
+        bmax: XCOR:LI29:96:BMAX
       control_name: LI29:XCOR:96
     metadata:
       area: LI28
@@ -11,7 +15,11 @@ magnets:
       type: XCOR
   YC29096:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:LI29:96:BACT
+        bcon: YCOR:LI29:96:BCON
+        bdes: YCOR:LI29:96:BDES
+        bmax: YCOR:LI29:96:BMAX
       control_name: LI29:YCOR:96
     metadata:
       area: LI28

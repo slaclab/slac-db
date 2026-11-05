@@ -10,7 +10,10 @@ bpms:
       type: BPM
   M203013T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3013:TMIT
+        x: BPMS:LI20:3013:X
+        y: BPMS:LI20:3013:Y
       control_name: LI20:BPMS:3013
     metadata:
       area: COMMON
@@ -28,7 +31,10 @@ bpms:
       type: BPM
   M203036T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3036:TMIT
+        x: BPMS:LI20:3036:X
+        y: BPMS:LI20:3036:Y
       control_name: LI20:BPMS:3036
     metadata:
       area: COMMON
@@ -46,7 +52,10 @@ bpms:
       type: BPM
   M203101T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3101:TMIT
+        x: BPMS:LI20:3101:X
+        y: BPMS:LI20:3101:Y
       control_name: LI20:BPMS:3101
     metadata:
       area: COMMON
@@ -55,7 +64,10 @@ bpms:
       type: BPM
   M203120T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3120:TMIT
+        x: BPMS:LI20:3120:X
+        y: BPMS:LI20:3120:Y
       control_name: LI20:BPMS:3120
     metadata:
       area: COMMON
@@ -82,7 +94,10 @@ bpms:
       type: BPM
   M203156T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3156:TMIT
+        x: BPMS:LI20:3156:X
+        y: BPMS:LI20:3156:Y
       control_name: LI20:BPMS:3156
     metadata:
       area: COMMON
@@ -127,7 +142,10 @@ bpms:
       type: BPM
   M203265T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3265:TMIT
+        x: BPMS:LI20:3265:X
+        y: BPMS:LI20:3265:Y
       control_name: LI20:BPMS:3265
     metadata:
       area: COMMON
@@ -136,7 +154,10 @@ bpms:
       type: BPM
   M203315T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3315:TMIT
+        x: BPMS:LI20:3315:X
+        y: BPMS:LI20:3315:Y
       control_name: LI20:BPMS:3315
     metadata:
       area: COMMON
@@ -145,7 +166,10 @@ bpms:
       type: BPM
   M203340T:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LI20:3340:TMIT
+        x: BPMS:LI20:3340:X
+        y: BPMS:LI20:3340:Y
       control_name: LI20:BPMS:3340
     metadata:
       area: COMMON
@@ -324,7 +348,11 @@ magnets:
       type: QUAD
   X203026T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:LI20:3026:BACT
+        bcon: XCOR:LI20:3026:BCON
+        bdes: XCOR:LI20:3026:BDES
+        bmax: XCOR:LI20:3026:BMAX
       control_name: LI20:XCOR:3026
     metadata:
       area: COMMON
@@ -344,7 +372,11 @@ magnets:
       type: XCOR
   X203086T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:LI20:3086:BACT
+        bcon: XCOR:LI20:3086:BCON
+        bdes: XCOR:LI20:3086:BDES
+        bmax: XCOR:LI20:3086:BMAX
       control_name: LI20:XCOR:3086
     metadata:
       area: COMMON
@@ -354,7 +386,11 @@ magnets:
       type: XCOR
   X203116T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:LI20:3116:BACT
+        bcon: XCOR:LI20:3116:BCON
+        bdes: XCOR:LI20:3116:BDES
+        bmax: XCOR:LI20:3116:BMAX
       control_name: LI20:XCOR:3116
     metadata:
       area: COMMON
@@ -364,7 +400,11 @@ magnets:
       type: XCOR
   Y203017T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:LI20:3017:BACT
+        bcon: YCOR:LI20:3017:BCON
+        bdes: YCOR:LI20:3017:BDES
+        bmax: YCOR:LI20:3017:BMAX
       control_name: LI20:YCOR:3017
     metadata:
       area: COMMON
@@ -374,7 +414,11 @@ magnets:
       type: YCOR
   Y203057T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:LI20:3057:BACT
+        bcon: YCOR:LI20:3057:BCON
+        bdes: YCOR:LI20:3057:BDES
+        bmax: YCOR:LI20:3057:BMAX
       control_name: LI20:YCOR:3057
     metadata:
       area: COMMON
@@ -394,7 +438,11 @@ magnets:
       type: YCOR
   Y203147T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:LI20:3147:BACT
+        bcon: YCOR:LI20:3147:BCON
+        bdes: YCOR:LI20:3147:BDES
+        bmax: YCOR:LI20:3147:BMAX
       control_name: LI20:YCOR:3147
     metadata:
       area: COMMON

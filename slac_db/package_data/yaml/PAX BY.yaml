@@ -1,7 +1,11 @@
 magnets:
   XC1EX:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:LI20:3276:BACT
+        bcon: XCOR:LI20:3276:BCON
+        bdes: XCOR:LI20:3276:BDES
+        bmax: XCOR:LI20:3276:BMAX
       control_name: LI20:XCOR:3276
     metadata:
       area: PAX BY
