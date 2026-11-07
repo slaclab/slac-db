@@ -8,6 +8,43 @@ from pykern.pkcollections import PKDict
 import slac_db.config
 
 _meta = None
+_db_path = slac_db.config.package_data().joinpath("device.sqlite3")
+
+def build_device(device_name):
+    """Collect basic device info, device meta, and accessor meta.
+
+    args:
+        device_name (str): Device name.
+
+    Out:
+        Device keyed by meta name and accessor[accessor_name]
+    """
+    with _session() as s:
+        device = PKDict(s.select_one("devices", PKDict(device_name=device_name)))
+    return device.pkupdate(
+        **get_all_meta(device_name),
+        accessor=build_accessor(device_name),
+    )
+
+def build_accessor(device_name):
+    """Collect accessor meta.
+    An accessor is a developer friendly name for a PV
+    associated with a single device.
+
+    Args:
+        device (str): MAD name for a device.
+    Out:
+        PKDict indexed by accessor name with all accessor table rows.
+    """
+    with _session() as s:
+        return PKDict({
+            r["accessor_name"]: PKDict(r)
+            for r in s.select(
+                sqlalchemy.select(s.t.accessors)
+                .where(s.t.accessors.c["device_name"] == device_name)
+                .order_by(s.t.accessors.c.accessor_name)
+            )
+        })    
 
 
 def get_areas(beampath=None):
@@ -32,30 +69,18 @@ def get_beampath(beampath=None, device_type=None, include_inactive=False):
     """Get all devices in a beampath, optionally by type.
 
     Args:
-        beampath (str): Beampath name
-        device_type (str) optional: Device type in Oracle
+        beampath (str): Beampath name.
+        device_type (str) optional: Device type in Oracle.
         include_inactive (bool) optional: If True, include inactive devices.
             Defaults to False (active devices only).
 
     Returns: List of devices in Z order.
     """
-    with _session() as s:
-        selection = (
-            sqlalchemy.select(s.t.devices)
-            .join(s.t.beampaths, s.t.beampaths.c.area == s.t.devices.c.area)
-            .outerjoin(
-                s.t.device_meta_float,
-                (s.t.device_meta_float.c.device_name == s.t.devices.c.device_name)
-                & (s.t.device_meta_float.c.device_meta_name == "sum_l_meters"),
-            )
-        )
-        selection = selection.where(s.t.beampaths.c.beampath == beampath)
-        if device_type is not None:
-            selection = selection.where(s.t.devices.c.device_type == device_type)
-        if not include_inactive:
-            selection = selection.where(s.t.devices.c.is_active == True)
-        selection.order_by(s.t.device_meta_float.c.meta_value)
-        return [d["device_name"] for d in s.select(selection)]
+    return get_devices(
+        beampath=beampath,
+        device_type=device_type,
+        include_inactive=include_inactive,
+    )
 
 
 def get_attribute(device_name, col_name):
@@ -75,17 +100,46 @@ def get_attribute(device_name, col_name):
         )[col_name]
 
 
-def get_devices(area=None, device_type=None, include_inactive=False):
-    """Get all devices in an area of a type.
+def get_device_from_cs_name(cs_name):
+    """Reverse-lookup the MAD device_name for an EPICS cs_name.
 
     Args:
-        area (str) optional: Area name
-        device_type (str) optional: Device type in Oracle
+        cs_name (str): EPICS control-system name, e.g.
+            'QUAD:IN20:361'.
+
+    Returns:
+        str | None: device_name (MAD element) for the given cs_name,
+            or None if no device matches.
+
+    Raises:
+        pykern.sql_db.MoreThanOneRow: if more than one device shares
+            this cs_name (e.g. some wire scanners and vacuum valves).
+    """
+    with _session() as s:
+        row = s.select_one_or_none(
+            sqlalchemy.select(s.t.devices).where(
+                s.t.devices.c["cs_name"] == cs_name
+            )
+        )
+        return row["device_name"] if row else None
+
+
+def get_devices(area=None, device_type=None, beampath=None,
+                include_inactive=False):
+    """Get all devices filtered by area, beampath, and/or device type.
+
+    Args:
+        area (str) optional: Area name.
+        device_type (str | list[str]) optional: Device type in Oracle.
+            A list filters with SQL IN(...).
+        beampath (str) optional: Beampath name. When given, restricts
+            to devices whose area belongs to the beampath. Combined
+            with `area` using AND.
         include_inactive (bool) optional: If True, include inactive devices.
             Defaults to False (active devices only).
 
     Out:
-        List of devices in alphabetical order.
+        List of devices ordered by sum_l_meters.
     """
     with _session() as s:
         selection = sqlalchemy.select(s.t.devices).outerjoin(
@@ -93,17 +147,26 @@ def get_devices(area=None, device_type=None, include_inactive=False):
             (s.t.device_meta_float.c.device_name == s.t.devices.c.device_name)
             & (s.t.device_meta_float.c.device_meta_name == "sum_l_meters"),
         )
+        if beampath is not None:
+            selection = selection.join(
+                s.t.beampaths,
+                s.t.beampaths.c.area == s.t.devices.c.area,
+            ).where(s.t.beampaths.c.beampath == beampath)
         if area is not None:
             selection = selection.where(s.t.devices.c["area"] == area)
         if device_type is not None:
-            selection = selection.where(s.t.devices.c["device_type"] == device_type)
+            col = s.t.devices.c["device_type"]
+            if isinstance(device_type, (list, tuple, set, frozenset)):
+                selection = selection.where(col.in_(list(device_type)))
+            else:
+                selection = selection.where(col == device_type)
         if not include_inactive:
             selection = selection.where(s.t.devices.c["is_active"] == True)
         selection = selection.order_by(s.t.device_meta_float.c.meta_value)
         return [d["device_name"] for d in s.select(selection)]
 
 
-def get_all_accessors(device):
+def get_all_accessors(device_name):
     """Get all accessors from a device.
     An accessor is a developer friendly name for a PV
     associated with a single device.
@@ -111,15 +174,10 @@ def get_all_accessors(device):
     Args:
         device (str): MAD name for a device.
     """
-    with _session() as s:
-        return {
-            r["accessor_name"]: r["cs_address"]
-            for r in s.select(
-                sqlalchemy.select(s.t.accessors)
-                .where(s.t.accessors.c["device_name"] == device)
-                .order_by(s.t.accessors.c.accessor_name)
-            )
-        }
+    return {
+        accessor: meta.cs_address
+        for accessor, meta in build_accessor(device_name).items()
+    }
 
 
 def get_all_addresses(device):
@@ -213,7 +271,6 @@ def get_all_meta(device_name):
             )
         }
 
-
 def recreate(parser):
     """Rebuilds the device database.
     Fails if a connection has already been made.
@@ -226,11 +283,80 @@ def recreate(parser):
             "Database connnection already initialized. " + "Restart Python interpreter."
         )
     if not hasattr(parser, "address_meta"):
-        raise AssertionError("Parser is missing attribute 'device_address_meta'. ")
+        raise AssertionError("Parser is missing attribute 'address_meta'. ")
     if os.path.exists(_device_db_location()):
         os.remove(_device_db_location())
     _Inserter(parser)
 
+def upstream_devices(device_type, required_accessor, beampath, end_device):
+    """Get upstream devices, filtered by several.
+
+    Args:
+        device_type (str): Filter by this device type.
+        required_accessor (str): Filter by this accessor name.
+        beampath (str): Filter by this beampath.
+        end_device (str): Select devices upstream of this device.
+
+    Returns:
+        Tuple of devices ordered by z.
+    """
+    with _session() as s:
+        # select device.device_name from device_meta_float, device where device_meta_name = 'sum_l_meters' and meta_value < 33 and device.device_type = 'PROF' and device.device_name = device_meta_float.device_name;
+        c = s.t.device_meta_float.c.device_name
+        _assert_on_beampath(end_device, beampath, s)
+        return tuple(
+            r.device_name
+            for r in s.select(
+                sqlalchemy.select(c)
+                .select_from(
+                    s.t.device_meta_float.join(
+                        s.t.devices,
+                        s.t.devices.c.device_name == c,
+                    )
+                    .join(
+                        s.t.beampaths,
+                        s.t.beampaths.c.area == s.t.devices.c.area,
+                    )
+                    .join(
+                        s.t.accessors,
+                        s.t.accessors.c.device_name == c,
+                    )
+                )
+                .where(
+                    s.t.beampaths.c.beampath == beampath,
+                    s.t.device_meta_float.c.device_meta_name == "sum_l_meters",
+                    s.t.device_meta_float.c.meta_value
+                    < _device_meta(end_device, "sum_l_meters", s),
+                    s.t.devices.c.device_type == device_type,
+                    s.t.accessors.c.accessor_name == required_accessor,
+                )
+                .order_by(s.t.device_meta_float.c.meta_value)
+            )
+        )
+
+def _assert_on_beampath(device, beampath, select):
+    c = select.t.devices.c.device_name
+    v = select.select_one_or_none(
+        sqlalchemy.select(c)
+        .select_from(
+            select.t.devices.join(
+                select.t.beampaths,
+                select.t.beampaths.c.area == select.t.devices.c.area,
+            )
+        )
+        .where(
+            select.t.devices.c.device_name == device,
+            select.t.beampaths.c.beampath == beampath,
+        ),
+        None,
+    )
+    if v is None:
+        raise ValueError(f"device={device} is not in beam_path={beampath}")
+
+def _device_meta(device, meta, select):
+    return select.select_one(
+        "device_meta_float", PKDict(device_name=device, device_meta_name=meta)
+    ).meta_value
 
 class _Inserter:
     """Inserts rows into sqllite database."""
@@ -254,6 +380,8 @@ class _Inserter:
     def _bulk_insert(self, s, table_map):
         s.execute(sqlalchemy.text("SELECT 1"))
         for name, rows in table_map.items():
+            if not rows:
+                continue
             tab = s.t[name]
             s._conn.execute(tab.insert(), rows)
 
@@ -318,161 +446,10 @@ def _init_db(location=None):
 
 
 def _device_db_location():
-    db_location = slac_db.config.package_data().joinpath("device.sqlite3")
-    return str(db_location)
+    return str(_db_path)
 
 
 def _session():
     if _meta is None:
         _init_db()
     return _meta.session()
-
-
-# Device types considered when discovering modeled MAD elements.
-_MODELED_DEVICE_TYPES = ["BEND", "BTRM", "QUAD", "XCOR", "YCOR", "LCAV"]
-
-# cs_name prefixes whose DES values are amplitude + phase, not BDES.
-_CAVITY_CS_PREFIXES = {"KLYS", "ACCL", "LCAV"}
-
-# cs_name prefixes intentionally excluded from PV generation.
-_EXCLUDED_DEVICE_TYPES = {"TCAV"}
-
-# Mapping from beam path name to klystron beamcode.
-_BEAM_PATH_BEAMCODE = {
-    "CU_HXR": 1,
-    "CU_SXR": 2,
-}
-
-
-def _klys_pvs(mad_name, beamcode):
-    """Return (amplitude_pv, phase_pv) for a KLYS/ACCL device.
-
-    Looks up the beamcode-specific DES accessors on the device,
-    falling back to the plain amplitude/phase_desired entries if the
-    beamcode-specific keys are absent. Either return slot may be None.
-
-    Args:
-        mad_name (str): MAD device name.
-        beamcode (int): Klystron beamcode (e.g. 1 for CU_HXR).
-
-    Returns:
-        tuple[str | None, str | None]: (amplitude_pv, phase_pv)
-    """
-    acc = get_all_accessors(mad_name) or {}
-    ampl_pv = (
-        acc.get(f"amplitude_des_beamcode{beamcode}")
-        or acc.get("amplitude")
-    )
-    phase_pv = (
-        acc.get(f"phase_desired_beamcode{beamcode}")
-        or acc.get("phase_desired")
-    )
-    return ampl_pv, phase_pv
-
-
-def get_model_devices(
-    device_types=None, beampath=None, regions=None, first=None, last=None
-):
-    """Return modeled MAD elements keyed by MAD name with DB attributes.
-
-    Queries the device database for MAD model elements matching
-    device_types in the areas implied by regions or beampath, sorts by
-    longitudinal position (sum_l_meters), and returns a dict keyed by
-    MAD element name. Each value carries cs_name and device_type;
-    cavity-shaped entries (cs_name prefix in _CAVITY_CS_PREFIXES:
-    KLYS, ACCL, LCAV) additionally carry amplitude_pv and phase_pv
-    resolved against the beamcode implied by beampath. Elements whose
-    cs_name prefix is in _EXCLUDED_DEVICE_TYPES (e.g. TCAV) are
-    omitted.
-
-    Args:
-        device_types (list[str]) optional: Device type codes to
-            include. Defaults to _MODELED_DEVICE_TYPES.
-        beampath (str) optional: Beam path name (e.g. "CU_HXR") used
-            both to look up areas when regions is not supplied and to
-            resolve the klystron beamcode (CU_HXR -> 1, CU_SXR -> 2).
-            Required if any cavity-shaped device is in the selection.
-        regions (list[str]) optional: Area names to search; overrides
-            beampath for area lookup.
-        first (str) optional: MAD element bounding the slice start
-            (inclusive).
-        last (str) optional: MAD element bounding the slice end
-            (inclusive).
-
-    Returns:
-        dict: mad_name -> {"cs_name", "device_type", ...}
-            insertion-ordered by sum_l_meters. Cavity-shaped entries
-            also carry "amplitude_pv" and "phase_pv".
-
-    Raises:
-        ValueError: If first/last are not found in the sorted list,
-            or if a cavity-shaped device is selected without a
-            beampath beamcode mapping.
-    """
-    if device_types is None:
-        device_types = _MODELED_DEVICE_TYPES
-    beamcode = (
-        _BEAM_PATH_BEAMCODE.get(beampath.upper()) if beampath else None
-    )
-    areas = regions if regions else get_areas(beampath=beampath)
-    mad_elements = []
-    for area in areas:
-        for dtype in device_types:
-            found = get_devices(area=area, device_type=dtype)
-            if found:
-                mad_elements.extend(found)
-    sorted_elements = sorted(
-        mad_elements,
-        key=lambda e: get_all_meta(e).get("sum_l_meters", 0),
-    )
-
-    if first is not None:
-        try:
-            first_idx = sorted_elements.index(first)
-        except ValueError:
-            raise ValueError(
-                f"first={first!r} not found in modeled elements for "
-                f"beampath={beampath!r}"
-            )
-    else:
-        first_idx = 0
-
-    if last is not None:
-        try:
-            last_idx = sorted_elements.index(last)
-        except ValueError:
-            raise ValueError(
-                f"last={last!r} not found in modeled elements for "
-                f"beampath={beampath!r}"
-            )
-    else:
-        last_idx = len(sorted_elements) - 1
-
-    if first_idx > last_idx:
-        raise ValueError(
-            f"first={first!r} appears after last={last!r} in modeled "
-            f"elements for beampath={beampath!r}"
-        )
-
-    sliced = sorted_elements[first_idx:last_idx + 1]
-
-    result = {}
-    for e in sliced:
-        cs_name = get_attribute(e, "cs_name")
-        cs_prefix = cs_name.split(":")[0] if cs_name else ""
-        if cs_prefix in _EXCLUDED_DEVICE_TYPES:
-            continue
-        entry = {
-            "cs_name": cs_name,
-            "device_type": get_attribute(e, "device_type"),
-        }
-        if cs_prefix in _CAVITY_CS_PREFIXES:
-            if beamcode is None:
-                raise ValueError(
-                    f"beampath {beampath!r} is required / not supported "
-                    f"for beamcode resolution on cavity-shaped device "
-                    f"{e!r}. Supported: {list(_BEAM_PATH_BEAMCODE)}."
-                )
-            entry["amplitude_pv"], entry["phase_pv"] = _klys_pvs(e, beamcode)
-        result[e] = entry
-    return result

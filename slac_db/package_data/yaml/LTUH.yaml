@@ -3086,15 +3086,18 @@ wires:
         timeout: WIRE:LTUH:715:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:715:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:715:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:715:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:715:UWIREINNER
         u_wire_outer: WIRE:LTUH:715:UWIREOUTER
         use_u_wire: WIRE:LTUH:715:USEUWIRE
         use_x_wire: WIRE:LTUH:715:USEXWIRE
         use_y_wire: WIRE:LTUH:715:USEYWIRE
         x_size: WIRE:LTUH:715:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:715:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:715:XWIREINNER
         x_wire_outer: WIRE:LTUH:715:XWIREOUTER
         y_size: WIRE:LTUH:715:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:715:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:715:YWIREINNER
         y_wire_outer: WIRE:LTUH:715:YWIREOUTER
       control_name: WIRE:LTUH:715
@@ -3169,15 +3172,18 @@ wires:
         timeout: WIRE:LTUH:735:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:735:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:735:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:735:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:735:UWIREINNER
         u_wire_outer: WIRE:LTUH:735:UWIREOUTER
         use_u_wire: WIRE:LTUH:735:USEUWIRE
         use_x_wire: WIRE:LTUH:735:USEXWIRE
         use_y_wire: WIRE:LTUH:735:USEYWIRE
         x_size: WIRE:LTUH:735:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:735:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:735:XWIREINNER
         x_wire_outer: WIRE:LTUH:735:XWIREOUTER
         y_size: WIRE:LTUH:735:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:735:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:735:YWIREINNER
         y_wire_outer: WIRE:LTUH:735:YWIREOUTER
       control_name: WIRE:LTUH:735
@@ -3252,15 +3258,18 @@ wires:
         timeout: WIRE:LTUH:755:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:755:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:755:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:755:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:755:UWIREINNER
         u_wire_outer: WIRE:LTUH:755:UWIREOUTER
         use_u_wire: WIRE:LTUH:755:USEUWIRE
         use_x_wire: WIRE:LTUH:755:USEXWIRE
         use_y_wire: WIRE:LTUH:755:USEYWIRE
         x_size: WIRE:LTUH:755:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:755:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:755:XWIREINNER
         x_wire_outer: WIRE:LTUH:755:XWIREOUTER
         y_size: WIRE:LTUH:755:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:755:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:755:YWIREINNER
         y_wire_outer: WIRE:LTUH:755:YWIREOUTER
       control_name: WIRE:LTUH:755
@@ -3335,15 +3344,18 @@ wires:
         timeout: WIRE:LTUH:775:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:775:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:775:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:775:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:775:UWIREINNER
         u_wire_outer: WIRE:LTUH:775:UWIREOUTER
         use_u_wire: WIRE:LTUH:775:USEUWIRE
         use_x_wire: WIRE:LTUH:775:USEXWIRE
         use_y_wire: WIRE:LTUH:775:USEYWIRE
         x_size: WIRE:LTUH:775:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:775:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:775:XWIREINNER
         x_wire_outer: WIRE:LTUH:775:XWIREOUTER
         y_size: WIRE:LTUH:775:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:775:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:775:YWIREINNER
         y_wire_outer: WIRE:LTUH:775:YWIREOUTER
       control_name: WIRE:LTUH:775
@@ -3418,15 +3430,18 @@ wires:
         timeout: WIRE:LTUH:246:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:246:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:246:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:246:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:246:UWIREINNER
         u_wire_outer: WIRE:LTUH:246:UWIREOUTER
         use_u_wire: WIRE:LTUH:246:USEUWIRE
         use_x_wire: WIRE:LTUH:246:USEXWIRE
         use_y_wire: WIRE:LTUH:246:USEYWIRE
         x_size: WIRE:LTUH:246:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:246:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:246:XWIREINNER
         x_wire_outer: WIRE:LTUH:246:XWIREOUTER
         y_size: WIRE:LTUH:246:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:246:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:246:YWIREINNER
         y_wire_outer: WIRE:LTUH:246:YWIREOUTER
       control_name: WIRE:LTUH:246
@@ -3570,15 +3585,18 @@ wires:
         timeout: WIRE:LTUH:122:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUH:122:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUH:122:UWIRESIZE
+        u_speed_calc: WIRE:LTUH:122:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUH:122:UWIREINNER
         u_wire_outer: WIRE:LTUH:122:UWIREOUTER
         use_u_wire: WIRE:LTUH:122:USEUWIRE
         use_x_wire: WIRE:LTUH:122:USEXWIRE
         use_y_wire: WIRE:LTUH:122:USEYWIRE
         x_size: WIRE:LTUH:122:XWIRESIZE
+        x_speed_calc: WIRE:LTUH:122:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUH:122:XWIREINNER
         x_wire_outer: WIRE:LTUH:122:XWIREOUTER
         y_size: WIRE:LTUH:122:YWIRESIZE
+        y_speed_calc: WIRE:LTUH:122:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUH:122:YWIREINNER
         y_wire_outer: WIRE:LTUH:122:YWIREOUTER
       control_name: WIRE:LTUH:122

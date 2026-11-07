@@ -4175,15 +4175,18 @@ wires:
         timeout: WIRE:LI27:644:MOTR_TIMEOUTEN
         torque_enable: WIRE:LI27:644:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI27:644:UWIRESIZE
+        u_speed_calc: WIRE:LI27:644:WIREUSPEED_CALC
         u_wire_inner: WIRE:LI27:644:UWIREINNER
         u_wire_outer: WIRE:LI27:644:UWIREOUTER
         use_u_wire: WIRE:LI27:644:USEUWIRE
         use_x_wire: WIRE:LI27:644:USEXWIRE
         use_y_wire: WIRE:LI27:644:USEYWIRE
         x_size: WIRE:LI27:644:XWIRESIZE
+        x_speed_calc: WIRE:LI27:644:WIREXSPEED_CALC
         x_wire_inner: WIRE:LI27:644:XWIREINNER
         x_wire_outer: WIRE:LI27:644:XWIREOUTER
         y_size: WIRE:LI27:644:YWIRESIZE
+        y_speed_calc: WIRE:LI27:644:WIREYSPEED_CALC
         y_wire_inner: WIRE:LI27:644:YWIREINNER
         y_wire_outer: WIRE:LI27:644:YWIREOUTER
       control_name: WIRE:LI27:644
@@ -4195,15 +4198,15 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      charge_toroids: &id001
+      charge_toroids:
       - BPM27201
       default_detector: PMT29150:LI29
-      detectors: &id002
+      detectors:
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
       - TMITLOSS:L3
-      jitter_bpms: &id003
+      jitter_bpms:
       - BPM27201
       - BPM27301
       - BPM27401
@@ -4221,7 +4224,7 @@ wires:
       - BPM28801
       - BPM28901
       sum_l_meters: 700.132
-      tmitloss: &id004
+      tmitloss:
         downstream:
         - BPM30501
         - BPM30601
@@ -4259,15 +4262,18 @@ wires:
         timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
         torque_enable: WIRE:LI28:144:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:144:UWIRESIZE
+        u_speed_calc: WIRE:LI28:144:WIREUSPEED_CALC
         u_wire_inner: WIRE:LI28:144:UWIREINNER
         u_wire_outer: WIRE:LI28:144:UWIREOUTER
         use_u_wire: WIRE:LI28:144:USEUWIRE
         use_x_wire: WIRE:LI28:144:USEXWIRE
         use_y_wire: WIRE:LI28:144:USEYWIRE
         x_size: WIRE:LI28:144:XWIRESIZE
+        x_speed_calc: WIRE:LI28:144:WIREXSPEED_CALC
         x_wire_inner: WIRE:LI28:144:XWIREINNER
         x_wire_outer: WIRE:LI28:144:XWIREOUTER
         y_size: WIRE:LI28:144:YWIRESIZE
+        y_speed_calc: WIRE:LI28:144:WIREYSPEED_CALC
         y_wire_inner: WIRE:LI28:144:YWIREINNER
         y_wire_outer: WIRE:LI28:144:YWIREOUTER
       control_name: WIRE:LI28:144
@@ -4279,12 +4285,43 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      charge_toroids: *id001
+      charge_toroids:
+      - BPM27201
       default_detector: PMT29150:LI29
-      detectors: *id002
-      jitter_bpms: *id003
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 740.508
-      tmitloss: *id004
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
   WS28444:
@@ -4312,15 +4349,18 @@ wires:
         timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
         torque_enable: WIRE:LI28:444:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:444:UWIRESIZE
+        u_speed_calc: WIRE:LI28:444:WIREUSPEED_CALC
         u_wire_inner: WIRE:LI28:444:UWIREINNER
         u_wire_outer: WIRE:LI28:444:UWIREOUTER
         use_u_wire: WIRE:LI28:444:USEUWIRE
         use_x_wire: WIRE:LI28:444:USEXWIRE
         use_y_wire: WIRE:LI28:444:USEYWIRE
         x_size: WIRE:LI28:444:XWIRESIZE
+        x_speed_calc: WIRE:LI28:444:WIREXSPEED_CALC
         x_wire_inner: WIRE:LI28:444:XWIREINNER
         x_wire_outer: WIRE:LI28:444:XWIREOUTER
         y_size: WIRE:LI28:444:YWIRESIZE
+        y_speed_calc: WIRE:LI28:444:WIREYSPEED_CALC
         y_wire_inner: WIRE:LI28:444:YWIREINNER
         y_wire_outer: WIRE:LI28:444:YWIREOUTER
       control_name: WIRE:LI28:444
@@ -4332,12 +4372,43 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      charge_toroids: *id001
+      charge_toroids:
+      - BPM27201
       default_detector: PMT29150:LI29
-      detectors: *id002
-      jitter_bpms: *id003
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 777.541
-      tmitloss: *id004
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
   WS28744:
@@ -4365,15 +4436,18 @@ wires:
         timeout: WIRE:LI28:744:MOTR_TIMEOUTEN
         torque_enable: WIRE:LI28:744:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LI28:744:UWIRESIZE
+        u_speed_calc: WIRE:LI28:744:WIREUSPEED_CALC
         u_wire_inner: WIRE:LI28:744:UWIREINNER
         u_wire_outer: WIRE:LI28:744:UWIREOUTER
         use_u_wire: WIRE:LI28:744:USEUWIRE
         use_x_wire: WIRE:LI28:744:USEXWIRE
         use_y_wire: WIRE:LI28:744:USEYWIRE
         x_size: WIRE:LI28:744:XWIRESIZE
+        x_speed_calc: WIRE:LI28:744:WIREXSPEED_CALC
         x_wire_inner: WIRE:LI28:744:XWIREINNER
         x_wire_outer: WIRE:LI28:744:XWIREOUTER
         y_size: WIRE:LI28:744:YWIRESIZE
+        y_speed_calc: WIRE:LI28:744:WIREYSPEED_CALC
         y_wire_inner: WIRE:LI28:744:YWIREINNER
         y_wire_outer: WIRE:LI28:744:YWIREOUTER
       control_name: WIRE:LI28:744
@@ -4385,11 +4459,42 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      charge_toroids: *id001
+      charge_toroids:
+      - BPM27201
       default_detector: PMT29150:LI29
-      detectors: *id002
-      jitter_bpms: *id003
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - TMITLOSS:L3
+      jitter_bpms:
+      - BPM27201
+      - BPM27301
+      - BPM27401
+      - BPM27501
+      - BPM27601
+      - BPM27701
+      - BPM27801
+      - BPM27901
+      - BPM28201
+      - BPM28301
+      - BPM28401
+      - BPM28501
+      - BPM28601
+      - BPM28701
+      - BPM28801
+      - BPM28901
       sum_l_meters: 814.077
-      tmitloss: *id004
+      tmitloss:
+        downstream:
+        - BPM30501
+        - BPM30601
+        - BPM30701
+        - BPM30801
+        upstream:
+        - BPM27301
+        - BPM27401
+        - BPM27501
+        - BPM27601
       type: WIRE
       wire_type: fast
