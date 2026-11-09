@@ -491,6 +491,7 @@ def _klys_pvs(mad_name, beamcode):
     acc = get_all_accessors(mad_name) or {}
     ampl_pv = (
         acc.get(f"amplitude_des_beamcode{beamcode}")
+        or acc.get("amplitude_des")
         or acc.get("amplitude")
     )
     phase_pv = (
