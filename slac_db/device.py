@@ -466,7 +466,7 @@ _MAGNET_DES_ATTRS = {
     "BEND": ["BDES"],
     "BTRM": ["BDES"],
     "QUAD": ["BDES"],
-    "SOLN": ["BDES"],
+    "SOLE": ["BDES"],
     "XCOR": ["BDES"],
     "YCOR": ["BDES"],
 }
