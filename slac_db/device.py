@@ -224,6 +224,18 @@ def get_all_areas():
             for r in s.select(sqlalchemy.select(s.t.areas).order_by(s.t.areas.c.area))
         ]
 
+def get_all_beampaths():
+    """Gets all known beampaths.
+
+    Returns:
+        List of beampaths
+    """
+    with _session() as s:
+        return [
+            r["beampath"]
+            for r in s.select(sqlalchemy.select(s.t.beampaths.c.beampath).distinct())
+        ]
+
 
 def get_all_device_beampaths(device):
     """Gets all known beampaths.

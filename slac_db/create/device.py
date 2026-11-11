@@ -74,6 +74,7 @@ class _Parser:
         self.address_meta = _flatten(self._address_meta(r, a) for r, a in addresses)
         self.accessor_meta = _flatten(self._accessor_meta(r, a) for r, a in addresses)
 
+
     def _accessor_meta(self, row, addresses):
         """Combine accessor names with device names and addresses.
 
@@ -81,10 +82,10 @@ class _Parser:
         without a match are added as accessors of their own.
         """
 
-        def _get_accessors(d_type, address):
+        def _get_accessors(d_type, address, pv_tail):
             if not (device_map := self.accessor_map.get(d_type, None)):
                 return
-            if not (meta := device_map.get(address, None)):
+            if not (meta := device_map.get(pv_tail, None)):
                 return
             if f"attributes" in meta:
                 attribute_map = meta["attributes"]
@@ -93,14 +94,14 @@ class _Parser:
                 ]
             yield (address, meta)
 
-        def _build_accessors(device, d_type, pv_head, override):
+        def _build_accessors(device, d_type, pv_head):
             for pv in addresses:
                 pv_tail = pv[len(pv_head) + 1 :]
-                for address, meta in _get_accessors(d_type, pv_tail):
+                for address, meta in _get_accessors(d_type, pv, pv_tail):
                     yield _apply_overrides(
                         PKDict(
                             device_name=device,
-                            cs_address=_DELIM.join([pv_head, address]),
+                            cs_address=address,
                             accessor_name=meta["name"],
                             py_type=meta["py_type"],
                         )
@@ -123,13 +124,14 @@ class _Parser:
                         py_type=meta["py_type"],
                     )
 
+
         device = row["element"]
         cs_name = row["control system name"] or ""
         # Klystron stations share keyword=LCAV with TCAVs but need
         # their own keyword.
         d_type = "KLYS" if "KLYS" in cs_name else row["keyword"]
         override = self.accessor_overrides.get(device, PKDict())
-        rv = list(_build_accessors(device, d_type, cs_name, override))
+        rv = list(_build_accessors(device, d_type, cs_name))
         matched = {a.accessor_name for a in rv}
         return rv + list(_build_overrides(device, override, matched))
 

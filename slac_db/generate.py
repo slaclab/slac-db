@@ -196,6 +196,12 @@ class YAMLGenerator:
             # End of the PV name is implied in search_term
             try:
                 pv_list = query_pv(name + ":" + search_term)
+                # Temporary for some reversed cs names in F2 lines.
+                if not pv_list and len(name) > 2:
+                    pv_parts = name.split(':')
+                    pv_parts[1], pv_parts[0] = (pv_parts[0],pv_parts[1])
+                    name = ":".join(pv_parts)
+                    pv_list = query_pv(name + ":" + search_term)
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:

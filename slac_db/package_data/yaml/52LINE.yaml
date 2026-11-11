@@ -31,7 +31,11 @@ magnets:
       type: BEND
   B52WIG1:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: LGPS:CA11:54:BACT
+        bcon: LGPS:CA11:54:BCON
+        bdes: LGPS:CA11:54:BDES
+        bmax: LGPS:CA11:54:BMAX
       control_name: CA11:LGPS:54
     metadata:
       area: 52LINE
@@ -61,7 +65,11 @@ magnets:
       type: BEND
   Q52Q2:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: LGPS:CA11:57:BACT
+        bcon: LGPS:CA11:57:BCON
+        bdes: LGPS:CA11:57:BDES
+        bmax: LGPS:CA11:57:BMAX
       control_name: CA11:LGPS:57
     metadata:
       area: 52LINE
@@ -71,7 +79,11 @@ magnets:
       type: QUAD
   XC69:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:CA11:69:BACT
+        bcon: XCOR:CA11:69:BCON
+        bdes: XCOR:CA11:69:BDES
+        bmax: XCOR:CA11:69:BMAX
       control_name: CA11:XCOR:69
     metadata:
       area: 52LINE
@@ -81,7 +93,11 @@ magnets:
       type: XCOR
   YC54T:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:CA11:54:BACT
+        bcon: YCOR:CA11:54:BCON
+        bdes: YCOR:CA11:54:BDES
+        bmax: YCOR:CA11:54:BMAX
       control_name: CA11:YCOR:54
     metadata:
       area: 52LINE
@@ -91,7 +107,11 @@ magnets:
       type: YCOR
   YC59:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:CA11:59:BACT
+        bcon: YCOR:CA11:59:BCON
+        bdes: YCOR:CA11:59:BDES
+        bmax: YCOR:CA11:59:BMAX
       control_name: CA11:YCOR:59
     metadata:
       area: 52LINE
