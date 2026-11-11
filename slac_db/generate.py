@@ -200,8 +200,8 @@ class YAMLGenerator:
                 if not pv_list and len(name) > 2:
                     pv_parts = name.split(':')
                     pv_parts[1], pv_parts[0] = (pv_parts[0],pv_parts[1])
-                    flip_type_and_area = ":".join(pv_parts)
-                    pv_list = query_pv(flip_type_and_area + ":" + search_term)
+                    name = ":".join(pv_parts)
+                    pv_list = query_pv(name + ":" + search_term)
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:

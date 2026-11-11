@@ -82,36 +82,46 @@ class _Parser:
         without a match are added as accessors of their own.
         """
 
-        def _get_accessors(d_type, tail, pv):
+        def _get_accessors(d_type, address, pv_tail):
             if not (device_map := self.accessor_map.get(d_type, None)):
                 return
-            if not (accessor := device_map.get(tail, None)):
+            if not (meta := device_map.get(pv_tail, None)):
                 return
-            if f"_{tail}_attributes" in device_map:
-                attribute_map = device_map[f"_{tail}_attributes"]
+            if f"attributes" in meta:
+                attribute_map = meta["attributes"]
                 yield from [
-                    (".".join([pv, attr]), a) for attr, a in attribute_map.items()
+                    (".".join([address, attr]), m) for attr, m in attribute_map.items()
                 ]
-            if accessor is not None:
-                yield (pv, accessor)
+            yield (address, meta)
 
-        def _build_accessors(device, d_type, pv_head, override):
+        def _build_accessors(device, d_type, pv_head):
             for pv in addresses:
                 pv_tail = pv[len(pv_head) + 1 :]
-                for address, accessor in _get_accessors(d_type, pv_tail, pv):
-                    yield PKDict(
-                        device_name=device,
-                        cs_address=override.get(accessor, address),
-                        accessor_name=accessor,
+                for address, meta in _get_accessors(d_type, pv, pv_tail):
+                    yield _apply_overrides(
+                        PKDict(
+                            device_name=device,
+                            cs_address=address,
+                            accessor_name=meta["name"],
+                            py_type=meta["py_type"],
+                        )
                     )
 
+        def _apply_overrides(entry):
+            if entry.device_name in self.accessor_overrides:
+                entry.update(
+                    self.accessor_overrides.get(entry.accessor_name, {})
+                )
+            return entry                
+
         def _build_overrides(device, override, matched):
-            for accessor_name, cs_address in override.items():
-                if cs_address and accessor_name not in matched:
+            for accessor_name, meta in override.items():
+                if accessor_name not in matched:
                     yield PKDict(
                         device_name=device,
-                        cs_address=cs_address,
                         accessor_name=accessor_name,
+                        cs_address=meta["cs_address"],
+                        py_type=meta["py_type"],
                     )
 
 
@@ -121,7 +131,7 @@ class _Parser:
         # their own keyword.
         d_type = "KLYS" if "KLYS" in cs_name else row["keyword"]
         override = self.accessor_overrides.get(device, PKDict())
-        rv = list(_build_accessors(device, d_type, cs_name, override))
+        rv = list(_build_accessors(device, d_type, cs_name))
         matched = {a.accessor_name for a in rv}
         return rv + list(_build_overrides(device, override, matched))
 
