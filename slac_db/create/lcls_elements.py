@@ -22,22 +22,22 @@ ORACLE_TO_YAML_TYPE_MAP = {
 }
 
 
-def get_lcls_elements_csv(csv_output="lcls_elements.csv"):
-    """Get the lcls_elements.csv file from Oracle.
-    This function only works on production.
+# def get_lcls_elements_csv(csv_output="lcls_elements.csv"):
+#     """Get the lcls_elements.csv file from Oracle.
+#     This function only works on production.
 
-    Args:
-        csv_output: Name of the output csv file.
-    """
-    import pandas as pd
+#     Args:
+#         csv_output: Name of the output csv file.
+#     """
+#     import pandas as pd
 
-    sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
-    try:
-        with get_connection() as connection:
-            df = pd.read_sql(sql_query, connection)
-            df.to_csv(csv_output, index=False)
-    except Exception as e:
-        print(f"An error occurred {e}")
+#     sql_query = text("select * from lcls_infrastructure.V_LCLS_ELEMENTS_DIAG")
+#     try:
+#         with get_connection() as connection:
+#             df = pd.read_sql(sql_query, connection)
+#             df.to_csv(csv_output, index=False)
+#     except Exception as e:
+#         print(f"An error occurred {e}")
 
 
 def to_oracle_db(csv_source=None):
