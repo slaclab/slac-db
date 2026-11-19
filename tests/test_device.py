@@ -28,11 +28,11 @@ class test_device(unittest.TestCase):
     def test_get_devices_exclude_inactive(self):
         """By default inactive devices are excluded."""
         all_devices = slac_db.device.get_devices(
-            area="DIAG0", device_type="TRIM", include_inactive=True
+            area="L3", device_type="TRIM", include_inactive=True
         )
-        active_devices = slac_db.device.get_devices(area="DIAG0", device_type="TRIM")
-        self.assertIn("BLRDG0T", all_devices)
-        self.assertNotIn("BLRDG0T", active_devices)
+        active_devices = slac_db.device.get_devices(area="L3", device_type="TRIM")
+        self.assertIn("Q30615A", all_devices)
+        self.assertNotIn("Q30615A", active_devices)
         self.assertTrue(len(active_devices) < len(all_devices))
 
     def test_upstream(self):
