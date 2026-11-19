@@ -781,74 +781,6 @@ bpms:
       - SC_SXR2
       sum_l_meters: 3571.282
       type: BPM
-lblms:
-  LBLMS26A:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:105:A:FAST_AMP_BYP
-        gain: LBLM:LTUS:105:A:FAST_AMP_GAIN
-      control_name: LBLM:LTUS:105:A
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMS30A:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:433:A:FAST_AMP_BYP
-        gain: LBLM:LTUS:433:A:FAST_AMP_GAIN
-      control_name: LBLM:LTUS:433:A
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMS30B:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:433:B:FAST_AMP_BYP
-        gain: LBLM:LTUS:433:B:FAST_AMP_GAIN
-      control_name: LBLM:LTUS:433:B
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMS32A:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:738:A:FAST_AMP_BYP
-        gain: LBLM:LTUS:738:A:FAST_AMP_GAIN
-        gated_integral: LBLM:LTUS:738:A:GATED_INTEGRAL
-      control_name: LBLM:LTUS:738:A
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMS32B:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:738:B:FAST_AMP_BYP
-        gain: LBLM:LTUS:738:B:FAST_AMP_GAIN
-      control_name: LBLM:LTUS:738:B
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMS34A:
-    controls_information:
-      PVs:
-        bypass: LBLM:LTUS:846:A:FAST_AMP_BYP
-        gain: LBLM:LTUS:846:A:FAST_AMP_GAIN
-      control_name: LBLM:LTUS:846:A
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
 magnets:
   BCX31B1:
     controls_information:
@@ -3342,17 +3274,6 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 3520.705
       type: YCOR
-pmts:
-  PMT756B:
-    controls_information:
-      PVs:
-        qdcraw: PMT:LTUS:756:QDCRAW
-      control_name: PMT:LTUS:756
-    metadata:
-      area: LTUS
-      beam_path: []
-      sum_l_meters: null
-      type: INST
 screens:
   YAGDL18:
     controls_information:
