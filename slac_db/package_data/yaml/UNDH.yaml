@@ -665,40 +665,6 @@ bpms:
       - SC_HXR2
       sum_l_meters: 1703.75
       type: BPM
-lblms:
-  LBLMH40A:
-    controls_information:
-      PVs:
-        bypass: LBLM:UNDH:4050:A:FAST_AMP_BYP
-        gain: LBLM:UNDH:4050:A:FAST_AMP_GAIN
-      control_name: LBLM:UNDH:4050:A
-    metadata:
-      area: UNDH
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMH47A:
-    controls_information:
-      PVs:
-        bypass: LBLM:UNDH:4750:A:FAST_AMP_BYP
-        gain: LBLM:UNDH:4750:A:FAST_AMP_GAIN
-      control_name: LBLM:UNDH:4750:A
-    metadata:
-      area: UNDH
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLMH47B:
-    controls_information:
-      PVs:
-        bypass: LBLM:UNDH:4750:B:FAST_AMP_BYP
-        gain: LBLM:UNDH:4750:B:FAST_AMP_GAIN
-      control_name: LBLM:UNDH:4750:B
-    metadata:
-      area: UNDH
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
 magnets:
   BCXCB21:
     controls_information:
@@ -989,7 +955,7 @@ magnets:
       - SC_HXR
       - SC_HXR2
       l_eff: 0.364
-      sum_l_meters: 1609.788
+      sum_l_meters: 1609.889
       type: BEND
   BCXHS3:
     controls_information:
@@ -1012,7 +978,7 @@ magnets:
       - SC_HXR
       - SC_HXR2
       l_eff: 0.364
-      sum_l_meters: 1610.927
+      sum_l_meters: 1610.825
       type: BEND
   BCXHS4:
     controls_information:
