@@ -299,7 +299,7 @@ _overrides:
     phase_desired:
       cs_address: GUN:IN20:1:GN1_PDES
       py_type: float
-  K20_7:
+  L0A:
     amplitude_beamcode1:
       cs_address: ACCL:IN20:300:L0A_AACT_DS0
       py_type: float
@@ -324,7 +324,7 @@ _overrides:
     phase_desired_beamcode2:
       cs_address: ACCL:IN20:300:L0A_PDES_DS1
       py_type: float
-  K20_8:
+  L0B:
     amplitude_beamcode1:
       cs_address: ACCL:IN20:400:L0B_AACT_DS0
       py_type: float
