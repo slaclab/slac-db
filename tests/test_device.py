@@ -22,8 +22,9 @@ class test_device(unittest.TestCase):
         """Active devices have is_active=True, inactive have is_active=False."""
         # OTRDG02 is an active screen in DIAG0
         self.assertTrue(slac_db.device.get_attribute("OTRDG02", "is_active"))
-        # BLRDG0T is an inactive TRIM in DIAG0
-        self.assertFalse(slac_db.device.get_attribute("BLRDG0T", "is_active"))
+        # Grab an inactive device, and verify its is_active attribute is False.
+        inactive_devices = set(slac_db.device.get_devices(inactive_only=True))
+        self.assertFalse(slac_db.device.get_attribute(next(iter(inactive_devices)), "is_active"))
 
     def test_get_devices_exclude_inactive(self):
         """By default inactive devices are excluded."""
