@@ -409,7 +409,7 @@ def get_device_from_cs_name(cs_name):
         return row["device_name"] if row else None
 
 
-def get_devices(area=None, device_type=None, beampath=None, include_inactive=False):
+def get_devices(area=None, device_type=None, beampath=None, include_inactive=False, inactive_only=False):
     """Get all devices filtered by area, beampath, and/or device type.
 
     Args:
@@ -421,6 +421,8 @@ def get_devices(area=None, device_type=None, beampath=None, include_inactive=Fal
             with `area` using AND.
         include_inactive (bool) optional: If True, include inactive devices.
             Defaults to False (active devices only).
+        inactive_only (bool) optional: If True, include only inactive devices.
+            Defaults to False, and takes precedence over `include_inactive`.
 
     Out:
         List of devices ordered by sum_l_meters.
@@ -444,7 +446,9 @@ def get_devices(area=None, device_type=None, beampath=None, include_inactive=Fal
                 selection = selection.where(col.in_(list(device_type)))
             else:
                 selection = selection.where(col == device_type)
-        if not include_inactive:
+        if inactive_only:
+            selection = selection.where(s.t.devices.c["is_active"] == False)
+        elif not include_inactive:
             selection = selection.where(s.t.devices.c["is_active"] == True)
         selection = selection.order_by(s.t.device_meta_float.c.meta_value)
         return [d["device_name"] for d in s.select(selection)]
