@@ -119,32 +119,6 @@ bpms:
       beam_path: []
       sum_l_meters: 41.799
       type: BPM
-lblms:
-  LBLM01A:
-    controls_information:
-      PVs:
-        bypass: LBLM:HTR:167:A:FAST_AMP_BYP
-        gain: LBLM:HTR:167:A:FAST_AMP_GAIN
-        gated_integral: LBLM:HTR:167:A:GATED_INTEGRAL
-        i0_loss: LBLM:HTR:167:A:I0_LOSS
-      control_name: LBLM:HTR:167:A
-    metadata:
-      area: HTR
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM01B:
-    controls_information:
-      PVs:
-        bypass: LBLM:HTR:167:B:FAST_AMP_BYP
-        gain: LBLM:HTR:167:B:FAST_AMP_GAIN
-        i0_loss: LBLM:HTR:167:B:I0_LOSS
-      control_name: LBLM:HTR:167:B
-    metadata:
-      area: HTR
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
 magnets:
   BCXH1:
     controls_information:

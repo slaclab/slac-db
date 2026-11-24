@@ -371,30 +371,6 @@ bpms:
       beam_path: []
       sum_l_meters: null
       type: BPM
-lblms:
-  LBLM10A:
-    controls_information:
-      PVs:
-        i0_loss: LBLM:DOG:381:A:I0_LOSS
-      control_name: LBLM:DOG:381:A
-    metadata:
-      area: DOG
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
-  LBLM11A:
-    controls_information:
-      PVs:
-        bypass: LBLM:DOG:740:A:FAST_AMP_BYP
-        gain: LBLM:DOG:740:A:FAST_AMP_GAIN
-        gated_integral: LBLM:DOG:740:A:GATED_INTEGRAL
-        i0_loss: LBLM:DOG:740:A:I0_LOSS
-      control_name: LBLM:DOG:740:A
-    metadata:
-      area: DOG
-      beam_path: []
-      sum_l_meters: null
-      type: LBLM
 magnets:
   BCXDLD1:
     controls_information:
