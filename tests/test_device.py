@@ -3,7 +3,7 @@ from pathlib import Path
 
 import slac_db.device
 
-test_data_path = Path(__file__).parent / "test_data"
+test_data_path = Path(__file__).parent.joinpath("test_data")
 
 
 class test_device(unittest.TestCase):
@@ -35,6 +35,12 @@ class test_device(unittest.TestCase):
         self.assertNotIn("BLRDG0T", active_devices)
         self.assertTrue(len(active_devices) < len(all_devices))
 
+    def test_upstream(self):
+            a = slac_db.device.upstream_devices("PROF", "target_control", "CU_HXR", "OTR11")
+            self.assertEqual(9, len(a))
+            self.assertEqual("YAG01", a[0], "Lowest Z Prof")
+            self.assertEqual("OTR4", a[-1], "Closest Z Prof")
+
     def test_get_beampath_exclude_inactive(self):
         """By default inactive devices are excluded; include_inactive=True brings them back."""
         active_lcav = slac_db.device.get_beampath(beampath="CU_HXR", device_type="LCAV")
@@ -46,3 +52,18 @@ class test_device(unittest.TestCase):
         # L0A___ is the known inactive element — excluded by default, present with flag
         self.assertNotIn("L0A___", active_lcav)
         self.assertIn("L0A___", all_lcav)
+
+
+def test_many_devices():
+    d = slac_db.device.get_devices()
+    d1 = slac_db.device.build_accessor(d)
+    d2 = slac_db.device.build_meta(d)
+    d3 = slac_db.device.build_device(d)
+    assert len(d) > 0
+    assert len(d) == len(d1)
+    assert len(d) == len(d2)
+    assert len(d) == len(d3)
+
+    for name, device in d3.items():
+        assert device == slac_db.device.build_one_device(name)
+

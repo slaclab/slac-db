@@ -3400,15 +3400,18 @@ wires:
         timeout: WIRE:LTUS:715:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUS:715:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUS:715:UWIRESIZE
+        u_speed_calc: WIRE:LTUS:715:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUS:715:UWIREINNER
         u_wire_outer: WIRE:LTUS:715:UWIREOUTER
         use_u_wire: WIRE:LTUS:715:USEUWIRE
         use_x_wire: WIRE:LTUS:715:USEXWIRE
         use_y_wire: WIRE:LTUS:715:USEYWIRE
         x_size: WIRE:LTUS:715:XWIRESIZE
+        x_speed_calc: WIRE:LTUS:715:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUS:715:XWIREINNER
         x_wire_outer: WIRE:LTUS:715:XWIREOUTER
         y_size: WIRE:LTUS:715:YWIRESIZE
+        y_speed_calc: WIRE:LTUS:715:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUS:715:YWIREINNER
         y_wire_outer: WIRE:LTUS:715:YWIREOUTER
       control_name: WIRE:LTUS:715
@@ -3492,15 +3495,18 @@ wires:
         timeout: WIRE:LTUS:735:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUS:735:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUS:735:UWIRESIZE
+        u_speed_calc: WIRE:LTUS:735:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUS:735:UWIREINNER
         u_wire_outer: WIRE:LTUS:735:UWIREOUTER
         use_u_wire: WIRE:LTUS:735:USEUWIRE
         use_x_wire: WIRE:LTUS:735:USEXWIRE
         use_y_wire: WIRE:LTUS:735:USEYWIRE
         x_size: WIRE:LTUS:735:XWIRESIZE
+        x_speed_calc: WIRE:LTUS:735:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUS:735:XWIREINNER
         x_wire_outer: WIRE:LTUS:735:XWIREOUTER
         y_size: WIRE:LTUS:735:YWIRESIZE
+        y_speed_calc: WIRE:LTUS:735:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUS:735:YWIREINNER
         y_wire_outer: WIRE:LTUS:735:YWIREOUTER
       control_name: WIRE:LTUS:735
@@ -3584,15 +3590,18 @@ wires:
         timeout: WIRE:LTUS:755:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUS:755:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUS:755:UWIRESIZE
+        u_speed_calc: WIRE:LTUS:755:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUS:755:UWIREINNER
         u_wire_outer: WIRE:LTUS:755:UWIREOUTER
         use_u_wire: WIRE:LTUS:755:USEUWIRE
         use_x_wire: WIRE:LTUS:755:USEXWIRE
         use_y_wire: WIRE:LTUS:755:USEYWIRE
         x_size: WIRE:LTUS:755:XWIRESIZE
+        x_speed_calc: WIRE:LTUS:755:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUS:755:XWIREINNER
         x_wire_outer: WIRE:LTUS:755:XWIREOUTER
         y_size: WIRE:LTUS:755:YWIRESIZE
+        y_speed_calc: WIRE:LTUS:755:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUS:755:YWIREINNER
         y_wire_outer: WIRE:LTUS:755:YWIREOUTER
       control_name: WIRE:LTUS:755
@@ -3676,15 +3685,18 @@ wires:
         timeout: WIRE:LTUS:785:MOTR_TIMEOUTEN
         torque_enable: WIRE:LTUS:785:MOTR_SWITCH_ON_CMD
         u_size: WIRE:LTUS:785:UWIRESIZE
+        u_speed_calc: WIRE:LTUS:785:WIREUSPEED_CALC
         u_wire_inner: WIRE:LTUS:785:UWIREINNER
         u_wire_outer: WIRE:LTUS:785:UWIREOUTER
         use_u_wire: WIRE:LTUS:785:USEUWIRE
         use_x_wire: WIRE:LTUS:785:USEXWIRE
         use_y_wire: WIRE:LTUS:785:USEYWIRE
         x_size: WIRE:LTUS:785:XWIRESIZE
+        x_speed_calc: WIRE:LTUS:785:WIREXSPEED_CALC
         x_wire_inner: WIRE:LTUS:785:XWIREINNER
         x_wire_outer: WIRE:LTUS:785:XWIREOUTER
         y_size: WIRE:LTUS:785:YWIRESIZE
+        y_speed_calc: WIRE:LTUS:785:WIREYSPEED_CALC
         y_wire_inner: WIRE:LTUS:785:YWIREINNER
         y_wire_outer: WIRE:LTUS:785:YWIREOUTER
       control_name: WIRE:LTUS:785

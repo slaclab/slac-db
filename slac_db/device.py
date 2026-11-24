@@ -1,13 +1,337 @@
+from operator import xor
 import os
 
 import pykern.sql_db
 import sqlalchemy
 import yaml
 from pykern.pkcollections import PKDict
+import numpy
+from collections.abc import Iterable
 
 import slac_db.config
 
 _meta = None
+_db_path = slac_db.config.package_data().joinpath("device.sqlite3")
+
+_PY_TYPES = PKDict(
+    {
+        "bool": bool,
+        "float": float,
+        "int": int,
+        "numpy.ndarray": numpy.ndarray,
+    }
+)
+
+
+def build_device(*args, **kwargs):
+    """Collect basic device info, device meta, and accessor meta.
+
+    Args:
+        device (str): Oracle element name.
+               (Iterable): Iterator of many Oracle elements.
+
+    kwargs:
+        from get_devices
+            area (str) optional: Area name.
+        device_type (str | list[str]) optional: Device type in Oracle.
+            A list filters with SQL IN(...).
+        beampath (str) optional: Beampath name. When given, restricts
+            to devices whose area belongs to the beampath. Combined
+            with `area` using AND.
+        include_inactive (bool) optional: If True, include inactive devices.
+            Defaults to False (active devices only).
+
+    Out:
+        Single Device: Device keyed by meta name and accessor[accessor_name]
+        Many Devices: PKDict keyed by {element_name: meta name and accessor[accessor_name]}
+    """
+    if xor(bool(args), bool(kwargs)):
+        ValueError("Must pass one of arguments or keywords.")
+    if len(args) == 1 and isinstance(args[0], str):
+        return build_one_device(args[0])
+    elif len(args) == 1 and isinstance(args[0], Iterable):
+        return build_many_devices(args[0])
+    elif len(args) > 1:
+        for a in args:
+            if not isinstance(a, str):
+                ValueError(f"argument={a} is not a string")
+        return build_many_devices(args)
+    elif kwargs:
+        devices = get_devices(**kwargs)
+        return build_many_devices(devices)
+    raise ValueError("Must pass one of arguments or keywords.")
+
+
+def build_many_devices(devices):
+    """Collect basic device info, device meta, and accessor meta.
+    Optionally filters by kwargs.
+
+    args:
+        device_name (Iterable): Iterator of element names.
+
+    Out:
+        PKDict keyed by {element_name: meta name and accessor[accessor_name]}
+    """
+    with _session() as s:
+        devices = PKDict(
+            {
+                r["device_name"]: PKDict(r)
+                for r in s.select(
+                    sqlalchemy.select(s.t.devices).where(
+                        s.t.devices.c.device_name.in_(devices)
+                    )
+                )
+            }
+        )
+
+    meta = build_many_meta(devices)
+    accessor = build_many_accessors(devices)
+
+    for name, d in devices.items():
+        d = d.pkupdate(
+            **meta[name],
+            accessor=accessor[name],
+        )
+
+    return devices
+
+
+def build_one_device(device_name):
+    """Collect basic device info, device meta, and accessor meta.
+
+    args:
+        device_name (str): Device name.
+
+    Out:
+        Device keyed by meta name and accessor[accessor_name]
+    """
+    with _session() as s:
+        device = PKDict(s.select_one("devices", PKDict(device_name=device_name)))
+    return device.pkupdate(
+        **build_one_meta(device_name),
+        accessor=build_accessor(device_name),
+    )
+
+
+def build_accessor(arg):
+    """Collect accessor meta.
+    An accessor is a developer friendly name for a PV
+    associated with a single device.
+
+    Args:
+        device (str): Oracle element name.
+               (Iterable): Iterator of many Oracle elements.
+    Out:
+        Single Device: PKDict map from accessor names to values.
+        Many Devices: PKDict map from devices to accessor map.
+    """
+    if isinstance(arg, str):
+        return build_one_accessor(arg)
+    elif isinstance(arg, Iterable):
+        return build_many_accessors(arg)
+    else:
+        raise ValueError(
+            f"arg={arg} type(arg)={type(arg)} must be: "
+            + "type(arg) = str for one element or "
+            + "type(arg) = Iterable for many elements."
+        )
+
+
+def build_many_accessors(devices):
+    """Collect accessor meta.
+    An accessor is a developer friendly name for a PV
+    associated with a single device.
+
+    Args:
+        device (str): MAD name for a device.
+    Out:
+        PKDict indexed by accessor name with all accessor table rows.
+    """
+
+    def _accessor_dict(row):
+        if row["accessor_name"] is None:
+            return PKDict()
+        return PKDict({row["accessor_name"]: _apply_py_type(row)})
+
+    def _apply_py_type(meta):
+        meta = PKDict(meta)
+        meta.py_type = _PY_TYPES[meta.py_type]
+        return meta
+
+    with _session() as s:
+        rows = s.select(
+            sqlalchemy.select(
+                s.t.devices.c.device_name,
+                *(c for c in s.t.accessors.c if c.name != "device_name"),
+            )
+            .outerjoin(
+                s.t.accessors,
+                s.t.accessors.c.device_name == s.t.devices.c.device_name,
+            )
+            .where(s.t.devices.c.device_name.in_(devices))
+            .order_by(s.t.devices.c.device_name)
+        )
+
+        device_accessors = PKDict()
+        for r in rows:
+            device = r["device_name"]
+            device_accessors[device] = device_accessors.pop(device, PKDict()).pkupdate(
+                _accessor_dict(r)
+            )
+        return device_accessors
+
+
+def build_one_accessor(device_name):
+    """Collect accessor meta.
+    An accessor is a developer friendly name for a PV
+    associated with a single device.
+
+    Args:
+        device (str): MAD name for a device.
+    Out:
+        PKDict indexed by accessor name with all accessor table rows.
+    """
+
+    def _apply_py_type(meta):
+        meta = PKDict(meta)
+        meta.py_type = _PY_TYPES[meta.py_type]
+        return meta
+
+    with _session() as s:
+        return PKDict(
+            {
+                r["accessor_name"]: _apply_py_type(r)
+                for r in s.select(
+                    sqlalchemy.select(s.t.accessors)
+                    .where(s.t.accessors.c["device_name"] == device_name)
+                    .order_by(s.t.accessors.c.accessor_name)
+                )
+            }
+        )
+
+
+def build_meta(arg):
+    """Get a dictionary of all known metadata.
+
+    Args:
+        device (str): Device Name
+               (Iterable): Iterator of Devices
+    Out:
+        Single Device: Device meta dictionary keyed by meta name.
+        Many Devices: Device meta dictionaries keyed by device name.
+    """
+    if isinstance(arg, str):
+        return build_one_meta(arg)
+    elif isinstance(arg, Iterable):
+        return build_many_meta(arg)
+    else:
+        raise ValueError(
+            f"arg={arg} type(arg)={type(arg)} must be: "
+            + "type(arg) = str for one element or "
+            + "type(arg) = Iterable for many elements."
+        )
+
+
+def build_many_meta(device_names):
+    """Get meta dicts for many devices.
+
+    Args:
+        device_names: Iterator of Devices
+
+    Returns:
+        Device meta dictionaries keyed by device name.
+    """
+
+    def _fixup_string(val):
+        if type(val) is str:
+            val = yaml.safe_load(val)
+        return val
+
+    def _meta_dict(row):
+        if row["device_meta_name"] is None:
+            return PKDict()
+        return PKDict({row["device_meta_name"]: _fixup_string(row["meta_value"])})
+
+    with _session() as s:
+        devices = s.t.devices
+        meta = s.t.device_meta
+        meta_float = s.t.device_meta_float
+        meta_string = s.t.device_meta_string
+
+        def _on(t):
+            return sqlalchemy.and_(
+                t.c.device_name == meta.c.device_name,
+                t.c.device_meta_name == meta.c.device_meta_name,
+            )
+
+        statement = (
+            sqlalchemy.select(
+                devices.c.device_name,
+                meta.c.device_meta_name,
+                sqlalchemy.func.coalesce(
+                    meta_float.c.meta_value, meta_string.c.meta_value
+                ).label("meta_value"),
+            )
+            .select_from(devices)
+            .outerjoin(meta, devices.c.device_name == meta.c.device_name)
+            .outerjoin(meta_float, _on(meta_float))
+            .outerjoin(meta_string, _on(meta_string))
+            .where(devices.c.device_name.in_(device_names))
+        )
+        rows = s.select(statement)
+
+        device_meta = PKDict()
+        for r in rows:
+            device = r["device_name"]
+            device_meta[device] = (
+                    device_meta.pop(device, PKDict())
+                    .pkupdate(_meta_dict(r)
+                )
+            )
+        return device_meta
+
+
+def build_one_meta(device_name):
+    """Get a dictionary of all known metadata.
+
+    Args:
+        device_name: MAD Device Name
+
+    Returns:
+        (dict): Dict of all device meta.
+    """
+
+    def _fixup_string(val):
+        if type(val) is str:
+            val = yaml.safe_load(val)
+        return val
+
+    with _session() as s:
+        meta = s.t.device_meta
+        meta_float = s.t.device_meta_float
+        meta_string = s.t.device_meta_string
+
+        def _on(t):
+            return sqlalchemy.and_(
+                t.c.device_name == meta.c.device_name,
+                t.c.device_meta_name == meta.c.device_meta_name,
+            )
+
+        return {
+            r["device_meta_name"]: _fixup_string(r["meta_value"])
+            for r in s.select(
+                sqlalchemy.select(
+                    meta.c.device_meta_name,
+                    sqlalchemy.func.coalesce(
+                        meta_float.c.meta_value, meta_string.c.meta_value
+                    ).label("meta_value"),
+                )
+                .join(meta_float, _on(meta_float), isouter=True)
+                .join(meta_string, _on(meta_string), isouter=True)
+                .where(meta.c.device_name == device_name)
+                .order_by(meta.c.device_meta_name)
+            )
+        }
 
 
 def get_areas(beampath=None):
@@ -128,7 +452,7 @@ def get_devices(area=None, device_type=None, include_inactive=False):
         return [d["device_name"] for d in s.select(selection)]
 
 
-def get_all_accessors(device):
+def get_all_accessors(device_name):
     """Get all accessors from a device.
     An accessor is a developer friendly name for a PV
     associated with a single device.
@@ -136,15 +460,10 @@ def get_all_accessors(device):
     Args:
         device (str): MAD name for a device.
     """
-    with _session() as s:
-        return {
-            r["accessor_name"]: r["cs_address"]
-            for r in s.select(
-                sqlalchemy.select(s.t.accessors)
-                .where(s.t.accessors.c["device_name"] == device)
-                .order_by(s.t.accessors.c.accessor_name)
-            )
-        }
+    return {
+        accessor: meta.cs_address
+        for accessor, meta in build_accessor(device_name).items()
+    }
 
 
 def get_all_addresses(device):
@@ -196,49 +515,6 @@ def get_all_device_beampaths(device):
         ]
 
 
-def get_all_meta(device_name):
-    """Get a dictionary of all known metadata.
-
-    Args:
-        device_name: MAD Device Name
-
-    Returns:
-        (dict): Dict of all device meta.
-    """
-
-    def _fixup_string(val):
-        if type(val) is str:
-            val = yaml.safe_load(val)
-        return val
-
-    with _session() as s:
-        meta = s.t.device_meta
-        meta_float = s.t.device_meta_float
-        meta_string = s.t.device_meta_string
-
-        def _on(t):
-            return sqlalchemy.and_(
-                t.c.device_name == meta.c.device_name,
-                t.c.device_meta_name == meta.c.device_meta_name,
-            )
-
-        return {
-            r["device_meta_name"]: _fixup_string(r["meta_value"])
-            for r in s.select(
-                sqlalchemy.select(
-                    meta.c.device_meta_name,
-                    sqlalchemy.func.coalesce(
-                        meta_float.c.meta_value, meta_string.c.meta_value
-                    ).label("meta_value"),
-                )
-                .join(meta_float, _on(meta_float), isouter=True)
-                .join(meta_string, _on(meta_string), isouter=True)
-                .where(meta.c.device_name == device_name)
-                .order_by(meta.c.device_meta_name)
-            )
-        }
-
-
 def recreate(parser):
     """Rebuilds the device database.
     Fails if a connection has already been made.
@@ -251,10 +527,83 @@ def recreate(parser):
             "Database connnection already initialized. " + "Restart Python interpreter."
         )
     if not hasattr(parser, "address_meta"):
-        raise AssertionError("Parser is missing attribute 'device_address_meta'. ")
+        raise AssertionError("Parser is missing attribute 'address_meta'. ")
     if os.path.exists(_device_db_location()):
         os.remove(_device_db_location())
     _Inserter(parser)
+
+
+def upstream_devices(device_type, required_accessor, beampath, end_device):
+    """Get upstream devices, filtered by several.
+
+    Args:
+        device_type (str): Filter by this device type.
+        required_accessor (str): Filter by this accessor name.
+        beampath (str): Filter by this beampath.
+        end_device (str): Select devices upstream of this device.
+
+    Returns:
+        Tuple of devices ordered by z.
+    """
+    with _session() as s:
+        # select device.device_name from device_meta_float, device where device_meta_name = 'sum_l_meters' and meta_value < 33 and device.device_type = 'PROF' and device.device_name = device_meta_float.device_name;
+        c = s.t.device_meta_float.c.device_name
+        _assert_on_beampath(end_device, beampath, s)
+        return tuple(
+            r.device_name
+            for r in s.select(
+                sqlalchemy.select(c)
+                .select_from(
+                    s.t.device_meta_float.join(
+                        s.t.devices,
+                        s.t.devices.c.device_name == c,
+                    )
+                    .join(
+                        s.t.beampaths,
+                        s.t.beampaths.c.area == s.t.devices.c.area,
+                    )
+                    .join(
+                        s.t.accessors,
+                        s.t.accessors.c.device_name == c,
+                    )
+                )
+                .where(
+                    s.t.beampaths.c.beampath == beampath,
+                    s.t.device_meta_float.c.device_meta_name == "sum_l_meters",
+                    s.t.device_meta_float.c.meta_value
+                    < _device_meta(end_device, "sum_l_meters", s),
+                    s.t.devices.c.device_type == device_type,
+                    s.t.accessors.c.accessor_name == required_accessor,
+                )
+                .order_by(s.t.device_meta_float.c.meta_value)
+            )
+        )
+
+
+def _assert_on_beampath(device, beampath, select):
+    c = select.t.devices.c.device_name
+    v = select.select_one_or_none(
+        sqlalchemy.select(c)
+        .select_from(
+            select.t.devices.join(
+                select.t.beampaths,
+                select.t.beampaths.c.area == select.t.devices.c.area,
+            )
+        )
+        .where(
+            select.t.devices.c.device_name == device,
+            select.t.beampaths.c.beampath == beampath,
+        ),
+        None,
+    )
+    if v is None:
+        raise ValueError(f"device={device} is not in beam_path={beampath}")
+
+
+def _device_meta(device, meta, select):
+    return select.select_one(
+        "device_meta_float", PKDict(device_name=device, device_meta_name=meta)
+    ).meta_value
 
 
 class _Inserter:
@@ -279,6 +628,8 @@ class _Inserter:
     def _bulk_insert(self, s, table_map):
         s.execute(sqlalchemy.text("SELECT 1"))
         for name, rows in table_map.items():
+            if not rows:
+                continue
             tab = s.t[name]
             s._conn.execute(tab.insert(), rows)
 
@@ -336,6 +687,7 @@ def _init_db(location=None):
         accessors=PKDict(
             device_name="str 64 primary_key foreign",
             accessor_name="str 64 primary_key",
+            py_type="str 64",
             cs_address="str 64",
         ),
     )
@@ -343,8 +695,7 @@ def _init_db(location=None):
 
 
 def _device_db_location():
-    db_location = slac_db.config.package_data().joinpath("device.sqlite3")
-    return str(db_location)
+    return str(_db_path)
 
 
 def _session():

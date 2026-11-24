@@ -1169,15 +1169,18 @@ wires:
         timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
         torque_enable: WIRE:IN20:561:MOTR_SWITCH_ON_CMD
         u_size: WIRE:IN20:561:UWIRESIZE
+        u_speed_calc: WIRE:IN20:561:WIREUSPEED_CALC
         u_wire_inner: WIRE:IN20:561:UWIREINNER
         u_wire_outer: WIRE:IN20:561:UWIREOUTER
         use_u_wire: WIRE:IN20:561:USEUWIRE
         use_x_wire: WIRE:IN20:561:USEXWIRE
         use_y_wire: WIRE:IN20:561:USEYWIRE
         x_size: WIRE:IN20:561:XWIRESIZE
+        x_speed_calc: WIRE:IN20:561:WIREXSPEED_CALC
         x_wire_inner: WIRE:IN20:561:XWIREINNER
         x_wire_outer: WIRE:IN20:561:XWIREOUTER
         y_size: WIRE:IN20:561:YWIRESIZE
+        y_speed_calc: WIRE:IN20:561:WIREYSPEED_CALC
         y_wire_inner: WIRE:IN20:561:YWIREINNER
         y_wire_outer: WIRE:IN20:561:YWIREOUTER
       control_name: WIRE:IN20:561
@@ -1234,15 +1237,18 @@ wires:
         timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
         torque_enable: WIRE:IN20:611:MOTR_SWITCH_ON_CMD
         u_size: WIRE:IN20:611:UWIRESIZE
+        u_speed_calc: WIRE:IN20:611:WIREUSPEED_CALC
         u_wire_inner: WIRE:IN20:611:UWIREINNER
         u_wire_outer: WIRE:IN20:611:UWIREOUTER
         use_u_wire: WIRE:IN20:611:USEUWIRE
         use_x_wire: WIRE:IN20:611:USEXWIRE
         use_y_wire: WIRE:IN20:611:USEYWIRE
         x_size: WIRE:IN20:611:XWIRESIZE
+        x_speed_calc: WIRE:IN20:611:WIREXSPEED_CALC
         x_wire_inner: WIRE:IN20:611:XWIREINNER
         x_wire_outer: WIRE:IN20:611:XWIREOUTER
         y_size: WIRE:IN20:611:YWIRESIZE
+        y_speed_calc: WIRE:IN20:611:WIREYSPEED_CALC
         y_wire_inner: WIRE:IN20:611:YWIREINNER
         y_wire_outer: WIRE:IN20:611:YWIREOUTER
       control_name: WIRE:IN20:611
