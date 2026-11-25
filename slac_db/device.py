@@ -404,13 +404,15 @@ def get_device_from_cs_name(cs_name):
     """
     with _session() as s:
         row = s.select_one_or_none(
-            sqlalchemy.select(s.t.devices).where(s.t.devices.c["cs_name"] == cs_name)
+            sqlalchemy.select(s.t.devices).where(
+                s.t.devices.c["cs_name"] == cs_name
+            )
         )
         return row["device_name"] if row else None
 
 
-def get_devices(area=None, device_type=None, beampath=None, include_inactive=False):
-    """Get all devices filtered by area, beampath, and/or device type.
+def get_devices(area=None, device_type=None, include_inactive=False):
+    """Get all devices in an area of a type.
 
     Args:
         area (str) optional: Area name.

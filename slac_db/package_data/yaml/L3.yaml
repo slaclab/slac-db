@@ -4201,12 +4201,12 @@ wires:
       charge_toroids:
       - BPM27201
       default_detector: PMT29150:LI29
-      detectors:
+      detectors: &id002
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
       - TMITLOSS:L3
-      jitter_bpms:
+      jitter_bpms: &id003
       - BPM27201
       - BPM27301
       - BPM27401
@@ -4224,7 +4224,7 @@ wires:
       - BPM28801
       - BPM28901
       sum_l_meters: 700.132
-      tmitloss:
+      tmitloss: &id004
         downstream:
         - BPM30501
         - BPM30601
@@ -4288,40 +4288,10 @@ wires:
       charge_toroids:
       - BPM27201
       default_detector: PMT29150:LI29
-      detectors:
-      - PMT29150:LI29
-      - PMT756:LTUH
-      - PMT820:LTUH
-      - TMITLOSS:L3
-      jitter_bpms:
-      - BPM27201
-      - BPM27301
-      - BPM27401
-      - BPM27501
-      - BPM27601
-      - BPM27701
-      - BPM27801
-      - BPM27901
-      - BPM28201
-      - BPM28301
-      - BPM28401
-      - BPM28501
-      - BPM28601
-      - BPM28701
-      - BPM28801
-      - BPM28901
+      detectors: *id002
+      jitter_bpms: *id003
       sum_l_meters: 740.508
-      tmitloss:
-        downstream:
-        - BPM30501
-        - BPM30601
-        - BPM30701
-        - BPM30801
-        upstream:
-        - BPM27301
-        - BPM27401
-        - BPM27501
-        - BPM27601
+      tmitloss: *id004
       type: WIRE
       wire_type: fast
   WS28444:
@@ -4375,40 +4345,10 @@ wires:
       charge_toroids:
       - BPM27201
       default_detector: PMT29150:LI29
-      detectors:
-      - PMT29150:LI29
-      - PMT756:LTUH
-      - PMT820:LTUH
-      - TMITLOSS:L3
-      jitter_bpms:
-      - BPM27201
-      - BPM27301
-      - BPM27401
-      - BPM27501
-      - BPM27601
-      - BPM27701
-      - BPM27801
-      - BPM27901
-      - BPM28201
-      - BPM28301
-      - BPM28401
-      - BPM28501
-      - BPM28601
-      - BPM28701
-      - BPM28801
-      - BPM28901
+      detectors: *id002
+      jitter_bpms: *id003
       sum_l_meters: 777.541
-      tmitloss:
-        downstream:
-        - BPM30501
-        - BPM30601
-        - BPM30701
-        - BPM30801
-        upstream:
-        - BPM27301
-        - BPM27401
-        - BPM27501
-        - BPM27601
+      tmitloss: *id004
       type: WIRE
       wire_type: fast
   WS28744:
@@ -4462,39 +4402,9 @@ wires:
       charge_toroids:
       - BPM27201
       default_detector: PMT29150:LI29
-      detectors:
-      - PMT29150:LI29
-      - PMT756:LTUH
-      - PMT820:LTUH
-      - TMITLOSS:L3
-      jitter_bpms:
-      - BPM27201
-      - BPM27301
-      - BPM27401
-      - BPM27501
-      - BPM27601
-      - BPM27701
-      - BPM27801
-      - BPM27901
-      - BPM28201
-      - BPM28301
-      - BPM28401
-      - BPM28501
-      - BPM28601
-      - BPM28701
-      - BPM28801
-      - BPM28901
+      detectors: *id002
+      jitter_bpms: *id003
       sum_l_meters: 814.077
-      tmitloss:
-        downstream:
-        - BPM30501
-        - BPM30601
-        - BPM30701
-        - BPM30801
-        upstream:
-        - BPM27301
-        - BPM27401
-        - BPM27501
-        - BPM27601
+      tmitloss: *id004
       type: WIRE
       wire_type: fast
